@@ -1,0 +1,7 @@
+# Site settings
+title: Geeky Blinder
+description: Another person in tech with a blog
+keywords: Modern, Blogging, Fun
+author: Geeky Blinder
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "" # the base hostname & protocol for your site
