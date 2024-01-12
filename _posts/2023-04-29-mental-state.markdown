@@ -46,8 +46,7 @@ I've heard this so many times.
     
 I've had it go this way: 
 - *"Oh so when were you diagnosed?"*    
-With a reply of
-- *"Oh i self diagnosed"...*    
+With a reply of - *"Oh i self diagnosed"...*    
 What, i beg your pardon!!! 
 
 - *"Why you being an arse and so rude?"*    
