@@ -11,7 +11,7 @@ tags: ipo startup people business
 
 # The Perils of Startup Life: A Personal Perspective
 
-My journey has led me through the thrilling yet treacherous landscape of startups aiming for the coveted Initial Public Offering (IPO). While the allure of going public may seem like the pinnacle of success, the reality often unveils a different story—a tale of trials and tribulations that can jeopardise the very core of a company and the human toll is devastating.
+My journey has led me through the treacherous landscape of startups aiming for the coveted Initial Public Offering (IPO). While the allure of going public may seem like the pinnacle of success, the reality often unveils a different story—a tale of trials and tribulations that can jeopardise the very core of a company and the human toll is devastating.
 
 ## The Initial Dream
 
