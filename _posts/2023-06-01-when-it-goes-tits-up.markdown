@@ -55,7 +55,7 @@ There you go. That is it.
   Imagine, you have created a huge script, spent days perfecting it, adding output to indicate errors, monitored it, tweaking it and then it run on the live system.... **BOOM** It doesn't behave as expected but due to your hard work, the output identifies the issue, the safety blanket you put in place means that it can be remedied quickly but it will mean the issue does effect a number of people temporarily. So, here we go.  
 
   *Type 1*:  
-  Hey ive seen this error, and they are happy to back off while it is fixed, even extending the offer **privately** of help if needed.  
+  Hey ive seen this error!!!, and they are happy to back off while it is fixed, even extending the offer **privately** of help if needed.  
   These people are great, admittedly their mood may change and become a little less patient if the issue becomes a longer issue yet understand that if it does become large, it will become a large issue that will not be helped by them getting gnarly  
 
   *Type 2*:  
@@ -81,10 +81,9 @@ There you go. That is it.
   *Type 6*:  
   Hey, @manager1, 2 and 3. the issue Geeky is having ive found the cause and here is the solution.  
   Thanks, but why not be a team player, offer the help to those fixing the issue as opposed to the managers.  
-  Good manager knows instinctively that you are a no good arsehole but you may fall lucky and find a sucker.  
+  Good managers knows instinctively that you are a no good arsehole but you may fall lucky and find a sucker.  
   You are an arse and the scourge of any industry, nobody likes you nor trusts you. You know those close colleagues you have? they are keeping their enemies closer, that is all.
 
-  I can list lots more but   
-  **my advise to you** is, privately offer help, be patient. That's it, its not hard.
+  I can list lots more but **my advise to you** is, privately offer help, be patient. That's it, its not hard.
 
 Advice and moan over :D 
