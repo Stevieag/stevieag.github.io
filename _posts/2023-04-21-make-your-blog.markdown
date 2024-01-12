@@ -22,7 +22,7 @@ So I swallowed my pride and started to look at Jekyll. It was so easy, download,
 
 ### Simples
 
-So this isn't an in depth guide but a great starter the easy way.
+So this isn't an in depth guide but a great starter.
 Jekyll website has great walkthroughs so i would be doing them an injustice by trying to recreate that but i will give you the VERY quick and easy way. Prerequisite : a GitHub account
 1. Hit [Jekyll Themes website](http://jekyllthemes.org/themes/no-style-please/)
 2. Select any theme you fancy
@@ -33,25 +33,25 @@ Jekyll website has great walkthroughs so i would be doing them an injustice by t
 Well that was easy wasn't it.
 Now how do we edit this. If you open the _posts folder in the code you will see a bunch of test blogs.
 
-The name of the file - date then name is advised, eg 2023-04-31-name-of-file.markdown.
+The 'date' then 'name' is advised, eg 2023-04-31-name-of-file.markdown.
 
-You will see that the start will contain:
+You will see that the start/head of the file will contain:
 ```markdown
     ---
     title: "The Title Which Is Shown On The Main Page"
     subtitle: "Sub Title to Title Headline"
     author: "You I Guess :D"
     avatar: "img/authors/you.jpg"
-    image: "img/blogimage.png" <<<< Image shown on the blog ticket
+    image: "img/blogimage.png" <<<< Image shown on the blog icon
     date:   1999-01-01 <<<< Date shown on the page 
     tags: website R53 github webpage gitpage <<<<< Some tags  \O/
     ---
 ```
-The date is that that the file will be shown. So you could push this file and it will be hidden until that date. I wouldnt rely on it as i havnt checked if its taken from client or server but it is interesting and it does seem to work.
+The date is when the file will be shown. So you could push this file earlier and it will be hidden until that date. I wouldnt rely on it as i havnt checked if its taken from client or server but it is interesting and it does seem to work.
 
 As you can see the page is in markdown and can be created with quick formatting. A good starter is [rip tutorial](https://riptutorial.com/markdown) or ideal is [GitHubs markdown instructions](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
 
-Some folders may be different and need creating dependent on the theme you use. In this case look at the img folder.
+Some folders may be different and need creating dependent on the theme you use. In my case I needed extra folders creating.
 
 So this is the quick fire, whizz through to get a basic site up.
 Next we will follow through with a slightly deeper walkthrough. In this we will set up Jekyll on our machine and run this locally, so we can see immediate changes before upload.
@@ -76,17 +76,17 @@ First, Jekyll requires the following:
  RubyGems
  GCC and Make
 
-So off I go to install these. Im running PopOS (Ubuntu)
+So off I go to install these. I was running PopOS (Ubuntu)
 So, [requirements page](http://jekyllrb.com/docs/installation/#requirements)
-I installed all according to the instructions for Ubuntu. Now I owe you an apology. I had issues and I didnt document them to place here but suffice to say it was painful to gem to run. I did a bit of googling on the error that the installed tool was not found and fixed it... sorry.
+I installed all according to the instructions for Ubuntu. Now I owe you an apology. I had issues and I didnt document them to place here but suffice to say it was painful to get to run. I did a bit of googling on the error that the installed tool was not found and fixed it... sorry.
 
 Once installed it is as easy as running as above `Jekyll new my-site`
 Then cd to the new folder named `ny-site` and run `bundle exec Jekyll serve`
-If you then open your browser and type in `http://localhost:4000` or `127.0.0.1:4000` - you should see your new site. (You may get a warning that you site is insecure, dont worry and bypass this, it is due to no ssl certificate but we trust ourselve and its local only (no outside world). If you are worried you can pass your code through [VirusTotal](https://www.virustotal.com/))
+If you then open your browser and type in `http://localhost:4000` or `127.0.0.1:4000` - you should see your new site. (You may get a warning that you site is insecure, dont worry and bypass this, it is due to no ssl certificate but we trust ourself and its local only (no outside world). If you are worried you can pass your code through [VirusTotal](https://www.virustotal.com/))
 
 You can edit as instructed and each new update will automagically be seen in your browser.
 
-When you have finished input `Ctrl c` to stop the server.
+When you have finished, input `Ctrl c` to stop the server.
 When you are happy you can push the changes to GitHub as normal, give it a couple of minutes and POW, new site update.
 
 Wait.... One good thing now that you have Jekyll install is that you can check out the themed site we made earlier.
@@ -96,13 +96,13 @@ Wait.... One good thing now that you have Jekyll install is that you can check o
 ### Your URL
 
 Lastly we will set up a URL of our own using AWS and Route 53.
-Well, this was my real goal. No point (unless you chose a great GiHub name or it your name and used as a CV) having a site named hairymary6767.github.io!!.
+Well, this was my real goal unless you chose a great GiHub name or it is your name and you used as a CV. No point having a site named hairymary6767.github.io!!.
 
 So your gonna need an AWS account. If you dont have one, well off you go and get one. Theres a lot of free stuff for you to play with and learn. Im new to this so ive looked at my AWS and id say it will cost no more than £10. 
 I have two urls and a bunch of other stuff and my bill is £11 - I'll update this if it changes significantly.
 
 1. In your repository, create a file (no need for an extension).In this file add your url eg `geekyblinder.co.uk`
-2. git add theis file ( `git add . && git commit -m 'CNAME record' && git push` )
+2. git add this file ( `git add . && git commit -m 'CNAME record' && git push` )
 3. Now we can configure our R53
     - 3a. Log into the AWS console
     - 3b. Click onto the Route 53 dashboard
@@ -140,7 +140,7 @@ I have two urls and a bunch of other stuff and my bill is £11 - I'll update thi
             - You can exit and come back to verify by the use of the three dots against the name
         <center><img alt="github challenge record" src="img/githubrecordchallenge.png" width="340"/></center>
         - 5df. Click verify
-6. Now it may take a little time to the records to propogate
+6. Now it may take a little time for the records to propogate
 7. Now check that the `https://` and `http://` versions of your site are now working plus then with and without `www.`
     eg  
     - [https://geekyblinder.co.uk](https://geekyblinder.co.uk)
@@ -149,6 +149,3 @@ I have two urls and a bunch of other stuff and my bill is £11 - I'll update thi
     - [http://www.geekyblinder.co.uk](http://www.geekyblinder.co.uk)
 
 BTW - its set to forward `http` to `https`
-
-
-
