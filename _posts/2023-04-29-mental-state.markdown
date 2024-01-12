@@ -206,9 +206,9 @@ They are having fun and you should be happy for them, They love you so much they
 Just this switch can change so many things.
 Repetition is the key to challenging the auto response you have to a scenario.
 
-Just visiting a note from earlier regarding my going to uni and my wifes distance or perceived none interest. One thing my therepy taught me was its not all about you :D. Think why, think about others thoughts and hw this can effect them and then you.
+Just visiting a note from earlier regarding my going to uni and my wifes distance or perceived none interest. One thing my therapy taught me was its not all about you :D. Think why, think about others thoughts and how this can effect them and then you.
 To place myself in my wifes shoes (she has smaller feet so its difficult :D).
-The husband that has for so long been on a linier path, steady, you know one wwek to the next. All this has changed. They have a new set of friends, all young, they are looked upto, they are going out more, they are changing.
+The husband that has for so long been on a linier path, steady, you know whats happening from one week to the next. All this has changed. They have a new set of friends, all young, they are looked upto, they are going out more, they are changing.
 How scary must that be for her.
 
 
