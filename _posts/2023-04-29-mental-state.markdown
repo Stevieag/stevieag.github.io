@@ -43,7 +43,6 @@ or they could be in the first case, drinking a lot, over working, bad mattress, 
 
 ## So, Yeah I have depression    
 I've heard this so many times.    
-I've had it go this way: 
 - *"Oh so when were you diagnosed?"*    
 With a reply of 
 - *"Oh i self diagnosed"...*    
