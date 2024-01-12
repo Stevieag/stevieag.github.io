@@ -9,7 +9,8 @@ tags: messup alert incident panic chill
 ---
 
 ## So, youve made a BIG mistake?
-Well, if you are that person who sits back and rides the coat tails of others, pops a helpful line into slack and walks away as an incident is in progress, just points out what is only know with hindsight.... Fuck you  
+
+Well, if you are that person who sits back and rides the coat tails of others, pops a helpful line into slack and walks away as an incident is in progress, just points out what is only known with hindsight.... Fuck you  
 These are those that like to get noticed for being helpful!. You cant really say fuck off you are being an arse, as "what? i was just helping" ~ is the reply, but we all know what you are up to.
 
 I was asked on an FLT course along time ago - "if you crash into a door, what do you do?". Everyone said, you ensure the area is safe, ensure you park the vehicle in a safe place, exit the vehicle in a safe manner, ensure the damage is reported... blah blah blah...  
