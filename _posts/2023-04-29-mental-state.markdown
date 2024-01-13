@@ -42,11 +42,11 @@ Feel worthless? Could be depression...
 or they could be in the first case, drinking a lot, over working, bad mattress, second, your partner is a bad person, grief for a recent loss - There are lots of reasons.
 
 ## So, Yeah I have depression    
-I've heard this so many times.    
+I've heard this so many times.
+- *"I suffer from depression"*
 - *"Oh so when were you diagnosed?"*    
-With a reply of 
 - *"Oh i self diagnosed"...*    
-What, i beg your pardon!!! 
+Im like - What, i beg your pardon!!! 
 
 - *"Why you being an arse and so rude?"*    
 - *"Its my autism, i cant help it"...*    
