@@ -283,10 +283,9 @@ or they could be in the first case, drinking a lot, over working, bad mattress, 
 ## So, Yeah I have depression    
 I've heard this so many times.    
 - *"Oh, so when were you diagnosed?"*    
-With a reply of 
+If i recieve a reply of 
 - *"Oh, I self diagnosed!"*  
-
-What, i beg your pardon!!! 
+Im like, What, i beg your pardon!!! 
 
 - *"Why you being an arse and so rude?"*    
 - *"Its my autism, i cant help it"...*    
