@@ -45,7 +45,8 @@ or they could be in the first case, drinking a lot, over working, bad mattress, 
 I've heard this so many times.
    - *"I suffer from depression!!!!"*    
    - *"Oh, When were you diagnosed?"*
-when I hear *"Oh, I self diagnosed"*
+when I hear
+   - *"Oh, I self diagnosed"*
 Im like - what, I bet your pardon!!!!
 
 - *"Why you being an arse and so rude?"*    
