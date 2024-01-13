@@ -286,7 +286,7 @@ I've heard this so many times.
 With a reply of 
 - *"Oh, I self diagnosed!"*  
 
-What, ihhhhh beg your pardon!!! 
+What, i beg your pardon!!! 
 
 - *"Why you being an arse and so rude?"*    
 - *"Its my autism, i cant help it"...*    
