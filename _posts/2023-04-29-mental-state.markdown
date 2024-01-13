@@ -43,9 +43,9 @@ or they could be in the first case, drinking a lot, over working, bad mattress, 
 
 ## So, Yeah I have depression    
 I've heard this so many times.
- - *"I suffer from depression"*
- - *"Oh so when were you diagnosed?"*    
- - *"Oh i self diagnosed"...*    
+- *"I suffer from depression"*
+- *"Oh so when were you diagnosed?"*
+- *"Oh i self diagnosed"...*    
 Im like - What, i beg your pardon!!! 
 
 - *"Why you being an arse and so rude?"*    
