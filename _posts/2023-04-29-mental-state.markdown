@@ -43,9 +43,10 @@ or they could be in the first case, drinking a lot, over working, bad mattress, 
 
 ## So, Yeah I have depression    
 I've heard this so many times.
-- *"Why you being an arse and so rude?"*    
-- *"Its my autism, i cant help it"...* 
-Im like, What, i beg your pardon!!! 
+- *"I suffer from depression!!!!"*    
+- *"Oh, When were you diagnosed?"* 
+Im like, What, i beg your pardon!!! when I hear *"Oh, I self diagnosed"*
+Im like - what, I bet your pardon!!!!
 
 - *"Why you being an arse and so rude?"*    
 - *"Its my autism, i cant help it"...*    
