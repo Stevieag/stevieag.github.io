@@ -1,9 +1,9 @@
 ---
-title:  "Hacking my naotes on my way to OSCP!"
+title:  "Hacking my notes on my way to OSCP!"
 subtitle: "Hacker Dumps!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/hackernotes.jpg"
+image: "img/hacknotes.jpg"
 date:   2024-01-16
 tags: oscp hacking hacker
 ---
