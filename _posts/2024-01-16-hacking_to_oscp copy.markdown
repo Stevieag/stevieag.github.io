@@ -1,6 +1,6 @@
 ---
 title:  "Hacking my way to OSCP!"
-subtitle: "Not another hacker!"
+subtitle: "Not another wanna be hacker!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/hacker.jpg"
