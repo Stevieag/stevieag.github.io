@@ -32,9 +32,17 @@ I have  signed up to Try Hack Me website. Its not cheap but i believe you do nee
 
 ## Learning Resources
 
-    A couple books ive been advised to look at
-    Books: "Hacking: The Art of Exploitation" by Jon Erickson and "Metasploit: The Penetration Tester's Guide" by David Kennedy.
-    Online Platforms: Utilizing platforms like Hack The Box, TryHackMe, and OverTheWire for hands-on practice.
+A couple books ive been advised to look at
+### Books: 
+- "Hacking: The Art of Exploitation" by Jon Erickson
+- "Metasploit: The Penetration Tester's Guide" by David Kennedy.
+
+### Online Platforms: 
+Utilise platforms like 
+- Hack The Box
+- TryHackMe
+- OverTheWire 
+for hands-on practice.
 
 ## Building Practical Skills
 
