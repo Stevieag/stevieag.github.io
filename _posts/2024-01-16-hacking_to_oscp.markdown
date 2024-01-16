@@ -42,6 +42,7 @@ Utilise platforms like
 - Hack The Box
 - TryHackMe
 - OverTheWire 
+
 for hands-on practice.
 
 ## Building Practical Skills
