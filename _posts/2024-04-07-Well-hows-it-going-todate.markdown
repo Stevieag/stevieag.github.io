@@ -29,4 +29,4 @@ Im slowly seeing each troubled step as a lesson, teaching me resilience and fort
 
 So, to my fellow aspiring hackers facing similar struggles, I offer this advice: Embrace the journey, celebrate the victories, and learn from the defeats. Rome wasn't built in a day, and neither is a master hacker. Slow progress is still progress, and with perseverance, we will reach our destination.
 
-A person is not judged by how many times they are knocked down, but how many times they gets up to keep fighting on
+A person is not judged by how many times they are knocked down, but how many times they gets up to keep fighting on. OSCP seens a long way away but I will get there, I just might jump on the HTB Cert first.
