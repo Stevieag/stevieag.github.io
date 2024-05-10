@@ -24,7 +24,7 @@ So:
 - Open chrome and go to your Google Mail (Gmail)
 - In the menu bar find the three vertical dots (near your boat race in the top right)
 - Click on the icon
-- Go to 'More tools'
+- ~~ Go to 'More tools' ~~ Changed by Google, now use 'Save and Share'
 - Create Shortcut
 - The window that pops up
     - Enter a name for your shortcut but ensure that you tick the box for 'Open as window' 
