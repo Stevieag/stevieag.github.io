@@ -1,11 +1,11 @@
 ---
-title:  "All Change!"
-subtitle: "Ive changed direction, kinda"
+title:  "K8s Scale to Zero!"
+subtitle: "I dont need these at times"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/confused.jpg"
 date:   2024-10-11
-tags: change change risk
+tags: k8s scale save money
 ---
 
 Well its been a while

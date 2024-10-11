@@ -5,7 +5,7 @@ author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/chancge.jpeg"
 date:   2024-10-11
-tags: change change risk
+tags: chance change risk
 ---
 
 Well its been a while
