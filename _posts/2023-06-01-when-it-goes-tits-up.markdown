@@ -10,6 +10,8 @@ tags: messup alert incident panic chill
 
 ## So, you've made a BIG mistake?
 
+There are little mistake made each day that go unnoticed but every now and again a bigger one is made. So what do you do?
+
 Well, if you are that person who sits back and rides the coat tails of others, pops a helpful line into slack and walks away as an incident is in progress, just points out what is only known with hindsight.... Fuck you  
 These are those that like to get noticed for being helpful!. You cant really say fuck off you are being an arse, as "what? i was just helping" ~ is the reply, but we all know what you are up to.
 
