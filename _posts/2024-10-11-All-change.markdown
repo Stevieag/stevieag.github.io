@@ -24,7 +24,7 @@ A trick employed (an old one) is to have Q1 just before this, to be:
 
 then 
   - Q2: On a scale of 1 to 4, how would you describe your overall sense of happiness?
-    - 1: Unhappy - I find it difficult to experience joy and satisfaction in my daily life.
+    - 1: Unhappy - I never experience joy and satisfaction in my daily life.
     - 2: Happy - I generally feel positive and appreciate the good moments, even when faced with challenges.
     - 3: Slightly Happy - I often find reasons to smile and enjoy life’s little pleasures, contributing to my overall well-being.
     - 4: Very Happy - I experience a deep sense of joy and fulfillment, embracing each day with enthusiasm and positivity.
