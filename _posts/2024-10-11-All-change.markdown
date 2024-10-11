@@ -20,8 +20,7 @@ Well, I was in a start-up, but it had grown and was no longer a real start-up. I
   - 1yr earlier "We have a happiness rating of 85%" : We are very proud with this and lead the industry. 
     
 A trick employed (an old one) is to have Q1 just before this, to be:
-  - Highlight a recent moment that has made you happy at work
-
+  - Highlight a recent moment that has made you happy at work  
 then 
   - Q2: On a scale of 1 to 4, how would you describe your overall sense of happiness?
     - 1: Unhappy - I never experience joy and satisfaction in my daily life.
@@ -33,8 +32,8 @@ Appraisal : You are scored from 4 :
   - 1 = Below expectation 
   - 2 = Meeting or exceeding expectation 
   - 3 = Working well beyond expectation 
-  - 4 = You lead the way. 
-    
+  - 4 = You lead the way.  
+
 This was so skewed that only those with a 4 were considered for pay rises or promotion plus there was a cap on the numbers you could give, promotions and raises. 
     
 Everything is about being as good as others in the industry, there used to be a desire to be the best, lead the way and exceed. This change to be as good as the industy after so long leading was to many, failing and a degrade of the values and drive.
@@ -48,10 +47,14 @@ So, it's no longer nimble, I can't trust anyone, there is no real career progres
 
 I have moved to another start-up: 
 Why? Well, because it is at the phase of real care and growth. 
-Is it security? Well, no and maybe. It is at the point where everyone has every job, so it does include security and could grow to a full-time role. 
+Is it security? Well, no and maybe. It is at the point where everyone has every job, so it does include security and could grow to a full-time role.  
 Looking forward: if I take the role of security here, I will organically gain experience.
 
 Now, wow, I'm so much happier. I have space to learn, experience and grow. 
-This blog is going to have to change as I'm not concentrating on security. I'm at present concentrating on Kubernetes and tools around it; I'm now in the GCP world and AI.
-
+This blog is going to have to change as I'm not concentrating on security. I'm at present concentrating on Kubernetes and tools around it; I'm now in the GCP world and AI.  
 I'll get back to security, and I hope to start enjoying the learning as opposed to feeling it is a bind I need to chase to get away from the hell hole I was in and be a career choice.
+
+Well, ill be hopefully back to more regular updates, and they may be covering other subjects but its all important. Understand K8s and Helm, Keda, Gitlab-ci and it is all stuff that needs securing. Understanding as much as possible is important. Just like a dev, learn one language well and you can then turn your hand to others easier.
+
+CU Geeky
+<center><img src="img/authors/geeky.jpg" width="40"/></center>
