@@ -21,7 +21,8 @@ Well, I was in a start-up, but it had grown and was no longer a real start-up. I
     
 A trick employed (an old one) is to have Q1 just before this, to be:
   - Highlight a recent moment that has made you happy at work
-    then 
+
+then 
   - Q2: On a scale of 1 to 4, how would you describe your overall sense of happiness?
     - 1: Unhappy - I find it difficult to experience joy and satisfaction in my daily life.
     - 2: Happy - I generally feel positive and appreciate the good moments, even when faced with challenges.
