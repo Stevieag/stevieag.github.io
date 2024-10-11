@@ -18,7 +18,16 @@ Joining early will give an opportunity to grow, but you have to be comfortable w
 Well, I was in a start-up, but it had grown and was no longer a real start-up. I won't go deeply into it, but it had lost its way in many places. Successful? Yeah. It was almost making money and was on the path to greatness, but this was at the expense of the people. It may catch this and try to turn it around, but it had made many of the mistakes start-ups make and was way too top-heavy and no longer nimble. Push down mentality, and there was a lot of unhappiness and anger that after threats of leavings, union action and lots of letters, emails, meetings, surveys (oh the the constant surveys that are so skewed to get the answers they want, or stats that are skewed) they were trying to change, but in completely the wrong way. Just to cover the type of skew they used in an update. 
   - Latest "We have a happiness rating of 45%" : that is as good as the rest of the industry and so we are happy.
   - 1yr earlier "We have a happiness rating of 85%" : We are very proud with this and lead the industry. 
-  - Q1: On a scale of 1 - 4 how happy are you: 1 = Unhappy 2= Happy 3=Slightly Happy 4=Very Happy
+    
+A trick employed (an old one) is to have Q1 just before this, to be:
+  - Highlight a recent moment that has made you happy at work
+    then 
+  - Q2: On a scale of 1 to 4, how would you describe your overall sense of happiness?
+    - 1: Unhappy - I find it difficult to experience joy and satisfaction in my daily life.
+    - 2: Happy - I generally feel positive and appreciate the good moments, even when faced with challenges.
+    - 3: Slightly Happy - I often find reasons to smile and enjoy life’s little pleasures, contributing to my overall well-being.
+    - 4: Very Happy - I experience a deep sense of joy and fulfillment, embracing each day with enthusiasm and positivity.
+  
   - Appraisal : You are scored from 4 : 1 = Below expectation 2 = Meeting or exceeding expectation 3 = Working well beyond expectation 4 = You lead the way. This was so skewed that only those with a 4 were considered for pay rises or promotion plus there was a cap on the numbers you could give, promotions and raises. 
     
     Everything was about being as good as others in the industry, there used to be a desire to be the best, lead the way and exceed. This change to be as good as the industy after so long leading was to many, failing and a degrade of the values and drive.
