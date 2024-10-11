@@ -28,9 +28,8 @@ then
     - 2: Happy - I generally feel positive and appreciate the good moments, even when faced with challenges.
     - 3: Slightly Happy - I often find reasons to smile and enjoy life’s little pleasures, contributing to my overall well-being.
     - 4: Very Happy - I experience a deep sense of joy and fulfillment, embracing each day with enthusiasm and positivity.
-  
-
-  - Appraisal : You are scored from 4 : 
+    
+Appraisal : You are scored from 4 : 
     - 1 = Below expectation 
     - 2 = Meeting or exceeding expectation 
     - 3 = Working well beyond expectation 
