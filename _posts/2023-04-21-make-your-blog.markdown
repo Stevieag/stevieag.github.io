@@ -12,6 +12,8 @@ tags: website create R53 github web page git page
 
 
 Well, this isn't the first time ive thought about creating a blog.
+
+
 I had previously looked at using [HUGO](https://gohugo.io/). This worked well, and i wrote a few bits but never published this. I just never continued and have since thought about it a number of time.
 
 So this time I, as id forgotten what id used last time, I was looking for a static page blog creator. WordPress came up as an option (Yeah, slap me). I decided to use AWS and here i started looking at setting up an EC2, R53, EIP, RDS etc... I Wanted to be a smarty-pants so , stupidly started writing the terraform to do this. Advise, that is dumb when you are working out how something is made. Create a POC (proof of concept), get that all working and _then_ start writing terraform.
