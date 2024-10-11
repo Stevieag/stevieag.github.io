@@ -56,4 +56,4 @@ I'll get back to security, and I hope to start enjoying the learning as opposed 
 Well, ill be hopefully back to more regular updates, and they may be covering other subjects but its all important. Understand K8s and Helm, Keda, Gitlab-ci and it is all stuff that needs securing. Understanding as much as possible is important. Just like a dev, learn one language well and you can then turn your hand to others easier.
 
 CU Geeky
-<left><img src="img/authors/geeky.jpg" width="40"/></center>
+<img src="img/authors/geeky.jpg" width="40"/>
