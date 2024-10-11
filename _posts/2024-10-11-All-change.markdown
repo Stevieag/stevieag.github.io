@@ -20,6 +20,7 @@ Well, I was in a start-up, but it had grown and was no longer a real start-up. I
   - 1yr earlier "We have a happiness rating of 85%" : We are very proud with this and lead the industry. 
   - Q1: On a scale of 1 - 4 how happy are you: 1 = Unhappy 2= Happy 3=Slightly Happy 4=Very Happy
   - Appraisal : You are scored from 4 : 1 = Below expectation 2 = Meeting or exceeding expectation 3 = Working well beyond expectation 4 = You lead the way. This was so skewed that only those with a 4 were considered for pay rises or promotion plus there was a cap on the numbers you could give, promotions and raises. 
+    
     Everything was about being as good as others in the industry, there used to be a desire to be the best, lead the way and exceed. This change to be as good as the industy after so long leading was to many, failing and a degrade of the values and drive.
 
 They made changes so did new stuff but then blamed the workforce for not joining in, people are sick of the place and people. Imagine telling your partner that they never take you out, and they then send YOU a ticket to the cinema, it's not the same. So when a company has lost its care for the people, to then offer opportunities to spend time with the execs, yet they are time-restricted and scheduled, it's not the same as hanging out together. Just a huge disconnect - the heart was gone. It needed a change of leadership and genuine honesty, care and regain trust.
