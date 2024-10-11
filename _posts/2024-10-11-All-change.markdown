@@ -16,9 +16,10 @@ For background, I have worked in a number of start-ups, and they are a different
 Joining early will give an opportunity to grow, but you have to be comfortable with change. You need to be happy to fill any space that is required. If you are a dev and that is all you do, then a start-up may not be the place for you. When the server breaks, if you aren't prepared to roll up your sleeves and get your hands dirty, you're not right for it. This can be the attractiveness of a start-up: not being a one-trick pony.
 
 Well, I was in a start-up, but it had grown and was no longer a real start-up. I won't go deeply into it, but it had lost its way in many places. Successful? Yeah. It was almost making money and was on the path to greatness, but this was at the expense of the people. It may catch this and try to turn it around, but it had made many of the mistakes start-ups make and was way too top-heavy and no longer nimble. Push down mentality, and there was a lot of unhappiness and anger that after threats of leavings, union action and lots of letters, emails, meetings, surveys (oh the the constant surveys that are so skewed to get the answers they want, or stats that are skewed) they were trying to change, but in completely the wrong way. Just to cover the type of skew they used in an update. 
-  - Latest "We have a hapiness rating of 45%" : that is the same as the rest of the industry and so we are happy
+  - Latest "We have a happiness rating of 45%" : that is the same as the rest of the industry and so we are happy
   - 1yr earlier "We have a happiness rating of 85% - We are very pleased with this". 
-There used to be a desire to be the best, exceed. This changed to be as good as others, that to many was failing.
+  - Q1: On a scale of 1 - 4 how happy are you: 1 = Unhappy 2= Happy 3=Slightly Happy 4=Very Happy
+    There used to be a desire to be the best, exceed. This changed to be as good as others, that to many was failing.
 
 They made changes so did new stuff but then blamed the workforce for not joining in, people are sick of the place and people. Imagine telling your partner that they never take you out, and they then send YOU a ticket to the cinema, it's not the same. So when a company has lost its care for the people, to then offer opportunities to spend time with the execs, yet they are time-restricted and scheduled, it's not the same as hanging out together. Just a huge disconnect - the heart was gone. It needed a change of leadership and genuine honesty, care and regain trust.
 
