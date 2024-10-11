@@ -43,18 +43,17 @@ They made changes so did new stuff but then blamed the workforce for not joining
 So, as I say this in a past manner, I have left there. I was exceedingly loyal, gave chance after chance for the promises I was given to come to fruition, but all were, it appears, lies. There were too many career managers riding a gravy train. If you are unsure what I mean, these are people that manage for the money and are only interested in career progression, to get to the next level and pay increase. They are not interested in the company or the people. Generally, they have great CVs as they have worked for many companies in good positions. They always appear to have been ready for the next challenge. This all falls on its arse when they have to really do the job. When they meet a company where honesty was the foundation it's built on, they don't like being held to account. Some had been successful using a manner that was very different and counter to the company values, this was never challenged. There were bullies that were not held to account but had another layer placed under them, racists that were reported but never sacked just moved (promoted :O). This caused a huge swathe of leavers that all gave thier reasons for leaving but no action was taken to stem the flood of leavers. 
 
 As I said, this isn't my first rodeo in a start-up, and this is a mistake start-ups make time and time again, until the IPO or takeover, and then it's a slow decline or just a corporate train ride/wreck.
-So, it's no longer nimble, I can't trust anyone, there is no real career progression, so time to move. I want to work in security, and I don't have the experience, only a desire. I have a full-time role that is taking all my time up because I care about the company still. 
+So, it's no longer nimble, I can't trust anyone, there is no real career progression, so time to move. I want to work in security, and I don't have the experience, only a desire. I have a full-time role that is taking all my time up because I care about the company still. I still care and felt a lot of heart there.
 
 I have moved to another start-up: 
 Why? Well, because it is at the phase of real care and growth. 
-Is it security? Well, no and maybe. It is at the point where everyone has every job, so it does include security and could grow to a full-time role.  
-Looking forward: if I take the role of security here, I will organically gain experience.
+Is it security? Well, no and maybe. It is at the point where everyone has every job, so it does include security and could grow to a full-time role. even if it doesnt, im finding this a challenge and really enjoying it.  
+Now, I'm so much happier. I have space to learn, experience and grow.
 
-Now, wow, I'm so much happier. I have space to learn, experience and grow. 
 This blog is going to have to change as I'm not concentrating on security. I'm at present concentrating on Kubernetes and tools around it; I'm now in the GCP world and AI.  
-I'll get back to security, and I hope to start enjoying the learning as opposed to feeling it is a bind I need to chase to get away from the hell hole I was in and be a career choice.
+I'll get back to security, and I hope to start enjoying the learning as opposed to feeling it is a bind I need to chase to get away from the hell hole I was in and be a career choice. Looking forward: if I take the role of security here, I will organically gain experience but im happier than ive ever been. Even the imposter syndrome is edging away a bit.
 
 Well, ill be hopefully back to more regular updates, and they may be covering other subjects but its all important. Understand K8s and Helm, Keda, Gitlab-ci and it is all stuff that needs securing. Understanding as much as possible is important. Just like a dev, learn one language well and you can then turn your hand to others easier.
 
 CU Geeky
-<center><img src="img/authors/geeky.jpg" width="40"/></center>
+<left><img src="img/authors/geeky.jpg" width="40"/></center>
