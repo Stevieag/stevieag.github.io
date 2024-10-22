@@ -90,3 +90,5 @@ There you go. That is it.
   I can list lots more but **my advise to you** is, privately offer help, be patient. That's it, its not hard.
 
 Advice and moan over :D 
+
+<img src="img/authors/geeky.jpg" width="40"/>

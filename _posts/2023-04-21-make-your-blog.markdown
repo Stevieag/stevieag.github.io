@@ -151,3 +151,5 @@ I have two urls and a bunch of other stuff and my bill is £11 - I'll update thi
     - [http://www.geekyblinder.co.uk](http://www.geekyblinder.co.uk)
 
 BTW - its set to forward `http` to `https`
+
+<img src="img/authors/geeky.jpg" width="40"/>

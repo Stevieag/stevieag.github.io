@@ -63,3 +63,5 @@ Undoubtedly, this journey will be challenging. Hurdles will emerge, and problem-
 As I document my progress, struggles, and victories, I will be smashing my note on the THM pathways here, I invite you to join me on this learning adventure. Whether you're a seasoned professional or a fellow enthusiast, your insights and support are invaluable. Together, let's explore the exciting and ever-evolving field of ethical hacking.
 
 Stay tuned for updates, and let's hack responsibly! 💻🔒
+
+<img src="img/authors/geeky.jpg" width="40"/>
