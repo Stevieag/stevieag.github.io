@@ -57,3 +57,5 @@ When you are seeing resources over people, is this who you set out to be.
 In the grand tapestry of startup life, the cost of an IPO should never be measured solely in financial terms. The true tragedy lies in the loss of the human connection, the disintegration of shared values, and the collective spirit that once defined the startup's identity.
 
 Be true to you, live a proud life.
+
+<img src="img/authors/geeky.jpg" width="40"/>

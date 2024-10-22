@@ -75,3 +75,5 @@ Here are a few links to some resources:
 <center><a href="https://www.willowtreeapps.com/craft/imposter-syndrome-in-design-what-it-is-and-how-to-overcome-it">
     <img src="img/selfdoubt.jpeg" alt="willowtreeapps.com imposter-syndrome-in-design-what-it-is-and-how-to-overcome-it" width="300"/>
 </a></center> 
+
+<img src="img/authors/geeky.jpg" width="40"/>

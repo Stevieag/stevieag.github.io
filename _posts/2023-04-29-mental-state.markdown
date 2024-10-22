@@ -488,3 +488,5 @@ Like many things, you get out what you put in.
 Like many things, you get out what you put in. 
 
 **Keep safe, look after yourself and remember, if you had a bad back, you would go to the doctor. Well a bad mental state is no different.**
+
+<img src="img/authors/geeky.jpg" width="40"/>

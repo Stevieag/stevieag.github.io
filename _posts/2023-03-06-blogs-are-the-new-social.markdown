@@ -52,3 +52,5 @@ So many things, so short on time.
 Some, dare we cover :/ 
 
 Be nice and make someone smile today
+
+<img src="img/authors/geeky.jpg" width="40"/>

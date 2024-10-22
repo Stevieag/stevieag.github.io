@@ -34,3 +34,5 @@ Locate the created Gmail icon, click and now you have a GMail app :D
 On the Mac you can set it up to open on log in and stay in the dock - right clicking and selected the options
 
 There you go, quite a quick one.
+
+<img src="img/authors/geeky.jpg" width="40"/>

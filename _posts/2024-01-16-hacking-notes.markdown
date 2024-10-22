@@ -9,3 +9,5 @@ tags: oscp hacking hacker
 ---
 
 Stay tuned for updates, and let's hack responsibly! 💻🔒
+
+<img src="img/authors/geeky.jpg" width="40"/>

@@ -32,3 +32,5 @@ So, to my fellow aspiring hackers facing similar struggles, I offer this advice:
 A person is not judged by how many times they are knocked down, but how many times they gets up to keep fighting on. OSCP seens a long way away but I will get there, I just might jump on the HTB Cert first.
 
 Now i need two more docs to level up the three columns 
+
+<img src="img/authors/geeky.jpg" width="40"/>
