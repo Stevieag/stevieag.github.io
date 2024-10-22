@@ -86,8 +86,8 @@
 }
 
 .card__container--closed .card__title {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 0, 0);
+	color: rgb(220, 220, 220);
+	background-color: rgba(20, 20, 20, 0.500);
 }
 
 .card__subtitle {
@@ -98,8 +98,8 @@
 }
 
 .card__container--closed .card__subtitle {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 0, 0);
+	color: rgb(220, 220, 220);
+	background-color: rgba(20, 20, 20, 0.500);
 }
 
 .card__copy {
