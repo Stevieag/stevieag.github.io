@@ -87,12 +87,12 @@
 
 .card__container--closed .card__title {
 	color: rgb(233, 221, 204);
-	border-radius: 1em 0 1em 0;
+	border-radius: .25em .25em .25em .25em;
 	background-image: linear-gradient(
-	  -100deg,
-	  rgba(0, 20, 255, 0.2),
-	  rgba(0, 20, 255, 0.7) 95%,
-	  rgba(0, 20, 255, 0.1)
+	  100deg,
+	  rgba(100, 100, 100, 40%) 5%,
+	  rgba(100, 100, 100, 70%) 50%,
+	  rgba(100, 100, 100, 40%) 95%
 	);
 }
 
@@ -105,12 +105,12 @@
 
 .card__container--closed .card__subtitle {
 	color: rgb(233, 221, 204);
-	border-radius: 1em 0 1em 0;
+	border-radius: .25em .25em .25em .25em;
 	background-image: linear-gradient(
-	  -100deg,
-	  rgba(0, 20, 255, 0.2),
-	  rgba(0, 20, 255, 0.7) 95%,
-	  rgba(0, 20, 255, 0.1)
+	  100deg,
+	  rgba(100, 100, 100, 40%) 5%,
+	  rgba(100, 100, 100, 70%) 50%,
+	  rgba(100, 100, 100, 40%) 95%
 	);
 }
 
