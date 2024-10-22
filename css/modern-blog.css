@@ -86,6 +86,7 @@
 }
 
 .card__container--closed .card__title {
+	color: burlywood;
 	background: rgba(20, 20, 20, 0.350);
 }
 
@@ -97,6 +98,7 @@
 }
 
 .card__container--closed .card__subtitle {
+	color: burlywood;
 	background: rgba(20, 20, 20, 0.350);
 }
 
