@@ -1,6 +1,6 @@
 ---
 title:  "Service Mesh DevOps Training!"
-subtitle: "Heres one i prepared earlier"
+subtitle: "Heres one I prepared earlier"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/SerMesh.jpg"
