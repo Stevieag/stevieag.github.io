@@ -87,7 +87,13 @@
 
 .card__container--closed .card__title {
 	color: rgb(233, 221, 204);
-	background: rgba(20, 20, 20, 0.500);
+	border-radius: 1em 0 1em 0;
+	background-image: linear-gradient(
+	  -100deg,
+	  rgba(0, 20, 255, 0.2),
+	  rgba(0, 20, 255, 0.7) 95%,
+	  rgba(0, 20, 255, 0.1)
+	);
 }
 
 .card__subtitle {
@@ -99,7 +105,13 @@
 
 .card__container--closed .card__subtitle {
 	color: rgb(233, 221, 204);
-	background: rgba(20, 20, 20, 0.500);
+	border-radius: 1em 0 1em 0;
+	background-image: linear-gradient(
+	  -100deg,
+	  rgba(0, 20, 255, 0.2),
+	  rgba(0, 20, 255, 0.7) 95%,
+	  rgba(0, 20, 255, 0.1)
+	);
 }
 
 .card__copy {
