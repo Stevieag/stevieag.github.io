@@ -87,7 +87,12 @@
 
 .card__container--closed .card__title {
 	color: rgb(220, 220, 220);
+	-webkit-animation: 1.5s highlight 1.5s 1 normal forwards;
+	animation: 1.5s highlight 1.5s 1 normal forwards;
 	background-color: rgba(20, 20, 20, 0.500);
+	background: linear-gradient(180deg, rgba(20, 20, 20, 0.500) 100%, rgb(255, 255, 255) 100%);
+	background-size: 200% 100%;
+	background-position: 100% 50%;
 }
 
 .card__subtitle {
