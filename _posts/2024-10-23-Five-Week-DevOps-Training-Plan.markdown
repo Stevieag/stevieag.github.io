@@ -212,7 +212,7 @@ resources to dig deeper in the points and subjests
 > [source
 > k8s](https://kubernetes.io/docs/concepts/architecture/).
 
-+---------------------------+   +---------------------------+
+```+---------------------------+   +---------------------------+
 |        Control Plane      |   |       Worker Nodes        |
 |                           |   |                           |
 |  +---------------------+  |   |  +---------------------+  |
@@ -225,7 +225,7 @@ resources to dig deeper in the points and subjests
 |  | controller manager  |  |   |  +---------------------+  |
 |  +---------------------+  |   |                           |
 |                           |   |    (Multiple nodes)       |
-+---------------------------+   +---------------------------+
++---------------------------+   +---------------------------+```
 
 ##### Control Plane Components
 
