@@ -4,7 +4,7 @@ subtitle: "Heres one I prepared earlier"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/SerMesh.jpg"
-date:   2024-10-22
+date:   2024-10-29
 tags: training mesh service devops istio minikube kind linkerd
 ---
 
@@ -30,7 +30,7 @@ Here is a training plan I wrote to learn service mesh - I hope its useful
 ##### Practice with Basic Kubernetes Resources
 
 ### Day 3-4: Advanced Kubernetes
-        -   [ConfigMaps, Secrets, and Volumes](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ip5zmhebwai3ConfigMaps,Secrets,andVolumes)
+#### ConfigMaps, Secrets, and Volumes
             -   [ConfigMaps https://kubernetes.io/docs/concepts/configuration/configmap/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3fv8uqqu6bulConfigMapshttps://kubernetes.io/docs/concepts/configuration/configmap/)
             -   [Secrets https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_1unv8j7q99h9Secretshttps://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
             -   [Volumes https://kubernetes.io/docs/concepts/storage/volumes/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_bp74gld1clcnVolumeshttps://kubernetes.io/docs/concepts/storage/volumes/)
