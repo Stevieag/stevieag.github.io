@@ -12,23 +12,24 @@ Here is a training plan I wrote to learn service mesh - I hope its useful
 
 # 5-Week Training Plan: Service Mesh, Kubernetes, and Related Technologies
 
--   [Week 1: Fundamentals and Kubernetes](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_xchbw0y4355fWeek1:FundamentalsandKubernetes)
+## Week 1: Fundamentals and Kubernetes
 
-    -   [Day 1-2: Kubernetes Basics and Local Development Environments](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_81sstkmk7mkvDay1-2:KubernetesBasicsandLocalDevelopmentEnvironments)
-        -   [Kubernetes Architecture and Core Concepts](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_cwa7mbhdhggKubernetesArchitectureandCoreConcepts)
-            -   [Control Plane Components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlControlPlaneComponents)
-            -   [Node Components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlNodeComponents)
-            -   [Core Concepts](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCoreConcepts)
-            -   [Additional Components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-AdditionalComponents)
-        -   [Local Kubernetes Development Options](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ayk5u9f8su70LocalKubernetesDevelopmentOptions)
-            -   [kind (Kubernetes in Docker)](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_jbwpry6q7d0dkind(KubernetesinDocker))
-                -   [Installation](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlInstallation)
-                -   [Creating a cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCreatingacluster)
-            -   [Minikube](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_gehb1zvrkx3zMinikube)
-                -   [Installation](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_op1njz71xh9gInstallation)
-                -   [Starting a cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Startingacluster)
-        -   [Practice with Basic Kubernetes Resources](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_yqcveu3duclfPracticewithBasicKubernetesResources)
-    -   [Day 3-4: Advanced Kubernetes](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_oc196ijgfx4pDay3-4:AdvancedKubernetes)
+### Day 1-2: Kubernetes Basics and Local Development Environments
+#### Kubernetes Architecture and Core Concepts
+##### Control Plane Components
+##### Node Components
+##### Core Concepts
+##### Additional Components
+#### Local Kubernetes Development Options
+##### kind (Kubernetes in Docker)
+###### Installation
+###### Creating a cluster
+##### Minikube
+###### Installation
+###### Starting a cluster
+##### Practice with Basic Kubernetes Resources
+
+### Day 3-4: Advanced Kubernetes
         -   [ConfigMaps, Secrets, and Volumes](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ip5zmhebwai3ConfigMaps,Secrets,andVolumes)
             -   [ConfigMaps https://kubernetes.io/docs/concepts/configuration/configmap/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3fv8uqqu6bulConfigMapshttps://kubernetes.io/docs/concepts/configuration/configmap/)
             -   [Secrets https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_1unv8j7q99h9Secretshttps://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
