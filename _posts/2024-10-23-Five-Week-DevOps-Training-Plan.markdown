@@ -211,22 +211,6 @@ resources to dig deeper in the points and subjests
 > consists of two main components: the control plane and worker nodes\
 > [source
 > k8s](https://kubernetes.io/docs/concepts/architecture/).
-```
-+--------------------+ +----------------------+
-|    Control Plane   | |    Worker Nodes      |
-|                    | |                      |
-| +----------------+ | | +------------------+ |
-| | kube-apiserver | | | |     kubelet      | |
-| +----------------+ | | +------------------+ |
-| |     etcd       | | | |    kube-proxy    | |
-| +----------------+ | | +------------------+ |
-| |   scheduler    | | | |    Container     | |
-| +----------------+ | | |     Runtime      | |
-| |controller manager| | | +------------------+ |
-| +----------------+ | | |
-|                      | | (Multiple nodes) |
-+-------------------+ +----------------------+
-```
 
 ```
 +------------------------+  +---------------------+
@@ -242,7 +226,8 @@ resources to dig deeper in the points and subjests
 | | controller manager | |  | +-----------------+ |
 | +--------------------+ |  |                     |
 |                        |  | (Multiple nodes)    |
-+------------------------+  +---------------------+```
++------------------------+  +---------------------+
+```
 
 ##### Control Plane Components
 
