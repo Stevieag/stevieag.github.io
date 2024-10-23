@@ -230,15 +230,15 @@ resources to dig deeper in the points and subjests
 
 ##### Control Plane Components
 
-- kube-apiserver: The API server is the front-end for the Kubernetes control plane. It exposes the Kubernetes API and handles all administrative operations.
+*kube-apiserver:* The API server is the front-end for the Kubernetes control plane. It exposes the Kubernetes API and handles all administrative operations.
 
-- etcd: A consistent and highly-available key-value store used as Kubernetes\' backing store for all cluster data.
+*etcd:* A consistent and highly-available key-value store used as Kubernetes\' backing store for all cluster data.
 
-- kube-scheduler: Responsible for assigning newly created pods to nodes based on resource requirements, hardware/software/policy constraints, affinity and anti-affinity specifications, and more.
+*kube-scheduler:* Responsible for assigning newly created pods to nodes based on resource requirements, hardware/software/policy constraints, affinity and anti-affinity specifications, and more.
 
-- kube-controller-manager: Runs controller processes that regulate the state of the system. These controllers include the node controller, replication controller, endpoints controller, and service account & token controllers.
+*kube-controller-manager:* Runs controller processes that regulate the state of the system. These controllers include the node controller, replication controller, endpoints controller, and service account & token controllers.
 
-- cloud-controller-manager: (Optional) Integrates with underlying cloud providers.
+*cloud-controller-manager:* (Optional) Integrates with underlying cloud providers.
 
 ```
 +----------------------------------------------------+
@@ -259,17 +259,13 @@ resources to dig deeper in the points and subjests
 
 ##### Node Components
 
-1.  kubelet: An agent that runs on each node, ensuring containers are
-    > running in a Pod.
+1.  kubelet: An agent that runs on each node, ensuring containers are running in a Pod.
 
-2.  kube-proxy: Maintains network rules on nodes, implementing part of
-    > the Kubernetes Service concept.
+2.  kube-proxy: Maintains network rules on nodes, implementing part of the Kubernetes Service concept.
 
-3.  Container runtime: Software responsible for running containers
-    > (e.g., Docker, containerd, CRI-O).
+3.  Container runtime: Software responsible for running containers (e.g., Docker, containerd, CRI-O).
 
-4.  Pods: The smallest deployable units in Kubernetes, consisting of one
-    > or more containers
+4.  Pods: The smallest deployable units in Kubernetes, consisting of one or more containers
 
 ```
 +-----------------------------------------------+
@@ -295,17 +291,13 @@ resources to dig deeper in the points and subjests
 
 ##### Core Concepts
 
-1.  Pods: The smallest deployable units in Kubernetes, consisting of one
-    > or more containers.
+1.  Pods: The smallest deployable units in Kubernetes, consisting of one or more containers.
 
-2.  Services: An abstraction that defines a logical set of Pods and a
-    > policy by which to access them.
+2.  Services: An abstraction that defines a logical set of Pods and a policy by which to access them.
 
 3.  Deployments: Provide declarative updates for Pods and ReplicaSets.
 
-4.  Namespaces: Virtual clusters backed by the same physical cluster,
-    > providing a way to divide cluster resources between multiple
-    > users.
+4.  Namespaces: Virtual clusters backed by the same physical cluster, providing a way to divide cluster resources between multiple users.
 
 ##### ** **Additional Components
 
@@ -330,35 +322,27 @@ logging, container resource monitoring, and network plugins.
 
 ##### kind (Kubernetes in Docker)
 
-> kind is a tool for running local Kubernetes clusters using Docker
-> container \"nodes\". It\'s designed for testing Kubernetes itself, but
-> can be used for local development or CI.
+ kind is a tool for running local Kubernetes clusters using Docker container \"nodes\". It\'s designed for testing Kubernetes itself, but can be used for local development or CI.
 
 ###### Installation
+`go install sigs.k8s.io/kind@v0.24.0`
 
-> go install sigs.k8s.io/kind@v0.24.0
->
-> \# Or for macOS users
->
-> brew install kind
+\# Or for macOS users
+`brew install kind`
 
 ###### Creating a cluster
 
-> kind create cluster
->
-> Advantages of kind:
+`kind create cluster`
 
-1.  Lightweight and fast to start up, making it ideal for rapid
-    > development cycles.
+Advantages of kind:
 
-2.  Supports multi-node clusters, allowing you to simulate more complex
-    > environments.
+1.  Lightweight and fast to start up, making it ideal for rapid development cycles.
 
-3.  Runs Kubernetes inside Docker containers, which is efficient and
-    > consistent across different host systems.
+2.  Supports multi-node clusters, allowing you to simulate more complex environments.
 
-4.  Ideal for testing and CI/CD pipelines due to its speed and
-    > reproducibility
+3.  Runs Kubernetes inside Docker containers, which is efficient and consistent across different host systems.
+
+4.  Ideal for testing and CI/CD pipelines due to its speed and reproducibility
 
 ##### Minikube
 
