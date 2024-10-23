@@ -246,24 +246,15 @@ resources to dig deeper in the points and subjests
 
 ##### Control Plane Components
 
-1.  kube-apiserver: The API server is the front-end for the Kubernetes
-    > control plane. It exposes the Kubernetes API and handles all
-    > administrative operations.
+1.  kube-apiserver: The API server is the front-end for the Kubernetes control plane. It exposes the Kubernetes API and handles all administrative operations.
 
-2.  etcd: A consistent and highly-available key-value store used as
-    > Kubernetes\' backing store for all cluster data.
+2.  etcd: A consistent and highly-available key-value store used as Kubernetes\' backing store for all cluster data.
 
-3.  kube-scheduler: Responsible for assigning newly created pods to
-    > nodes based on resource requirements, hardware/software/policy
-    > constraints, affinity and anti-affinity specifications, and more.
+3.  kube-scheduler: Responsible for assigning newly created pods to nodes based on resource requirements, hardware/software/policy constraints, affinity and anti-affinity specifications, and more.
 
-4.  kube-controller-manager: Runs controller processes that regulate the
-    > state of the system. These controllers include the node
-    > controller, replication controller, endpoints controller, and
-    > service account & token controllers.
+4.  kube-controller-manager: Runs controller processes that regulate the state of the system. These controllers include the node controller, replication controller, endpoints controller, and service account & token controllers.
 
-5.  cloud-controller-manager: (Optional) Integrates with underlying
-    > cloud providers.
+5.  cloud-controller-manager: (Optional) Integrates with underlying cloud providers.
 
 +-------------------------------------------------------------+
 |                          Control Plane                      |
