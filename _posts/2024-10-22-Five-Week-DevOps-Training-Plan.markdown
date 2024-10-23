@@ -12,47 +12,35 @@ Here is a training plan I wrote to learn service mesh - I hope its useful
 
 # 5-Week Training Plan: Service Mesh, Kubernetes, and Related Technologies
 
--   [[Week 1: Fundamentals and
-    > Kubernetes]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_xchbw0y4355fWeek1:FundamentalsandKubernetes)
+-   [[Week 1: Fundamentals and Kubernetes]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_xchbw0y4355fWeek1:FundamentalsandKubernetes)
 
-    -   [[Day 1-2: Kubernetes Basics and Local Development
-        > Environments]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_81sstkmk7mkvDay1-2:KubernetesBasicsandLocalDevelopmentEnvironments)
+    -   [[Day 1-2: Kubernetes Basics and Local Development Environments]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_81sstkmk7mkvDay1-2:KubernetesBasicsandLocalDevelopmentEnvironments)
 
-        -   [[Kubernetes Architecture and Core
-            > Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_cwa7mbhdhggKubernetesArchitectureandCoreConcepts)
+        -   [[Kubernetes Architecture and Core Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_cwa7mbhdhggKubernetesArchitectureandCoreConcepts)
 
-            -   [[Control Plane
-                > Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlControlPlaneComponents)
+            -   [[Control Plane Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlControlPlaneComponents)
 
-            -   [[Node
-                > Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlNodeComponents)
+            -   [[Node Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlNodeComponents)
 
-            -   [[Core
-                > Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCoreConcepts)
+            -   [[Core Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCoreConcepts)
 
-            -   [[Additional
-                > Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-AdditionalComponents)
+            -   [[Additional Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-AdditionalComponents)
 
-        -   [[Local Kubernetes Development
-            > Options]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ayk5u9f8su70LocalKubernetesDevelopmentOptions)
+        -   [[Local Kubernetes Development Options]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ayk5u9f8su70LocalKubernetesDevelopmentOptions)
 
-            -   [[kind (Kubernetes in
-                > Docker)]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_jbwpry6q7d0dkind(KubernetesinDocker))
+            -   [[kind (Kubernetes in Docker)]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_jbwpry6q7d0dkind(KubernetesinDocker))
 
                 -   [[Installation]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlInstallation)
 
-                -   [[Creating a
-                    > cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCreatingacluster)
+                -   [[Creating a cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCreatingacluster)
 
             -   [[Minikube]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_gehb1zvrkx3zMinikube)
 
                 -   [[Installation]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_op1njz71xh9gInstallation)
 
-                -   [[Starting a
-                    > cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Startingacluster)
+                -   [[Starting a cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Startingacluster)
 
-        -   [[Practice with Basic Kubernetes
-            > Resources]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_yqcveu3duclfPracticewithBasicKubernetesResources)
+        -   [[Practice with Basic Kubernetes Resources]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_yqcveu3duclfPracticewithBasicKubernetesResources)
 
     -   [[Day 3-4: Advanced
         > Kubernetes]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_oc196ijgfx4pDay3-4:AdvancedKubernetes)
