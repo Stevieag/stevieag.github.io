@@ -206,11 +206,10 @@ resources to dig deeper in the points and subjests
 
 #### Kubernetes Architecture and Core Concepts
 
-> Kubernetes is a powerful container orchestration platform that manages
-> containerized applications across multiple hosts. Its architecture
-> consists of two main components: the control plane and worker nodes\
-> [source
-> k8s](https://kubernetes.io/docs/concepts/architecture/).
+ Kubernetes is a powerful container orchestration platform that manages
+ containerized applications across multiple hosts. Its architecture
+ consists of two main components: the control plane and worker nodes\
+ [source k8s](https://kubernetes.io/docs/concepts/architecture/).
 
 ```
 +------------------------+  +---------------------+
@@ -242,20 +241,20 @@ resources to dig deeper in the points and subjests
 - cloud-controller-manager: (Optional) Integrates with underlying cloud providers.
 
 ```
-+------------------------------------------------------+
-|                       Control Plane                  |
-|                                                      |
-|  +-----------------+  +---------------------------+  |
-|  | kube-apiserver  |  |         scheduler         |  |
-|  | (API Gateway)   |  | (Assigns Pods to Nodes)   |  |
-|  +-----------------+  +---------------------------+  |
-|                                                      |
-|  +-----------------+  +---------------------------+  |
-|  |      etcd       |  |     controller manager    |  |
-|  | (Cluster State  |  | (Maintains Desired State) |  |
-|  |   Database)     |  |                           |  |
-|  +-----------------+  +---------------------------+  |
-+------------------------------------------------------+
++----------------------------------------------------+
+|                     Control Plane                  |
+|                                                    |
+|  +-----------------+  +-------------------------+  |
+|  | kube-apiserver  |  |        scheduler        |  |
+|  | (API Gateway)   |  | (Assigns Pods to Nodes) |  |
+|  +-----------------+  +-------------------------+  |
+|                                                    |
+|  +-----------------+  +-------------------------+  |
+|  |      etcd       |  |    controller manager   |  |
+|  | (Cluster State  |  |(Maintains Desired State)|  |
+|  |   Database)     |  |                         |  |
+|  +-----------------+  +-------------------------+  |
++----------------------------------------------------+
 ```
 
 ##### Node Components
@@ -273,25 +272,25 @@ resources to dig deeper in the points and subjests
     > or more containers
 
 ```
-+-----------------------------------------------------+
-|                   Worker Node                       |
-|  +---------------------+    +--------------------+  |
-|  |       kubelet       |    |     kube-proxy     |  |
-|  |    (Node Agent)     |    |  (Network Proxy)   |  |
-|  +---------------------+    +--------------------+  |
-|                                                     |
-|  +-----------------------------------------------+  |
-|  |            Container Runtime                  |  |
-|  |        (e.g., Docker, containerd)             |  |
-|  +-----------------------------------------------+  |
-|                                                     |
-|  +-----------------------------------------------+  |
-|  |                      Pods                     |  |
-|  |  +-----------+  +-----------+  +-----------+  |  |
-|  |  | Container |  | Container |  | Container |  |  |
-|  |  +-----------+  +-----------+  +-----------+  |  |
-|  +-----------------------------------------------+  |
-+-----------------------------------------------------+
++-----------------------------------------------+
+|                  Worker Node                  |
+|  +-----------------+   +-------------------+  |
+|  |      kubelet    |   |     kube-proxy    |  |
+|  |   (Node Agent)  |   |  (Network Proxy)  |  |
+|  +-----------------+   +-------------------+  |
+|                                               |
+|  +-----------------------------------------+  |
+|  |           Container Runtime             |  |
+|  |       (e.g., Docker, containerd)        |  |
+|  +-----------------------------------------+  |
+|                                               |
+|  +-----------------------------------------+  |
+|  |                   Pods                  |  |
+|  |  +---------+  +---------+  +---------+  |  |
+|  |  |Container|  |Container|  |Container|  |  |
+|  |  +---------+  +---------+  +---------+  |  |
+|  +-----------------------------------------+  |
++-----------------------------------------------+
 ```
 
 ##### Core Concepts
