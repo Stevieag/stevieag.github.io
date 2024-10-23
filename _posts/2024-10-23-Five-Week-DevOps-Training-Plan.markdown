@@ -299,7 +299,7 @@ resources to dig deeper in the points and subjests
 
 *Namespaces:* Virtual clusters backed by the same physical cluster, providing a way to divide cluster resources between multiple users.
 
-##### ** **Additional Components
+##### Additional Components
 
 These components include the Dashboard (a web-based UI), cluster-level
 logging, container resource monitoring, and network plugins.
@@ -327,14 +327,13 @@ logging, container resource monitoring, and network plugins.
  kind is a tool for running local Kubernetes clusters using Docker container \"nodes\". It\'s designed for testing Kubernetes itself, but can be used for local development or CI.
 
 ###### Installation
-`go install sigs.k8s.io/kind@v0.24.0`
+    `go install sigs.k8s.io/kind@v0.24.0`
 
 \# Or for macOS users
-`brew install kind`
+    `brew install kind`
 
 ###### Creating a cluster
-
-`kind create cluster`
+    `kind create cluster`
 
 Advantages of kind:
 
@@ -350,8 +349,8 @@ Minikube is a tool that makes it easy to run Kubernetes locally. It runs a singl
 ###### Installation
 
 \# For macOS
-`brew install minikube`
-\# For other systems, refer to the official documentation
+    `brew install minikube`
+    For other systems, refer to the official documentation
 
 ###### Starting a cluster
 
