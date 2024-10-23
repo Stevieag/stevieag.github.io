@@ -260,8 +260,11 @@ resources to dig deeper in the points and subjests
 ##### Node Components
 
 *kubelet:* An agent that runs on each node, ensuring containers are running in a Pod.
+
 *kube-proxy:* Maintains network rules on nodes, implementing part of the Kubernetes Service concept.
+
 *Container runtime:* Software responsible for running containers (e.g., Docker, containerd, CRI-O).
+
 *Pods:* The smallest deployable units in Kubernetes, consisting of one or more containers
 
 ```
@@ -289,8 +292,11 @@ resources to dig deeper in the points and subjests
 ##### Core Concepts
 
 *Pods:* The smallest deployable units in Kubernetes, consisting of one or more containers.
+
 *Services:* An abstraction that defines a logical set of Pods and a policy by which to access them.
+
 *Deployments:* Provide declarative updates for Pods and ReplicaSets.
+
 *Namespaces:* Virtual clusters backed by the same physical cluster, providing a way to divide cluster resources between multiple users.
 
 ##### ** **Additional Components
@@ -298,19 +304,20 @@ resources to dig deeper in the points and subjests
 These components include the Dashboard (a web-based UI), cluster-level
 logging, container resource monitoring, and network plugins.
 ```
-+-------------------------------------------------------------+
-|                      Additional Components                  |
-|                                                             |
-|  +-----------------------+   +---------------------------+  |
-|  |       Dashboard       |   |    Cluster-level Logging  |  |
-|  |        (Web UI)       |   | (Centralized Log Storage) |  |
-|  +-----------------------+   +---------------------------+  |
-|                                                             |
-|  +-----------------------+   +---------------------------+  |
-|  |       Monitoring      |   |      Network Plugins      |  |
-|  | (Resource Monitoring) |   |      (Implement CNI)      |  |
-|  +-----------------------+   +---------------------------+  |
-+-------------------------------------------------------------+
++--------------------------------------------------+
+|                Additional Components             |
+|                                                  |
+|  +-----------------+  +-----------------------+  |
+|  |    Dashboard    |  | Cluster-level Logging |  |
+|  |    (Web UI)     |  |     (Centralized      |  |
+|  +-----------------+  |      Log Storage)     |  |
+|                       +-----------------------+  |
+|                                                  |
+|  +-----------------------+  +-----------------+  |
+|  |       Monitoring      |  | Network Plugins |  |
+|  | (Resource Monitoring) |  | (Implement CNI) |  |
+|  +-----------------------+  +-----------------+  |
++--------------------------------------------------+
 ```
 
 #### Local Kubernetes Development Options
