@@ -16,440 +16,436 @@ Here is a training plan I wrote to learn service mesh - I hope its useful
 
     -   [Day 1-2: Kubernetes Basics and Local Development Environments](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_81sstkmk7mkvDay1-2:KubernetesBasicsandLocalDevelopmentEnvironments)
 
-        -   [[Kubernetes Architecture and Core Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_cwa7mbhdhggKubernetesArchitectureandCoreConcepts)
+        -   [Kubernetes Architecture and Core Concepts](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_cwa7mbhdhggKubernetesArchitectureandCoreConcepts)
 
-            -   [[Control Plane Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlControlPlaneComponents)
+            -   [Control Plane Components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlControlPlaneComponents)
 
-            -   [[Node Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlNodeComponents)
+            -   [Node Components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlNodeComponents)
 
-            -   [[Core Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCoreConcepts)
+            -   [Core Concepts](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCoreConcepts)
 
-            -   [[Additional Components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-AdditionalComponents)
+            -   [Additional Components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-AdditionalComponents)
 
-        -   [[Local Kubernetes Development Options]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ayk5u9f8su70LocalKubernetesDevelopmentOptions)
+        -   [Local Kubernetes Development Options](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ayk5u9f8su70LocalKubernetesDevelopmentOptions)
 
-            -   [[kind (Kubernetes in Docker)]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_jbwpry6q7d0dkind(KubernetesinDocker))
+            -   [kind (Kubernetes in Docker)](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_jbwpry6q7d0dkind(KubernetesinDocker))
 
-                -   [[Installation]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlInstallation)
+                -   [Installation](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlInstallation)
 
-                -   [[Creating a cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCreatingacluster)
+                -   [Creating a cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mc0z0fxl5atlCreatingacluster)
 
-            -   [[Minikube]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_gehb1zvrkx3zMinikube)
+            -   [Minikube](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_gehb1zvrkx3zMinikube)
 
-                -   [[Installation]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_op1njz71xh9gInstallation)
+                -   [Installation](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_op1njz71xh9gInstallation)
 
-                -   [[Starting a cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Startingacluster)
+                -   [Starting a cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Startingacluster)
 
-        -   [[Practice with Basic Kubernetes Resources]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_yqcveu3duclfPracticewithBasicKubernetesResources)
+        -   [Practice with Basic Kubernetes Resources](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_yqcveu3duclfPracticewithBasicKubernetesResources)
 
-    -   [[Day 3-4: Advanced Kubernetes]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_oc196ijgfx4pDay3-4:AdvancedKubernetes)
+    -   [Day 3-4: Advanced Kubernetes](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_oc196ijgfx4pDay3-4:AdvancedKubernetes)
 
-        -   [[ConfigMaps, Secrets, and Volumes]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ip5zmhebwai3ConfigMaps,Secrets,andVolumes)
+        -   [ConfigMaps, Secrets, and Volumes](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ip5zmhebwai3ConfigMaps,Secrets,andVolumes)
 
-            -   [[ConfigMaps https://kubernetes.io/docs/concepts/configuration/configmap/]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3fv8uqqu6bulConfigMapshttps://kubernetes.io/docs/concepts/configuration/configmap/)
+            -   [ConfigMaps https://kubernetes.io/docs/concepts/configuration/configmap/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3fv8uqqu6bulConfigMapshttps://kubernetes.io/docs/concepts/configuration/configmap/)
 
-            -   [[Secrets https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_1unv8j7q99h9Secretshttps://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
+            -   [Secrets https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_1unv8j7q99h9Secretshttps://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
 
-            -   [[Volumes https://kubernetes.io/docs/concepts/storage/volumes/]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_bp74gld1clcnVolumeshttps://kubernetes.io/docs/concepts/storage/volumes/)
+            -   [Volumes https://kubernetes.io/docs/concepts/storage/volumes/](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_bp74gld1clcnVolumeshttps://kubernetes.io/docs/concepts/storage/volumes/)
 
-        -   [[Kubernetes Networking and Ingress]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_9bn4ms6yv634KubernetesNetworkingandIngress)
+        -   [Kubernetes Networking and Ingress](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_9bn4ms6yv634KubernetesNetworkingandIngress)
 
-            -   [[Networking Model]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ia0cy2olu196NetworkingModel)
+            -   [Networking Model](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ia0cy2olu196NetworkingModel)
 
-            -   [[Services]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_vayt781acpxiServices)
+            -   [Services](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_vayt781acpxiServices)
 
-            -   [[Ingress]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ftfveez8u080Ingress)
+            -   [Ingress](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ftfveez8u080Ingress)
 
-        -   [[Kubernetes RBAC and Security Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_dbzuc15bqlniKubernetesRBACandSecurityConcepts)
+        -   [Kubernetes RBAC and Security Concepts](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_dbzuc15bqlniKubernetesRBACandSecurityConcepts)
 
-            -   [[Role-Based Access Control (RBAC)]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_m62zn5f1mqi4Role-BasedAccessControl(RBAC))
+            -   [Role-Based Access Control (RBAC)](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_m62zn5f1mqi4Role-BasedAccessControl(RBAC))
 
-            -   [[Security Contexts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_9hxxobdhbzubSecurityContexts)
+            -   [Security Contexts](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_9hxxobdhbzubSecurityContexts)
 
-            -   [[Network Policies]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ioqp9c1e0it3NetworkPolicies)
+            -   [Network Policies](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ioqp9c1e0it3NetworkPolicies)
 
-    -   [[Day 5: Working with local K8s options]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ep87xv819awpDay5:WorkingwithlocalK8soptions)
+    -   [Day 5: Working with local K8s options](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ep87xv819awpDay5:WorkingwithlocalK8soptions)
 
-        -   [[Docker Images in kind]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DockerImagesinkind)
+        -   [Docker Images in kind](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DockerImagesinkind)
 
-            -   [[Building a custom Docker image]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_emjvykbp6b07BuildingacustomDockerimage)
+            -   [Building a custom Docker image](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_emjvykbp6b07BuildingacustomDockerimage)
 
-            -   [[Loading the image into kind cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_75w3b81nf636Loadingtheimageintokindcluster)
+            -   [Loading the image into kind cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_75w3b81nf636Loadingtheimageintokindcluster)
 
-            -   [[Limitations and workarounds for Docker-in-Docker scenarios]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_gx81iv2ahbffLimitationsandworkaroundsforDocker-in-Dockerscenarios)
+            -   [Limitations and workarounds for Docker-in-Docker scenarios](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_gx81iv2ahbffLimitationsandworkaroundsforDocker-in-Dockerscenarios)
 
-            -   [[Creating deployments with custom images]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3m2kmc1zyhv5Creatingdeploymentswithcustomimages)
+            -   [Creating deployments with custom images](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3m2kmc1zyhv5Creatingdeploymentswithcustomimages)
 
-        -   [[Working with Images in Minikube]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-WorkingwithImagesinMinikube)
+        -   [Working with Images in Minikube](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-WorkingwithImagesinMinikube)
 
-            -   [[Using the Host Docker 
-                > Daemon]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-UsingtheHostDockerDaemon)
+            -   [Using the Host Docker 
+                > Daemon](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-UsingtheHostDockerDaemon)
 
-            -   [[Loading Images into
-                > Minikube]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-LoadingImagesintoMinikube)
+            -   [Loading Images into
+                > Minikube](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-LoadingImagesintoMinikube)
 
-            -   [[Creating Deployments with Custom
-                > Images]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreatingDeploymentswithCustomImages)
+            -   [Creating Deployments with Custom
+                > Images](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreatingDeploymentswithCustomImages)
 
-            -   [[Minikube-Specific
-                > Features]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Minikube-SpecificFeatures)
+            -   [Minikube-Specific
+                > Features](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Minikube-SpecificFeatures)
 
-                -   [[Built-in Docker
-                    > Registry]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Built-inDockerRegistry)
+                -   [Built-in Docker
+                    > Registry](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Built-inDockerRegistry)
 
-                -   [[Direct Image
-                    > Building]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DirectImageBuilding)
+                -   [Direct Image
+                    > Building](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DirectImageBuilding)
 
-                -   [[Monitoring and
-                    > Troubleshooting]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-MonitoringandTroubleshooting)
+                -   [Monitoring and
+                    > Troubleshooting](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-MonitoringandTroubleshooting)
 
-            -   [[Cleaning
-                > Up]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CleaningUp)
+            -   [Cleaning
+                > Up](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CleaningUp)
 
-        -   [[Best
-            > Practices]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-BestPractices)
+        -   [Best
+            > Practices](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-BestPractices)
 
--   [[Week 2: Service Mesh Concepts and
-    > Python]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_vklxas5rbhonWeek2:ServiceMeshConceptsandPython)
+-   [Week 2: Service Mesh Concepts and
+    > Python](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_vklxas5rbhonWeek2:ServiceMeshConceptsandPython)
 
-    -   [[Day 1-2: Service
-        > Mesh]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wky4d7hjaiaxDay1-2:ServiceMesh)
+    -   [Day 1-2: Service
+        > Mesh](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wky4d7hjaiaxDay1-2:ServiceMesh)
 
-        -   [[Fundamentals]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Fundamentals)
+        -   [Fundamentals](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Fundamentals)
 
-            -   [[Core concepts of service
-                > mesh]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3iedqbosrkonCoreconceptsofservicemesh)
+            -   [Core concepts of service
+                > mesh](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3iedqbosrkonCoreconceptsofservicemesh)
 
-            -   [[Problems service meshes
-                > solve]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_x7ek4kjb5urdProblemsservicemeshessolve)
+            -   [Problems service meshes
+                > solve](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_x7ek4kjb5urdProblemsservicemeshessolve)
 
-            -   [[Evolution of
-                > ingress]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wluvj0eyif00Evolutionofingress)
+            -   [Evolution of
+                > ingress](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wluvj0eyif00Evolutionofingress)
 
-        -   [[Service Mesh
-            > Architecture]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ServiceMeshArchitecture)
+        -   [Service Mesh
+            > Architecture](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ServiceMeshArchitecture)
 
-            -   [[Data
-                > Plane]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DataPlane)
+            -   [Data
+                > Plane](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DataPlane)
 
-            -   [[Control
-                > Plane]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ControlPlane)
+            -   [Control
+                > Plane](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ControlPlane)
 
-        -   [[Key Features and Use
-            > Cases]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-KeyFeaturesandUseCases)
+        -   [Key Features and Use
+            > Cases](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-KeyFeaturesandUseCases)
 
-            -   [[Service Discovery and Load
-                > Balancing]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ServiceDiscoveryandLoadBalancing)
+            -   [Service Discovery and Load
+                > Balancing](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ServiceDiscoveryandLoadBalancing)
 
-            -   [[Traffic
-                > Management]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-TrafficManagement)
+            -   [Traffic
+                > Management](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-TrafficManagement)
 
-            -   [[Observability]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Observability)
+            -   [Observability](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Observability)
 
-            -   [[Security]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Security)
+            -   [Security](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Security)
 
-            -   [[Challenges and Best
-                > Practices]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ChallengesandBestPractices)
+            -   [Challenges and Best
+                > Practices](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ChallengesandBestPractices)
 
-            -   [[Performance
-                > Considerations]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-PerformanceConsiderations)
+            -   [Performance
+                > Considerations](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-PerformanceConsiderations)
 
-            -   [[Complexity
-                > Management]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ComplexityManagement)
+            -   [Complexity
+                > Management](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ComplexityManagement)
 
-            -   [[Monitoring and
-                > Troubleshooting]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-MonitoringandTroubleshooting.1)
+            -   [Monitoring and
+                > Troubleshooting](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-MonitoringandTroubleshooting.1)
 
-    -   [[Day 3-4: Python for
-        > Kubernetes]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_69xqpoqsyrlvDay3-4:PythonforKubernetes)
+    -   [Day 3-4: Python for
+        > Kubernetes](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_69xqpoqsyrlvDay3-4:PythonforKubernetes)
 
-        -   [[Python basics review (if
-            > needed)]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ol9eirs112h4Pythonbasicsreview(ifneeded))
+        -   [Python basics review (if
+            > needed)](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ol9eirs112h4Pythonbasicsreview(ifneeded))
 
-        -   [[Data
-            > Types]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DataTypes)
+        -   [Data
+            > Types](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DataTypes)
 
-        -   [[Python Package
-            > Management]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-PythonPackageManagement)
+        -   [Python Package
+            > Management](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-PythonPackageManagement)
 
-            -   [[Installing a
-                > package:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installingapackage:)
+            -   [Installing a
+                > package:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installingapackage:)
 
-            -   [[Upgrading a
-                > package:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Upgradingapackage:)
+            -   [Upgrading a
+                > package:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Upgradingapackage:)
 
-        -   [[Python Virtual
-            > Environments]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-PythonVirtualEnvironments)
+        -   [Python Virtual
+            > Environments](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-PythonVirtualEnvironments)
 
-            -   [[Creating a virtual
-                > environment:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Creatingavirtualenvironment:)
+            -   [Creating a virtual
+                > environment:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Creatingavirtualenvironment:)
 
-            -   [[Activating a virtual environment:On Unix or
-                > MacOS:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Activatingavirtualenvironment:OnUnixorMacOS:)
+            -   [Activating a virtual environment:On Unix or
+                > MacOS:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Activatingavirtualenvironment:OnUnixorMacOS:)
 
-            -   [[Installing packages in a virtual
-                > environment:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installingpackagesinavirtualenvironment:)
+            -   [Installing packages in a virtual
+                > environment:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installingpackagesinavirtualenvironment:)
 
-            -   [[Deactivating a virtual
-                > environment:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Deactivatingavirtualenvironment:)
+            -   [Deactivating a virtual
+                > environment:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Deactivatingavirtualenvironment:)
 
-            -   [[Creating a requirements
-                > file:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Creatingarequirementsfile:)
+            -   [Creating a requirements
+                > file:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Creatingarequirementsfile:)
 
-            -   [[Installing from a requirements
-                > file:]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installingfromarequirementsfile:)
+            -   [Installing from a requirements
+                > file:](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installingfromarequirementsfile:)
 
-        -   [[Kubernetes Python client
-            > library]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wigs6d4jpluzKubernetesPythonclientlibrary)
+        -   [Kubernetes Python client
+            > library](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wigs6d4jpluzKubernetesPythonclientlibrary)
 
-        -   [[Simple Python scripts for Kubernetes
-            > interaction]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_9dm4w7i4sq4hSimplePythonscriptsforKubernetesinteraction)
+        -   [Simple Python scripts for Kubernetes
+            > interaction](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_9dm4w7i4sq4hSimplePythonscriptsforKubernetesinteraction)
 
-    -   [[Day 5: Helm
-        > Basics]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_25e6sjb3etwtDay5:HelmBasics)
+    -   [Day 5: Helm
+        > Basics](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_25e6sjb3etwtDay5:HelmBasics)
 
-        -   [[Helm\'s Purpose and
-            > Architecture]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Helm'sPurposeandArchitecture)
+        -   [Helm\'s Purpose and
+            > Architecture](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Helm'sPurposeandArchitecture)
 
-        -   [[Creating and Structure of a Helm
-            > Chart]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreatingandStructureofaHelmChart)
+        -   [Creating and Structure of a Helm
+            > Chart](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreatingandStructureofaHelmChart)
 
-        -   [[Deploying Applications with
-            > Helm]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DeployingApplicationswithHelm)
+        -   [Deploying Applications with
+            > Helm](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DeployingApplicationswithHelm)
 
-        -   [[Advanced Helm
-            > Concepts]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-AdvancedHelmConcepts)
+        -   [Advanced Helm
+            > Concepts](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-AdvancedHelmConcepts)
 
-            -   [[Hooks]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Hooks)
+            -   [Hooks](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Hooks)
 
-        -   [[Dependencies]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Dependencies)
+        -   [Dependencies](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Dependencies)
 
-        -   [[Templating]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Templating)
+        -   [Templating](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Templating)
 
-        -   [[Creating Helm Charts with Python
-            > Templates]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreatingHelmChartswithPythonTemplates)
+        -   [Creating Helm Charts with Python
+            > Templates](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreatingHelmChartswithPythonTemplates)
 
-            -   [[Using Jinja2 for
-                > Templating]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-UsingJinja2forTemplating)
+            -   [Using Jinja2 for
+                > Templating](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-UsingJinja2forTemplating)
 
-            -   [[Generating Kubernetes Manifests
-                > Dynamically]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-GeneratingKubernetesManifestsDynamically)
+            -   [Generating Kubernetes Manifests
+                > Dynamically](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-GeneratingKubernetesManifestsDynamically)
 
-            -   [[Integrating with CI/CD
-                > Pipelines]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-IntegratingwithCI/CDPipelines)
+            -   [Integrating with CI/CD
+                > Pipelines](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-IntegratingwithCI/CDPipelines)
 
--   [[Week 3: Istio Deep
-    > Dive]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_otjg0485hiaWeek3:IstioDeepDive)
+-   [Week 3: Istio Deep Dive](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_otjg0485hiaWeek3:IstioDeepDive)
 
-    -   [[Day 1: Istio
-        > Basics]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_48qfj2fna5iqDay1:IstioBasics)
+    -   [Day 1: Istio Basics](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_48qfj2fna5iqDay1:IstioBasics)
 
-        -   [[Installing Istio on your Kubernetes
-            > cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_m5oa6988cbhiInstallingIstioonyourKubernetescluster)
+        -   [Installing Istio on your Kubernetes cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_m5oa6988cbhiInstallingIstioonyourKubernetescluster)
 
-            -   [[Download
-                > Istio]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_l7vevil3f2ejDownloadIstio)
+            -   [Download Istio](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_l7vevil3f2ejDownloadIstio)
 
-            -   [[Install
-                > Istio]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_6n2trviphh0rInstallIstio)
+            -   [Install
+                > Istio](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_6n2trviphh0rInstallIstio)
 
-            -   [[Enable automatic sidecar
-                > injection]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_t2d2lg3akl6Enableautomaticsidecarinjection)
+            -   [Enable automatic sidecar
+                > injection](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_t2d2lg3akl6Enableautomaticsidecarinjection)
 
-        -   [[Istio\'s architecture and core
-            > components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_6okn6qbfvke9Istio'sarchitectureandcorecomponents)
+        -   [Istio\'s architecture and core
+            > components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_6okn6qbfvke9Istio'sarchitectureandcorecomponents)
 
-            -   [[Control
-                > Plane]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_cfpjjpfruidqControlPlane)
+            -   [Control
+                > Plane](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_cfpjjpfruidqControlPlane)
 
-            -   [[Data
-                > Plane]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_aon12rn71ad6DataPlane)
+            -   [Data
+                > Plane](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_aon12rn71ad6DataPlane)
 
-            -   [[Addons]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_pje3lxggo7qaAddons)
+            -   [Addons](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_pje3lxggo7qaAddons)
 
-    -   [[Day 2: Istio Traffic
-        > Management]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ol3zh8vi4vdpDay2:IstioTrafficManagement)
+    -   [Day 2: Istio Traffic
+        > Management](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ol3zh8vi4vdpDay2:IstioTrafficManagement)
 
-        -   [[Exploring Istio\'s traffic management
-            > features]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_i9nwzach32viExploringIstio'strafficmanagementfeatures)
+        -   [Exploring Istio\'s traffic management
+            > features](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_i9nwzach32viExploringIstio'strafficmanagementfeatures)
 
-        -   [[Implementing canary deployments and A/B
-            > testing]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_68kogc7ox5egImplementingcanarydeploymentsandA/Btesting)
+        -   [Implementing canary deployments and A/B
+            > testing](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_68kogc7ox5egImplementingcanarydeploymentsandA/Btesting)
 
-        -   [[Istio\'s load balancing and circuit breaking
-            > capabilities]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_stxygd8r7ma9Istio'sloadbalancingandcircuitbreakingcapabilities)
+        -   [Istio\'s load balancing and circuit breaking
+            > capabilities](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_stxygd8r7ma9Istio'sloadbalancingandcircuitbreakingcapabilities)
 
-    -   [[Day 3: Istio Security and
-        > Observability]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_d2h4saa5b9sjDay3:IstioSecurityandObservability)
+    -   [Day 3: Istio Security and
+        > Observability](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_d2h4saa5b9sjDay3:IstioSecurityandObservability)
 
-        -   [[Istio\'s security
-            > features]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mwtm464mgwf2Istio'ssecurityfeatures)
+        -   [Istio\'s security
+            > features](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mwtm464mgwf2Istio'ssecurityfeatures)
 
-            -   [[mTLS (Mutual
-                > TLS)]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_7oo7bnwfwvqsmTLS(MutualTLS))
+            -   [mTLS (Mutual
+                > TLS)](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_7oo7bnwfwvqsmTLS(MutualTLS))
 
-            -   [[Authorization
-                > Policies]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_v5wqdte783qvAuthorizationPolicies)
+            -   [Authorization
+                > Policies](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_v5wqdte783qvAuthorizationPolicies)
 
-        -   [[Exploring Istio\'s observability
-            > stack]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_iew5wvcblruExploringIstio'sobservabilitystack)
+        -   [Exploring Istio\'s observability
+            > stack](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_iew5wvcblruExploringIstio'sobservabilitystack)
 
-            -   [[Prometheus]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_d97335s84ix0Prometheus)
+            -   [Prometheus](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_d97335s84ix0Prometheus)
 
-            -   [[Grafana]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_nr7elbyvbm3gGrafana)
+            -   [Grafana](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_nr7elbyvbm3gGrafana)
 
-            -   [[Kiali]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ytc71c91dd6xKiali)
+            -   [Kiali](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ytc71c91dd6xKiali)
 
-            -   [[Jaeger/Zipkin]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_54k1v68ob84kJaeger/Zipkin)
+            -   [Jaeger/Zipkin](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_54k1v68ob84kJaeger/Zipkin)
 
-    -   [[Day 4-5: Deploying a Sample Application with
-        > Istio]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Day4-5:DeployingaSampleApplicationwithIstio)
+    -   [Day 4-5: Deploying a Sample Application with
+        > Istio](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Day4-5:DeployingaSampleApplicationwithIstio)
 
-        -   [[Objective]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Objective)
+        -   [Objective](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Objective)
 
-        -   [[Prerequisites]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Prerequisites)
+        -   [Prerequisites](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Prerequisites)
 
-        -   [[Enable Istio Sidecar
-            > Injection]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-EnableIstioSidecarInjection)
+        -   [Enable Istio Sidecar
+            > Injection](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-EnableIstioSidecarInjection)
 
-        -   [[Deploy a Sample
-            > Application]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DeployaSampleApplication)
+        -   [Deploy a Sample
+            > Application](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DeployaSampleApplication)
 
-        -   [[Create a Virtual
-            > Service]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreateaVirtualService)
+        -   [Create a Virtual
+            > Service](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreateaVirtualService)
 
-        -   [[Create a Destination
-            > Rule]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreateaDestinationRule)
+        -   [Create a Destination
+            > Rule](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-CreateaDestinationRule)
 
-        -   [[Test the
-            > Routing]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-TesttheRouting)
+        -   [Test the
+            > Routing](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-TesttheRouting)
 
-        -   [[Implement Canary
-            > Deployment]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ImplementCanaryDeployment)
+        -   [Implement Canary
+            > Deployment](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-ImplementCanaryDeployment)
 
-        -   [[observability]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-observability)
+        -   [observability](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-observability)
 
--   [[Week 4: Linkerd and Practical
-    > Applications]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Week4:LinkerdandPracticalApplications)
+-   [Week 4: Linkerd and Practical
+    > Applications](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Week4:LinkerdandPracticalApplications)
 
-    -   [[Day 1: Linkerd
-        > Basics]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_580z3sduqp01Day1:LinkerdBasics)
+    -   [Day 1: Linkerd
+        > Basics](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_580z3sduqp01Day1:LinkerdBasics)
 
-        -   [[Installing Linkerd on your Kubernetes
-            > cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mw9ye05i9mbtInstallingLinkerdonyourKubernetescluster)
+        -   [Installing Linkerd on your Kubernetes
+            > cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_mw9ye05i9mbtInstallingLinkerdonyourKubernetescluster)
 
-            -   [[Install
-                > CLI]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_6a84ek4y5yv6InstallCLI)
+            -   [Install
+                > CLI](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_6a84ek4y5yv6InstallCLI)
 
-            -   [[Install Linkerd on Your Minikube
-                > Cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-InstallLinkerdonYourMinikubeCluster)
+            -   [Install Linkerd on Your Minikube
+                > Cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-InstallLinkerdonYourMinikubeCluster)
 
-            -   [[Validate
-                > cluster]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_zbpru0jot12eValidatecluster)
+            -   [Validate
+                > cluster](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_zbpru0jot12eValidatecluster)
 
-            -   [[Install
-                > Linkerd]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_dw4xllq56k6aInstallLinkerd)
+            -   [Install
+                > Linkerd](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_dw4xllq56k6aInstallLinkerd)
 
-            -   [[Install
-                > viz]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installviz)
+            -   [Install
+                > viz](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installviz)
 
-            -   [[Linkerd\'s architecture and core
-                > components]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_lb1me4vsfwg6Linkerd'sarchitectureandcorecomponents)
+            -   [Linkerd\'s architecture and core
+                > components](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_lb1me4vsfwg6Linkerd'sarchitectureandcorecomponents)
 
-            -   [[Control
-                > Plane]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ai8vlslryc8aControlPlane)
+            -   [Control
+                > Plane](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_ai8vlslryc8aControlPlane)
 
-            -   [[Data
-                > Plane]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_r4kda6jku7xyDataPlane)
+            -   [Data
+                > Plane](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_r4kda6jku7xyDataPlane)
 
-            -   [[Add-ons]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_uzu0h8lupy7bAdd-ons)
+            -   [Add-ons](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_uzu0h8lupy7bAdd-ons)
 
-        -   [[Linkerd
-            > Features]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-LinkerdFeatures)
+        -   [Linkerd
+            > Features](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-LinkerdFeatures)
 
-        -   [[Traffic management
-            > capabilities]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_pxtr2d9hlrn7Trafficmanagementcapabilities)
+        -   [Traffic management
+            > capabilities](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_pxtr2d9hlrn7Trafficmanagementcapabilities)
 
-        -   [[Linkerd\'s observability and security
-            > features]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_y9qs0kabkcxbLinkerd'sobservabilityandsecurityfeatures)
+        -   [Linkerd\'s observability and security
+            > features](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_y9qs0kabkcxbLinkerd'sobservabilityandsecurityfeatures)
 
-    -   [[Day 2-4: Hands-on
-        > Exercise]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Day2-4:Hands-onExercise)
+    -   [Day 2-4: Hands-on
+        > Exercise](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Day2-4:Hands-onExercise)
 
-        -   [[Deploying and Managing emojivoto with
-            > Linkerd]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DeployingandManagingemojivotowithLinkerd)
+        -   [Deploying and Managing emojivoto with
+            > Linkerd](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-DeployingandManagingemojivotowithLinkerd)
 
-            -   [[Deploy the emojivoto sample
-                > application]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Deploytheemojivotosampleapplication)
+            -   [Deploy the emojivoto sample
+                > application](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Deploytheemojivotosampleapplication)
 
-            -   [[Inject Linkerd into the
-                > application]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-InjectLinkerdintotheapplication)
+            -   [Inject Linkerd into the
+                > application](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-InjectLinkerdintotheapplication)
 
-            -   [[Observe
-                > traffic]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Observetraffic)
+            -   [Observe
+                > traffic](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Observetraffic)
 
-                -   [[Install
-                    > smi]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installsmi)
+                -   [Install
+                    > smi](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Installsmi)
 
-            -   [[Visualize the service
-                > mesh]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Visualizetheservicemesh)
+            -   [Visualize the service
+                > mesh](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Visualizetheservicemesh)
 
-            -   [[Implement a traffic split for canary
-                > deployment]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Implementatrafficsplitforcanarydeployment)
+            -   [Implement a traffic split for canary
+                > deployment](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Implementatrafficsplitforcanarydeployment)
 
-            -   [[Observe the traffic
-                > split]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Observethetrafficsplit)
+            -   [Observe the traffic
+                > split](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Observethetrafficsplit)
 
-            -   [[Gradually increase traffic to the new
-                > version]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Graduallyincreasetraffictothenewversion)
+            -   [Gradually increase traffic to the new
+                > version](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Graduallyincreasetraffictothenewversion)
 
-            -   [[Monitor the canary
-                > deployment]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Monitorthecanarydeployment)
+            -   [Monitor the canary
+                > deployment](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Monitorthecanarydeployment)
 
-    -   [[Day 5: Service Mesh
-        > Comparison]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_zc8hi29irf4bDay5:ServiceMeshComparison)
+    -   [Day 5: Service Mesh
+        > Comparison](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_zc8hi29irf4bDay5:ServiceMeshComparison)
 
-        -   [[Comparing Istio, Linkerd, and other service mesh
-            > solutions]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_v5hnziuxxxxsComparingIstio,Linkerd,andotherservicemeshsolutions)
+        -   [Comparing Istio, Linkerd, and other service mesh
+            > solutions](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_v5hnziuxxxxsComparingIstio,Linkerd,andotherservicemeshsolutions)
 
-            -   [[Istio]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_93lgx62uadqaIstio)
+            -   [Istio](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_93lgx62uadqaIstio)
 
-            -   [[Linkerd]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_awhp3rv2h9q0Linkerd)
+            -   [Linkerd](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_awhp3rv2h9q0Linkerd)
 
-            -   [[Consul
-                > Connect]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_sstw94613qu0ConsulConnect)
+            -   [Consul
+                > Connect](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_sstw94613qu0ConsulConnect)
 
-            -   [[NGINX Service
-                > Mesh]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_10k48pkbn35NGINXServiceMesh)
+            -   [NGINX Service
+                > Mesh](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_10k48pkbn35NGINXServiceMesh)
 
-        -   [[When to choose one service mesh over
-            > another]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_36jvuhf72u3rWhentochooseoneservicemeshoveranother)
+        -   [When to choose one service mesh over
+            > another](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_36jvuhf72u3rWhentochooseoneservicemeshoveranother)
 
--   [[Week 5: Practical
-    > Project]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_tjeqsdcprhc4Week5:PracticalProject)
+-   [Week 5: Practical
+    > Project](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_tjeqsdcprhc4Week5:PracticalProject)
 
-    -   [[Designing and implementing a microservices
-        > application]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wqeap3f95fduDesigningandimplementingamicroservicesapplication)
+    -   [Designing and implementing a microservices
+        > application](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_wqeap3f95fduDesigningandimplementingamicroservicesapplication)
 
-    -   [[Deploying the application using
-        > Helm]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_18f3wnyik8ivDeployingtheapplicationusingHelm)
+    -   [Deploying the application using
+        > Helm](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_18f3wnyik8ivDeployingtheapplicationusingHelm)
 
-    -   [[Implementing service mesh
-        > features]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_d1lmhb9sdf9iImplementingservicemeshfeatures)
+    -   [Implementing service mesh
+        > features](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_d1lmhb9sdf9iImplementingservicemeshfeatures)
 
-    -   [[Creating Python scripts for
-        > automation]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_jod9vfcb0d8yCreatingPythonscriptsforautomation)
+    -   [Creating Python scripts for
+        > automation](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_jod9vfcb0d8yCreatingPythonscriptsforautomation)
 
     ```{=html}
     <!-- -->
     ```
-    -   [[Additional Resources and Best
-        > Practices]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3c9cnnuypcdpAdditionalResourcesandBestPractices)
+    -   [Additional Resources and Best
+        > Practices](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_3c9cnnuypcdpAdditionalResourcesandBestPractices)
 
-    -   [[Tips for Successful Service Mesh
-        > Adoption]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_b68x0wp5nn2yTipsforSuccessfulServiceMeshAdoption)
+    -   [Tips for Successful Service Mesh
+        > Adoption](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_b68x0wp5nn2yTipsforSuccessfulServiceMeshAdoption)
 
--   [[Tools]{.underline}](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Tools)
+-   [Tools](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-Tools)
 
 This document is meant to be a central spring point to allow you to
 understand points to cover yet expects the user to use external
@@ -464,8 +460,8 @@ resources to dig deeper in the points and subjests
 > Kubernetes is a powerful container orchestration platform that manages
 > containerized applications across multiple hosts. Its architecture
 > consists of two main components: the control plane and worker nodes\
-> [[source
-> k8s]{.underline}](https://kubernetes.io/docs/concepts/architecture/).
+> [source
+> k8s](https://kubernetes.io/docs/concepts/architecture/).
 
 +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
 +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
@@ -824,7 +820,7 @@ You will ultimately see the nginx default banner
 
 +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
 
-##### ConfigMaps [[https://kubernetes.io/docs/concepts/configuration/configmap/]{.underline}](https://kubernetes.io/docs/concepts/configuration/configmap/)
+##### ConfigMaps [https://kubernetes.io/docs/concepts/configuration/configmap/](https://kubernetes.io/docs/concepts/configuration/configmap/)
 
 -   Used to store non-confidential data in key-value pairs.
 
@@ -839,7 +835,7 @@ You will ultimately see the nginx default banner
     > kubectl get configmap name -o jsonpath=\'{.dataname}\' or kubectl
     > get configmap name3 -o json \| jq -r \'.data.name\'\| jq -r .first
 
-##### Secrets [[https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/]{.underline}](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
+##### Secrets [https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
 
 -   Similar to ConfigMaps but intended for confidential data.
 
@@ -855,7 +851,7 @@ You will ultimately see the nginx default banner
     > kubectl get secrets user-pass -o json \| jq -r .data.password \|
     > base64 -D
 
-##### Volumes [[https://kubernetes.io/docs/concepts/storage/volumes/]{.underline}](https://kubernetes.io/docs/concepts/storage/volumes/)
+##### Volumes [https://kubernetes.io/docs/concepts/storage/volumes/](https://kubernetes.io/docs/concepts/storage/volumes/)
 
 -   Provide persistent storage for pods.
 
@@ -3649,7 +3645,7 @@ pip install -r requirements.txt
 
 Remember, it\'s a good practice to use virtual environments for each of
 your Python projects to avoid conflicts between package versions.
-Explore [[pyenv]{.underline}](https://realpython.com/intro-to-pyenv/)
+Explore [pyenv](https://realpython.com/intro-to-pyenv/)
 
 ##### Kubernetes Python client library
 
@@ -3719,7 +3715,7 @@ print(f\"{pod.metadata.namespace}\\t{pod.metadata.name}\")
 > You now have the basics to interact with a kubernetes cluster via
 > python.\
 > Link:\
-> [[https://github.com/kubernetes-client/python]{.underline}](https://github.com/kubernetes-client/python)
+> [https://github.com/kubernetes-client/python](https://github.com/kubernetes-client/python)
 
 ### Day 5: Helm Basics
 
@@ -3728,7 +3724,7 @@ print(f\"{pod.metadata.namespace}\\t{pod.metadata.name}\")
 Helm is a package manager for Kubernetes that simplifies the deployment
 and management of applications. It allows you to define, install, and
 upgrade even the most complex Kubernetes applications.\
-[[https://youtu.be/-Bq2BVdzydc]{.underline}](https://youtu.be/-Bq2BVdzydc)
+[https://youtu.be/-Bq2BVdzydc](https://youtu.be/-Bq2BVdzydc)
 \< a good tutorial
 
 **Key Components:**
@@ -3743,8 +3739,8 @@ upgrade even the most complex Kubernetes applications.\
 ##### Creating and Structure of a Helm Chart
 
 Let\'s create a chart and examine its structure:\
-You will have needed to [[install
-helm]{.underline}](https://helm.sh/docs/intro/install/)
+You will have needed to [install
+helm](https://helm.sh/docs/intro/install/)
 
 helm create mychart
 
@@ -4077,7 +4073,7 @@ generation.
 
 ###### Download Istio
 
-> [[https://istio.io/latest/docs/setup/getting-started/#download]{.underline}](https://istio.io/latest/docs/setup/getting-started/#download)\
+> [https://istio.io/latest/docs/setup/getting-started/#download](https://istio.io/latest/docs/setup/getting-started/#download)\
 > Mac can use brew brew install istionctl
 
 ###### Install Istio
@@ -4791,7 +4787,7 @@ the cluster
 
 ###### Install CLI
 
-> [[https://linkerd.io/2.16/tasks/install/]{.underline}](https://linkerd.io/2.16/tasks/install/)\
+> [https://linkerd.io/2.16/tasks/install/](https://linkerd.io/2.16/tasks/install/)\
 > Again Mac can use brew
 >
 > curl \--proto \'=https\' \--tlsv1.2 -sSfL
@@ -4899,7 +4895,7 @@ linkerd tap deployment/your-deployment
 #### Deploying and Managing emojivoto with Linkerd
 
 Sheet here
-[[https://vectorai.atlassian.net/wiki/x/A4AlMw]{.underline}](https://vectorai.atlassian.net/wiki/x/A4AlMw)
+[https://vectorai.atlassian.net/wiki/x/A4AlMw](https://vectorai.atlassian.net/wiki/x/A4AlMw)
 
 ##### Deploy the emojivoto sample application
 
@@ -5254,16 +5250,16 @@ depth of each topic based on your prior knowledge and learning speed.
 ## Tools
 
 k9s :
-[[https://enix.io/en/blog/k9s/]{.underline}](https://enix.io/en/blog/k9s/)
+[https://enix.io/en/blog/k9s/](https://enix.io/en/blog/k9s/)
 
 jq :
-[[https://jqlang.github.io/jq/]{.underline}](https://jqlang.github.io/jq/)
+[https://jqlang.github.io/jq/](https://jqlang.github.io/jq/)
 
 kubectl :
-[[https://kubernetes.io/docs/tasks/tools/]{.underline}](https://kubernetes.io/docs/tasks/tools/)
+[https://kubernetes.io/docs/tasks/tools/](https://kubernetes.io/docs/tasks/tools/)
 
 docker:
-[[https://docs.docker.com/engine/install/]{.underline}](https://docs.docker.com/engine/install/)
+[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 
 
