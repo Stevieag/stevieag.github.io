@@ -259,13 +259,10 @@ resources to dig deeper in the points and subjests
 
 ##### Node Components
 
-1.  kubelet: An agent that runs on each node, ensuring containers are running in a Pod.
-
-2.  kube-proxy: Maintains network rules on nodes, implementing part of the Kubernetes Service concept.
-
-3.  Container runtime: Software responsible for running containers (e.g., Docker, containerd, CRI-O).
-
-4.  Pods: The smallest deployable units in Kubernetes, consisting of one or more containers
+*kubelet:* An agent that runs on each node, ensuring containers are running in a Pod.
+*kube-proxy:* Maintains network rules on nodes, implementing part of the Kubernetes Service concept.
+*Container runtime:* Software responsible for running containers (e.g., Docker, containerd, CRI-O).
+*Pods:* The smallest deployable units in Kubernetes, consisting of one or more containers
 
 ```
 +-----------------------------------------------+
@@ -291,32 +288,30 @@ resources to dig deeper in the points and subjests
 
 ##### Core Concepts
 
-1.  Pods: The smallest deployable units in Kubernetes, consisting of one or more containers.
-
-2.  Services: An abstraction that defines a logical set of Pods and a policy by which to access them.
-
-3.  Deployments: Provide declarative updates for Pods and ReplicaSets.
-
-4.  Namespaces: Virtual clusters backed by the same physical cluster, providing a way to divide cluster resources between multiple users.
+*Pods:* The smallest deployable units in Kubernetes, consisting of one or more containers.
+*Services:* An abstraction that defines a logical set of Pods and a policy by which to access them.
+*Deployments:* Provide declarative updates for Pods and ReplicaSets.
+*Namespaces:* Virtual clusters backed by the same physical cluster, providing a way to divide cluster resources between multiple users.
 
 ##### ** **Additional Components
 
 These components include the Dashboard (a web-based UI), cluster-level
 logging, container resource monitoring, and network plugins.
-
-+-------------------------------------------------------------------+
-|                        Additional Components                      |
-|                                                                   |
-|  +-------------------------+   +-------------------------------+  |
-|  |       Dashboard         |   |    Cluster-level Logging      |  |
-|  |        (Web UI)         |   | (Centralized Log Storage)     |  |
-|  +-------------------------+   +-------------------------------+  |
-|                                                                   |
-|  +-------------------------+   +-------------------------------+  |
-|  |       Monitoring        |   |      Network Plugins          |  |
-|  | (Resource Monitoring)   |   |      (Implement CNI)          |  |
-|  +-------------------------+   +-------------------------------+  |
-+-------------------------------------------------------------------+
+```
++-------------------------------------------------------------+
+|                      Additional Components                  |
+|                                                             |
+|  +-----------------------+   +---------------------------+  |
+|  |       Dashboard       |   |    Cluster-level Logging  |  |
+|  |        (Web UI)       |   | (Centralized Log Storage) |  |
+|  +-----------------------+   +---------------------------+  |
+|                                                             |
+|  +-----------------------+   +---------------------------+  |
+|  |       Monitoring      |   |      Network Plugins      |  |
+|  | (Resource Monitoring) |   |      (Implement CNI)      |  |
+|  +-----------------------+   +---------------------------+  |
++-------------------------------------------------------------+
+```
 
 #### Local Kubernetes Development Options
 
@@ -336,45 +331,33 @@ logging, container resource monitoring, and network plugins.
 
 Advantages of kind:
 
-1.  Lightweight and fast to start up, making it ideal for rapid development cycles.
-
-2.  Supports multi-node clusters, allowing you to simulate more complex environments.
-
-3.  Runs Kubernetes inside Docker containers, which is efficient and consistent across different host systems.
-
-4.  Ideal for testing and CI/CD pipelines due to its speed and reproducibility
+  - Lightweight and fast to start up, making it ideal for rapid development cycles.
+  - Supports multi-node clusters, allowing you to simulate more complex environments.
+  - Runs Kubernetes inside Docker containers, which is efficient and consistent across different host systems.
+  - Ideal for testing and CI/CD pipelines due to its speed and reproducibility
 
 ##### Minikube
 
-> Minikube is a tool that makes it easy to run Kubernetes locally. It
-> runs a single-node Kubernetes cluster inside a VM on your laptop.
+Minikube is a tool that makes it easy to run Kubernetes locally. It runs a single-node Kubernetes cluster inside a VM on your laptop.
 
 ###### Installation
 
-> \# For macOS
->
-> brew install minikube
->
-> \# For other systems, refer to the official documentation
+\# For macOS
+`brew install minikube`
+\# For other systems, refer to the official documentation
 
 ###### Starting a cluster
 
-> minikube start
+`minikube start`
 
 Advantages of Minikube:
 
-1.  More established and feature-rich, with a large community and
-    > extensive documentation.
+  - More established and feature-rich, with a large community and extensive documentation.
+  - Supports multiple hypervisors (VirtualBox, HyperKit, etc.), allowing flexibility in your local setup.
+  - Provides built-in addons for common services, making it easy to enable additional functionality.
+  - Offers a dashboard for visual management of your cluster.
 
-2.  Supports multiple hypervisors (VirtualBox, HyperKit, etc.), allowing
-    > flexibility in your local setup.
-
-3.  Provides built-in addons for common services, making it easy to
-    > enable additional functionality.
-
-4.  Offers a dashboard for visual management of your cluster.
-
-#### **  **Practice with Basic Kubernetes Resources
+#### Practice with Basic Kubernetes Resources
 
 > To solidify your understanding, practice creating and managing these
 > basic Kubernetes resources in both kind and Minikube environments:
