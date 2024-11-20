@@ -367,7 +367,7 @@ This could easily be a static volume location as opposed to a configmap
 
 Networking is a large area of K8s and is the largest challenge or
 concept to learn.
-
+```
 +--------------------------------------------------+
 |              +------------------+                |
 |              | External Traffic |                |
@@ -413,7 +413,7 @@ concept to learn.
 |              |    Node Network   |               |
 |              +-------------------+               |
 +--------------------------------------------------+
-
+```
 This diagram illustrates:
 
 1.  External traffic enters through a Load Balancer.
