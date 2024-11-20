@@ -225,24 +225,15 @@ To solidify your understanding, practice creating and managing these basic Kuber
 Example commands:
 
 \# Create a deployment
-
-> kubectl create deployment nginx \--image=nginx
-
+`kubectl create deployment nginx \--image=nginx`
 \# Expose the deployment as a service
-
-> kubectl expose deployment nginx \--port=80 \--type=LoadBalancer
-
+`kubectl expose deployment nginx \--port=80 \--type=LoadBalancer`
 \# List pods
-
-> kubectl get pods
-
+`kubectl get pods`
 \# List services
+`kubectl get services`
 
-> kubectl get services
->
-> By thoroughly understanding these concepts and practicing with both
-> kind and Minikube, you\'ll build a solid foundation for working with
-> Kubernetes in various environments.
+By thoroughly understanding these concepts and practicing with both kind and Minikube, you\'ll build a solid foundation for working with Kubernetes in various environments.
 
 You will need to search so that you can view the nginx on your
 localhost\
