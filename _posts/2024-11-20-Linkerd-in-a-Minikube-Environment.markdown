@@ -72,7 +72,8 @@ To enable Linkerd for your application, inject the Linkerd proxies into your pod
 This command retrieves the deployments in YAML format, injects the Linkerd sidecar, and applies the modified configuration to the Kubernetes cluster\
 [source k8s](https://faun.pub/kubernetes-introduction-linkerd-with-minikube-9bdc803dc901?gi=babe302d37cc) , [source linkerd](https://linkerd.io/2.16/getting-started/).
 
-The command `curl -sL run.linkerd.io/emojivoto.yml | linkerd inject -`\ scans the `emojivoto manifest file`, skips the rest of the configurations in the manifest, and then injects linkerd-proxy proxies into each deployment in the pod.\
+The command `curl -sL run.linkerd.io/emojivoto.yml | linkerd inject -`\ 
+scans the `emojivoto manifest file`, skips the rest of the configurations in the manifest, and then injects linkerd-proxy proxies into each deployment in the pod.\
 With the `kubectl apply -f -` command, the `emojivoto` configuration was re-applied in our cluster and the sidecars were successfully injected.
 
 # Explore Linkerd Features
@@ -86,11 +87,11 @@ This sets up the visualization tools, including Prometheus, and launches the Lin
 ## Traffic Management
 Linkerd allows you to manage traffic between services. Here’s an example of how to split traffic between two versions of a service:
 
-Using bash
-\# Create a new deployment for the v2 version of the web service
+Using bash\
+\# Create a new deployment for the v2 version of the web service\
 `kubectl get deployments web -n emojivoto -o yaml > web-deployment.yaml ; sed -i 's/name: web/name: web-v2/' web-deployment.yaml sed -i 's/image: emojivoto-web:v1/image: emojivoto-web:v2/' web-deployment.yaml ; kubectl apply -f web-deployment.yaml ;rm web-deployment.yaml`
 
-\# Inject Linkerd proxies into the new deployment
+\# Inject Linkerd proxies into the new deployment\
 `kubectl get deployments web-v2 -n emojivoto -o yaml | linkerd inject - | kubectl apply -f -`
 
 \# Split traffic between v1 and v2
@@ -122,7 +123,9 @@ This may look complicated but essentially, cats the manifest and pipes this to t
 ## Security
 Linkerd provides mTLS encryption out of the box. You can verify this by checking the Linkerd dashboard or using `linkerd tap`.\
 `linkerd viz tap -n emojivoto deploy/web`\
+
 This will now start to listen for traffic. If you click on one of the emojis on the website you will see traffic and here you will notice `tls=true`\
+
 ie: `rsp id=31:9 proxy=out src=10.244.0.60:59620 dst=10.244.0.58:8080 tls=true :status=200 latency=959µs`
 
 # Monitoring and Debugging
