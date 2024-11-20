@@ -8,7 +8,7 @@ date:   2024-10-11
 tags: minikube linkerd micro service
 ---
 
-Here is a pert of a tutorial I wrote for linkerd use and a [5 Week DevOps training plan](https://geekyblinder.co.uk/#/2024/11/20/Five-Week-DevOps-Training-Plan)
+Here is a part of a tutorial I wrote for linkerd use and a [5 Week DevOps training plan](https://geekyblinder.co.uk/#/2024/11/20/Five-Week-DevOps-Training-Plan)
 
 # Content
 Minikube\
