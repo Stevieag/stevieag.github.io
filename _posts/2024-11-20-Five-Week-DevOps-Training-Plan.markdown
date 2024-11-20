@@ -368,107 +368,79 @@ This could easily be a static volume location as opposed to a configmap
 Networking is a large area of K8s and is the largest challenge or
 concept to learn.
 ```
-+-----------------------------------------------------+
-|                  +------------------+               |
-|                  | External Traffic |               |
-|                  +------------------+               |
-|                           |                         |
-|                           v                         |
-|             +-------------------------+             |
-|             |      Load Balancer      |             |
-|             +-------------------------+             |
-|                           |                         |
-|                           v                         |
-|           +-----------------------------+           |
-|           |     Ingress Controller      |           |
-|           |   (e.g., NGINX, Traefik)    |           |
-|           +-----------------------------+           |
-|            |                           |            |
-|            v                           v            |
-|   +-------------------+      +-------------------+  |
-|   |   Ingress Rule 1  |      |   Ingress Rule 2  |  |
-|   |   host: foo.com   |      |   host: bar.com   |  |
-|   |   path: /app1     |      |   path: /app2     |  |
-|   +-------------------+      +-------------------+  |
-|            |                           |            |
-|            v                           v            |
-|  +---------------------+   +---------------------+  |
-|  |      Service 1      |   |      Service 2      |  |
-|  | (ClusterIP/NodePort)|   | (ClusterIP/NodePort)|  |
-|  +---------------------+   +---------------------+  |
-|      |             |           |            |       |
-|      v             v           v            v       |
-|  +-------+     +-------+   +-------+     +-------+  |
-|  | Pod 1A|     | Pod 1B|   | Pod 2A|     | Pod 2B|  |
-|  +-------+     +-------+   +-------+     +-------+  |
-|      |             |           |             |      |
-|      v             v           v             v      |
-|  +------------------------------------------------+ |
-|  |               Container Network                | |
-|  |    (e.g., Flannel, Calico, Weave, Cilium)      | |
-|  +------------------------------------------------+ |
-|                          |                          |
-|                          v                          |
-|               +-------------------+                 |
-|               |    Node Network   |                 |
-|               +-------------------+                 |
-+-----------------------------------------------------+
++----------------------------------------------------+
+|                  +------------------+              |
+|                  | External Traffic |              |
+|                  +------------------+              |
+|                           |                        |
+|                           v                        |
+|             +-------------------------+            |
+|             |      Load Balancer      |            |
+|             +-------------------------+            |
+|                           |                        |
+|                           v                        |
+|           +-----------------------------+          |
+|           |     Ingress Controller      |          |
+|           |   (e.g., NGINX, Traefik)    |          |
+|           +-----------------------------+          |
+|            |                          |            |
+|            v                          v            |
+|   +-------------------+     +-------------------+  |
+|   |   Ingress Rule 1  |     |   Ingress Rule 2  |  |
+|   |   host: foo.com   |     |   host: bar.com   |  |
+|   |   path: /app1     |     |   path: /app2     |  |
+|   +-------------------+     +-------------------+  |
+|            |                          |            |
+|            v                          v            |
+|  +---------------------+  +---------------------+  |
+|  |      Service 1      |  |      Service 2      |  |
+|  | (ClusterIP/NodePort)|  | (ClusterIP/NodePort)|  |
+|  +---------------------+  +---------------------+  |
+|      |             |          |            |       |
+|      v             v          v            v       |
+|  +-------+     +-------+  +-------+     +-------+  |
+|  | Pod 1A|     | Pod 1B|  | Pod 2A|     | Pod 2B|  |
+|  +-------+     +-------+  +-------+     +-------+  |
+|      |             |          |             |      |
+|      v             v          v             v      |
+|  +-----------------------------------------------+ |
+|  |               Container Network               | |
+|  |    (e.g., Flannel, Calico, Weave, Cilium)     | |
+|  +-----------------------------------------------+ |
+|                          |                         |
+|                          v                         |
+|               +-------------------+                |
+|               |    Node Network   |                |
+|               +-------------------+                |
++----------------------------------------------------+
 ```
 This diagram illustrates:
 
-1.  External traffic enters through a Load Balancer.
-
-2.  The Ingress Controller (e.g., NGINX or Traefik) receives the traffic
-    > and processes it based on Ingress Rules.
-
-3.  Ingress Rules define how traffic should be routed based on hostnames
-    > and paths.
-
-4.  Services (ClusterIP or NodePort) receive traffic from the Ingress
-    > Controller and distribute it to Pods.
-
-5.  Pods contain the application containers and are distributed across
-    > nodes.
-
-6.  The Container Network (implemented by CNI plugins like Flannel,
-    > Calico, Weave, or Cilium) enables communication between Pods
-    > across nodes.
-
-7.  The Node Network connects all nodes in the cluster.
+ - External traffic enters through a Load Balancer.
+ - The Ingress Controller (e.g., NGINX or Traefik) receives the traffic and processes it based on Ingress Rules.
+ - Ingress Rules define how traffic should be routed based on hostnames and paths.
+ - Services (ClusterIP or NodePort) receive traffic from the Ingress Controller and distribute it to Pods.
+ - Pods contain the application containers and are distributed across nodes.
+ - The Container Network (implemented by CNI plugins like Flannel, Calico, Weave, or Cilium) enables communication between Pods across nodes.
+ - The Node Network connects all nodes in the cluster.
 
 ##### Networking Model
+```
++-------------------------------+ +------------------------------+
+|             Node 1            | |             Node 2           |
+| +------------+ +------------+ | | +------------+ +-----------+ |
+| |    Pod1    | |    Pod2    | | | |    Pod3    | |    Pod4   | |
+| | IP: 10.1.1 | | IP: 10.1.2 | | | | IP: 10.2.1 | | IP:10.2.2 | |
+| +------------+ +------------+ | | +------------+ +-----------+ |
+|               |               | |               |              |
+|    Virtual Ethernet Bridge    | |    Virtual Ethernet Bridge   |
+|               |               | |               |              |
++-------------- |---------------+ +---------------|--------------+
+                |                                 |
+                |     Cluster Network Fabric      |
+                +---------------------------------+
 
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| Node 1 \| \| Node 2 \|
-
-\| +\-\-\-\-\-\-\-\-\-\-\-\-\--+ +\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\--+ +\-\-\-\-\-\-\-\-\-\-\-\-\--+ \|
-
-\| \| Pod1 \| \| Pod2 \| \| \| \| Pod3 \| \| Pod4 \| \|
-
-\| \| IP: 10.1.1 \| \| IP: 10.1.2 \| \| \| \| IP: 10.2.1 \| \| IP:
-10.2.2 \| \|
-
-\| +\-\-\-\-\-\-\-\-\-\-\-\-\--+ +\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\--+ +\-\-\-\-\-\-\-\-\-\-\-\-\--+ \|
-
-\| \| \| \| \| \|
-
-\| Virtual Ethernet Bridge \| \| Virtual Ethernet Bridge \|
-
-\| \| \| \| \| \|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| \|
-
-\| Cluster Network Fabric \|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
+```
 -   Pod IP Addressing: Each pod is assigned a unique IP address from the
     > cluster-wide CIDR range. This ensures that every pod has a
     > distinct identity within the cluster.
