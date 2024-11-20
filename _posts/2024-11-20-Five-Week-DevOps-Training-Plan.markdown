@@ -447,9 +447,9 @@ This diagram illustrates:
  - CNI Plugins: Container Network Interface (CNI) plugins implement the actual networking, ensuring proper routing and connectivity across the cluster. Popular CNI plugins include Calico, Flannel, and Weave.
 
 This architecture simplifies application design and deployment, as pods
-can be treated similarly to VMs or physical hot rmantokn
-esetv
-# eves
+can be treated similarly to VMs or physical hosts from a networking perspective.
+
+# Services
 ```
         +------------------------+
         |        Service         |
@@ -955,6 +955,7 @@ data:
   </html>
 EOF
 ```
+```
 +----------------------------------------------------+
 |                  Kubernetes Cluster                |
 |                                                    |
@@ -1006,20 +1007,20 @@ EOF
 ```
 This updated diagram now includes:
 
-1.  The original webapp-config ConfigMap with BACKGROUND_COLOR and MESSAGE.
-2.  The new webapp-content ConfigMap containing the index.html template.
+1.  The original `webapp-config` ConfigMap with `BACKGROUND_COLOR` and `MESSAGE`.
+2.  The new ``webapp-content` ConfigMap containing the `index.html` template.
 3.  The Deployment and Pod structure, showing how these ConfigMaps are used:
-    -   webapp-config is used as environment variables (EnvFrom).
-    -   webapp-content is mounted as a volume, providing the index.html file.
+    -   `webapp-config` is used as environment variables (EnvFrom).
+    -   `webapp-content` is mounted as a volume, providing the `index.html` file.
 
-The new webapp-content ConfigMap contains an HTML template that uses the
+The new `webapp-content` ConfigMap contains an HTML template that uses the
 `${BACKGROUND_COLOR}` and `${MESSAGE}` variables. These variables will be
-replaced with the actual values from the webapp-config ConfigMap when
+replaced with the actual values from the `webapp-config` ConfigMap when
 the page is served.This setup allows for a dynamic, configurable web
 application where:
 
--   The content of the page (HTML structure) is defined in one ConfigMap (webapp-content).
--   The configuration values (background color and message) are defined in another ConfigMap (webapp-config).
+-   The content of the page (HTML structure) is defined in one ConfigMap (`webapp-content`).
+-   The configuration values (background color and message) are defined in another ConfigMap (`webapp-config`).
 -   The Nginx container serves the HTML content, with the variables replaced by the actual configuration values.
 
 This separation of concerns makes it easy to update either the content
