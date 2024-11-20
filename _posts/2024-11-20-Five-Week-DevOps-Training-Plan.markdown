@@ -237,12 +237,12 @@ By thoroughly understanding these concepts and practicing with both kind and Min
 
 You will need to search so that you can view the nginx on your
 localhost\
-eg: minikube external ip expose command\
+eg: `minikube external ip expose command`\
 \
 You will ultimately see the nginx default banner
 
 ![Screenshot 2024-10-17 at
-15.09.46.png](img/image1.png){width="4.875in" height="1.875in"}
+15.09.46.png](img/image1.png)
 
 ### Day 3-4: Advanced Kubernetes
 
