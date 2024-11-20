@@ -11,30 +11,15 @@ tags: minikube linkerd micro service
 Here is a pert of a tutorial I wrote for linkerd use and a [5 Week DevOps training plan](https://geekyblinder.co.uk/#/2024/11/20/Five-Week-DevOps-Training-Plan)
 
 # Content
-Prerequisites\
-Set Up Minikube\
-Start Minikube\
-Verify Minikube Status\
-Deploy a Sample Application\
-Deploy Emojivoto\
-Verify the Application\
+Minikube\
 Install Linkerd\
-Install the Linkerd CLI\
-Pre-Installation Check\
-Install Linkerd on Your Minikube Cluster\
-Verify Linkerd Installation\
-Inject Linkerd Proxies\
-Explore Linkerd Features\
-Dashboard\
-Traffic Management\
-Security\
-Monitoring and Debugging\
-Linkerd Tap\
-Linkerd Top\
-Cleaning Up\
-Troubleshooting Common Errors\
-Additional Resources\
-
+Linkerd on Your Minikube Cluster\
+Linkerd Features\
+ \- Dashboard      - Traffic Management\
+ \- Security       - Monitoring\
+ \- Debugging      - Tap\
+ \- Top\
+Cleaning Up
 
 # Prerequisites\
  - Minikube: Ensure you have Minikube installed and running. You can install it from the [official Minikube website](https://minikube.sigs.k8s.io/docs/start/).
