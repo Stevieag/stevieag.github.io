@@ -247,30 +247,30 @@ You will ultimately see the nginx default banner
 ### Day 3-4: Advanced Kubernetes
 
 #### ConfigMaps, Secrets, and Volumes
-
-+-------------------------------------------------------------+
-|                            Pod                              |
-|                                                             |
-|  +---------------------+   +-----------------------------+  |
-|  |      Container      |   |        Volume Mounts        |  |
-|  |    (Application)    |   | /etc/config -> ConfigMap    |  |
-|  |                     |   | /etc/secrets -> Secret      |  |
-|  +---------------------+   +-----------------------------+  |
-|                                                             |
-|  +---------------------+   +-----------------------------+  |
-|  |     Environment     |   |          ConfigMap          |  |
-|  |      Variables      |   |                             |  |
-|  | (from ConfigMap     |   | key1: value1                |  |
-|  | and Secret)         |   | key2: value2                |  |
-|  +---------------------+   +-----------------------------+  |
-|                                                             |
-|  +-----------------------------------------------+          |
-|  |                   Secret                      |          |
-|  | username: base64(user)                        |          |
-|  | password: base64(pass)                        |          |
-|  +-----------------------------------------------+          |
-+-------------------------------------------------------------+
-
+```
++----------------------------------------------------+
+|                          Pod                       |
+|                                                    |
+|  +---------------+   +--------------------------+  |
+|  |   Container   |   |     Volume Mounts        |  |
+|  | (Application) |   | /etc/config -> ConfigMap |  |
+|  |               |   | /etc/secrets -> Secret   |  |
+|  +---------------+   +--------------------------+  |
+|                                                    |
+|  +---------------------+     +------------------+  |
+|  |     Environment     |     |     ConfigMap    |  |
+|  |      Variables      |     |                  |  |
+|  |   (from ConfigMap   |     |   key1: value1   |  |
+|  |     and Secret)     |     |   key2: value2   |  |
+|  +---------------------+     +------------------+  |
+|                                                    |
+|       +-------------------------------------+      |
+|       |                Secret               |      |
+|       |         username: base64(user)      |      |
+|       |         password: base64(pass)      |      |
+|       +-------------------------------------+      |
++----------------------------------------------------+
+```
 ##### ConfigMaps [https://kubernetes.io/docs/concepts/configuration/configmap/](https://kubernetes.io/docs/concepts/configuration/configmap/)
 
 -   Used to store non-confidential data in key-value pairs.
