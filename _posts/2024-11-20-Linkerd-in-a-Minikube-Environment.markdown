@@ -144,19 +144,22 @@ You will also see that the doughnut was not successful
 
 ## Cleaning Up
 When you're done, clean up the resources created:\
+
 \# Delete the emojivoto application
 `curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/emojivoto.yml | kubectl delete -f -`\
+
 \# Uninstall Linkerd\
 `linkerd viz uninstall | kubectl delete -f -`\
 `linkerd uninstall | kubectl delete -f -`\
 
 ## Troubleshooting Common Errors
 ERROR: `Error: No Objects Passed to Apply: Ensure you run the following command first to install the CRDs:`
+
 SOLUTION: `linkerd install --crds | kubectl apply -f -`\
 Then, proceed with the control plane installation
 
 # Additional Resources
-Linkerd Documentation: The official [Linkerd documentation](https://linkerd.io/2/getting-started/) is a comprehensive resource.\
-Linkerd Tutorials: The [Linkerd tutorials](https://linkerd.io/2/tutorials/) provide hands-on guides for various scenarios.\
-Minikube Documentation: The [Minikube documentation](https://minikube.sigs.k8s.io/docs/) can help you manage your local Kubernetes cluster.\
-[5-Week Training Plan](https://geekyblinder.co.uk/#/2024/11/20/Five-Week-DevOps-Training-Plan): Service Mesh, Kubernetes, and Related Technologies 
+\# Linkerd Documentation: The official [Linkerd documentation](https://linkerd.io/2/getting-started/) is a comprehensive resource.\
+\# Linkerd Tutorials: The [Linkerd tutorials](https://linkerd.io/2/tutorials/) provide hands-on guides for various scenarios.\
+\# Minikube Documentation: The [Minikube documentation](https://minikube.sigs.k8s.io/docs/) can help you manage your local Kubernetes cluster.\
+\# [5-Week Training Plan](https://geekyblinder.co.uk/#/2024/11/20/Five-Week-DevOps-Training-Plan): Service Mesh, Kubernetes, and Related Technologies 
