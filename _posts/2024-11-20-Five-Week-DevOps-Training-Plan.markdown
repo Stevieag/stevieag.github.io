@@ -225,10 +225,10 @@ To solidify your understanding, practice creating and managing these basic Kuber
 Example commands:
 
 \# Create a deployment
-`kubectl create deployment nginx \--image=nginx`
+`kubectl create deployment nginx --image=nginx`
 
 \# Expose the deployment as a service
-`kubectl expose deployment nginx \--port=80 \--type=LoadBalancer`
+`kubectl expose deployment nginx --port=80 --type=LoadBalancer`
 
 \# List pods
 `kubectl get pods`
@@ -279,9 +279,11 @@ You will ultimately see the nginx default banner
  - Used to store non-confidential data in key-value pairs.
  - Can be consumed as environment variables, command-line arguments, or configuration files in a volume.
  - Example creation:\
-   `kubectl create configmap name \--from-literal=name=\'{\"first\":\"John\", \"second\": \"Doe\"}\'`
+   `kubectl create configmap name --from-literal=name='{"first":"John", "second": "Doe"}\'`
  - Example extract\
-   `kubectl get configmap name -o jsonpath=\'{.dataname}\'` or `kubectlget configmap name3 -o json \| jq -r \'.data.name\'\| jq -r .first`
+   `kubectl get configmap name -o jsonpath='{.dataname}'` 
+   or 
+   `kubectlget configmap name3 -o json | jq -r '.data.name'| jq -r .first`
 
 ##### Secrets [https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
 
@@ -289,9 +291,9 @@ You will ultimately see the nginx default banner
  - Base64 encoded by default (not encrypted).
  - Can be mounted as files or exposed as environment variables.
  - Example creation:\
-   `kubectl create secret generic user-pass \--from-literal=username=john \--from-literal=password=s3cr3t`
+   `kubectl create secret generic user-pass --from-literal=username=john --from-literal=password=s3cr3t`
  - Example extract:\
-   `kubectl get secrets user-pass -o json \| jq -r .data.password \| base64 -D`
+   `kubectl get secrets user-pass -o json | jq -r .data.password | base64 -D`
 
 ##### Volumes [https://kubernetes.io/docs/concepts/storage/volumes/](https://kubernetes.io/docs/concepts/storage/volumes/)
 
@@ -300,11 +302,11 @@ You will ultimately see the nginx default banner
  - PersistentVolumes (PV) and PersistentVolumeClaims (PVC) provide a way to use storage resources in a pod-independent manner.
  - Example\
    Create a configmap to hold your var\
-   `kubectl create configmap config-vol \--from-literal=log_level=debug`\
+   `kubectl create configmap config-vol --from-literal=log_level=debug`\
    Now create a pod with a running container that mounts the configmap as a var
 
 ```
-cat \<\<EOF \| k apply -f -
+cat <<EOF | k apply -f -
 
  apiVersion: v1
  kind: Pod
@@ -312,26 +314,26 @@ cat \<\<EOF \| k apply -f -
    name: configmap-pod
  spec:
    containers:
-     \- name: test
+     - name: test
      image: busybox:1.28
-     command: \[\'sh\', \'-c\', \'echo \"The app is running!\" && tail -f /dev/null\'\]
+     command: ['sh', '-c', 'echo "The app is running!" && tail -f /dev/null']
      volumeMounts:
-       \- name: config-vol
+       - name: config-vol
          mountPath: /etc/config
    volumes:
-     \- name: config-vol
+     - name: config-vol
      configMap:
-       name: config-vol \# Corrected to match the ConfigMap name
+       name: config-vol # Corrected to match the ConfigMap name
        items:
-         \- key: log_level
-         path: log_level
+         - key: log_level
+           path: log_level
  EOF
 ```
 Run a command to extract the var held at this point
-`kubectl exec -it configmap-pod \-- cat /etc/config/log_level`\
+`kubectl exec -it configmap-pod -- cat /etc/config/log_level`\
 OR\
 Exec into the container\
-`kubectl exec -it configmap-pod \-- sh`\
+`kubectl exec -it configmap-pod -- sh`\
 
 Here you can navigate to the location\
 `cd etc/config`\
