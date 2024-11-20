@@ -494,68 +494,38 @@ enabling scalability and resilience in Kubernetes environments
 
 ##### Ingress 
 
+```
 External Traffic
-
-\|
-
-+\-\-\-\-\--v\-\-\-\-\--+
-
-\| Ingress \|
-
-\| Controller \|
-
-+\-\-\-\-\--+\-\-\-\-\--+
-
-\|
-
-+\-\-\-\-\--v\-\-\-\-\--+
-
-\| Ingress \|
-
-\| Rules \|
-
-+\-\-\-\-\--+\-\-\-\-\--+
-
-\|
-
-+\-\-\-\-\--v\-\-\-\-\--+
-
-\| Services \|
-
-+\-\-\-\-\--+\-\-\-\-\--+
-
-\|
-
-+\-\-\--v\-\-\--+
-
-\| Pods \|
-
-+\-\-\-\-\-\-\-\--+
-
+       |
++------v------+
+|   Ingress   |
+|  Controller |
++------+------+
+       |
++------v------+
+|   Ingress   |
+|    Rules    |
++------+------+
+       |
++------v------+
+|  Services   |
++------+------+
+       |
++------v------+
+|     Pods    |
++-------------+
+```
 Kubernetes Ingress is an API object that manages external access to
 services within a cluster, providing HTTP and HTTPS routing rules. It
 acts as a single entry point for incoming traffic, simplifying the
 exposure of multiple services through a unified interface. Key features
 of Ingress include:
 
--   Traffic Routing: Ingress can route traffic based on URL paths,
-    > hostnames, or other criteria, allowing for complex routing
-    > scenarios.
-
--   SSL/TLS Termination: Ingress can handle SSL/TLS termination,
-    > offloading this responsibility from individual services.
-
--   Load Balancing: Ingress can distribute traffic across multiple
-    > backend services, acting as a load balancer.
-
--   Name-based Virtual Hosting: Ingress supports routing to different
-    > services based on the hostname, enabling multiple applications to
-    > share a single IP address.
-
--   Ingress Controller: Ingress requires an Ingress Controller to
-    > function, which implements the actual routing and load balancing
-    > logic. Popular Ingress Controllers include NGINX, Traefik, and
-    > Istio.
+ - Traffic Routing: Ingress can route traffic based on URL paths, hostnames, or other criteria, allowing for complex routing scenarios.
+ - SSL/TLS Termination: Ingress can handle SSL/TLS termination, offloading this responsibility from individual services.
+ - Load Balancing: Ingress can distribute traffic across multiple backend services, acting as a load balancer.
+ - Name-based Virtual Hosting: Ingress supports routing to different services based on the hostname, enabling multiple applications to share a single IP address.
+ - Ingress Controller: Ingress requires an Ingress Controller to function, which implements the actual routing and load balancing logic. Popular Ingress Controllers include NGINX, Traefik, and Istio.
 
 By consolidating routing rules into a single resource, Ingress
 simplifies network management and reduces the need for multiple load
@@ -565,142 +535,88 @@ Kubernetes deployments.
 Examples:\
 Create a simple web application
 
+```
 cat \<\<EOF \| k apply -f -
-
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: web-app
-
+  name: web-app
 spec:
-
-replicas: 2
-
-selector:
-
-matchLabels:
-
-app: web-app
-
-template:
-
-metadata:
-
-labels:
-
-app: web-app
-
-spec:
-
-containers:
-
-\- name: web-app
-
-image: nginx:latest
-
-ports:
-
-\- containerPort: 80
-
-\-\--
-
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - name: web-app
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+---
 apiVersion: v1
-
 kind: Service
-
 metadata:
-
-name: web-app-service
-
+  name: web-app-service
 spec:
-
-selector:
-
-app: web-app
-
-ports:
-
-\- protocol: TCP
-
-port: 80
-
-targetPort: 80
-
+  selector:
+    app: web-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
 EOF
-
+```
 This will create an app named web-app with a port 80 exposure to the
 pod.\
 It will also create a service directing calls to the deployment named
 web-app on port 80 to port 80 of one of the containers.\
-kubectl get deployments\
-kubectl get pods\
-kubectl get services\
+`kubectl get deployments`\
+`kubectl get pods`\
+`kubectl get services`\
 \
 giving something like
 
+```
 NAME READY UP-TO-DATE AVAILABLE AGE
-
 web-app 2/2 2 2 46s
 
 NAME READY STATUS RESTARTS AGE
-
 web-app-6fdf6bcdd6-cfkjk 1/1 Running 0 42s
-
 web-app-6fdf6bcdd6-nxv7f 1/1 Running 0 42s
 
 NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
-
 kubernetes ClusterIP 10.96.0.1 \<none\> 443/TCP 57s
-
 web-app-service ClusterIP 10.110.70.144 \<none\> 80/TCP 46s
-
+```
 Now create an ingress to create access
 
+```
 cat \<\<EOF \| k apply -f -
-
 apiVersion: networking.k8s.io/v1
-
 kind: Ingress
-
 metadata:
-
-name: web-app-ingress
-
-annotations:
-
-nginx.ingress.kubernetes.io/rewrite-target: /\$1
-
+  name: web-app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /\$1
 spec:
-
-rules:
-
-\- host: web-app.info
-
-http:
-
-paths:
-
-\- path: /
-
-pathType: Prefix
-
-backend:
-
-service:
-
-name: web-app-service
-
-port:
-
-number: 80
-
+  rules:
+    - host: web-app.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-app-service
+                port:
+                  number: 80
 EOF
-
-![Drawing.sketchpad.png](img/image2.png){width="2.8958333333333335in"
-height="5.791666666666667in"}
+```
+![Drawing.sketchpad.png](img/image2.png)
 
 This will create an ingress that will create a connection outside of the
 cluster with web-app.info as the host name that will direct all
@@ -708,50 +624,50 @@ connections to port 80 of web-app-service service that will then forward
 this to port 80 of the deployment for forwarding to one of the replicas
 for connection.\
 \
-kubectl get ingress
-
+`kubectl get ingress`
+```
 NAME CLASS HOSTS ADDRESS PORTS AGE\
-web-app-ingress \<none\> http://web-app.info 80 2m28s\
-\
+web-app-ingress \<none\> http://web-app.info 80 2m28s
+```
 Ensure that the Ingress addon is enabled in Minikube.\
-minikube addons enable ingress
+`minikube addons enable ingress`
 
 This command enables the NGINX Ingress Controller in your Minikube
 cluster.
 
 Obtain the IP address of your Minikube cluster.\
-minikube ip
+`minikube ip`
 
 This will return the IP address of your Minikube cluster.
 
 Add an entry to your hosts file for web-app.info to the Minikube IP.
 
-echo \"\$(minikube ip) web-app.info\" \| sudo tee -a /etc/hosts
+`echo "$(minikube ip) web-app.info" | sudo tee -a /etc/hosts`
 
-This step is necessary because you\'ve specifiedweb-app.infoas the host
+This step is necessary because you've specifiedweb-app.infoas the host
 in your Ingress resource.
 
 Now you should be able to access your application by opening a web
-browser and navigating to: http://web-app.info
+browser and navigating to: `http://web-app.info`
 
 If everything is set up correctly, you should see the NGINX welcome
 page.
 
-If you\'re unable to access the application, try the following:\
+If you're unable to access the application, try the following:\
 Check Ingress status kubectl get ingress, ensure that the ADDRESS field
 is populated with an IP address.
 
-Verify ingress kubectl get pods -n ingress-nginx , make sure the Ingress
+Verify ingress `kubectl get pods -n ingress-nginx` , make sure the Ingress
 Controller pod is running.
 
-Check ingress logs looking for ERRORS kubectl logs -n ingress-nginx
-\$(kubectl get pods -n ingress-nginx -o name) (this can be run in
-seperate parts kubectl get pods -n ingress-nginx -o name then run
-kubectl logs -n ingress-nginx with the ingress)
+Check ingress logs looking for ERRORS 
+`kubectl logs -n ingress-nginx $(kubectl get pods -n ingress-nginx -o name)` 
+(this can be run in seperate parts `kubectl get pods -n ingress-nginx -o name` then run
+`kubectl logs -n ingress-nginx with the ingress`)
 
-Last resort you can try port forwarding. kubectl port-forward
-svc/web-app-service 8080:80 , now access the application at
-http://localhost:8080.
+Last resort you can try port forwarding. 
+`kubectl port-forward svc/web-app-service 8080:80` , now access the application at
+`http://localhost:8080`
 
 Remember that Minikube is running inside a VM, so network access can
 sometimes be tricky depending on your setup. The methods described above
@@ -759,124 +675,62 @@ should work in most cases, but you might need to adjust based on your
 specific environment
 
 #### Kubernetes RBAC and Security Concepts
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| Kubernetes Cluster \|
-
-\| \|
-
-\| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \|
-
-\| \| RBAC Objects \| \| Security Contexts \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-
-\| \| \| Roles \| \| \| \| Pod Security \| \| \|
-
-\| \| \| (Namespaced) \| \| \| \| Context \| \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \| \| - User/Group \| \| \|
-
-\| \| \| \| \| \| - SELinux \| \| \|
-
-\| \| v \| \| \| - RunAsUser \| \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \| \| - Capabilities \| \| \|
-
-\| \| \| RoleBindings \| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| (Namespaced) \| \| \| \| \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \| v \| \|
-
-\| \| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \| \| Container Security \| \|
-\|
-
-\| \| \| ClusterRoles \| \| \| \| Context \| \| \|
-
-\| \| \|(Cluster- Wide)\| \| \| \| - RunAsNonRoot \| \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \| \| - ReadOnlyRootFS \| \| \|
-
-\| \| \| \| \| \| - Privileged \| \| \|
-
-\| \| v \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \| \| \|
-
-\| \| \| ClusterRole- \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \|
-
-\| \| \| Bindings \| \| \|
-
-\| \| \| (Cluster-wide)\| \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-
-\| \| \| \|
-
-\| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| Network Policies \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-
-\| \| \| Ingress Rules \| \| Egress Rules \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| - From: (sources) \| \| - To: (destinations) \| \| \|
-
-\| \| \| - Ports \| \| - Ports \| \| \|
-
-\| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+ \| \|
-
-\| \| \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
--   RBAC Objects:
-
-    -   Roles and RoleBindings (namespaced)
-
-    -   ClusterRoles and ClusterRoleBindings (cluster-wide)\
-        > These objects define who can access what resources and perform
-        > what actions.
-
--   Security Contexts:
-
-    -   Pod Security Context: Applies to all containers in a pod
-
-    -   Container Security Context: Specific to individual containers\
-        > These define privilege and access control settings for pods
-        > and containers.
-
--   Network Policies:
-
-    -   Ingress Rules: Control incoming traffic to pods
-
-    -   Egress Rules: Control outgoing traffic from pods\
-        > These act as a virtual firewall for your Kubernetes cluster.
+```
++----------------------------------------------------------+
+|                    Kubernetes Cluster                    |
+|                                                          |
+|  +----------------------+    +------------------------+  |
+|  |     RBAC Objects     |    |   Security Contexts    |  |
+|  |   +---------------+  |    | +--------------------+ |  |
+|  |   |     Roles     |  |    | |     Pod Security   | |  |
+|  |   | (Namespaced)  |  |    | |      Context       | |  |
+|  |   +---------------+  |    | |    - User/Group    | |  |
+|  |           |          |    | |    - SELinux       | |  |
+|  |           v          |    | |    - RunAsUser     | |  |
+|  |   +---------------+  |    | |    - Capabilities  | |  |
+|  |  |  RoleBindings  |  |    | +--------------------+ |  |
+|  |  |  (Namespaced)  |  |    |            |           |  |
+|  |  +----------------+  |    |            v           |  |
+|  |                      |    | +--------------------+ |  |
+|  |  +----------------+  |    | | Container Security | |  |
+|  |  |  ClusterRoles  |  |    | |      Context       | |  |
+|  |  | (Cluster- Wide)|  |    | |  - RunAsNonRoot    | |  |
+|  |  +----------------+  |    | |  - ReadOnlyRootFS  | |  |
+|  |          |           |    | |  - Privileged      | |  |
+|  |          v           |    | +--------------------+ |  |
+|  |  +----------------+  |    |                        |  |
+|  |  |  ClusterRole-  |  |    +------------------------+  |
+|  |  |    Bindings    |  |                                |
+|  |  | (Cluster-wide) |  |                                |
+|  |  +----------------+  |                                |
+|  |                      |                                |
+|  +----------------------+                                |
+|                                                          |
+|  +----------------------------------------------------+  |
+|  |                 Network Policies                   |  |
+|  |  +---------------------+ +----------------------+  |  |
+|  |  |   Ingress Rules     | |     Egress Rules     |  |  |
+|  |  |                     | |                      |  |  |
+|  |  | - From: (sources)   | | - To: (destinations) |  |  |
+|  |  | - Ports             | | - Ports              |  |  |
+|  |  +---------------------+ +----------------------+  |  |
+|  |                                                    |  |
+|  +----------------------------------------------------+  |
+|                                                          |
++----------------------------------------------------------+
+```
+ - RBAC Objects:
+    - Roles and RoleBindings (namespaced)
+    - ClusterRoles and ClusterRoleBindings (cluster-wide)\
+      These objects define who can access what resources and perform what actions.
+ - Security Contexts:
+    - Pod Security Context: Applies to all containers in a pod
+    - Container Security Context: Specific to individual containers\
+      These define privilege and access control settings for pods and containers.
+ - Network Policies:
+    - Ingress Rules: Control incoming traffic to pods
+    - Egress Rules: Control outgoing traffic from pods\
+      These act as a virtual firewall for your Kubernetes cluster.
 
 The diagram shows how these components interact within the Kubernetes
 cluster to provide a comprehensive security model. RBAC controls access
@@ -886,148 +740,87 @@ the network traffic between pods and external sources
 
 ##### Role-Based Access Control (RBAC)
 
--   Regulates access to resources based on the roles of individual
-    > users.
-
--   Key objects: Role, ClusterRole, RoleBinding, ClusterRoleBinding.
-
-> Example: Creating a role that allows reading pods:
-
+ - Regulates access to resources based on the roles of individual users.
+ - Key objects: Role, ClusterRole, RoleBinding, ClusterRoleBinding.
+   Example: Creating a role that allows reading pods:
+```
 apiVersion: rbac.authorization.k8s.io/v1
-
 kind: Role
-
 metadata:
-
-namespace: default
-
-name: pod-reader
-
+  namespace: default
+  name: pod-reader
 Rules:
-
-\- apiGroups: \[\"\"\]
-
-resources: \[\"pods\"\]
-
-verbs: \[\"get\", \"watch\", \"list\"\]
+  - apiGroups: [""]
+      resources: ["pods"]
+      verbs: ["get", "watch", "list"]
+```
 
 ##### Security Contexts
 
--   Define privilege and access control settings for Pods or Containers.
-
--   Can set UID, GID, capabilities, and other security parameters.
+ - Define privilege and access control settings for Pods or Containers.
+ - Can set UID, GID, capabilities, and other security parameters.
 
 ##### Network Policies
 
--   Specify how groups of pods are allowed to communicate with each
-    > other and other network endpoints.
+ - Specify how groups of pods are allowed to communicate with each other and other network endpoints.
 
--   Act as a virtual firewall for your Kubernetes cluster.\
-    > \
-    > **Exercise:\
-    > **Deploying a Configurable Web ApplicationIn this exercise, we\'ll
-    > create a simple web application that reads its configuration from
-    > a ConfigMap. We\'ll then deploy it to Kubernetes and expose it
-    > using a Service and Ingress.\
-    > This exercise demonstrates:
+ - Act as a virtual firewall for your Kubernetes cluster.\
 
-1.  Creating and using ConfigMaps
+    **Exercise:\
+    **Deploying a Configurable Web ApplicationIn this exercise, we\'ll
+    create a simple web application that reads its configuration from
+    a ConfigMap. We\'ll then deploy it to Kubernetes and expose it
+    using a Service and Ingress.\
+    This exercise demonstrates:
 
-2.  Deploying a web application with Kubernetes
+ 1.  Creating and using ConfigMaps
+ 2.  Deploying a web application with Kubernetes
+ 3.  Exposing the application using a Service and Ingress
+ 4.  Injecting configuration into a container using environment variables
+ 5.  Mounting ConfigMap data as a volume
+ 6.  Updating configuration and seeing the changes reflected in the application
 
-3.  Exposing the application using a Service and Ingress
-
-4.  Injecting configuration into a container using environment variables
-
-5.  Mounting ConfigMap data as a volume
-
-6.  Updating configuration and seeing the changes reflected in the
-    > application
-
--   **Step 1:** Create a ConfigMap\
-    > First, let\'s create a ConfigMap with some configuration data:
-
+ - **Step 1:** Create a ConfigMap\
+    First, let\'s create a ConfigMap with some configuration data:
+```
 cat \<\<EOF \| kubectl apply -f -
-
 apiVersion: v1
-
 kind: ConfigMap
-
 metadata:
-
-name: webapp-config
-
+  name: webapp-config
 data:
-
-BACKGROUND_COLOR: \"#f0f0f0\"
-
-MESSAGE: \"Welcome to our configurable web app!\"
-
+  BACKGROUND_COLOR: \"#f0f0f0\"
+  MESSAGE: \"Welcome to our configurable web app!\"
 EOF
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| Kubernetes Cluster \|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| ConfigMap \| \|
-
-\| \| Name: webapp-config \| \|
-
-\| \| Data: \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| Key \| Value \| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| BACKGROUND_COLOR \| \"#f0f0f0\" \| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| MESSAGE \| \"Welcome to our \| \| \|
-
-\| \| \| \| configurable \| \| \|
-
-\| \| \| \| web app!\" \| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
+```
+```
++-------------------------------------------------------------+
+|                     Kubernetes Cluster                      |
+|                                                             |
+|  +-------------------------------------------------------+  |
+|  |                       ConfigMap                       |  |
+|  |  Name: webapp-config                                  |  |
+|  |  Data:                                                |  |
+|  |  +-------------------------------------------------+  |  |
+|  |  |         Key      |              Value           |  |  |
+|  |  +------------------+------------------------------+  |  |
+|  |  | BACKGROUND_COLOR |             "#f0f0f0"        |  |  |
+|  |  +------------------+------------------------------+  |  |
+|  |  | MESSAGE          | "Welcome to our configurable |  |  |
+|  |  |                  | web app!"                    |  |  |
+|  |  +------------------+------------------------------+  |  |
+|  |                                                       |  |
+|  +-------------------------------------------------------+  |
+|                                                             |
++-------------------------------------------------------------+
+```
 This diagram shows:
 
-1.  The overall Kubernetes cluster environment.
-
-2.  Within the cluster, a ConfigMap named \"webapp-config\" is created.
-
-3.  The ConfigMap contains two key-value pairs:
-
-    -   BACKGROUND_COLOR: \"#f0f0f0\"
-
-    -   MESSAGE: \"Welcome to our configurable web app!\"
+ 1.  The overall Kubernetes cluster environment.
+ 2.  Within the cluster, a ConfigMap named \"webapp-config\" is created.
+ 3.  The ConfigMap contains two key-value pairs:
+     -   BACKGROUND_COLOR: \"#f0f0f0\"
+     -   MESSAGE: \"Welcome to our configurable web app!\"
 
 The diagram illustrates how the ConfigMap stores configuration data as
 key-value pairs, which can be used by applications running in the
@@ -1036,209 +829,101 @@ environment variables in a Pod, allowing the application to access these
 configuration values at runtime.
 
 -   **Step 2:** Create a Deployment\
-    > Now, let\'s create a Deployment for our web application. We\'ll
-    > use a simple Nginx image and inject our configuration as
-    > environment variables:
+    Now, let\'s create a Deployment for our web application. We\'ll use a simple Nginx image and inject our configuration as environment variables:
 
-cat \<\<EOF \| kubectl apply -f -
-
+```
+cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: webapp
-
+  name: webapp
 spec:
-
-replicas: 2
-
-selector:
-
-matchLabels:
-
-app: webapp
-
-template:
-
-metadata:
-
-labels:
-
-app: webapp
-
-spec:
-
-containers:
-
-\- name: webapp
-
-image: nginxtest
-
-ports:
-
-\- containerPort: 80
-
-envFrom:
-
-\- configMapRef:
-
-name: webapp-config
-
-volumeMounts:
-
-\- name: config
-
-mountPath: /usr/share/nginx/html
-
-volumes:
-
-\- name: config
-
-configMap:
-
-name: webapp-content
-
-items:
-
-\- key: index.html
-
-path: index.html
-
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: nginxtest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: webapp-config
+          volumeMounts:
+            - name: config
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: config
+          configMap:
+            name: webapp-content
+            items:
+              - key: index.html
+                path: index.html
 EOF
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| Kubernetes Cluster \|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| Deployment: webapp \| \|
-
-\| \| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| ReplicaSet (2 replicas) \| \| \|
-
-\| \| \| \| \| \|
-
-\| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| Pod 1 \| \| \| \|
-
-\| \| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \| \|
-
-\| \| \| \| \| Container: webapp. \| \| \| \| \|
-
-\| \| \| \| \| \| \| \| \| \|
-
-\| \| \| \| \| Image: nginx:alpine \| \| \| \| \|
-
-\| \| \| \| \| Port: 80 \| \| \| \| \|
-
-\| \| \| \| \| \| \| \| \| \|
-
-\| \| \| \| \| EnvFrom: \| \| \| \| \|
-
-\| \| \| \| \| ConfigMap: webapp-config \| \| \| \| \|
-
-\| \| \| \| \| \| \| \| \| \|
-
-\| \| \| \| \| VolumeMount: \| \| \| \| \|
-
-\| \| \| \| \| Name: config \| \| \| \| \|
-
-\| \| \| \| \| MountPath: /usr/share/nginx/html \| \| \| \| \|
-
-\| \| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \| \|
-
-\| \| \| \| \| Volume: config \| \| \| \| \|
-
-\| \| \| \| \| ConfigMap: webapp-config \| \| \| \| \|
-
-\| \| \| \| \| Key: index.html \| \| \| \| \|
-
-\| \| \| \| \| Path: index.html \| \| \| \| \|
-
-\| \| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| \| \|
-
-\| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| Pod 2 \| \| \| \|
-
-\| \| \| \| (Same structure as Pod 1) \| \| \| \|
-
-\| \| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
+```
+```
++-----------------------------------------------------------------+
+|                        Kubernetes Cluster                       |
+|                                                                 |
+|  +-----------------------------------------------------------+  |
+|  |                      Deployment: webapp                   |  |
+|  |                                                           |  |
+|  |  +-----------------------------------------------------+  |  |
+|  |  |                 ReplicaSet (2 replicas)             |  |  |
+|  |  |                                                     |  |  |
+|  |  |  +-----------------------------------------------+  |  |  |
+|  |  |  |                    Pod 1                      |  |  |  |
+|  |  |  |                                               |  |  |  |
+|  |  |  |  +-----------------------------------------+  |  |  |  |
+|  |  |  |  |            Container: webapp.           |  |  |  |  |
+|  |  |  |  |                                         |  |  |  |  |
+|  |  |  |  | Image: nginx:alpine                     |  |  |  |  |
+|  |  |  |  | Port: 80                                |  |  |  |  |
+|  |  |  |  |                                         |  |  |  |  |
+|  |  |  |  | EnvFrom:                                |  |  |  |  |
+|  |  |  |  | ConfigMap: webapp-config                |  |  |  |  |
+|  |  |  |  |                                         |  |  |  |  |
+|  |  |  |  | VolumeMount:                            |  |  |  |  |
+|  |  |  |  |     Name: config                        |  |  |  |  |
+|  |  |  |  |     MountPath: /usr/share/nginx/html    |  |  |  |  |
+|  |  |  |  +-----------------------------------------+  |  |  |  |
+|  |  |  |                                               |  |  |  |
+|  |  |  |  +-----------------------------------------+  |  |  |  |
+|  |  |  |  |              Volume: config             |  |  |  |  |
+|  |  |  |  | ConfigMap: webapp-config                |  |  |  |  |
+|  |  |  |  |     Key: index.html                     |  |  |  |  |
+|  |  |  |  |     Path: index.html                    |  |  |  |  |
+|  |  |  |  +-----------------------------------------+  |  |  |  |
+|  |  |  |                                               |  |  |  |
+|  |  |  +-----------------------------------------------+  |  |  | 
+|  |  |                                                     |  |  |
+|  |  |  +-----------------------------------------------+  |  |  |
+|  |  |  |                      Pod 2                    |  |  |  |
+|  |  |  |          (Same structure as Pod 1)            |  |  |  |
+|  |  |  +-----------------------------------------------+  |  |  |
+|  |  |                                                     |  |  |
+|  |  +-----------------------------------------------------+  |  |
+|  |                                                           |  |
+|  +-----------------------------------------------------------+  |
+|                                                                 |
++-----------------------------------------------------------------+
+```
 This diagram illustrates:
 
-1.  The overall Kubernetes Deployment named \"webapp\".
-
-2.  The ReplicaSet managing 2 replicas (Pods).
-
-3.  The structure of each Pod, including:
-
-    -   The container named \"webapp\" using the nginx:alpine image.
-
+ 1.  The overall Kubernetes Deployment named "webapp".
+ 2.  The ReplicaSet managing 2 replicas (Pods).
+ 3.  The structure of each Pod, including:
+    -   The container named "webapp" using the nginx:alpine image.
     -   The container port 80 exposed.
-
-    -   Environment variables loaded from the ConfigMap
-        > \"webapp-config\".
-
-    -   A volume mount for the \"/usr/share/nginx/html\" path.
-
-4.  The volume configuration, which mounts the \"index.html\" key from
-    > the \"webapp-config\" ConfigMap.
+    -   Environment variables loaded from the ConfigMap "webapp-config"
+    -   A volume mount for the "/usr/share/nginx/html" path.
+ 4.  The volume configuration, which mounts the "index.html" key from the "webapp-config" ConfigMap.
 
 The diagram shows how the Deployment manages multiple identical Pods,
 each containing a container with the specified configuration. It also
@@ -1246,9 +931,10 @@ illustrates the use of ConfigMaps for both environment variables and
 file mounting, demonstrating how Kubernetes can inject configuration
 data into containers.
 
--   **Step 3:** Create a ConfigMap for the HTML content\
-    > Let\'s create another ConfigMap to hold our HTML content:
+ - **Step 3:** Create a ConfigMap for the HTML content\
+    Let\'s create another ConfigMap to hold our HTML content:
 
+```
 cat \<\<EOF \| kubectl apply -f -
 
 apiVersion: v1
