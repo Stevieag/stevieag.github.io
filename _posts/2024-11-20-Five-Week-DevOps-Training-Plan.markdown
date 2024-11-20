@@ -252,7 +252,7 @@ You will ultimately see the nginx default banner
 #### ConfigMaps, Secrets, and Volumes
 ```
 +----------------------------------------------------+
-|                          Pod                       |
+|                       Pod                          |
 |                                                    |
 |  +---------------+   +--------------------------+  |
 |  |   Container   |   |     Volume Mounts        |  |
@@ -346,7 +346,7 @@ This could easily be a static volume location as opposed to a configmap
 
 ```
 +----------------------------------------------------+
-|                         Node                       |
+|                       Node                         |
 |                                                    |
 |  +-------------------+  +-----------------------+  |
 |  |         Pod       |  | Persistent Volume     |  |
@@ -369,29 +369,29 @@ Networking is a large area of K8s and is the largest challenge or
 concept to learn.
 ```
 +----------------------------------------------------+
-|                  +------------------+              |
-|                  | External Traffic |              |
-|                  +------------------+              |
-|                           |                        |
-|                           v                        |
-|             +-------------------------+            |
-|             |      Load Balancer      |            |
-|             +-------------------------+            |
-|                           |                        |
-|                           v                        |
-|           +-----------------------------+          |
-|           |     Ingress Controller      |          |
-|           |   (e.g., NGINX, Traefik)    |          |
-|           +-----------------------------+          |
-|            |                          |            |
-|            v                          v            |
+|                +------------------+                |
+|                | External Traffic |                |
+|                +------------------+                |
+|                         |                          |
+|                         v                          |
+|            +-------------------------+             |
+|            |      Load Balancer      |             |
+|            +-------------------------+             |
+|                         |                          |
+|                         v                          |
+|          +-----------------------------+           |
+|          |     Ingress Controller      |           |
+|          |   (e.g., NGINX, Traefik)    |           |
+|          +-----------------------------+           |
+|           |                           |            |
+|           v                           v            |
 |   +-------------------+     +-------------------+  |
 |   |   Ingress Rule 1  |     |   Ingress Rule 2  |  |
 |   |   host: foo.com   |     |   host: bar.com   |  |
 |   |   path: /app1     |     |   path: /app2     |  |
 |   +-------------------+     +-------------------+  |
-|            |                          |            |
-|            v                          v            |
+|           |                           |            |
+|           v                           v            |
 |  +---------------------+  +---------------------+  |
 |  |      Service 1      |  |      Service 2      |  |
 |  | (ClusterIP/NodePort)|  | (ClusterIP/NodePort)|  |
@@ -426,19 +426,19 @@ This diagram illustrates:
 
 ##### Networking Model
 ```
-+-------------------------+ +-------------------------+
-|          Node 1         | |          Node 2         |
-| +---------+ +---------+ | | +---------+ +---------+ |
-| |   Pod1  | |   Pod2  | | | |   Pod3  | |   Pod4  | |
-| |IP:10.1.1| |IP:10.1.2| | | |IP:10.2.1| |IP:10.2.2| |
-| +---------+ +---------+ | | +---------+ +---------+ |
-|            |            | |            |            |
-| Virtual Ethernet Bridge | | Virtual Ethernet Bridge |
-|            |            | |            |            |
-+----------- |------------+ +------------|------------+
-             |                           |
-             |  Cluster Network Fabric   |
-             +---------------------------+
++-------------------------++-------------------------+
+|          Node 1         ||          Node 2         |
+| +---------+ +---------+ || +---------+ +---------+ |
+| |   Pod1  | |   Pod2  | || |   Pod3  | |   Pod4  | |
+| |IP:10.1.1| |IP:10.1.2| || |IP:10.2.1| |IP:10.2.2| |
+| +---------+ +---------+ || +---------+ +---------+ |
+|            |            ||            |            |
+| Virtual Ethernet Bridge || Virtual Ethernet Bridge |
+|            |            ||            |            |
++----------- |------------++------------|------------+
+             |                          |
+             |  Cluster Network Fabric  |
+             +--------------------------+
 ```
  - Pod IP Addressing: Each pod is assigned a unique IP address from the cluster-wide CIDR range. This ensures that every pod has a distinct identity within the cluster.
  - Direct Communication: Pods can communicate directly with each other using their assigned IP addresses, without the need for Network Address Translation (NAT) or port mapping.
@@ -536,7 +536,7 @@ Examples:\
 Create a simple web application
 
 ```
-cat \<\<EOF \| k apply -f -
+cat <<EOF | k apply -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -616,7 +616,6 @@ spec:
                   number: 80
 EOF
 ```
-![Drawing.sketchpad.png](img/image2.png)
 
 This will create an ingress that will create a connection outside of the
 cluster with web-app.info as the host name that will direct all
@@ -627,7 +626,7 @@ for connection.\
 `kubectl get ingress`
 ```
 NAME CLASS HOSTS ADDRESS PORTS AGE\
-web-app-ingress \<none\> http://web-app.info 80 2m28s
+web-app-ingress <none> http://web-app.info 80 2m28s
 ```
 Ensure that the Ingress addon is enabled in Minikube.\
 `minikube addons enable ingress`
@@ -676,48 +675,48 @@ specific environment
 
 #### Kubernetes RBAC and Security Concepts
 ```
-+----------------------------------------------------------+
-|                    Kubernetes Cluster                    |
-|                                                          |
-|  +----------------------+    +------------------------+  |
-|  |     RBAC Objects     |    |   Security Contexts    |  |
-|  |   +---------------+  |    | +--------------------+ |  |
-|  |   |     Roles     |  |    | |     Pod Security   | |  |
-|  |   | (Namespaced)  |  |    | |      Context       | |  |
-|  |   +---------------+  |    | |    - User/Group    | |  |
-|  |           |          |    | |    - SELinux       | |  |
-|  |           v          |    | |    - RunAsUser     | |  |
-|  |   +---------------+  |    | |    - Capabilities  | |  |
-|  |  |  RoleBindings  |  |    | +--------------------+ |  |
-|  |  |  (Namespaced)  |  |    |            |           |  |
-|  |  +----------------+  |    |            v           |  |
-|  |                      |    | +--------------------+ |  |
-|  |  +----------------+  |    | | Container Security | |  |
-|  |  |  ClusterRoles  |  |    | |      Context       | |  |
-|  |  | (Cluster- Wide)|  |    | |  - RunAsNonRoot    | |  |
-|  |  +----------------+  |    | |  - ReadOnlyRootFS  | |  |
-|  |          |           |    | |  - Privileged      | |  |
-|  |          v           |    | +--------------------+ |  |
-|  |  +----------------+  |    |                        |  |
-|  |  |  ClusterRole-  |  |    +------------------------+  |
-|  |  |    Bindings    |  |                                |
-|  |  | (Cluster-wide) |  |                                |
-|  |  +----------------+  |                                |
-|  |                      |                                |
-|  +----------------------+                                |
-|                                                          |
-|  +----------------------------------------------------+  |
-|  |                 Network Policies                   |  |
-|  |  +---------------------+ +----------------------+  |  |
-|  |  |   Ingress Rules     | |     Egress Rules     |  |  |
-|  |  |                     | |                      |  |  |
-|  |  | - From: (sources)   | | - To: (destinations) |  |  |
-|  |  | - Ports             | | - Ports              |  |  |
-|  |  +---------------------+ +----------------------+  |  |
-|  |                                                    |  |
-|  +----------------------------------------------------+  |
-|                                                          |
-+----------------------------------------------------------+
++----------------------------------------------------+
+|                 Kubernetes Cluster                 |
+|                                                    |
+| +--------------------+  +------------------------+ |
+| |    RBAC Objects    |  |   Security Contexts    | |
+| |  +---------------+ |  | +--------------------+ | |
+| |  |     Roles     | |  | |     Pod Security   | | |
+| |  | (Namespaced)  | |  | |      Context       | | |
+| |  +---------------+ |  | |    - User/Group    | | |
+| |          |         |  | |    - SELinux       | | |
+| |          v         |  | |    - RunAsUser     | | |
+| |  +---------------+ |  | |    - Capabilities  | | |
+| | |  RoleBindings  | |  | +--------------------+ | |
+| | |  (Namespaced)  | |  |            |           | |
+| | +----------------+ |  |            v           | |
+| |                    |  | +--------------------+ | |
+| | +----------------+ |  | | Container Security | | |
+| | |  ClusterRoles  | |  | |      Context       | | |
+| | | (Cluster- Wide)| |  | |  - RunAsNonRoot    | | |
+| | +----------------+ |  | |  - ReadOnlyRootFS  | | |
+| |         |          |  | |  - Privileged      | | |
+| |         v          |  | +--------------------+ | |
+| | +----------------+ |  |                        | |
+| | |  ClusterRole-  | |  +------------------------+ |
+| | |    Bindings    | |                             |
+| | | (Cluster-wide) | |                             |
+| | +----------------+ |                             |
+| |                    |                             |
+| +--------------------+                             |
+|                                                    |
+| +------------------------------------------------+ |
+| |               Network Policies                 | |
+| | +-------------------+ +----------------------+ | |
+| | |   Ingress Rules   | |     Egress Rules     | | |
+| | |                   | |                      | | |
+| | | - From: (sources) | | - To: (destinations) | | |
+| | | - Ports           | | - Ports              | | |
+| | +-------------------+ +----------------------+ | |
+| |                                                | |
+| +------------------------------------------------+ |
+|                                                    |
++----------------------------------------------------+
 ```
  - RBAC Objects:
     - Roles and RoleBindings (namespaced)
@@ -766,12 +765,11 @@ Rules:
 
  - Act as a virtual firewall for your Kubernetes cluster.\
 
-    **Exercise:\
-    **Deploying a Configurable Web ApplicationIn this exercise, we\'ll
-    create a simple web application that reads its configuration from
-    a ConfigMap. We\'ll then deploy it to Kubernetes and expose it
-    using a Service and Ingress.\
-    This exercise demonstrates:
+# Exercise:
+
+## Deploying a Configurable Web Application\
+In this exercise, we\'ll create a simple web application that reads its configuration from a ConfigMap. We\'ll then deploy it to Kubernetes and expose it using a Service and Ingress.\
+This exercise demonstrates:
 
  1.  Creating and using ConfigMaps
  2.  Deploying a web application with Kubernetes
@@ -794,25 +792,25 @@ data:
 EOF
 ```
 ```
-+-------------------------------------------------------------+
-|                     Kubernetes Cluster                      |
-|                                                             |
-|  +-------------------------------------------------------+  |
-|  |                       ConfigMap                       |  |
-|  |  Name: webapp-config                                  |  |
-|  |  Data:                                                |  |
-|  |  +-------------------------------------------------+  |  |
-|  |  |         Key      |              Value           |  |  |
-|  |  +------------------+------------------------------+  |  |
-|  |  | BACKGROUND_COLOR |             "#f0f0f0"        |  |  |
-|  |  +------------------+------------------------------+  |  |
-|  |  | MESSAGE          | "Welcome to our configurable |  |  |
-|  |  |                  | web app!"                    |  |  |
-|  |  +------------------+------------------------------+  |  |
-|  |                                                       |  |
-|  +-------------------------------------------------------+  |
-|                                                             |
-+-------------------------------------------------------------+
++-------------------------------------------------+
+|                Kubernetes Cluster               |
+|                                                 |
+| +---------------------------------------------+ |
+| |                  ConfigMap                  | |
+| | Name: webapp-config                         | |
+| | Data:                                       | |
+| | +-----------------------------------------+ | |
+| | |         Key      |        Value         | | |
+| | +------------------+----------------------+ | |
+| | | BACKGROUND_COLOR |       "#f0f0f0"      | | |
+| | +------------------+----------------------+ | |
+| | | MESSAGE          | "Welcome to our      | | |
+| | |                  | configurable web app"| | |
+| | +------------------+----------------------+ | |
+| |                                             | |
+| +---------------------------------------------+ |
+|                                                 |
++-------------------------------------------------+
 ```
 This diagram shows:
 
@@ -868,61 +866,61 @@ spec:
 EOF
 ```
 ```
-+-----------------------------------------------------------------+
-|                        Kubernetes Cluster                       |
-|                                                                 |
-|  +-----------------------------------------------------------+  |
-|  |                      Deployment: webapp                   |  |
-|  |                                                           |  |
-|  |  +-----------------------------------------------------+  |  |
-|  |  |                 ReplicaSet (2 replicas)             |  |  |
-|  |  |                                                     |  |  |
-|  |  |  +-----------------------------------------------+  |  |  |
-|  |  |  |                    Pod 1                      |  |  |  |
-|  |  |  |                                               |  |  |  |
-|  |  |  |  +-----------------------------------------+  |  |  |  |
-|  |  |  |  |            Container: webapp.           |  |  |  |  |
-|  |  |  |  |                                         |  |  |  |  |
-|  |  |  |  | Image: nginx:alpine                     |  |  |  |  |
-|  |  |  |  | Port: 80                                |  |  |  |  |
-|  |  |  |  |                                         |  |  |  |  |
-|  |  |  |  | EnvFrom:                                |  |  |  |  |
-|  |  |  |  | ConfigMap: webapp-config                |  |  |  |  |
-|  |  |  |  |                                         |  |  |  |  |
-|  |  |  |  | VolumeMount:                            |  |  |  |  |
-|  |  |  |  |     Name: config                        |  |  |  |  |
-|  |  |  |  |     MountPath: /usr/share/nginx/html    |  |  |  |  |
-|  |  |  |  +-----------------------------------------+  |  |  |  |
-|  |  |  |                                               |  |  |  |
-|  |  |  |  +-----------------------------------------+  |  |  |  |
-|  |  |  |  |              Volume: config             |  |  |  |  |
-|  |  |  |  | ConfigMap: webapp-config                |  |  |  |  |
-|  |  |  |  |     Key: index.html                     |  |  |  |  |
-|  |  |  |  |     Path: index.html                    |  |  |  |  |
-|  |  |  |  +-----------------------------------------+  |  |  |  |
-|  |  |  |                                               |  |  |  |
-|  |  |  +-----------------------------------------------+  |  |  | 
-|  |  |                                                     |  |  |
-|  |  |  +-----------------------------------------------+  |  |  |
-|  |  |  |                      Pod 2                    |  |  |  |
-|  |  |  |          (Same structure as Pod 1)            |  |  |  |
-|  |  |  +-----------------------------------------------+  |  |  |
-|  |  |                                                     |  |  |
-|  |  +-----------------------------------------------------+  |  |
-|  |                                                           |  |
-|  +-----------------------------------------------------------+  |
-|                                                                 |
-+-----------------------------------------------------------------+
++----------------------------------------------------+
+|                   Kubernetes Cluster               |
+|                                                    |
+| +------------------------------------------------+ |
+| |                Deployment: webapp              | |
+| |                                                | |
+| | +--------------------------------------------+ | |
+| | |           ReplicaSet (2 replicas)          | | |
+| | |                                            | | |
+| | | +----------------------------------------+ | | |
+| | | |                 Pod 1                  | | | |
+| | | |                                        | | | |
+| | | | +------------------------------------+ | | | |
+| | | | |         Container: webapp          | | | | |
+| | | | |                                    | | | | |
+| | | | | Image: nginx:alpine                | | | | |
+| | | | | Port: 80                           | | | | |
+| | | | |                                    | | | | |
+| | | | | EnvFrom:                           | | | | |
+| | | | | ConfigMap: webapp-config           | | | | |
+| | | | |                                    | | | | |
+| | | | | VolumeMount:                       | | | | |
+| | | | |   Name: config                     | | | | |
+| | | | |   MountPath: /usr/share/nginx/html | | | | |
+| | | | +------------------------------------+ | | | |
+| | | |                                        | | | |
+| | | | +------------------------------------+ | | | |
+| | | | |           Volume: config           | | | | |
+| | | | |  ConfigMap: webapp-config          | | | | |
+| | | | |    Key: index.html                 | | | | |
+| | | | |    Path: index.html                | | | | |
+| | | | +------------------------------------+ | | | |
+| | | |                                        | | | |
+| | | +----------------------------------------+ | | | 
+| | |                                            | | |
+| | |   +------------------------------------+   | | |
+| | |   |                Pod 2               |   | | |
+| | |   |      (Same structure as Pod 1)     |   | | |
+| | |   +------------------------------------+   | | |
+| | |                                            | | |
+| | +--------------------------------------------+ | |
+| |                                                | |
+| +------------------------------------------------+ |
+|                                                    |
++----------------------------------------------------+
 ```
 This diagram illustrates:
 
  1.  The overall Kubernetes Deployment named "webapp".
  2.  The ReplicaSet managing 2 replicas (Pods).
- 3.  The structure of each Pod, including:
-    -   The container named "webapp" using the nginx:alpine image.
-    -   The container port 80 exposed.
-    -   Environment variables loaded from the ConfigMap "webapp-config"
-    -   A volume mount for the "/usr/share/nginx/html" path.
+ 3.  The structure of each Pod, including:\
+    -   The container named "webapp" using the nginx:alpine image.\
+    -   The container port 80 exposed.\
+    -   Environment variables loaded from the ConfigMap "webapp-config"\
+    -   A volume mount for the "/usr/share/nginx/html" path.\
  4.  The volume configuration, which mounts the "index.html" key from the "webapp-config" ConfigMap.
 
 The diagram shows how the Deployment manages multiple identical Pods,
@@ -935,166 +933,77 @@ data into containers.
     Let\'s create another ConfigMap to hold our HTML content:
 
 ```
-cat \<\<EOF \| kubectl apply -f -
-
+cat <<EOF | kubectl apply -f -
 apiVersion: v1
-
 kind: ConfigMap
-
 metadata:
-
-name: webapp-content
-
+  name: webapp-content
 data:
-
-index.html: \|
-
-\<!DOCTYPE html\>
-
-\<html\>
-
-\<head\>
-
-\<title\>Configurable Web App\</title\>
-
-\<style\>
-
-body { background-color: \\\${BACKGROUND_COLOR}; font-family: Arial,
-sans-serif; }
-
-\</style\>
-
-\</head\>
-
-\<body\>
-
-\<h1\>\\\${MESSAGE}\</h1\>
-
-\<p\>This page is served by Nginx and configured using Kubernetes
-ConfigMaps.\</p\>
-
-\</body\>
-
-\</html\>
-
+  index.html: |
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Configurable Web App\</title\>
+        <style>
+          body { background-color: ${BACKGROUND_COLOR}; font-family: Arial,sans-serif; }
+        </style>
+    </head>
+    <body>
+      <h1>${MESSAGE}</h1>
+        <p\>This page is served by Nginx and configured using Kubernetes ConfigMaps.</p>
+    </body>
+  </html>
 EOF
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| Kubernetes Cluster \|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| ConfigMap: webapp-config \| \|
-
-\| \| \| \|
-
-\| \| Data: \| \|
-
-\| \| BACKGROUND_COLOR: \"#f0f0f0\" \| \|
-
-\| \| MESSAGE: \"Welcome to our configurable\...\" \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| ConfigMap: webapp-content \| \|
-
-\| \| \| \|
-
-\| \| Data: \| \|
-
-\| \| index.html: (HTML content) \| \|
-
-\| \| - Uses \${BACKGROUND_COLOR} \| \|
-
-\| \| - Uses \${MESSAGE} \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| Deployment: webapp \| \|
-
-\| \| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| Pod \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| Container: webapp \| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| \| - Image: nginx:alpine \| \| \| \|
-
-\| \| \| \| - Port: 80 \| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| \| EnvFrom: \| \| \| \|
-
-\| \| \| \| ConfigMap: webapp-config \| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| \| VolumeMount: \| \| \| \|
-
-\| \| \| \| Name: config \| \| \| \|
-
-\| \| \| \| MountPath: /usr/share/\... \| \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| Volume: config \| \| \| \|
-
-\| \| \| \| ConfigMap: webapp-content \| \| \| \|
-
-\| \| \| \| Key: index.html \| \| \| \|
-
-\| \| \| \| Path: index.html \| \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
+```
++----------------------------------------------------+
+|                  Kubernetes Cluster                |
+|                                                    |
+|  +----------------------------------------------+  |
+|  |           ConfigMap: webapp-config           |  |
+|  |                                              |  |
+|  | Data:                                        |  |
+|  | BACKGROUND_COLOR: "#f0f0f0"                  |  |
+|  | MESSAGE: "Welcome to our configurable\..."   |  |
+|  +----------------------------------------------+  |
+|                                                    |
+|  +----------------------------------------------+  |
+|  | ConfigMap: webapp-content                    |  |
+|  |                                              |  |
+|  | Data:                                        |  |
+|  | index.html: (HTML content)                   |  |
+|  | - Uses ${BACKGROUND_COLOR}                   |  |
+|  | - Uses ${MESSAGE}                            |  |
+|  +----------------------------------------------+  |
+|                                                    |
+|  +----------------------------------------------+  |
+|  | Deployment: webapp                           |  |
+|  |                                              |  |
+|  |  +----------------------------------------+  |  |
+|  |  | Pod                                    |  |  |
+|  |  |   +-------------------------------+    |  |  |
+|  |  |   | Container: webapp             |    |  |  |
+|  |  |   |                               |    |  |  |
+|  |  |   | - Image: nginx:alpine         |    |  |  |
+|  |  |   | - Port: 80                    |    |  |  |
+|  |  |   |                               |    |  |  |
+|  |  |   | EnvFrom:                      |    |  |  |
+|  |  |   | ConfigMap: webapp-config      |    |  |  |
+|  |  |   |                               |    |  |  |
+|  |  |   | VolumeMount:                  |    |  |  |
+|  |  |   | Name: config                  |    |  |  |
+|  |  |   | MountPath: /usr/share/\...    |    |  |  |
+|  |  |   +-------------------------------+    |  |  |
+|  |  |                                        |  |  |
+|  |  |   +-------------------------------+    |  |  |
+|  |  |   | Volume: config                |    |  |  |
+|  |  |   | ConfigMap: webapp-content     |    |  |  |
+|  |  |   | Key: index.html               |    |  |  |
+|  |  |   | Path: index.html              |    |  |  |
+|  |  |   +-------------------------------+    |  |  |
+|  |  +----------------------------------------+  |  |
+|  +----------------------------------------------+  |
++----------------------------------------------------+
+```
 This updated diagram now includes:
 
 1.  The original webapp-config ConfigMap with BACKGROUND_COLOR and
