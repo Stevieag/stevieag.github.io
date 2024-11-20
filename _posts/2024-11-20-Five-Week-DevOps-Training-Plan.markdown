@@ -3859,27 +3859,26 @@ linkerd tap deployment/your-deployment
 #### Deploying and Managing emojivoto with Linkerd
 
 Sheet here
-[https://vectorai.atlassian.net/wiki/x/A4AlMw](https://vectorai.atlassian.net/wiki/x/A4AlMw)
+[LINK TO MINIKUBE SET UP](LINK TO MINIKUBE SET UP)
 
 ##### Deploy the emojivoto sample application
 
-curl -sL https://run.linkerd.io/emojivoto.yml \| kubectl apply -f -
+`curl -sL https://run.linkerd.io/emojivoto.yml \| kubectl apply -f -`
 
 This command downloads the emojivoto application manifest and applies it
 to your Kubernetes cluster. Verify the deployment:
 
-kubectl get pods -n emojivoto
+`kubectl get pods -n emojivoto`
 
 ##### Inject Linkerd into the application
 
-kubectl get -n emojivoto deploy -o yaml \| linkerd inject - \| kubectl
-apply -f -
+`kubectl get -n emojivoto deploy -o yaml \| linkerd inject - \| kubectl apply -f -`
 
 This command retrieves all deployments in the emojivoto namespace,
 injects the Linkerd sidecar, and reapplies the configuration. Verify the
 injection:
 
-kubectl get pods -n emojivoto
+`kubectl get pods -n emojivoto`
 
 You should now see two containers per pod (the application container and
 the Linkerd proxy).
@@ -3888,9 +3887,9 @@ the Linkerd proxy).
 
 ###### Install smi
 
-helm repo add linkerd-smi https://linkerd.github.io/linkerd-smi
+`helm repo add linkerd-smi https://linkerd.github.io/linkerd-smi`
 
-helm install smi linkerd-smi/linkerd-smi
+`helm install smi linkerd-smi/linkerd-smi`
 
 The Service Mesh Interface (SMI) is a standard specification for service
 meshes on Kubernetes, providing a set of common APIs to enable
@@ -3898,86 +3897,57 @@ interoperability between different service mesh implementations,
 allowing users to manage microservices communication without being tied
 to a specific provider.
 
-linkerd viz stat -n emojivoto deploy
+`linkerd viz stat -n emojivoto deploy`
 
 This command shows real-time metrics for your deployments, including
 success rate, requests per second, and latency.
 
 ##### Visualize the service mesh
 
-linkerd viz dashboard
+`linkerd viz dashboard`
 
 This opens the Linkerd dashboard in your default browser. Explore the
 various sections to see detailed metrics, topology, and live calls.
 
 In a terminal
-
 create port fowarding
-
-kubectl -n emojivoto port-forward svc/web-svc 8080:80
+`kubectl -n emojivoto port-forward svc/web-svc 8080:80`
 
 Create traffic
-
-for i in {1..20000}; do curl -s http://localhost:8080 ; done
+`for i in {1..20000}; do curl -s http://localhost:8080 ; done`
 
 ##### Implement a traffic split for canary deployment
 
 First, let\'s create a new version of the voting service:
-
+```
 cat \<\<EOF \| kubectl apply -f -
-
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: voting-v2
-
-namespace: emojivoto
-
+  name: voting-v2
+  namespace: emojivoto
 spec:
-
-replicas: 1
-
-selector:
-
-matchLabels:
-
-app: voting-svc
-
-version: v2
-
-template:
-
-metadata:
-
-labels:
-
-app: voting-svc
-
-version: v2
-
-spec:
-
-containers:
-
-\- name: voting-svc
-
-image: buoyantio/emojivoto-voting-svc:v11
-
-env:
-
-\- name: GRPC_PORT
-
-value: \"8080\"
-
-ports:
-
-\- containerPort: 8080
-
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voting-svc
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: voting-svc
+        version: v2
+    spec:
+      containers:
+        - name: voting-svc
+          image: buoyantio/emojivoto-voting-svc:v11
+          env:
+            - name: GRPC_PORT
+              value: "8080"
+          ports:
+            - containerPort: 8080
 EOF
-
+```
 or (kubectl get deployments web -n emojivoto -o yaml \>
 web-deployment.yaml ; sed -i \'s/name: web/name: web-v2/\'
 web-deployment.yaml sed -i \'s/image: emojivoto-web:v1/image:
@@ -3985,40 +3955,26 @@ emojivoto-web:v2/\' web-deployment.yaml ; kubectl apply -f
 web-deployment.yaml ;rm web-deployment.yaml)
 
 Now, create a TrafficSplit to gradually shift traffic:
-
-cat \<\<EOF \| kubectl apply -f -
-
+```
+cat <<EOF | kubectl apply -f -
 apiVersion: split.smi-spec.io/v1alpha2
-
 kind: TrafficSplit
-
 metadata:
-
-name: voting-split
-
-namespace: emojivoto
-
+  name: voting-split
+  namespace: emojivoto
 spec:
-
-service: voting-svc
-
-backends:
-
-\- service: voting
-
-weight: 900
-
-\- service: voting-v2
-
-weight: 100
-
+  service: voting-svc
+  backends:
+    - service: voting
+      weight: 900
+    - service: voting-v2
+      weight: 100
 EOF
-
+```
 This configuration sends 90% of traffic to the original version and 10%
 to the new version.\
 \
-run kubectl get -n emojivoto deploy -o yaml \| linkerd inject - \|
-kubectl apply -f -
+`run kubectl get -n emojivoto deploy -o yaml | linkerd inject - | kubectl apply -f -`
 
 ##### Observe the traffic split
 
@@ -4031,35 +3987,22 @@ the weights specified in the TrafficSplit resource.
 
 As you gain confidence in the new version, you can update the
 TrafficSplit to increase traffic to v2:
-
-cat \<\<EOF \| kubectl apply -f -
-
+```
+cat <<EOF | kubectl apply -f -
 apiVersion: split.smi-spec.io/v1alpha2
-
 kind: TrafficSplit
-
 metadata:
-
-name: voting-split
-
-namespace: emojivoto
-
+  name: voting-split
+  namespace: emojivoto
 spec:
-
-service: voting-svc
-
-backends:
-
-\- service: voting
-
-weight: 500m
-
-\- service: voting-v2
-
-weight: 500m
-
+  service: voting-svc
+  backends:
+    - service: voting
+      weight: 500m
+    - service: voting-v2
+      weight: 500m
 EOF
-
+```
 This updates the split to 50/50 between the two versions.
 
 ##### Monitor the canary deployment
@@ -4079,13 +4022,9 @@ new version is performing as expected.
 In this hands-on exercise, you\'ve:
 
 1.  Deployed the emojivoto sample application
-
 2.  Injected Linkerd into the application
-
 3.  Observed traffic using Linkerd\'s CLI and dashboard
-
 4.  Implemented a canary deployment using TrafficSplit
-
 5.  Monitored the performance of both versions during the canary rollout
 
 This exercise demonstrates Linkerd\'s key features for traffic
@@ -4098,73 +4037,56 @@ service mesh concepts and canary deployments.
 
 ###### Istio
 
--   Pros: Feature-rich, powerful traffic management
-
--   Cons: Complex, resource-intensive
+ -   Pros: Feature-rich, powerful traffic management
+ -   Cons: Complex, resource-intensive
 
 ###### Linkerd
 
--   Pros: Lightweight, simple, fast
-
--   Cons: Fewer advanced features
+ -   Pros: Lightweight, simple, fast
+ -   Cons: Fewer advanced features
 
 ###### Consul Connect
 
--   Pros: Integrates well with HashiCorp ecosystem
-
--   Cons: Less mature as a full service mesh
+ -   Pros: Integrates well with HashiCorp ecosystem
+ -   Cons: Less mature as a full service mesh
 
 ###### NGINX Service Mesh
 
--   Pros: Builds on familiar NGINX technology
-
--   Cons: Relatively new, smaller community
+ -   Pros: Builds on familiar NGINX technology
+ -   Cons: Relatively new, smaller community
 
 ##### When to choose one service mesh over another
 
--   Choose Istio for complex, feature-rich requirements
-
--   Choose Linkerd for simplicity and performance
-
--   Consider Consul Connect if already using HashiCorp tools
-
--   NGINX Service Mesh if familiar with NGINX and need basic mesh
-    > features
+ -   Choose Istio for complex, feature-rich requirements
+ -   Choose Linkerd for simplicity and performance
+ -   Consider Consul Connect if already using HashiCorp tools
+ -   NGINX Service Mesh if familiar with NGINX and need basic mesh features
 
 ## Week 5: Practical Project
 
 ##### Designing and implementing a microservices application
 
 1.  Create 3-4 simple microservices (e.g., frontend, backend, database)
-
 2.  Containerize each service with Docker
-
 3.  Create Kubernetes manifests for each service
 
 ##### Deploying the application using Helm
 
 1.  Create a Helm chart for the entire application
-
 2.  Use subchart for each microservice
-
 3.  Define configurable values in values.yaml
 
 ##### Implementing service mesh features
 
 1.  Choose either Istio or Linkerd based on your preference
-
 2.  Implement traffic routing between service versions
-
 3.  Set up mTLS between services
-
 4.  Configure observability (metrics, tracing)
 
 ##### Creating Python scripts for automation
 
 1.  Script to deploy/update the Helm release
-
 2.  Script to check service health and metrics
-
 3.  Script to perform canary deployments
 
 This comprehensive deep dive covers the entire 4-week training plan,
@@ -4174,37 +4096,20 @@ refer to official documentation for the most up-to-date information.
 
 #### Additional Resources and Best Practices
 
--   Throughout the training, refer to official documentation for each
-    > technology
-
--   Join community forums or discussion groups for each technology
-
--   Consider working on a personal project that incorporates all these
-    > technologies
-
--   Explore real-world use cases and examples
-
--   Practice hands-on exercises daily
+ -   Throughout the training, refer to official documentation for each technology
+ -   Join community forums or discussion groups for each technology
+ -   Consider working on a personal project that incorporates all these technologies
+ -   Explore real-world use cases and examples
+ -   Practice hands-on exercises daily
 
 #### Tips for Successful Service Mesh Adoption
 
-1.  Start your service mesh journey early to allow your knowledge to
-    > grow organically as your microservices landscape evolves.
-
-2.  Avoid common design and implementation pitfalls by thoroughly
-    > understanding each technology.
-
-3.  Leverage your service mesh as the mission control of your
-    > multi-cloud microservices landscape.
-
-4.  Consider starting with a sample project to evaluate which service
-    > mesh solution you prefer before standardizing across all services.
-
-5.  Use service mesh as a \'bridge\' while decomposing monolithic
-    > applications into microservices.
-
-6.  Implement service mesh incrementally, starting with the components
-    > you need most.
+1.  Start your service mesh journey early to allow your knowledge to grow organically as your microservices landscape evolves.
+2.  Avoid common design and implementation pitfalls by thoroughly understanding each technology.
+3.  Leverage your service mesh as the mission control of your multi-cloud microservices landscape.
+4.  Consider starting with a sample project to evaluate which service mesh solution you prefer before standardizing across all services.
+5.  Use service mesh as a 'bridge' while decomposing monolithic applications into microservices.
+6.  Implement service mesh incrementally, starting with the components you need most.
 
 By following this training plan, you\'ll gain a solid foundation in
 service mesh concepts, Kubernetes, Helm, and Python, with practical
