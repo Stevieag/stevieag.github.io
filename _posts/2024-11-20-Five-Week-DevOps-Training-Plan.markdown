@@ -15,9 +15,6 @@ I hope you find it of use!!
 ## Week 1: Fundamentals and Kubernetes
 ### Day 1-2: Kubernetes Basics and Local Development Environments
 ### Day 3-4: Advanced Kubernetes
-#### ConfigMaps, Secrets, and Volumes
-#### Kubernetes Networking and Ingress
-#### Kubernetes RBAC and Security Concepts
 ### Day 5: Working with local K8s options
 
 
@@ -48,6 +45,7 @@ I hope you find it of use!!
 ### Additional Resources and Best Practices
 ### Tips for Successful Service Mesh Adoption
 #### Tools
+
 
 This document is meant to be a central spring point to allow you to
 understand points to cover yet expects the user to use external
@@ -218,8 +216,7 @@ Advantages of Minikube:
 
 #### Practice with Basic Kubernetes Resources
 
-> To solidify your understanding, practice creating and managing these
-> basic Kubernetes resources in both kind and Minikube environments:
+To solidify your understanding, practice creating and managing these basic Kubernetes resources in both kind and Minikube environments:
 
 1.  Pods: The smallest deployable units in Kubernetes.
 
