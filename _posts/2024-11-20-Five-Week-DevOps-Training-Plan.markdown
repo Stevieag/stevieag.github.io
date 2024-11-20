@@ -218,11 +218,9 @@ Advantages of Minikube:
 
 To solidify your understanding, practice creating and managing these basic Kubernetes resources in both kind and Minikube environments:
 
-1.  Pods: The smallest deployable units in Kubernetes.
-
-2.  Deployments: Manage the deployment and scaling of a set of Pods.
-
-3.  Services: Expose your application to network traffic.
+ - Pods: The smallest deployable units in Kubernetes.
+ - Deployments: Manage the deployment and scaling of a set of Pods.
+ - Services: Expose your application to network traffic.
 
 Example commands:
 
