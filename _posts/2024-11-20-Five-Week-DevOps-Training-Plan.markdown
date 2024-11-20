@@ -426,122 +426,67 @@ This diagram illustrates:
 
 ##### Networking Model
 ```
-+-------------------------------+ +------------------------------+
-|             Node 1            | |             Node 2           |
-| +------------+ +------------+ | | +------------+ +-----------+ |
-| |    Pod1    | |    Pod2    | | | |    Pod3    | |    Pod4   | |
-| | IP: 10.1.1 | | IP: 10.1.2 | | | | IP: 10.2.1 | | IP:10.2.2 | |
-| +------------+ +------------+ | | +------------+ +-----------+ |
-|               |               | |               |              |
-|    Virtual Ethernet Bridge    | |    Virtual Ethernet Bridge   |
-|               |               | |               |              |
-+-------------- |---------------+ +---------------|--------------+
-                |                                 |
-                |     Cluster Network Fabric      |
-                +---------------------------------+
-
++-------------------------+ +-------------------------+
+|          Node 1         | |          Node 2         |
+| +---------+ +---------+ | | +---------+ +---------+ |
+| |   Pod1  | |   Pod2  | | | |   Pod3  | |   Pod4  | |
+| |IP:10.1.1| |IP:10.1.2| | | |IP:10.2.1| |IP:10.2.2| |
+| +---------+ +---------+ | | +---------+ +---------+ |
+|            |            | |            |            |
+| Virtual Ethernet Bridge | | Virtual Ethernet Bridge |
+|            |            | |            |            |
++----------- |------------+ +------------|------------+
+             |                           |
+             |  Cluster Network Fabric   |
+             +---------------------------+
 ```
--   Pod IP Addressing: Each pod is assigned a unique IP address from the
-    > cluster-wide CIDR range. This ensures that every pod has a
-    > distinct identity within the cluster.
-
--   Direct Communication: Pods can communicate directly with each other
-    > using their assigned IP addresses, without the need for Network
-    > Address Translation (NAT) or port mapping.
-
--   Intra-Node Communication: For pods on the same node, communication
-    > occurs through a virtual ethernet bridge. This allows for
-    > efficient local traffic routing.
-
--   Inter-Node Communication: When pods on different nodes need to
-    > communicate, the cluster-level network layer handles routing based
-    > on the pod IP ranges assigned to each node.
-
--   CNI Plugins: Container Network Interface (CNI) plugins implement the
-    > actual networking, ensuring proper routing and connectivity across
-    > the cluster. Popular CNI plugins include Calico, Flannel, and
-    > Weave.
+ - Pod IP Addressing: Each pod is assigned a unique IP address from the cluster-wide CIDR range. This ensures that every pod has a distinct identity within the cluster.
+ - Direct Communication: Pods can communicate directly with each other using their assigned IP addresses, without the need for Network Address Translation (NAT) or port mapping.
+ - Intra-Node Communication: For pods on the same node, communication occurs through a virtual ethernet bridge. This allows for efficient local traffic routing.
+ - Inter-Node Communication: When pods on different nodes need to communicate, the cluster-level network layer handles routing based on the pod IP ranges assigned to each node.
+ - CNI Plugins: Container Network Interface (CNI) plugins implement the actual networking, ensuring proper routing and connectivity across the cluster. Popular CNI plugins include Calico, Flannel, and Weave.
 
 This architecture simplifies application design and deployment, as pods
-can be treated similarly to VMs or physical hosts from a networking
-perspective.
-
-##### Services
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| Service \|
-
-\| (ClusterIP/NodePort) \|
-
-\| IP: 10.0.0.1 \|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\|
-
-Load Balancing
-
-\|
-
-+\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\-\--+
-
-\| \| \|
-
-+\-\-\-\-\-\-\-\-\-\--+ \| +\-\-\-\-\-\-\-\-\-\--+
-
-\| Pod 1 \| \| \| Pod 2 \|
-
-\| IP:10.1 \| \| \| IP:10.2 \|
-
-+\-\-\-\-\-\-\-\-\-\--+ \| +\-\-\-\-\-\-\-\-\-\--+
-
-\|
-
-+\-\-\-\-\-\-\-\-\-\--+
-
-\| Pod 3 \|
-
-\| IP:10.3 \|
-
-+\-\-\-\-\-\-\-\-\-\--+
-
+can be treated similarly to VMs or physical hot rmantokn
+esetv
+# eves
+```
+        +------------------------+
+        |        Service         |
+        |  (ClusterIP/NodePort)  |
+        |      IP: 10.0.0.1      |
+        +------------------------+
+                    |
+              Load Balancing       
+                    |              
+        +-----------+-----------+
+        |           |           |
++---------------+   |   +---------------+
+|     Pod 1     |   |   |     Pod 2     |
+|    IP:10.1    |   |   |    IP:10.2    |
++---------------+   |   +---------------+
+                    |
+            +--------------+
+            |     Pod 3    |
+            |    IP:10.3   |
+            +--------------+
+```
 Kubernetes Services provide a stable network endpoint for a set of Pods,
 enabling reliable communication within the cluster. Services abstract
 the underlying Pod network, offering a consistent way to access
 applications regardless of Pod lifecycle changes. Key aspects of
 Kubernetes Services include:
 
--   Service Types:
-
-    -   ClusterIP (default): Exposes the service on an internal IP in
-        > the cluster
-
-    -   NodePort: Exposes the service on each node\'s IP at a static
-        > port
-
-    -   LoadBalancer: Exposes the service externally using a cloud
-        > provider\'s load balancer
-
-    -   ExternalName: Maps the service to the contents of the
-        > externalName field
-
-    -   Headless: Allows direct access to individual pod IPs
-
--   Service Discovery: Services can be discovered through DNS or
-    > environment variables, making it easy for applications to find and
-    > communicate with each other.
-
--   Load Balancing: Services automatically distribute incoming traffic
-    > across all backend pods, ensuring even load distribution.
-
--   Stable Endpoints: Services provide stable IP addresses and DNS names
-    > for groups of pods, abstracting away the dynamic nature of pod
-    > lifecycles.
-
--   Cloud Integration: Services can integrate with cloud provider load
-    > balancers for external access, simplifying the process of exposing
-    > applications to the internet.
+ - Service Types:
+    - ClusterIP (default): Exposes the service on an internal IP in the cluster
+    - NodePort: Exposes the service on each node\'s IP at a static port
+    - LoadBalancer: Exposes the service externally using a cloud provider\'s load balancer
+    - ExternalName: Maps the service to the contents of the externalName field
+    - Headless: Allows direct access to individual pod IPs
+ - Service Discovery: Services can be discovered through DNS or environment variables, making it easy for applications to find and communicate with each other.
+ - Load Balancing: Services automatically distribute incoming traffic across all backend pods, ensuring even load distribution.
+ - Stable Endpoints: Services provide stable IP addresses and DNS names for groups of pods, abstracting away the dynamic nature of pod lifecycles.
+ - Cloud Integration: Services can integrate with cloud provider load balancers for external access, simplifying the process of exposing applications to the internet.
 
 Services play a crucial role in microservices architectures,
 facilitating seamless communication between application components and
