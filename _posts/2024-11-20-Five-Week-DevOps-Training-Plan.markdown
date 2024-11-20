@@ -13,179 +13,32 @@ I hope you find it of use!!
 
 # Content
 ## Week 1: Fundamentals and Kubernetes
-
 ### Day 1-2: Kubernetes Basics and Local Development Environments
-#### Kubernetes Architecture and Core Concepts
-##### Control Plane Components
-##### Node Components
-##### Core Concepts
-##### Additional Components
-#### Local Kubernetes Development Options
-##### kind (Kubernetes in Docker)
-###### Installation
-###### Creating a cluster
-##### Minikube
-###### Installation
-###### Starting a cluster
-##### Practice with Basic Kubernetes Resources
-
 ### Day 3-4: Advanced Kubernetes
 #### ConfigMaps, Secrets, and Volumes
-##### ConfigMaps
-##### Secrets 
-##### Volumes
 #### Kubernetes Networking and Ingress
-##### Networking Model
-##### Services
-##### Ingress
 #### Kubernetes RBAC and Security Concepts
-##### Role-Based Access Control (RBAC)
-##### Security Contexts
-##### Network Policies
-
 ### Day 5: Working with local K8s options
-#### Docker Images in kind
-##### Building a custom Docker image
-##### Loading the image into kind cluster
-##### Limitations and workarounds for Docker-in-Docker scenarios
-##### Creating deployments with custom images
-#### Working with Images in Minikube
-##### Using the Host Docker Daemon
-##### Loading Images into Minikube
-##### Creating Deployments with Custom Images
-##### Minikube-Specific Features
-#### Built-in Docker Registry
-#### Direct Image Building
-#### Monitoring and Troubleshooting
-#### Cleaning Up
-#### Best Practices
 
 
 ## Week 2: Service Mesh Concepts and Python
-
 ### Day 1-2: Service Mesh
-#### Fundamentals
-#### Core concepts of service mesh
-#### Problems service meshes solve
-#### Evolution of ingress
-#### Service Mesh Architecture
-##### Data Plane
-##### Control Plane
-#### Key Features and Use Cases
-#### Service Discovery and Load Balancing
-#### Traffic Management
-#### Observability
-#### Security
-#### Challenges and Best Practices
-#### Performance Considerations
-#### Complexity Management
-#### Monitoring and Troubleshooting
-
 ### Day 3-4: Python for Kubernetes
-#### Python basics review (if needed)
-##### Data Types
-##### Python Package Management
-###### Installing a package
-###### Upgrading a package
-##### Python Virtual Environments
-###### Creating a virtual environment
-###### Activating a virtual environment
-###### Installing packages in a virtual environment
-###### Deactivating a virtual environment
-##### Creating a requirements file
-##### Installing from a requirements file
-##### Kubernetes Python client library
-#### Simple Python scripts for Kubernetes interaction
-
 ### Day 5: Helm Basics
-#### Helm\'s Purpose and Architecture
-#### Creating and Structure of a Helm Chart
-#### Deploying Applications with Helm
-#### Advanced Helm Concepts
-##### Hooks
-#### Dependencies
-#### Templating
-##### Creating Helm Charts with Python Templates
-###### Using Jinja2 for Templating
-###### Generating Kubernetes Manifests Dynamically
-##### Integrating with CI/CD Pipelines
 
 
 ## Week 3: Istio Deep Dive
-
 ### Day 1: Istio Basics
-#### Installing Istio on your Kubernetes cluster
-##### Download Istio
-##### Install Istio
-##### Enable automatic sidecar injection
-#### Istio\'s architecture and core components
-##### Control Plane
-##### Data Plane
-##### Addons
-
 ### Day 2: Istio Traffic Management
-#### Exploring Istio\'s traffic management features
-#### Implementing canary deployments and A/B testing
-#### Istio\'s load balancing and circuit breaking capabilities
-
 ### Day 3: Istio Security and Observability
-#### Istio\'s security features
-##### mTLS (Mutual TLS)
-##### Authorization Policies
-#### Exploring Istio\'s observability stack
-##### Prometheus
-##### Grafana
-##### Kiali
-##### Jaeger/Zipkin
-
 ### Day 4-5: Deploying a Sample Application with Istio
-#### Objective
-#### Prerequisites
-#### Enable Istio Sidecar Injection
-#### Deploy a Sample Application
-#### Create a Virtual Service
-#### Create a Destination Rule
-#### Test the Routing
-#### Implement Canary Deployment
-#### observability
 
 
 ## Week 4: Linkerd and Practical Applications
-
 ### Day 1: Linkerd Basics
-#### Installing Linkerd on your Kubernetes cluster
-##### Install CLI
-##### Install Linkerd on Your Minikube Cluster
-##### Validate cluster
-##### Install Linkerd
-##### Install viz
-##### Linkerd\'s architecture and core components
-##### Control Plane
-##### Data Plane
-##### Add-ons
-#### Linkerd Features
-#### Traffic management capabilities
-#### Linkerd\'s observability and security features
-
 ### Day 2-4: Hands-on Exercise
-#### Deploying and Managing emojivoto with Linkerd
-##### Deploy the emojivoto sample application
-##### Inject Linkerd into the application
-#### Observe traffic
-##### Install smi
-##### Visualize the service mesh
-#### Implement a traffic split for canary deployment
-#### Observe the traffic split
-#### Gradually increase traffic to the new version
-#### Monitor the canary deployment
-
 ### Day 5: Service Mesh Comparison
-#### Comparing Istio, Linkerd, and other service mesh solutions
-##### Istio
-##### Linkerd
-##### NGINX Service Mesh
-##### Consul Connect
-#### When to choose one service mesh over another
+
 
 ## [Week 5: Practical Project](#id-5-WeekTrainingPlan:ServiceMesh,Kubernetes,andRelatedTechnologies-_tjeqsdcprhc4Week5:PracticalProject)
 ### Designing and implementing a microservices application
