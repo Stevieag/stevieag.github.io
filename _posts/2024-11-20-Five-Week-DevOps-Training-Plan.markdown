@@ -3859,7 +3859,7 @@ linkerd tap deployment/your-deployment
 #### Deploying and Managing emojivoto with Linkerd
 
 Sheet here
-[LINK TO MINIKUBE SET UP](LINK TO MINIKUBE SET UP)
+[Linkerd in a Minikube Env](https://geekyblinder.co.uk/#/2024/10/11/Linkerd-in-a-Minikube-Environment)
 
 ##### Deploy the emojivoto sample application
 
