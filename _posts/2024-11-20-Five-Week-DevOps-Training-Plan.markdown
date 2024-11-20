@@ -226,10 +226,13 @@ Example commands:
 
 \# Create a deployment
 `kubectl create deployment nginx \--image=nginx`
+
 \# Expose the deployment as a service
 `kubectl expose deployment nginx \--port=80 \--type=LoadBalancer`
+
 \# List pods
 `kubectl get pods`
+
 \# List services
 `kubectl get services`
 
