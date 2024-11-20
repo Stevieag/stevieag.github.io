@@ -37,9 +37,9 @@ Additional Resources\
 
 
 # Prerequisites\
- - Minikube: Ensure you have Minikube installed and running. You can install it from the official Minikube website.
- - kubectl: Make sure you have kubectl installed and configured to work with your Minikube cluster. Kubernetes Tools website 
- - Linkerd: Familiarize yourself with the basics of Linkerd, a service mesh. linkerd getting started 
+ - Minikube: Ensure you have Minikube installed and running. You can install it from the [official Minikube website](https://minikube.sigs.k8s.io/docs/start/).
+ - kubectl: Make sure you have kubectl installed and configured to work with your Minikube cluster. [Kubernetes Tools website](https://kubernetes.io/docs/tasks/tools/) 
+ - Linkerd: Familiarize yourself with the basics of Linkerd, a service mesh. [linkerd getting started](https://linkerd.io/2.16/getting-started/)
 
 # Set Up Minikube
 
