@@ -267,11 +267,11 @@ You will ultimately see the nginx default banner
 |  |     and Secret)     |     |   key2: value2   |  |
 |  +---------------------+     +------------------+  |
 |                                                    |
-|       +-------------------------------------+      |
-|       |                Secret               |      |
-|       |         username: base64(user)      |      |
-|       |         password: base64(pass)      |      |
-|       +-------------------------------------+      |
+|         +----------------------------------+       |
+|         |             Secret               |       |
+|         |      username: base64(user)      |       |
+|         |      password: base64(pass)      |       |
+|         +----------------------------------+       |
 +----------------------------------------------------+
 ```
 ##### ConfigMaps [https://kubernetes.io/docs/concepts/configuration/configmap/](https://kubernetes.io/docs/concepts/configuration/configmap/)
@@ -279,7 +279,7 @@ You will ultimately see the nginx default banner
  - Used to store non-confidential data in key-value pairs.
  - Can be consumed as environment variables, command-line arguments, or configuration files in a volume.
  - Example creation:\
-   `kubectl create configmap name --from-literal=name='{"first":"John", "second": "Doe"}\'`
+   `kubectl create configmap name --from-literal=name='{"first":"John", "second": "Doe"}'`
  - Example extract\
    `kubectl get configmap name -o jsonpath='{.dataname}'` 
    or 
@@ -307,7 +307,6 @@ You will ultimately see the nginx default banner
 
 ```
 cat <<EOF | k apply -f -
-
  apiVersion: v1
  kind: Pod
  metadata:
@@ -346,23 +345,23 @@ To give a clean output\
 This could easily be a static volume location as opposed to a configmap
 
 ```
-+---------------------------------------------------------+
-|                          Node                           |
-|                                                         |
-|   +---------------------+  +-------------------------+  |
-|   |         Pod         |  |   Persistent Volume     |  |
-|   |                     |  |                         |  |
-|   |  +---------------+  |  |  (Network File System,  |  |
-|   |  |   Container   |  |  |  /Volume Mount,         |  |
-|   |  +---------------+  |  |  Cloud Storage, etc.)   |  |
-|   +---------------------+  +-------------------------+  |
-|                                                         |
-|   +---------------------+  +-------------------------+  |
-|   |   Empty Dir Volume  |  |     Host Path Volume    |  |
-|   | (Temporary Storage) |  |   (Node's file system)  |  |
-|   +---------------------+  +-------------------------+  |
-|                                                         |
-+---------------------------------------------------------+
++----------------------------------------------------+
+|                         Node                       |
+|                                                    |
+|  +-------------------+  +-----------------------+  |
+|  |         Pod       |  | Persistent Volume     |  |
+|  |                   |  |                       |  |
+|  |  +-------------+  |  | (Network File System, |  |
+|  |  |  Container  |  |  | /Volume Mount,        |  |
+|  |  +-------------+  |  | Cloud Storage, etc.)  |  |
+|  +-------------------+  +-----------------------+  |
+|                                                    |
+|  +---------------------+  +---------------------+  |
+|  |   Empty Dir Volume  |  |   Host Path Volume  |  |
+|  | (Temporary Storage) |  | (Nodes file system) |  |
+|  +---------------------+  +---------------------+  |
+|                                                    |
++----------------------------------------------------+
 ```
 #### Kubernetes Networking and Ingress
 
