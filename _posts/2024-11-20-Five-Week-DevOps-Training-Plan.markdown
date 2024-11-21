@@ -1045,168 +1045,106 @@ spec:
     targetPort: 80
 EOF
 ```
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|          Kubernetes Cluster          \|\
-| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-| \| ConfigMap: webapp-config \| \|\
-| \| \| \|\
-| \| Data: \| \|\
-| \| BACKGROUND_COLOR: \"#f0f0f0\" \| \|\
-| \| MESSAGE: \"Welcome to our configurable\...\" \| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-| \| ConfigMap: webapp-content \| \|\
-| \| \| \|\
-| \| Data: \| \|\
-| \| index.html: (HTML content) \| \|\
-| \| - Uses \${BACKGROUND_COLOR} \| \|\
-| \| - Uses \${MESSAGE} \| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-| \| Deployment: webapp \| \|\
-| \| \| \|\
-| \|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-| \|\
-| \| \| Pod \| \| \|\
-| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-| \| \|\
-| \| \| \| Container: webapp \| \| \| \|\
-| \| \| \| \| \| \| \|\
-| \| \| \| - Image: nginx:alpine \| \| \| \|\
-| \| \| \| - Port: 80 \| \| \| \|\
-| \| \| \| \| \| \| \|\
-| \| \| \| EnvFrom: \| \| \| \|\
-| \| \| \| ConfigMap: webapp-config \| \| \| \|\
-| \| \| \| \| \| \| \|\
-| \| \| \| VolumeMount: \| \| \| \|\
-| \| \| \| Name: config \| \| \| \|\
-| \| \| \| MountPath: /usr/share/\... \| \| \| \|\
-| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-| \| \|\
-| \| \| \| \| \|\
-| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-| \| \|\
-| \| \| \| Volume: config \| \| \| \|\
-| \| \| \| ConfigMap: webapp-content \| \| \| \|\
-| \| \| \| Key: index.html \| \| \| \|\
-| \| \| \| Path: index.html \| \| \| \|\
-| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-| \| \|\
-| \|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-| \| Service: webapp-service \| \|\
-| \| \| \|\
-| \| Selector: app: webapp \| \|\
-| \| Port: 80 -\> targetPort: 80 \| \|\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\
-|\
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
++---------------------------------------------------+
+|                Kubernetes Cluster                 |
+|                                                   |
+|  +---------------------------------------------+  |
+|  | ConfigMap: webapp-config                    |  |
+|  |                                             |  |
+|  | Data:                                       |  |
+|  | BACKGROUND_COLOR: "#f0f0f0"                 |  |
+|  | MESSAGE: "Welcome to our configurable..."   |  |
+|  +---------------------------------------------+  |
+|                                                   |
+|  +---------------------------------------------+  |
+|  | ConfigMap: webapp-content                   |  |
+|  |                                             |  |
+|  | Data:                                       |  |
+|  | index.html: (HTML content)                  |  |
+|  | - Uses ${BACKGROUND_COLOR}                  |  |
+|  | - Uses ${MESSAGE}                           |  |
+|  +---------------------------------------------+  |
+|                                                   |
+|  +---------------------------------------------+  |
+|  | Deployment: webapp                          |  |
+|  |                                             |  |
+|  |  +---------------------------------------+  |  |
+|  |  | Pod                                   |  |  | 
+|  |  |   +-------------------------------+   |  |  |
+|  |  |   | Container: webapp             |   |  |  |
+|  |  |   |                               |   |  |  |
+|  |  |   | - Image: nginx:alpine         |   |  |  |
+|  |  |   | - Port: 80                    |   |  |  |
+|  |  |   |                               |   |  |  |
+|  |  |   | EnvFrom:                      |   |  |  |
+|  |  |   | ConfigMap: webapp-config      |   |  |  |
+|  |  |   |                               |   |  |  |
+|  |  |   | VolumeMount:                  |   |  |  |
+|  |  |   | Name: config                  |   |  |  |
+|  |  |   | MountPath: /usr/share/...     |   |  |  |
+|  |  |   +-------------------------------+   |  |  |
+|  |  |                                       |  |  |
+|  |  |   +-------------------------------+   |  |  |
+|  |  |   | Volume: config                |   |  |  |
+|  |  |   | ConfigMap: webapp-content     |   |  |  |
+|  |  |   | Key: index.html               |   |  |  |
+|  |  |   | Path: index.html              |   |  |  |
+|  |  |   +-------------------------------+   |  |  |
+|  |  +---------------------------------------+  |  |
+|  +---------------------------------------------+  |
+|                                                   |
+|  +---------------------------------------------+  |
+|  | Service: webapp-service                     |  |
+|  |                                             |  |
+|  | Selector: app: webapp                       |  |
+|  | Port: 80 -> targetPort: 80                  |  |
+|  +---------------------------------------------+  |
++---------------------------------------------------+
 
 This updated diagram now includes:
 
-1.  The original webapp-config ConfigMap with BACKGROUND_COLOR and
-    > MESSAGE.
-
-2.  The webapp-content ConfigMap containing the index.html template.
-
-3.  The Deployment and Pod structure, showing how these ConfigMaps are
-    > used.
-
+1.  The original `webapp-config` ConfigMap with `BACKGROUND_COLOR` and `MESSAGE`.
+2.  The `webapp-content` ConfigMap containing the `index.html` template.
+3.  The Deployment and Pod structure, showing how these ConfigMaps are used.
 4.  The new webapp-service Service, which:
-
     -   Selects Pods with the label app: webapp
-
     -   Exposes port 80 and forwards traffic to the Pods\' port 80
 
 The Service acts as a stable network endpoint for the Pods created by
 the Deployment. It provides:
+ -   Load balancing: Distributes incoming traffic across all Pods matching the selector.
+ -   Service discovery: Provides a stable IP address and DNS name for the set of Pods.
+ -   Port mapping: Maps the Service port (80) to the target port on the Pods (also 80 in this case).
 
--   Load balancing: Distributes incoming traffic across all Pods
-    > matching the selector.
-
--   Service discovery: Provides a stable IP address and DNS name for the
-    > set of Pods.
-
--   Port mapping: Maps the Service port (80) to the target port on the
-    > Pods (also 80 in this case).
-
-This Service allows other components within the cluster (or external to
-the cluster, depending on the Service type) to access the webapp Pods
-without needing to know the individual Pod IP addresses. It adds a layer
-of abstraction that enhances the scalability and flexibility of your
-application.The flow of traffic would typically be:External Request -\>
-Service (webapp-service) -\> Pod (webapp) -\> Container
-(nginx:alpine)This setup allows you to scale your Deployment (adding or
-removing Pods) without changing how other components interact with your
-webapp, as they will always communicate through the Service.
+This Service allows other components within the cluster (or external to the cluster, depending on the Service type) to access the webapp Pods without needing to know the individual Pod IP addresses. It adds a layer of abstraction that enhances the scalability and flexibility of your
+application.The flow of traffic would typically be:External Request -> Service (webapp-service) -> Pod (webapp) -> Container (nginx:alpine)
+This setup allows you to scale your Deployment (adding or removing Pods) without changing how other components interact with your webapp, as they will always communicate through the Service.
 
 -   **Step 5:** Create an Ingress\
-    > If your cluster has an Ingress controller, you can create an
-    > Ingress resource:
+    If your cluster has an Ingress controller, you can create an Ingress resource:
 
+```
 cat \<\<EOF \| kubectl apply -f -
-
 apiVersion: networking.k8s.io/v1
-
 kind: Ingress
-
 metadata:
-
-name: webapp-ingress
-
-annotations:
-
-nginx.ingress.kubernetes.io/rewrite-target: /
-
+  name: webapp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-
-rules:
-
-\- host: webapp.example.com
-
-http:
-
-paths:
-
-\- path: /
-
-pathType: Prefix
-
-backend:
-
-service:
-
-name: webapp-service
-
-port:
-
-number: 80
-
+  rules:
+    - host: webapp.example.com
+      http:
+        paths: /
+          - path: 
+            pathType: Prefix
+            backend:
+              service:
+                name: webapp-service
+                port:
+                  number: 80
 EOF
-
+```
 +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
 
 \| Kubernetes Cluster \|
@@ -1363,130 +1301,95 @@ EOF
 
 This updated diagram now includes:
 
-1.  The original webapp-config ConfigMap with BACKGROUND_COLOR and
-    > MESSAGE.
-
-2.  The webapp-content ConfigMap containing the index.html template.
-
-3.  The Deployment and Pod structure, showing how these ConfigMaps are
-    > used.
-
+1.  The original webapp-config ConfigMap with `BACKGROUND_COLOR` and `MESSAGE`.
+2.  The `webapp-content` ConfigMap containing the `index.html` template.
+3.  The Deployment and Pod structure, showing how these ConfigMaps are used.
 4.  The webapp-service Service that exposes the Pods.
-
 5.  The new webapp-ingress Ingress resource, which:
-
     -   Routes traffic for the host webapp.example.com
-
     -   Directs all paths (/) to the webapp-service on port 80
 
 The Ingress resource acts as an entry point for external traffic into
 the cluster. It provides:
 
--   Host-based routing: It routes traffic based on the
-    > webapp.example.com hostname.
+-   Host-based routing: It routes traffic based on the `webapp.example.com` hostname.
+-   Path-based routing: In this case, all paths (/) are routed to the backend service.
+-   Integration with the Ingress Controller: The `nginx.ingress.kubernetes.io/rewrite-target: /` annotation is specific to the NGINX Ingress Controller, indicating that the path should be rewritten to / when forwarding to the backend.
 
--   Path-based routing: In this case, all paths (/) are routed to the
-    > backend service.
+The flow of traffic would now be:
+External Request -> Ingress Controller -> Ingress (webapp-ingress) -> Service (webapp-service) -> Pod (webapp) -> Container (nginx:alpine)This setup allows you to:
 
--   Integration with the Ingress Controller: The
-    > nginx.ingress.kubernetes.io/rewrite-target: / annotation is
-    > specific to the NGINX Ingress Controller, indicating that the path
-    > should be rewritten to / when forwarding to the backend.
-
-The flow of traffic would now be:External Request -\> Ingress Controller
--\> Ingress (webapp-ingress) -\> Service (webapp-service) -\> Pod
-(webapp) -\> Container (nginx:alpine)This setup allows you to:
-
-1.  Access your application from outside the cluster using a domain name
-    > (webapp.example.com).
-
-2.  Potentially host multiple applications on the same IP address using
-    > different hostnames.
-
-3.  Implement more complex routing rules if needed (e.g., routing
-    > different paths to different services).
+1.  Access your application from outside the cluster using a domain name (webapp.example.com).
+2.  Potentially host multiple applications on the same IP address using different hostnames.
+3.  Implement more complex routing rules if needed (e.g., routing different paths to different services).
 
 Remember to ensure that:
 
 -   The Ingress Controller is installed in your cluster.
-
--   The DNS for webapp.example.com is configured to point to your
-    > cluster\'s external IP.
-
--   Any necessary TLS certificates are configured if you want to enable
-    > HTTPS.
+-   The DNS for webapp.example.com is configured to point to your cluster\'s external IP.
+-   Any necessary TLS certificates are configured if you want to enable HTTPS.
 
 This Ingress resource completes the basic setup of a web application in
 Kubernetes, providing a full path for external traffic to reach your
 containerized application.
 
--   Step 6: Verify the deployment\
-    > Check if all resources are created and running:\
-    > kubectl get configmaps\
-    > kubectl get deployments\
-    > kubectl get pods\
-    > kubectl get services\
-    > kubectl get ingress
+-   **Step 6:** Verify the deployment\
+    Check if all resources are created and running:\
+    `kubectl get configmaps`\
+    `kubectl get deployments`\
+    `kubectl get pods`\
+    `kubectl get services`\
+    `kubectl get ingress`
 
-kubectl get configmaps
+`kubectl get configmaps`
 
-NAME DATA AGE
+```
+NAME                   DATA           AGE
+kube-root-ca.crt        1             21m
+webapp-config           2             18m
+webapp-content          1             13m
+```
 
-kube-root-ca.crt 1 21m
+`kubectl get deployments`
+```
+NAME      READY   UP-TO-DATE AVAILABLE   AGE
+webapp     2/2       2           2       11m
+```
 
-webapp-config 2 18m
+`kubectl get pods`
+```
+NAME                     READY   STATUS   RESTARTS   AGE
+webapp-756448c658-8h5lz   1/1    Running     0      7m26s
+webapp-756448c658-b6gnr   1/1    Running     0      7m33s
+```
 
-webapp-content 1 13m
-
-kubectl get deployments
-
-NAME READY UP-TO-DATE AVAILABLE AGE
-
-webapp 2/2 2 2 11m
-
-kubectl get pods
-
-NAME READY STATUS RESTARTS AGE
-
-webapp-756448c658-8h5lz 1/1 Running 0 7m26s
-
-webapp-756448c658-b6gnr 1/1 Running 0 7m33s
-
-kubectl get services
-
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
-
-kubernetes ClusterIP 10.96.0.1 \<none\> 443/TCP 22m
-
-webapp-service ClusterIP 10.107.192.80 \<none\> 80/TCP 5m20s
-
-kubectl get ingress
-
-NAME CLASS HOSTS ADDRESS PORTS AGE
-
-webapp-ingress \<none\> webapp.example.com 80 3m52s
-
+`kubectl get services`
+```
+NAME             TYPE      CLUSTER-IP      EXTERNAL-IP  PORT(S)   AGE
+kubernetes      Cluster   IP 10.96.0.1       <none>     443/TCP   22m
+webapp-service  Cluster   IP 10.107.192.80   <none>     80/TCP    5m20s
+```
+`kubectl get ingress`
+```
+NAME            CLASS   HOSTS        ADDRESS        PORTS   AGE
+webapp-ingress         <none>  webapp.example.com    80    3m52s
+```
 -   **Step 7:** Access the application\
-    > If you\'re using Minikube, you can use port-forwarding to access
-    > the application:\
-    > kubectl port-forward service/webapp-service 8080:80
+    If you\'re using Minikube, you can use port-forwarding to access the application:\
+    `kubectl port-forward service/webapp-service 8080:80`
 
-> Then open a web browser and go to http://localhost:8080.If you\'re
-> using an Ingress, add the following to your /etc/hosts file:\
-> echo \"127.0.0.1 web-app.info\" \| sudo tee -a /etc/hosts
->
-> Then access the application at http://webapp.example.com.
+Then open a web browser and go to http://localhost:8080.If you\'re using an Ingress, add the following to your /etc/hosts file:\
+`echo \"127.0.0.1 web-app.info\" \| sudo tee -a /etc/hosts`
+Then access the application at `http://webapp.example.com`.
 
 -   **Step 8:** Modify the configuration\
-    > Let\'s change the background color and message:\
-    > kubectl edit configmap webapp-config
+    Let\'s change the background color and message:\
+    `kubectl edit configmap webapp-config`
 
-> Change the BACKGROUND_COLOR to \"#e0e0e0\" and the MESSAGE to
-> \"Updated configuration!\".
+Change the BACKGROUND_COLOR to "#e0e0e0" and the `MESSAGE` to `"Updated configuration!"`.
 
 -   **Step 9:** Restart the Deployment to pick up the new configuration\
-    > kubectl rollout restart deployment webapp
-
+    `kubectl rollout restart deployment webapp`
 -   **Step 10:** Access the application again to see the changes
 
 ### Day 5: Working with local K8s options
@@ -1496,65 +1399,43 @@ webapp-ingress \<none\> webapp.example.com 80 3m52s
 ##### Building a custom Docker image
 
 -   Create a Dockerfile for your application.
-
 -   Build the image: docker build -t your-image:tag .
 
 ##### Loading the image into kind cluster
 
 -   Use the command: kind load docker-image your-image:tag
-
--   This copies the image from your local Docker daemon into the kind
-    > cluster.
+-   This copies the image from your local Docker daemon into the kind cluster.
 
 ##### Limitations and workarounds for Docker-in-Docker scenarios
 
--   kind runs Kubernetes inside Docker, which can complicate building
-    > images inside the cluster.
-
+-   kind runs Kubernetes inside Docker, which can complicate building images inside the cluster.
 -   Workaround: Use kaniko or buildkit for in-cluster builds.
 
 ##### Creating deployments with custom images
 
--   Create a deployment YAML file (e.g., deployment.yaml) referencing
-    > your custom image:
-
+-   Create a deployment YAML file (e.g., deployment.yaml) referencing your custom image:
+```
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: your-app
-
+  name: your-app
 spec:
-
-replicas: 1
-
-selector:
-
-matchLabels:
-
-app: your-app
-
-template:
-
-metadata:
-
-labels:
-
-app: your-app
-
-spec:
-
-containers:
-
-\- name: your-app
-
-image: your-image:tag
-
-imagePullPolicy: Never
-
--   Apply the deployment: kubectl apply -f deployment.yaml
+  replicas: 1
+  selector:
+    matchLabels:
+      app: your-app
+    template:
+      metadata:
+        labels:
+          app: your-app
+      spec:
+        containers:
+          - name: your-app
+            image: your-image:tag
+            imagePullPolicy: Never
+```
+-   Apply the deployment: 
+`kubectl apply -f deployment.yaml`
 
 #### Working with Images in Minikube
 
@@ -1563,60 +1444,40 @@ Minikube provides several options for working with Docker images:
 ##### Using the Host Docker Daemon
 
 -   Configure your terminal to use Minikube\'s Docker daemon:\
-    > eval \$(minikube docker-env)
-
--   Build your image. It will now be available to Minikube without
-    > additional steps.
+    `eval $(minikube docker-env)`
+-   Build your image. It will now be available to Minikube without additional steps.
 
 ##### Loading Images into Minikube
 
 -   If you\'ve built the image using your host\'s Docker daemon:\
-    > minikube image load your-image:tag
-
+    `minikube image load your-image:tag`
 -   This copies the image from your local Docker daemon into Minikube.
 
 ##### Creating Deployments with Custom Images
 
--   Create a deployment YAML file (e.g., deployment.yaml) referencing
-    > your custom image:
-
+-   Create a deployment YAML file (e.g., deployment.yaml) referencing your custom image:
+```
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: your-app
-
+  name: your-app
 spec:
-
-replicas: 1
-
-selector:
-
-matchLabels:
-
-app: your-app
-
-template:
-
-metadata:
-
-labels:
-
-app: your-app
-
-spec:
-
-containers:
-
-\- name: your-app
-
-image: your-image:tag
-
-imagePullPolicy: IfNotPresent
-
--   Apply the deployment: kubectl apply -f deployment.yaml
+  replicas: 1
+  selector:
+    matchLabels:
+      app: your-app
+  template:
+    metadata:
+      labels:
+        app: your-app
+    spec:
+      containers:
+        - name: your-app
+          image: your-image:tag
+          imagePullPolicy: IfNotPresent
+```
+-   Apply the deployment: 
+`kubectl apply -f deployment.yaml`
 
 ##### Minikube-Specific Features
 
@@ -1625,58 +1486,42 @@ imagePullPolicy: IfNotPresent
 Minikube includes a built-in Docker registry. To use it:
 
 -   Enable the registry addon:\
-    > minikube addons enable registry
-
+    `minikube addons enable registry`
 -   Push your image to the Minikube registry:\
-    > docker push \$(minikube ip):5000/your-image:tag
-
+    `docker push \$(minikube ip):5000/your-image:tag`
 -   Update your deployment to use the registry image:\
-    > image: localhost:5000/your-image:tag
+    `image: localhost:5000/your-image:tag`
 
 ###### Direct Image Building
 
 -   Minikube can build images directly using its Docker daemon:\
-    > minikube image build -t your-image:tag .
-
--   This builds the image inside Minikube, making it immediately
-    > available for use.
+    `minikube image build -t your-image:tag .`
+-   This builds the image inside Minikube, making it immediately available for use.
 
 ###### Monitoring and Troubleshooting
 
 -   Check if your pods are running:\
-    > kubectl get pods
-
+    `kubectl get pods`
 -   If pods are not in the \"Running\" state, check the logs:\
-    > kubectl logs \<pod-name\>
-
+    `kubectl logs \<pod-name\>`
 -   For more detailed troubleshooting, use:\
-    > kubectl describe pod \<pod-name\>
-
+    `kubectl describe pod \<pod-name\>`
 -   To access the Minikube Docker daemon logs:\
-    > minikube logs
+    `minikube logs`
 
 ##### Cleaning Up
 
 To remove unused images and free up space:\
-minikube image rm your-image:tag
+`minikube image rm your-image:tag`
 
-By following these steps, you can effectively work with custom Docker
-images in your Minikube cluster, allowing you to develop and test your
-Kubernetes deployments locally. Minikube offers more flexibility in
-terms of image handling compared to kind, making it a popular choice for
+By following these steps, you can effectively work with custom Docker images in your Minikube cluster, allowing you to develop and test your Kubernetes deployments locally. Minikube offers more flexibility in terms of image handling compared to kind, making it a popular choice for
 local Kubernetes development.
 
 #### Best Practices
 
-1.  Use meaningful tags for your images, preferably based on git commit
-    > hashes or semantic versioning.
-
-2.  When updating your application, build a new image with a new tag,
-    > then update your deployment to use the new image tag.
-
-3.  For production-like setups, consider using a private Docker
-    > registry. Minikube can be configured to pull from private
-    > registries.
+1.  Use meaningful tags for your images, preferably based on git commit hashes or semantic versioning.
+2.  When updating your application, build a new image with a new tag, then update your deployment to use the new image tag.
+3.  For production-like setups, consider using a private Docker registry. Minikube can be configured to pull from private registries.
 
 ## Week 2: Service Mesh Concepts and Python
 
@@ -1686,28 +1531,19 @@ local Kubernetes development.
 
 ##### Core concepts of service mesh
 
--   A dedicated infrastructure layer for handling service-to-service
-    > communication.
-
--   Provides features like service discovery, load balancing,
-    > encryption, observability, traceability, authentication, and
-    > authorization.
+-   A dedicated infrastructure layer for handling service-to-service communication.
+-   Provides features like service discovery, load balancing, encryption, observability, traceability, authentication, and authorization.
 
 ##### Problems service meshes solve
 
 -   Complexity in microservices communication
-
 -   Lack of observability in distributed systems
-
 -   Inconsistent security policies across services
-
--   Difficulty in implementing resilience patterns (circuit breaking,
-    > retries)
+-   Difficulty in implementing resilience patterns (circuit breaking, retries)
 
 ##### Evolution of ingress
 
 -   From simple L7 load balancers to advanced API gateways
-
 -   Integration with service mesh for consistent policy enforcement
 
 #### Service Mesh Architecture
@@ -1729,18 +1565,14 @@ instance of these services would have a sidecar proxy deployed alongside
 it:
 
 Product Service + Sidecar Proxy
-
 Order Service + Sidecar Proxy
-
 Payment Service + Sidecar Proxy
 
 When the Order service needs to communicate with the Payment service,
 the request goes through the following path:
 
 1.  Order service -\> Order\'s sidecar proxy
-
 2.  Order\'s sidecar proxy -\> Payment\'s sidecar proxy
-
 3.  Payment\'s sidecar proxy -\> Payment service
 
 This allows the mesh to control and observe all inter-service
@@ -1756,11 +1588,8 @@ policies, collect telemetry, and handle service discovery.
 components:
 
 -   Pilot: Handles service discovery and traffic management
-
 -   Citadel: Manages security and access policies
-
--   Galley: Validates configuration and distributes it to other
-    > components
+-   Galley: Validates configuration and distributes it to other components
 
 The control plane would configure the sidecar proxies to implement
 specific routing rules, such as:
