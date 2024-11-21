@@ -1045,6 +1045,7 @@ spec:
     targetPort: 80
 EOF
 ```
+```
 +---------------------------------------------------+
 |                Kubernetes Cluster                 |
 |                                                   |
@@ -1100,7 +1101,7 @@ EOF
 |  | Port: 80 -> targetPort: 80                  |  |
 |  +---------------------------------------------+  |
 +---------------------------------------------------+
-
+```
 This updated diagram now includes:
 
 1.  The original `webapp-config` ConfigMap with `BACKGROUND_COLOR` and `MESSAGE`.
