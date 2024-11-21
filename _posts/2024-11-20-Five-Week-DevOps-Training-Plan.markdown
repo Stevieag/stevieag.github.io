@@ -1125,7 +1125,7 @@ This setup allows you to scale your Deployment (adding or removing Pods) without
     If your cluster has an Ingress controller, you can create an Ingress resource:
 
 ```
-cat \<\<EOF \| kubectl apply -f -
+cat <<EOF | kubectl apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -1359,9 +1359,9 @@ webapp     2/2       2           2       11m
 
 `kubectl get pods`
 ```
-NAME                     READY   STATUS   RESTARTS   AGE
-webapp-756448c658-8h5lz   1/1    Running     0      7m26s
-webapp-756448c658-b6gnr   1/1    Running     0      7m33s
+NAME               READY   STATUS   RESTARTS   AGE
+webapp-756448-8hz   1/1    Running     0      7m26s
+webapp-756448-b6r   1/1    Running     0      7m33s
 ```
 
 `kubectl get services`
@@ -1435,7 +1435,7 @@ spec:
             image: your-image:tag
             imagePullPolicy: Never
 ```
--   Apply the deployment: 
+-   Apply the deployment:\ 
 `kubectl apply -f deployment.yaml`
 
 #### Working with Images in Minikube
@@ -1559,8 +1559,8 @@ typically deployed as sidecars alongside each service instance. These
 proxies intercept and manage all network traffic to and from the
 service.
 
-**Example:\
-**Let\'s consider a simple e-commerce application with three
+Example:\
+Let\'s consider a simple e-commerce application with three
 microservices: Product, Order, and Payment. In a service mesh, each
 instance of these services would have a sidecar proxy deployed alongside
 it:
@@ -1584,8 +1584,8 @@ communication.
 The control plane manages and configures the proxies to enforce
 policies, collect telemetry, and handle service discovery.
 
-**Example:\
-**Using Istio as an example, the control plane consists of several
+Example:\
+Using Istio as an example, the control plane consists of several
 components:
 
 -   Pilot: Handles service discovery and traffic management
