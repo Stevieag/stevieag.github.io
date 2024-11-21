@@ -4,7 +4,7 @@ subtitle: "Heres one I prepared earlier"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/SerMesh.jpg"
-date:   2024-11-20
+date:   2024-11-25
 tags: training mesh service devops istio minikube kind linkerd
 ---
 
