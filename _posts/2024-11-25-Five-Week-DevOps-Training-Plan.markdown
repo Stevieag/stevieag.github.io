@@ -10,9 +10,8 @@ tags: training mesh service devops istio minikube kind linkerd
 
 A 5-Week Training Plan I wrote for learing Service Mesh, Kubernetes, and Related Technologies.
 I hope you find it of use!!
-Its a bit ugly but heres a PDF [Download File](https://github.com/Stevieag/stevieag.github.io/blob/main/files/5-week-plan.pdf)
-
-[try2](files/5-week-plan.pdf)
+Its a bit ugly but heres a PDF 
+[Download File](files/5-week-plan.pdf)
 
 # Content
 ## Week 1: Fundamentals and Kubernetes
@@ -527,7 +526,6 @@ services within a cluster, providing HTTP and HTTPS routing rules. It
 acts as a single entry point for incoming traffic, simplifying the
 exposure of multiple services through a unified interface. Key features
 of Ingress include:
-
  - Traffic Routing: Ingress can route traffic based on URL paths, hostnames, or other criteria, allowing for complex routing scenarios.
  - SSL/TLS Termination: Ingress can handle SSL/TLS termination, offloading this responsibility from individual services.
  - Load Balancing: Ingress can distribute traffic across multiple backend services, acting as a load balancer.
@@ -762,14 +760,11 @@ Rules:
 ```
 
 ##### Security Contexts
-
  - Define privilege and access control settings for Pods or Containers.
  - Can set UID, GID, capabilities, and other security parameters.
 
 ##### Network Policies
-
  - Specify how groups of pods are allowed to communicate with each other and other network endpoints.
-
  - Act as a virtual firewall for your Kubernetes cluster.\
 
 # Exercise:
@@ -1200,7 +1195,8 @@ EOF
 |  |  |  |  Path: index.html             |  |  |  |
 |  |  |  +-------------------------------+  |  |  |
 |  |  +-------------------------------------+  |  |
-|  +-------------------------------------------+  |                        |                                                 |
+|  +-------------------------------------------+  |
+|                                                 |
 |  +-------------------------------------------+  |
 |  |        Service: webapp-service            |  |
 |  |                                           |  |
@@ -1539,12 +1535,8 @@ testing.\
 \
 Here is an example using Linkerd\'s control plane. This is simpler and
 consists of fewer components compared to Istio. The main components are:
-
-1.  Destination: Handles service discovery and provides configuration to
-    > proxies
-
+1.  Destination: Handles service discovery and provides configuration to proxies
 2.  Identity: Manages security and certificate issuance for mTLS
-
 3.  Proxy Injector: Injects the Linkerd proxy as a sidecar
 
 For traffic splitting in Linkerd, you would use either a TrafficSplit
@@ -1660,31 +1652,31 @@ version.\
 Here\'s an example of how you might set up a Flagger canary for the
 Product service:
 
-```
+```yaml
 apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
-name: product
-namespace: test
+  name: product
+  namespace: test
 spec:
-targetRef:
-apiVersion: apps/v1
-kind: Deployment
-name: product
-service:
-port: 8080
-analysis:
-interval: 30s
-threshold: 5
-maxWeight: 50
-stepWeight: 5
-metrics:
-\- name: success-rate
-threshold: 99
-interval: 1m
-\- name: latency
-threshold: 500
-interval: 1m
+  targetRef:
+  apiVersion: apps/v1
+  kind: Deployment
+  name: product
+  service:
+    port: 8080
+  analysis:
+    interval: 30s
+    threshold: 5
+    maxWeight: 50
+    stepWeight: 5
+  metrics:
+    - name: success-rate
+      threshold: 99
+      interval: 1m
+    - name: latency
+      threshold: 500
+      interval: 1m
 ```
 
 This configuration sets up a canary deployment that gradually increases
@@ -1699,11 +1691,8 @@ communication.
 **Using Istio with Prometheus and Grafana, you can visualize request
 volume, latency, and error rates for each service. You might see a
 dashboard showing:
-
 -   Request rate for Product service: 100 requests/second
-
 -   95th percentile latency for Order service: 250ms
-
 -   Error rate for Payment service: 0.1%
 
 This level of observability helps quickly identify and troubleshoot
@@ -1713,30 +1702,23 @@ Linkerd provides similar observability capabilities to Istio, there are
 some differences in how it implements and presents these features.
 
 1.  Using the Linkerd CLI:\
-    > linkerd viz stat deploy -n your-namespace
+    `linkerd viz stat deploy -n your-namespace`
 
 This command would show you a table with metrics for each deployment,
 including:
-
 -   Success rate
-
 -   Request per second (RPS)
-
 -   Latency (P50, P95, P99)
 
 2.  Using the Linkerd dashboard:
 
 You can access it by running:\
-linkerd viz dashboard
+`linkerd viz dashboard`
 
 In the dashboard, you would see:
-
 -   Request rate for Product service: 100 req/sec
-
 -   95th percentile latency for Order service: 250ms
-
--   Success rate for Payment service: 99.9% (which is equivalent to a
-    > 0.1% error rate)
+-   Success rate for Payment service: 99.9% (which is equivalent to a 0.1% error rate)
 
 ##### Security
 
@@ -1809,17 +1791,11 @@ resilient, observable, and secure distributed systems.
 ##### Data Types
 
 Python has several built-in data types:
-
 -   **Numeric**: int, float, complex
-
 -   **Sequence**: list, tuple, range
-
 -   **Text**: str
-
 -   **Mapping**: dict
-
--   **Set**: set, frozenset
-
+-   **Set**: set, frozense
 -   **Boolean**: bool
 
 Example:
@@ -2039,19 +2015,11 @@ system-wide Python installation.
 
 Here\'s a breakdown of what each part of the command does:
 
--   python3: This specifies that you are using Python 3 to execute the
-    > command. It ensures that the virtual environment is created using
-    > Python 3.
+-   python3: This specifies that you are using Python 3 to execute the command. It ensures that the virtual environment is created using Python 3.
 
--   -m venv: The -m flag tells Python to run a module as a script. In
-    > this case, it runs the venv module, which is included in the
-    > standard library from Python 3.3 onwards, for creating virtual
-    > environments.
+-   -m venv: The -m flag tells Python to run a module as a script. In this case, it runs the venv module, which is included in the standard library from Python 3.3 onwards, for creating virtual environments.
 
--   .venv: This is the name of the directory where the virtual
-    > environment will be created. The dot (.) at the beginning makes it
-    > a hidden directory on Unix-like systems, which is a common
-    > convention to keep your project directory tidy.
+-   .venv: This is the name of the directory where the virtual environment will be created. The dot (.) at the beginning makes it a hidden directory on Unix-like systems, which is a common convention to keep your project directory tidy.
 
 ###### Activating a virtual environment:On Unix or MacOS:
 
@@ -2087,28 +2055,21 @@ Explore [pyenv](https://realpython.com/intro-to-pyenv/)
 
 ##### Kubernetes Python client library
 
--   Installation: pip install kubernetes\
-    > This will allow Authentication and configuration, Creating,
-    > reading, updating, and deleting Kubernetes resources
+-   Installation: `pip install kubernetes`\
+    This will allow Authentication and configuration, Creating, reading, updating, and deleting Kubernetes resources
 
 ##### Simple Python scripts for Kubernetes interaction
 
 Here is an example to;
-
 -   Listing pods in a namespace
-
 -   Creating and managing deployments
-
 -   Watching for changes in resources
 
 Example script to list pods:
 
 Create a virtual env
-
 -   `python3 -m venv .venv`
-
 -   `source .venv/bin/activate`
-
 -   `pip install kubernetes`
 
 -   Create `testscript.py`
@@ -2128,24 +2089,22 @@ for pod in pods.items:
     
     If running minikube the output may look like this
 
-> ```
->default debug-env
-> default webapp-6988595754-qnkqp
->default webapp-6d989cd746-8wgzs
-> default webapp-cf544bc7c-24zpb
->kube-system coredns-7db6d8ff4d-t46mv
-> kube-system etcd-minikube
->kube-system kube-apiserver-minikube
-> kube-system kube-controller-manager-minikube
->kube-system kube-proxy-jkgd5
-> kube-system kube-scheduler-minikube
->kube-system storage-provisioner
-> ```
->
-> You now have the basics to interact with a kubernetes cluster via
->python.\
-> Link:\
->[https://github.com/kubernetes-client/python](https://github.com/kubernetes-client/python)
+```shell
+default debug-env
+default webapp-6988595754-qnkqp
+default webapp-6d989cd746-8wgzs
+default webapp-cf544bc7c-24zpb
+kube-system coredns-7db6d8ff4d-t46mv
+kube-system etcd-minikube
+kube-system kube-apiserver-minikube
+kube-system kube-controller-manager-minikube
+kube-system kube-proxy-jkgd5
+kube-system kube-scheduler-minikube
+kube-system storage-provisioner
+```
+
+You now have the basics to interact with a kubernetes cluster via python.\
+Link: [https://github.com/kubernetes-client/python](https://github.com/kubernetes-client/python)
 
 ### Day 5: Helm Basics
 
@@ -2360,7 +2319,7 @@ print(rendered)
 You can use Python to read configuration from various sources and
 generate Helm charts:
 
-```
+```python
 import yaml
 from jinja2 import Template
 
@@ -2389,7 +2348,6 @@ chart = generate_chart(config)
 with open('generated_chart.yaml', 'w') as f:
     f.write(chart)
 ```
-
 
 
 ###### Integrating with CI/CD Pipelines
@@ -2431,27 +2389,21 @@ generation.
 istio provides a demo for testing and learning:
 
 -   It installs more components than the default profile, including:
-
     -   Istiod (the Istio control plane)
-
     -   Ingress gateway
-
     -   Egress gateway
 
--   It enables a set of features that are suitable for demonstrating
-    > Istio\'s capabilities.
+-   It enables a set of features that are suitable for demonstrating Istio\'s capabilities.
 
--   It has higher resource requirements than the minimal or default
-    > profiles.
+-   It has higher resource requirements than the minimal or default profiles.
 
--   It\'s not recommended for production use due to its expanded feature
-    > set and resource usage.
+-   It\'s not recommended for production use due to its expanded feature set and resource usage.
 
-> istioctl install \--set profile=demo -y
+`istioctl install \--set profile=demo -y`
 
 ###### Enable automatic sidecar injection
 
-> kubectl label namespace default istio-injection=enabled
+`kubectl label namespace default istio-injection=enabled`
 
 ##### Istio\'s architecture and core components
 
@@ -2464,14 +2416,11 @@ istio provides a demo for testing and learning:
 Pilot is a crucial module within Istiod that focuses on service
 discovery and traffic management. It is responsible for:
 
--   **Service Discovery**: Registers services and manages their
-    > information, such as versions, IP addresses, and ports.
+-   **Service Discovery**: Registers services and manages their information, such as versions, IP addresses, and ports.
 
--   **Traffic Management**: Directs traffic to different service
-    > versions or instances based on defined rules.
+-   **Traffic Management**: Directs traffic to different service versions or instances based on defined rules.
 
--   **Routing and Load Balancing**: Routes traffic according to rules
-    > and balances load across services.
+-   **Routing and Load Balancing**: Routes traffic according to rules and balances load across services.
 
 Pilot interacts with the data plane by configuring service proxies (like
 Envoy) to manage ingress and egress traffic effectively.
@@ -2481,23 +2430,18 @@ Envoy) to manage ingress and egress traffic effectively.
 Citadel is another component integrated into Istiod, primarily handling
 security aspects. It manages:
 
--   **Certificate Management**: Provides certificate-based
-    > authentication and authorization.
+-   **Certificate Management**: Provides certificate-based authentication and authorization.
 
--   **Security Policies**: Enforces security policies based on service
-    > identity.
+-   **Security Policies**: Enforces security policies based on service identity.
 
 **Galley**
 
 Galley was responsible for configuration management in Istio. It
 handled:
 
--   **Configuration Verification and Distribution**: Ensured the
-    > validity of configuration rules and distributed them to other
-    > Istio components.
+-   **Configuration Verification and Distribution**: Ensured the validity of configuration rules and distributed them to other Istio components.
 
--   **Configuration Storage**: Maintained properties and configuration
-    > information for Istio components.
+-   **Configuration Storage**: Maintained properties and configuration information for Istio components.
 
 ###### Data Plane
 
@@ -2505,21 +2449,13 @@ handled:
 
 ###### Addons
 
--   **Prometheus**: An open-source system for metrics collection and
-    > monitoring, storing data as time series with flexible querying
-    > capabilities.
+-   **Prometheus**: An open-source system for metrics collection and monitoring, storing data as time series with flexible querying capabilities.
 
--   **Grafana**: A platform for metrics visualization, providing a
-    > variety of visual representations to analyse time-series data from
-    > sources like Prometheus.
+-   **Grafana**: A platform for metrics visualization, providing a variety of visual representations to analyse time-series data from sources like Prometheus.
 
--   **Jaeger or Zipkin**: Tools for distributed tracing that help
-    > monitor and troubleshoot microservices by collecting and analysing
-    > trace data.
+-   **Jaeger or Zipkin**: Tools for distributed tracing that help monitor and troubleshoot microservices by collecting and analysing trace data.
 
--   **Kiali**: A service mesh observability tool that visualizes the
-    > structure and health of an Istio service mesh, aiding in
-    > monitoring and troubleshooting.
+-   **Kiali**: A service mesh observability tool that visualizes the structure and health of an Istio service mesh, aiding in monitoring and troubleshooting.
 
 ### Day 2: Istio Traffic Management
 
@@ -2617,8 +2553,7 @@ spec:
 
 ###### mTLS (Mutual TLS)
 
--   Enable cluster-wide: kubectl apply -f
-    > istio-1.x.x/samples/security/strict-mtls.yaml
+-   Enable cluster-wide: `kubectl apply -f istio-1.x.x/samples/security/strict-mtls.yaml`
 
 -   Verify: istioctl x authz check \<pod-name\>
 
@@ -2683,37 +2618,26 @@ implement basic traffic routing.
 ##### Enable Istio Sidecar Injection
 
 First, let\'s enable Istio sidecar injection for the default namespace:\
-kubectl label namespace default istio-injection=enabled
+`kubectl label namespace default istio-injection=enabled`
 
-(This can be verified with kubectl get namespace default \--show-labels)
+(This can be verified with `kubectl get namespace default --show-labels`)
 
 The command is used to enable automatic Istio sidecar injection for the
 default namespace in a Kubernetes cluster.
 
 Key points about this command:
 
-1.  Namespace-level control: By labeling a namespace, you\'re enabling
-    > Istio sidecar injection for all pods created in that namespace,
-    > unless overridden at the pod level.
+1.  Namespace-level control: By labeling a namespace, you\'re enabling Istio sidecar injection for all pods created in that namespace, unless overridden at the pod level.
 
-2.  Automatic injection: When a namespace has this label, the Istio
-    > sidecar (Envoy proxy) will be automatically injected into all new
-    > pods deployed in that namespace.
+2.  Automatic injection: When a namespace has this label, the Istio sidecar (Envoy proxy) will be automatically injected into all new pods deployed in that namespace.
 
-3.  Existing workloads: This label only affects new pods. Existing
-    > workloads will need to be redeployed to get the sidecar injected.
+3.  Existing workloads: This label only affects new pods. Existing workloads will need to be redeployed to get the sidecar injected.
 
-4.  Override option: Even with this namespace-level setting, individual
-    > pods can opt out of injection using the sidecar.istio.io/inject:
-    > \"false\" annotation.
+4.  Override option: Even with this namespace-level setting, individual pods can opt out of injection using the sidecar.istio.io/inject: "false" annotation.
 
-5.  Verification: After applying this label, you can verify it worked by
-    > deploying a new pod in the namespace and checking for the presence
-    > of the istio-proxy container.
+5.  Verification: After applying this label, you can verify it worked by deploying a new pod in the namespace and checking for the presence of the istio-proxy container.
 
-6.  Reversibility: You can disable injection for the namespace by
-    > changing the label value to disabled or removing the label
-    > entirely.
+6.  Reversibility: You can disable injection for the namespace by changing the label value to disabled or removing the label entirely.
 
 ##### Deploy a Sample Application
 
@@ -2986,7 +2910,7 @@ and gradually adjust the traffic split until you\'re confident in the
 new version\'s performance.Remember to clean up your resources after the
 lesson:
 
-```
+```shell
 kubectl delete -f sample-app.yaml
 kubectl delete -f sample-app-v2.yaml
 kubectl delete -f virtual-service.yaml
@@ -3009,32 +2933,30 @@ the cluster
 
 ###### Install CLI
 
-> [https://linkerd.io/2.16/tasks/install/](https://linkerd.io/2.16/tasks/install/)\
-> Again Mac can use brew
->
-> curl \--proto \'=https\' \--tlsv1.2 -sSfL
-> https://run.linkerd.io/install \| sh
->
-> export PATH=\$PATH:\$HOME/.linkerd2/bin
->
-> linkerd version
->
-> Alternatively, you can download the binary directly from the Linkerd
-> releases page.
+[https://linkerd.io/2.16/tasks/install/](https://linkerd.io/2.16/tasks/install/)\
+Again Mac can use brew
+
+`curl --proto \'=https\' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh`
+
+`export PATH=\$PATH:\$HOME/.linkerd2/bin`
+
+`linkerd version`
+
+Alternatively, you can download the binary directly from the Linkerd releases page.
 
 ###### Install Linkerd on Your Minikube Cluster
 
-> linkerd install \--crds \| kubectl apply -f -
->
-> linkerd install \--set proxyInit.runAsRoot=true \| kubectl apply -f -
+`linkerd install \--crds \| kubectl apply -f -`
+
+`linkerd install \--set proxyInit.runAsRoot=true \| kubectl apply -f -`
 
 ###### Validate cluster
 
-> linkerd check \--pre
+`linkerd check --pre`
 
 ###### Install Linkerd
 
-> linkerd install \| kubectl apply -f -
+`linkerd install \| kubectl apply -f -`
 
 ###### Install viz
 
@@ -3070,7 +2992,7 @@ linkerd-proxy: Ultra-lightweight proxy (written in Rust)
 
 Traffic Split:
 
-```
+```yaml
 apiVersion: split.smi-spec.io/v1alpha1
 kind: TrafficSplit
 metadata:
@@ -3089,10 +3011,10 @@ Retries and Timeouts: Configured via annotations
 ##### Linkerd\'s observability and security features
 
 -   Automatic mTLS:\
-    > Enabled by default for all meshed servicesb.
+    Enabled by default for all meshed servicesb.
 
 -   Metrics:\
-    > Access via CLI or Grafana dashboards
+    Access via CLI or Grafana dashboards
 
 `linkerd viz stat deployment`
 
@@ -3169,7 +3091,7 @@ Create traffic
 ##### Implement a traffic split for canary deployment
 
 First, let\'s create a new version of the voting service:
-```shell
+```yaml
 cat \<\<EOF \| kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
@@ -3207,7 +3129,7 @@ emojivoto-web:v2/\' web-deployment.yaml ; kubectl apply -f
 web-deployment.yaml ;rm web-deployment.yaml`)
 
 Now, create a TrafficSplit to gradually shift traffic:
-```shell
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: split.smi-spec.io/v1alpha2
 kind: TrafficSplit
@@ -3239,7 +3161,7 @@ the weights specified in the TrafficSplit resource.
 
 As you gain confidence in the new version, you can update the
 TrafficSplit to increase traffic to v2:
-```shell
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: split.smi-spec.io/v1alpha2
 kind: TrafficSplit
