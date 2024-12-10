@@ -178,13 +178,17 @@ logging, container resource monitoring, and network plugins.
  kind is a tool for running local Kubernetes clusters using Docker container \"nodes\". It\'s designed for testing Kubernetes itself, but can be used for local development or CI.
 
 ###### Installation
-    `go install sigs.k8s.io/kind@v0.24.0`
+```shell
+`go install sigs.k8s.io/kind@v0.24.0`
+```
 
 \# Or for macOS users
     `brew install kind`
 
 ###### Creating a cluster
-    `kind create cluster`
+```shell
+`kind create cluster`
+```
 
 Advantages of kind:
 
@@ -305,7 +309,7 @@ You will ultimately see the nginx default banner
    `kubectl create configmap config-vol --from-literal=log_level=debug`\
    Now create a pod with a running container that mounts the configmap as a var
 
-```
+```yaml
 cat <<EOF | k apply -f -
  apiVersion: v1
  kind: Pod
@@ -535,7 +539,7 @@ Kubernetes deployments.
 Examples:\
 Create a simple web application
 
-```
+```yaml
 cat <<EOF | k apply -f -
 apiVersion: apps/v1
 kind: Deployment
@@ -580,7 +584,7 @@ web-app on port 80 to port 80 of one of the containers.\
 \
 giving something like
 
-```
+```shell
 NAME READY UP-TO-DATE AVAILABLE AGE
 web-app 2/2 2 2 46s
 
@@ -594,7 +598,7 @@ web-app-service ClusterIP 10.110.70.144 \<none\> 80/TCP 46s
 ```
 Now create an ingress to create access
 
-```
+```yaml
 cat \<\<EOF \| k apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -624,7 +628,7 @@ this to port 80 of the deployment for forwarding to one of the replicas
 for connection.\
 \
 `kubectl get ingress`
-```
+```shell
 NAME CLASS HOSTS ADDRESS PORTS AGE\
 web-app-ingress <none> http://web-app.info 80 2m28s
 ```
@@ -742,7 +746,7 @@ the network traffic between pods and external sources
  - Regulates access to resources based on the roles of individual users.
  - Key objects: Role, ClusterRole, RoleBinding, ClusterRoleBinding.
    Example: Creating a role that allows reading pods:
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -780,7 +784,7 @@ This exercise demonstrates:
 
  - **Step 1:** Create a ConfigMap\
     First, let\'s create a ConfigMap with some configuration data:
-```
+```yaml
 cat \<\<EOF \| kubectl apply -f -
 apiVersion: v1
 kind: ConfigMap
@@ -829,7 +833,7 @@ configuration values at runtime.
 -   **Step 2:** Create a Deployment\
     Now, let\'s create a Deployment for our web application. We\'ll use a simple Nginx image and inject our configuration as environment variables:
 
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
@@ -932,7 +936,7 @@ data into containers.
  - **Step 3:** Create a ConfigMap for the HTML content\
     Let\'s create another ConfigMap to hold our HTML content:
 
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: ConfigMap
@@ -1030,7 +1034,7 @@ flexibility in managing your web application\'s appearance and content.
 -   **Step 4:** Create a Service\
     Now, let\'s create a Service to expose our Deployment:
 
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
@@ -1124,7 +1128,7 @@ This setup allows you to scale your Deployment (adding or removing Pods) without
 -   **Step 5:** Create an Ingress\
     If your cluster has an Ingress controller, you can create an Ingress resource:
 
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -1146,159 +1150,70 @@ spec:
                   number: 80
 EOF
 ```
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-
-\| Kubernetes Cluster \|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| ConfigMap: webapp-config \| \|
-
-\| \| \| \|
-
-\| \| Data: \| \|
-
-\| \| BACKGROUND_COLOR: \"#f0f0f0\" \| \|
-
-\| \| MESSAGE: \"Welcome to our configurable\...\" \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| ConfigMap: webapp-content \| \|
-
-\| \| \| \|
-
-\| \| Data: \| \|
-
-\| \| index.html: (HTML content) \| \|
-
-\| \| - Uses \${BACKGROUND_COLOR} \| \|
-
-\| \| - Uses \${MESSAGE} \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| Deployment: webapp \| \|
-
-\| \| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\| \| \| Pod \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| Container: webapp \| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| \| - Image: nginx:alpine \| \| \| \|
-
-\| \| \| \| - Port: 80 \| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| \| EnvFrom: \| \| \| \|
-
-\| \| \| \| ConfigMap: webapp-config \| \| \| \|
-
-\| \| \| \| \| \| \| \|
-
-\| \| \| \| VolumeMount: \| \| \| \|
-
-\| \| \| \| Name: config \| \| \| \|
-
-\| \| \| \| MountPath: /usr/share/\... \| \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \| \| \| Volume: config \| \| \| \|
-
-\| \| \| \| ConfigMap: webapp-content \| \| \| \|
-
-\| \| \| \| Key: index.html \| \| \| \|
-
-\| \| \| \| Path: index.html \| \| \| \|
-
-\| \| \| +\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \| \|
-
-\| \|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| Service: webapp-service \| \|
-
-\| \| \| \|
-
-\| \| Selector: app: webapp \| \|
-
-\| \| Port: 80 -\> targetPort: 80 \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-\| \| Ingress: webapp-ingress \| \|
-
-\| \| \| \|
-
-\| \| Host: webapp.example.com \| \|
-
-\| \| Path: / \| \|
-
-\| \| Backend: webapp-service:80 \| \|
-
-\|
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
-\|
-
-+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+
+```
++-------------------------------------------------+
+|              Kubernetes Cluster                 |
+|                                                 |
+|  +-------------------------------------------+  |
+|  |       ConfigMap: webapp-config            |  |
+|  |                                           |  |
+|  | Data:                                     |  |
+|  | BACKGROUND_COLOR:  "#f0f0f0"              |  |
+|  | MESSAGE: "Welcome to our configurable..." |  |
+|  +-------------------------------------------+  |
+|                                                 |
+|  +-------------------------------------------+  |
+|  |        ConfigMap: webapp-content          |  |
+|  |                                           |  |
+|  |   Data:                                   |  |
+|  |   index.html: (HTML content)              |  |
+|  |     - Uses ${BACKGROUND_COLOR}            |  |
+|  |     - Uses ${MESSAGE}                     |  |
+|  +-------------------------------------------+  |
+|                                                 |
+|  +-------------------------------------------+  |
+|  |           Deployment: webapp              |  |
+|  |                                           |  |
+|  |  +-------------------------------------+  |  |
+|  |  |                 Pod                 |  |  |
+|  |  |  +-------------------------------+  |  |  |
+|  |  |  |   Container: webapp           |  |  |  |
+|  |  |  |                               |  |  |  |
+|  |  |  |   - Image: nginx:alpine       |  |  |  |
+|  |  |  |   - Port: 80                  |  |  |  |
+|  |  |  |                               |  |  |  |
+|  |  |  |   EnvFrom:                    |  |  |  |
+|  |  |  |   ConfigMap: webapp-config    |  |  |  |
+|  |  |  |                               |  |  |  |
+|  |  |  |   VolumeMount:                |  |  |  |
+|  |  |  |   Name: config                |  |  |  |
+|  |  |  |   MountPath: /usr/share/...   |  |  |  |
+|  |  |  +-------------------------------+  |  |  |
+|  |  |                                     |  |  |
+|  |  |  +-------------------------------+  |  |  |
+|  |  |  |        Volume: config         |  |  |  |
+|  |  |  |  ConfigMap: webapp-content    |  |  |  |
+|  |  |  |  Key: index.html              |  |  |  |
+|  |  |  |  Path: index.html             |  |  |  |
+|  |  |  +-------------------------------+  |  |  |
+|  |  +-------------------------------------+  |  |
+|  +-------------------------------------------+  |                        |                                                 |
+|  +-------------------------------------------+  |
+|  |        Service: webapp-service            |  |
+|  |                                           |  |
+|  |   Selector: app: webapp                   |  |
+|  |   Port: 80 -> targetPort: 80              |  |
+|  +-------------------------------------------+  |
+|                                                 |
+|  +-------------------------------------------+  |
+|  |         Ingress: webapp-ingress           |  |
+|  |                                           |  |
+|  |   Host: webapp.example.com                |  |
+|  |   Path: /                                 |  |
+|  |   Backend: webapp-service:80              |  |
+|  +-------------------------------------------+  |
++-------------------------------------------------+
+```
 
 This updated diagram now includes:
 
@@ -1344,7 +1259,7 @@ containerized application.
 
 `kubectl get configmaps`
 
-```
+```shell
 NAME                   DATA           AGE
 kube-root-ca.crt        1             21m
 webapp-config           2             18m
@@ -1352,26 +1267,26 @@ webapp-content          1             13m
 ```
 
 `kubectl get deployments`
-```
+```shell
 NAME      READY   UP-TO-DATE AVAILABLE   AGE
 webapp     2/2       2           2       11m
 ```
 
 `kubectl get pods`
-```
+```shell
 NAME               READY   STATUS   RESTARTS   AGE
 webapp-756448-8hz   1/1    Running     0      7m26s
 webapp-756448-b6r   1/1    Running     0      7m33s
 ```
 
 `kubectl get services`
-```
+```shell
 NAME             TYPE      CLUSTER-IP      EXTERNAL-IP  PORT(S)   AGE
 kubernetes      Cluster   IP 10.96.0.1       <none>     443/TCP   22m
 webapp-service  Cluster   IP 10.107.192.80   <none>     80/TCP    5m20s
 ```
 `kubectl get ingress`
-```
+```shell
 NAME            CLASS   HOSTS        ADDRESS        PORTS   AGE
 webapp-ingress         <none>  webapp.example.com    80    3m52s
 ```
@@ -1415,7 +1330,7 @@ Change the BACKGROUND_COLOR to "#e0e0e0" and the `MESSAGE` to `"Updated configur
 ##### Creating deployments with custom images
 
 -   Create a deployment YAML file (e.g., deployment.yaml) referencing your custom image:
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1457,7 +1372,7 @@ Minikube provides several options for working with Docker images:
 ##### Creating Deployments with Custom Images
 
 -   Create a deployment YAML file (e.g., deployment.yaml) referencing your custom image:
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1595,39 +1510,25 @@ components:
 The control plane would configure the sidecar proxies to implement
 specific routing rules, such as:
 
+```yaml
 apiVersion: networking.istio.io/v1alpha3
-
 kind: VirtualService
-
 metadata:
-
-name: payment-route
-
+	name: payment-route
 spec:
-
-hosts:
-
-\- payment
-
-http:
-
-\- route:
-
-\- destination:
-
-host: payment
-
-subset: v1
-
-weight: 90
-
-\- destination:
-
-host: payment
-
-subset: v2
-
-weight: 10
+	hosts:
+		- payment
+	http:
+		- route:
+		- destination:
+	host: payment
+	subset: v1
+	weight: 90
+		- destination:
+	host: payment
+	subset: v2
+	weight: 10
+```
 
 This configuration would route 90% of traffic to version 1 of the
 Payment service and 10% to version 2, enabling canary deployments or A/B
@@ -1648,43 +1549,27 @@ resource (if using the SMI extension) or an HTTPRoute resource (which is
 the preferred method going forward).\
 Here\'s an example using HTTPRoute:
 
+```yaml
 apiVersion: policy.linkerd.io/v1beta2
-
 kind: HTTPRoute
-
 metadata:
-
-name: payment-route
-
-namespace: your-namespace
-
+  name: payment-route
+  namespace: your-namespace
 spec:
-
-parentRefs:
-
-\- name: payment
-
-kind: Service
-
-group: core
-
-port: 8080
-
+  parentRefs:
+  - name: payment
+    kind: Service
+    group: core
+    port: 8080
 rules:
-
-\- backendRefs:
-
-\- name: payment-v1
-
-port: 8080
-
-weight: 90
-
-\- name: payment-v2
-
-port: 8080
-
-weight: 10
+- backendRefs:
+  - name: payment-v1
+    port: 8080
+    weight: 90
+  - name: payment-v2
+    port: 8080
+    weight: 10
+```
 
 This configuration would achieve the same result as the Istio example,
 routing 90% of traffic to version 1 of the Payment service and 10% to
@@ -1710,94 +1595,58 @@ Service meshes offer fine-grained control over traffic routing.
 **Example:\
 **Implementing a canary release for the Product service:
 
+```yaml
 apiVersion: networking.istio.io/v1alpha3
-
 kind: VirtualService
-
 metadata:
-
-name: product-canary
-
+  name: product-canary
 spec:
-
-hosts:
-
-\- product
-
+  hosts:
+  - product
 http:
-
-\- match:
-
-\- headers:
-
-user-agent:
-
-regex: \".\*Chrome.\*\"
-
-route:
-
-\- destination:
-
-host: product
-
-subset: v2
-
-\- route:
-
-\- destination:
-
-host: product
-
-subset: v1
+  - match:
+    - headers:
+        user-agent:
+          regex: ".*Chrome.*"
+    route:
+    - destination:
+        host: product
+        subset: v2
+  - route:
+    - destination:
+        host: product
+        subset: v1
+```
 
 This configuration routes all traffic from Chrome browsers to version 2
 of the Product service, while all other traffic goes to version 1.
 
 With Linkerd use HTTPRoute resource to define the traffic splitting:
 
+```yaml
 apiVersion: policy.linkerd.io/v1beta2
-
 kind: HTTPRoute
-
 metadata:
-
-name: product-canary
-
-namespace: your-namespace
-
+  name: product-canary
+  namespace: your-namespace
 spec:
-
-parentRefs:
-
-\- name: product
-
-kind: Service
-
-group: core
-
-port: 8080
-
-rules:
-
-\- matches:
-
-\- headers:
-
-\- name: user-agent
-
-regex: \".\*Chrome.\*\"
-
-backendRefs:
-
-\- name: product-v2
-
-port: 8080
-
-\- backendRefs:
-
-\- name: product-v1
-
-port: 8080
+  parentRefs:
+  - name: product
+    kind: Service
+    group: core
+    port: 8080
+  rules:
+  - matches:
+    - headers:
+      - name: user-agent
+        regex: \".\*Chrome.\*\"
+    backendRefs:
+    - name: product-v2
+      port: 8080
+- backendRefs:
+  - name: product-v1
+    port: 8080
+```
 
 This configuration routes all traffic from Chrome browsers to version 2
 of the Product service, while all other traffic goes to version 1.\
@@ -1808,53 +1657,32 @@ version.\
 Here\'s an example of how you might set up a Flagger canary for the
 Product service:
 
+```
 apiVersion: flagger.app/v1beta1
-
 kind: Canary
-
 metadata:
-
 name: product
-
 namespace: test
-
 spec:
-
 targetRef:
-
 apiVersion: apps/v1
-
 kind: Deployment
-
 name: product
-
 service:
-
 port: 8080
-
 analysis:
-
 interval: 30s
-
 threshold: 5
-
 maxWeight: 50
-
 stepWeight: 5
-
 metrics:
-
 \- name: success-rate
-
 threshold: 99
-
 interval: 1m
-
 \- name: latency
-
 threshold: 500
-
 interval: 1m
+```
 
 This configuration sets up a canary deployment that gradually increases
 traffic to the new version while monitoring success rate and latency.
@@ -1915,21 +1743,16 @@ access policies.
 **Example:\
 **Enforcing mTLS between all services:
 
+```yaml
 apiVersion: security.istio.io/v1beta1
-
 kind: PeerAuthentication
-
 metadata:
-
-name: default
-
-namespace: istio-system
-
+  name: default
+  namespace: istio-system
 spec:
-
-mtls:
-
-mode: STRICT
+  mtls:
+    mode: STRICT
+```
 
 This configuration ensures all inter-service communication is encrypted
 and authenticated.
@@ -2002,140 +1825,128 @@ Example:
 
 int (Integer)
 
+```python
 age = 30
-
 year = 2024
-
 temperature = -5
-
 x = 5
+```
 
 float (Floating-point)
 
+```python
 pi = 3.14159
-
 weight = 68.5
-
 temperature = -2.8
-
 y = 3.14
+```
 
 complex
 
+```python
 z = 3 + 4j
-
 w = complex(2, -3)
+```
 
 **Sequence Types**
 
 list
 
-fruits = \[\"apple\", \"banana\", \"cherry\"\]
-
-numbers = \[1, 2, 3, 4, 5\]
-
-mixed = \[1, \"two\", 3.0, \[4, 5\]\]
+```python
+fruits = ["apple", "banana", "cherry"]
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "two", 3.0, [4, 5]]
+```
 
 tuple
 
+```python
 coordinates = (10, 20)
-
 rgb = (255, 0, 128)
-
 person = (\"John\", 30, \"London\")
+```
 
 range
 
-numbers = range(5) \# 0, 1, 2, 3, 4
-
-even_numbers = range(0, 10, 2) \# 0, 2, 4, 6, 8
+```python
+numbers = range(5) # 0, 1, 2, 3, 4
+even_numbers = range(0, 10, 2) # 0, 2, 4, 6, 8
+```
 
 **Text Type**
 
+```python
 str (String)
-
-name = \"Alice\"
-
-message = \'Hello, World!\'
-
-multiline = \"\"\"This is a
-
-multiline string.\"\"\"
+name = "Alice"
+message = 'Hello, World!'
+multiline = """This is a
+multiline string."""
+```
 
 **Mapping Type**
 
 dict (Dictionary)
 
-person = {\"name\": \"Bob\", \"age\": 25, \"city\": \"Manchester\"}
-
+```python
+person = {"name": "Bob", "age": 25, "city": "Manchester"}
 scores = {
-
-\"Alice\": 95,
-
-\"Bob\": 87,
-
-\"Charlie\": 92
-
+    "Alice": 95,
+    "Bob": 87,
+    "Charlie": 92
 }
+```
 
 **Set Types**
 
 set
 
+```python
 unique_numbers = {1, 2, 3, 4, 5}
-
-fruits = {\"apple\", \"banana\", \"cherry\"}
+fruits = {"apple", "banana", "cherry"}
+```
 
 frozenset
 
-immutable_set = frozenset(\[1, 2, 3, 4, 5\])
+```python
+immutable_set = frozenset([1, 2, 3, 4, 5])
+```
 
 **Boolean Type**
 
 bool
 
+```python
 is_raining = True
-
 has_licence = False
-
-is_adult = age \>= 18
+is_adult = age >= 18
+```
 
 Here are some examples of how these data types can be used in practice:
 
-\# Calculating area of a circle
-
+```python
+# Calculating area of a circle
 radius = 5.0
+area = pi * radius**2
+print(f"The area of the circle is {area:.2f} square units")
 
-area = pi \* radius\*\*2
+# Working with lists
+fruits.append("orange")
+print(f"The second fruit is {fruits[1]}")
 
-print(f\"The area of the circle is {area:.2f} square units\")
+# Using a dictionary
+print(f"{person['name']} is {person['age']} years old and lives
+in {person['city']}")
 
-\# Working with lists
-
-fruits.append(\"orange\")
-
-print(f\"The second fruit is {fruits\[1\]}\")
-
-\# Using a dictionary
-
-print(f\"{person\[\'name\'\]} is {person\[\'age\'\]} years old and lives
-in {person\[\'city\'\]}\")
-
-\# Set operations
-
+# Set operations
 a = {1, 2, 3, 4}
-
 b = {3, 4, 5, 6}
+print(f"Union: {a | b}")
+print(f"Intersection: {a & b}")
 
-print(f\"Union: {a \| b}\")
-
-print(f\"Intersection: {a & b}\")
-
-\# Boolean logic
-
+# Boolean logic
 if is_adult and not is_raining:
-
-print(\"Let\'s go for a walk!\")
+  print(\"Let\'s go for a walk!")
+```
 
 These examples demonstrate the basic usage of each data type. Remember
 that Python is dynamically typed, meaning you don\'t need to declare the
@@ -2146,59 +1957,56 @@ the value assigned to it.
 
 **If-else statements**:
 
-if x \> 0:
-
-print(\"Positive\")
-
-elif x \< 0:
-
-print(\"Negative\")
-
+```python
+if x > 0:
+  print("Positive")
+elif x < 0:
+  print("Negative")
 else:
-
-print(\"Zero\")
+  print("Zero")
+```
 
 **For loops**:
 
+```python
 for i in range(5):
-
-print(i)
+  print(i)
+```
 
 **While loops**:
 
+```python
 count = 0
-
-while count \< 5:
-
-print(count)
-
-count += 1
+while count < 5:
+  print(count)
+  count += 1
+```
 
 **[Functions]{.underline}**
 
+```python
 def greet(name):
+  return f"Hello, {name}!"
 
-return f\"Hello, {name}!\"
-
-message = greet(\"Alice\")
-
-print(message)
+message = greet("Alice")
+  print(message)
+```
 
 **[Classes]{.underline}**
 
+```python
 class Dog:
+  def __init__(self, name):
+    self.name = name
 
-def \_\_init\_\_(self, name):
+  def bark(self):
+    return f"{self.name} says Woof!"
 
-self.name = name
-
-def bark(self):
-
-return f\"{self.name} says Woof!\"
-
-my_dog = Dog(\"Buddy\")
-
+my_dog = Dog("Buddy")
 print(my_dog.bark())
+```
+
+
 
 ##### Python Package Management
 
@@ -2210,11 +2018,11 @@ library.
 
 ###### Installing a package:
 
-python3 -m pip install requests
+`python3 -m pip install requests`
 
 ###### Upgrading a package:
 
-python3 -m pip install \--upgrade requests
+`python3 -m pip install \--upgrade requests`
 
 ##### Python Virtual Environments
 
@@ -2224,7 +2032,7 @@ system-wide Python installation.
 
 ###### Creating a virtual environment:
 
-python3 -m venv .venv
+`python3 -m venv .venv`
 
 Here\'s a breakdown of what each part of the command does:
 
@@ -2248,27 +2056,27 @@ source .venv/bin/activate
 
 On Windows:
 
-.venv\\Scripts\\activate
+`.venv\\Scripts\\activate`
 
 ###### Installing packages in a virtual environment:
 
 Once activated, you can use pip to install packages, and they will be
 isolated to this environment.\
-pip install requests
+`pip install requests`
 
 ###### Deactivating a virtual environment:
 
-deactivate
+`deactivate`
 
 ###### Creating a requirements file:
 
 To share your project\'s dependencies, you can create a requirements.txt
 file:\
-pip freeze \> requirements.txt
+`pip freeze \> requirements.txt`
 
 ###### Installing from a requirements file:
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 Remember, it\'s a good practice to use virtual environments for each of
 your Python projects to avoid conflicts between package versions.
@@ -2294,55 +2102,47 @@ Example script to list pods:
 
 Create a virtual env
 
--   python3 -m venv .venv
+-   `python3 -m venv .venv`
 
--   source .venv/bin/activate
+-   `source .venv/bin/activate`
 
--   pip install kubernetes
+-   `pip install kubernetes`
 
--   Create testscript.py
+-   Create `testscript.py`
 
+```python
 from kubernetes import client, config
 
 config.load_kube_config()
-
 v1 = client.CoreV1Api()
 
 pods = v1.list_pod_for_all_namespaces(watch=False)
-
 for pod in pods.items:
-
-print(f\"{pod.metadata.namespace}\\t{pod.metadata.name}\")
+  print(f"{pod.metadata.namespace}\t{pod.metadata.name}")
+```
 
 -   python3 testscript.py\
-    > If running minikube the output may look like this
+    
+    If running minikube the output may look like this
 
-> default debug-env
->
+> ```
+>default debug-env
 > default webapp-6988595754-qnkqp
->
-> default webapp-6d989cd746-8wgzs
->
+>default webapp-6d989cd746-8wgzs
 > default webapp-cf544bc7c-24zpb
->
-> kube-system coredns-7db6d8ff4d-t46mv
->
+>kube-system coredns-7db6d8ff4d-t46mv
 > kube-system etcd-minikube
->
-> kube-system kube-apiserver-minikube
->
+>kube-system kube-apiserver-minikube
 > kube-system kube-controller-manager-minikube
->
-> kube-system kube-proxy-jkgd5
->
+>kube-system kube-proxy-jkgd5
 > kube-system kube-scheduler-minikube
->
-> kube-system storage-provisioner
+>kube-system storage-provisioner
+> ```
 >
 > You now have the basics to interact with a kubernetes cluster via
-> python.\
+>python.\
 > Link:\
-> [https://github.com/kubernetes-client/python](https://github.com/kubernetes-client/python)
+>[https://github.com/kubernetes-client/python](https://github.com/kubernetes-client/python)
 
 ### Day 5: Helm Basics
 
@@ -2369,78 +2169,65 @@ Let\'s create a chart and examine its structure:\
 You will have needed to [install
 helm](https://helm.sh/docs/intro/install/)
 
-helm create mychart
+`helm create mychart`
 
-cd mychart
+`cd mychart`
 
 The chart structure:
 
+```shell
 mychart/
-
-Chart.yaml \# Metadata about the chart
-
-values.yaml \# Default configuration values
-
-charts/ \# Directory for chart dependencies
-
-templates/ \# Directory for template files
-
-deployment.yaml
-
-service.yaml
-
-ingress.yaml
-
-\_helpers.tpl \# Template helpers
-
-.helmignore \# Patterns to ignore when packaging
+  Chart.yaml           # Metadata about the chart
+  values.yaml          # Default configuration values
+  charts/              # Directory for chart dependencies
+  templates/           # Directory for template files
+    deployment.yaml
+    service.yaml
+    ingress.yaml
+    _helpers.tpl       # Template helpers
+  .helmignore          # Patterns to ignore when packaging
+```
 
 **Chart.yaml Example:**
 
+```yaml
 apiVersion: v2
-
 name: mychart
-
 description: A Helm chart for Kubernetes
-
 type: application
-
 version: 0.1.0
-
-appVersion: \"1.16.0\"
+appVersion: "1.16.0"
+```
 
 **values.yaml Example:**
 
+```yaml
 replicaCount: 1
 
 image:
-
-repository: nginx
-
-pullPolicy: IfNotPresent
-
-tag: \"\"
-
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: ""
 service:
-
-type: ClusterIP
-
-port: 80
+  type: ClusterIP
+  port: 80
 
 ingress:
+  enabled: false
+```
 
-enabled: false
+
 
 ##### Deploying Applications with Helm
 
 To install a chart:\
-helm install myrelease ./mychart
+`helm install myrelease ./mychart`
 
 To customize values during installation:\
-helm install myrelease ./mychart \--set service.type=LoadBalancer
+`helm install myrelease ./mychart \--set service.type=LoadBalancer`
 
 Or using a custom values file:\
-helm install myrelease ./mychart -f custom-values.yaml
+`helm install myrelease ./mychart -f custom-values.yaml`
 
 ##### Advanced Helm Concepts
 
@@ -2449,106 +2236,75 @@ helm install myrelease ./mychart -f custom-values.yaml
 Hooks allow you to intervene at certain points in a release\'s
 lifecycle. Here\'s an example of a pre-install hook:
 
+```yaml
 apiVersion: batch/v1
-
 kind: Job
-
 metadata:
-
-name: {{ .Release.Name }}-pre-install-job
-
-annotations:
-
-\"helm.sh/hook\": pre-install
-
+  name: {{ .Release.Name }}-pre-install-job
+  annotations:
+    "helm.sh/hook": pre-install
 spec:
+  template:
+    spec:
+      containers:
+      - name: pre-install-job
+        image: busybox
+        command: ['sh', '-c', 'echo Pre-install job running']
+      restartPolicy: Never
+```
 
-template:
 
-spec:
-
-containers:
-
-\- name: pre-install-job
-
-image: busybox
-
-command: \[\'sh\', \'-c\', \'echo Pre-install job running\'\]
-
-restartPolicy: Never
 
 ##### Dependencies
 
 You can define dependencies in theChart.yamlfile:
 
+```yaml
 dependencies:
-
-\- name: apache
-
-version: 1.2.3
-
-repository: https://charts.bitnami.com/bitnami
+  - name: apache
+    version: 1.2.3
+    repository: https://charts.bitnami.com/bitnami
+```
 
 Then, update dependencies:
 
-helm dependency update
+`helm dependency update`
 
 ##### Templating
 
 Helm uses Go templates. Here\'s an example of a template using
 conditionals and loops:
 
+```yaml
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: {{ .Release.Name }}-deployment
-
+  name: {{ .Release.Name }}-deployment
 spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 80
+          {{- if .Values.env }}
+          env:
+            {{- range $key, \$value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          {{- end }}
+```
 
-replicas: {{ .Values.replicaCount }}
 
-selector:
-
-matchLabels:
-
-app: {{ .Chart.Name }}
-
-template:
-
-metadata:
-
-labels:
-
-app: {{ .Chart.Name }}
-
-spec:
-
-containers:
-
-\- name: {{ .Chart.Name }}
-
-image: \"{{ .Values.image.repository }}:{{ .Values.image.tag }}\"
-
-ports:
-
-\- containerPort: 80
-
-{{- if .Values.env }}
-
-env:
-
-{{- range \$key, \$value := .Values.env }}
-
-\- name: {{ \$key }}
-
-value: {{ \$value \| quote }}
-
-{{- end }}
-
-{{- end }}
 
 ##### Creating Helm Charts with Python Templates
 
@@ -2559,132 +2315,96 @@ Helm charts dynamically.
 
 Here\'s an example of using Jinja2 to generate a Kubernetes manifest:
 
+```python
 from jinja2 import Template
 
-template = Template(\"\"\"
-
+template = Template("""
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: {{ name }}-deployment
-
+  name: {{ name }}-deployment
 spec:
-
-replicas: {{ replicas }}
-
-selector:
-
-matchLabels:
-
-app: {{ name }}
-
-template:
-
-metadata:
-
-labels:
-
-app: {{ name }}
-
-spec:
-
-containers:
-
-\- name: {{ name }}
-
-image: {{ image }}
-
-ports:
-
-\- containerPort: {{ port }}
-
-\"\"\")
+  replicas: {{ replicas }}
+  selector:
+    matchLabels:
+      app: {{ name }}
+  template:
+    metadata:
+      labels:
+        app: {{ name }}
+    spec:
+      containers:
+        - name: {{ name }}
+          image: {{ image }}
+          ports:
+            - containerPort: {{ port }}
+""")
 
 rendered = template.render(
-
-name=\"myapp\",
-
-replicas=3,
-
-image=\"nginx:latest\",
-
-port=80
-
+  name=\"myapp\",
+  replicas=3,
+  image=\"nginx:latest\",
+  port=80
 )
 
 print(rendered)
+```
+
+
 
 ###### Generating Kubernetes Manifests Dynamically
 
 You can use Python to read configuration from various sources and
 generate Helm charts:
 
+```
 import yaml
-
 from jinja2 import Template
 
 def generate_chart(config):
+    # Load templates
+    deployment_template = Template(open('templates/deployment.yaml').read())
+    service_template = Template(open('templates/service.yaml').read())
 
-\# Load templates
+    # Render templates
+    deployment = deployment_template.render(config)
+    service = service_template.render(config)
 
-deployment_template =
-Template(open(\'templates/deployment.yaml\').read())
+    # Combine rendered templates
+    chart = f"{deployment}\n---\n{service}"
+    
+    return chart
 
-service_template = Template(open(\'templates/service.yaml\').read())
+# Read configuration
+with open('app_config.yaml', 'r') as f:
+    config = yaml.safe_load(f)
 
-\# Render templates
-
-deployment = deployment_template.render(config)
-
-service = service_template.render(config)
-
-\# Combine rendered templates
-
-chart = f\"{deployment}\\n\-\--\\n{service}\"
-
-return chart
-
-\# Read configuration
-
-with open(\'app_config.yaml\', \'r\') as f:
-
-config = yaml.safe_load(f)
-
-\# Generate chart
-
+# Generate chart
 chart = generate_chart(config)
 
-\# Write chart to file
+# Write chart to file
+with open('generated_chart.yaml', 'w') as f:
+    f.write(chart)
+```
 
-with open(\'generated_chart.yaml\', \'w\') as f:
 
-f.write(chart)
 
 ###### Integrating with CI/CD Pipelines
 
 You can incorporate this Python-based chart generation into your CI/CD
 pipeline:
 
-\# Example GitLab CI job
-
+```yaml
+# Example GitLab CI job
 generate_helm_chart:
-
-stage: build
-
-script:
-
-\- pip install pyyaml jinja2
-
-\- python generate_chart.py
-
-artifacts:
-
-paths:
-
-\- generated_chart.yaml
+    stage: build
+    script:
+        - pip install pyyaml jinja2
+        - python generate_chart.py
+    artifacts:
+        paths:
+            - generated_chart.yaml
+```
 
 This job would generate the Helm chart as part of your CI/CD process,
 allowing for dynamic chart creation based on your application\'s
@@ -2701,7 +2421,7 @@ generation.
 ###### Download Istio
 
 > [https://istio.io/latest/docs/setup/getting-started/#download](https://istio.io/latest/docs/setup/getting-started/#download)\
-> Mac can use brew brew install istionctl
+> Mac can use brew `brew install istionctl`
 
 ###### Install Istio
 
@@ -2804,39 +2524,25 @@ handled:
 
 Virtual Services: Define routing rules for traffic
 
+```yaml
 apiVersion: networking.istio.io/v1alpha3
-
 kind: VirtualService
-
 metadata:
-
-name: reviews-route
-
+  name: reviews-route
 spec:
-
-hosts:
-
-\- reviews
-
-http:
-
-\- route:
-
-\- destination:
-
-host: reviews
-
-subset: v1
-
-weight: 75
-
-\- destination:
-
-host: reviews
-
-subset: v2
-
-weight: 25
+  hosts:
+    - reviews
+  http:
+    - route:
+        - destination:
+            host: reviews
+            subset: v1
+          weight: 75
+        - destination:
+            host: reviews
+            subset: v2
+          weight: 25
+```
 
 This configuration defines a VirtualService for managing HTTP traffic
 routing to different versions (subsets) of the reviews service. It
@@ -2845,31 +2551,21 @@ splits traffic between two subsets, v1 and v2, with 75% going to v1 and
 
 Destination Rules: Define policies that apply after routing
 
+```yaml
 apiVersion: networking.istio.io/v1alpha3
-
 kind: DestinationRule
-
 metadata:
-
-name: reviews-destination
-
+  name: reviews-destination
 spec:
-
-host: reviews
-
-subsets:
-
-\- name: v1
-
-labels:
-
-version: v1
-
-\- name: v2
-
-labels:
-
-version: v2
+  host: reviews
+  subsets:
+    - name: v1
+      labels:
+        version: v1
+    - name: v2
+      labels:
+        version: v2
+```
 
 This configuration defines a DestinationRule for the reviews service,
 specifying two subsets, v1 and v2. Each subset is identified by labels
@@ -2892,27 +2588,25 @@ Gateways: Manage inbound and outbound traffic for the mesh
 
 Load Balancing: Configure in DestinationRule
 
+```yaml
 spec:
-
-trafficPolicy:
-
-loadBalancer:
-
-simple: ROUND_ROBIN
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+```
 
 Circuit Breaking: Define in DestinationRule
 
+```yaml
 spec:
+  trafficPolicy:
+    outlierDetection:
+    consecutiveErrors: 5
+    interval: 5s
+    baseEjectionTime: 30s
+```
 
-trafficPolicy:
 
-outlierDetection:
-
-consecutiveErrors: 5
-
-interval: 5s
-
-baseEjectionTime: 30s
 
 ### Day 3: Istio Security and Observability
 
@@ -2927,25 +2621,20 @@ baseEjectionTime: 30s
 
 ###### Authorization Policies
 
+```yaml
 apiVersion: security.istio.io/v1beta1
-
 kind: AuthorizationPolicy
-
 metadata:
-
-name: allow-read
-
+  name: allow-read
 spec:
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        methods: ["GET"]
+```
 
-action: ALLOW
 
-rules:
-
-\- to:
-
-\- operation:
-
-methods: \[\"GET\"\]
 
 ##### Exploring Istio\'s observability stack
 
@@ -3027,157 +2716,110 @@ Key points about this command:
 
 Create a file named sample-app.yaml with the following content:
 
+```yaml
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: myapp
-
+  name: myapp
 spec:
-
-replicas: 2
-
-selector:
-
-matchLabels:
-
-app: myapp
-
-template:
-
-metadata:
-
-labels:
-
-app: myapp
-
-version: v1
-
-spec:
-
-containers:
-
-\- name: myapp
-
-image: nginx:1.14.2
-
-ports:
-
-\- containerPort: 80
-
-\-\--
-
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: v1
+    spec:
+      containers:
+      - name: myapp
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+---
 apiVersion: v1
-
 kind: Service
-
 metadata:
-
-name: myapp
-
+  name: myapp
 spec:
-
-selector:
-
-app: myapp
-
-ports:
-
-\- port: 80
-
-targetPort: 80
+  selector:
+    app: myapp
+   ports:
+   - port: 80
+     targetPort: 80
+```
 
 or to apply in one
 
-cat \<\<EOF \| kubectl -f -
-
-yaml
-
+```shell
+cat <<EOF | kubectl -f -
+  yaml
 EOF
+```
 
 Deploy the application:
 
-kubectl apply -f sample-app.yaml
+`kubectl apply -f sample-app.yaml`
 
 Verify the deployment:
 
-kubectl get pods
+`kubectl get pods`
 
 You should see two containers per pod (app + istio-proxy), indicating
 successful sidecar injection.
 
-eg k describe pod/\<pod name\>
+eg `kubectl describe pod/\<pod name\>`
 
 You will see something like
 
+```shell
 Events:
-
-Type Reason Age From Message
-
-\-\-\-- \-\-\-\-\-- \-\-\-- \-\-\-- \-\-\-\-\-\--
-
-Normal Scheduled 5m default-scheduler Successfully assigned
-default/myapp-7d4cbc4c78-mhdmd to minikube
-
-Normal Pulled 5m kubelet Container image
-\"docker.io/istio/proxyv2:1.23.2\" already present on machine
-
-Normal Created 5m kubelet Created container istio-init
-
-Normal Started 5m kubelet Started container istio-init
-
-Normal Pulling 5m kubelet Pulling image \"nginx:1.14.2\"
-
-Normal Pulled 4m54s kubelet Successfully pulled image \"nginx:1.14.2\"
+Type    Reason    Age    From               Message
+----    ------    ----   ----               -------
+Normal  Scheduled  5m    default-scheduler  Successfully assigned default/myapp-7d4cbc4c78-mhdmd to minikube
+Normal  Pulled     5m    kubelet            Container image
+"docker.io/istio/proxyv2:1.23.2" already present on machine
+Normal  Created    5m    kubelet            Created container istio-init
+Normal  Started    5m    kubelet            Started container istio-init
+Normal  Pulling    5m    kubelet            Pulling image "nginx:1.14.2"
+Normal  Pulled     4m54s kubelet            Successfully pulled image "nginx:1.14.2"
 in 885ms (5.074s including waiting). Image size: 102757429 bytes.
+Normal  Created    4m54s kubelet            Created container myapp
+Normal  Started    4m54s kubelet            Started container myapp
+Normal  Pulled     4m54s kubelet            Container image
+"docker.io/istio/proxyv2:1.23.2" already present on machine
+Normal  Created    4m54s kubelet            Created container istio-proxy
+Normal  Started    4m54s kubelet            Started container istio-proxy
+```
 
-Normal Created 4m54s kubelet Created container myapp
 
-Normal Started 4m54s kubelet Started container myapp
-
-Normal Pulled 4m54s kubelet Container image
-\"docker.io/istio/proxyv2:1.23.2\" already present on machine
-
-Normal Created 4m54s kubelet Created container istio-proxy
-
-Normal Started 4m54s kubelet Started container istio-proxy
 
 ##### Create a Virtual Service
 
 Create a file named virtual-service.yaml:
 
+```yaml
 apiVersion: networking.istio.io/v1alpha3
-
 kind: VirtualService
-
 metadata:
-
-name: myapp-route
-
+  name: myapp-route
 spec:
-
-hosts:
-
-\- myapp
-
-http:
-
-\- route:
-
-\- destination:
-
-host: myapp
-
-subset: v1
+  hosts:
+  - myapp
+  http:
+  - route:
+    - destination:
+        host: myapp
+				subset: v1
+```
 
 Apply the Virtual Service:
 
-kubectl apply -f virtual-service.yaml
+`kubectl apply -f virtual-service.yaml`
 
 View with\
-kubectl get svc
+`kubectl get svc`
 
 A VirtualService in Istio is a custom resource definition (CRD) that
 allows you to configure how requests are routed to services within the
@@ -3202,106 +2844,79 @@ Key Features of VirtualService
 
 Create a file named destination-rule.yaml:
 
+```yaml
 apiVersion: networking.istio.io/v1alpha3
-
 kind: DestinationRule
-
 metadata:
-
-name: myapp-destination
-
+		name: myapp-destination
 spec:
-
-host: myapp
-
-subsets:
-
-\- name: v1
-
-labels:
-
-version: v1
+		host: myapp
+		subsets:
+		- name: v1
+			labels:
+				version: v1
+```
 
 Apply the Destination Rule:
 
-kubectl apply -f destination-rule.yaml
+`kubectl apply -f destination-rule.yaml`
 
 verify with
 
-k get destinationrules
+`k get destinationrules`
 
 ##### Test the Routing
 
 To test the routing, we\'ll need to access the application. For
 simplicity, let\'s use port-forwarding:
 
-kubectl port-forward service/myapp 8080:80
+`kubectl port-forward service/myapp 8080:80`
 
 Now, in another terminal, you can access the application:
 
-curl http://localhost:8080
+`curl http://localhost:8080`
 
 You should see the nginx welcome page.
 
 ##### Implement Canary Deployment
 
 Let\'s update our application to version 2. Create a file named
-sample-app-v2.yaml:
+`sample-app-v2.yaml:`
 
+```yaml
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
-name: myapp-v2
-
+  name: myapp-v2
 spec:
-
-replicas: 1
-
-selector:
-
-matchLabels:
-
-app: myapp
-
-version: v2
-
-template:
-
-metadata:
-
-labels:
-
-app: myapp
-
-version: v2
-
-spec:
-
-containers:
-
-\- name: myapp
-
-image: nginx:1.16.0
-
-ports:
-
-\- containerPort: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: v2
+    spec:
+      containers:
+      - name: myapp
+        image: nginx:1.16.0
+        ports:
+        - containerPort: 80
+```
 
 Deploy version 2:
 
-kubectl apply -f sample-app-v2.yaml
+`kubectl apply -f sample-app-v2.yaml`
 
 Update the virtual-service.yaml to split traffic:
 
+```
 apiVersion: networking.istio.io/v1alpha3
-
 kind: VirtualService
-
 metadata:
-
 name: myapp-route
 
 spec:
@@ -3329,54 +2944,45 @@ host: myapp
 subset: v2
 
 weight: 25
+```
 
 Update the destination-rule.yaml:
 
+```yaml
 apiVersion: networking.istio.io/v1alpha3
-
 kind: DestinationRule
-
 metadata:
-
-name: myapp-destination
-
+  name: myapp-destination
 spec:
-
-host: myapp
-
-subsets:
-
-\- name: v1
-
-labels:
-
-version: v1
-
-\- name: v2
-
-labels:
-
-version: v2
+  host: myapp
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+```
 
 Apply the updated configurations:
 
-kubectl apply -f virtual-service.yaml
+`kubectl apply -f virtual-service.yaml`
 
-kubectl apply -f destination-rule.yaml
+`kubectl apply -f destination-rule.yaml`
 
 Now, when you access the application, 75% of the traffic will go to v1
 and 25% to v2.\
 \
-Testing can be run as for i in {1..200}; do echo \$(curl -s
+Testing can be run as `for i in {1..200}; do echo \$(curl -s
 http://localhost:8080 \| grep \"version\"); sleep .5; done\`
 
 ##### observability
 
-Apply Prometheuskubectl apply -f
-https://raw.githubusercontent.com/istio/istio/release-1.23/samples/addons/prometheus.yaml
+Apply Prometheus `kubectl apply -f
+https://raw.githubusercontent.com/istio/istio/release-1.23/samples/addons/prometheus.yaml`
 
-Apply kiali kubectl apply -f
-https://raw.githubusercontent.com/istio/istio/release-1.23/samples/addons/kiali.yaml
+Apply kiali `kubectl apply -f
+https://raw.githubusercontent.com/istio/istio/release-1.23/samples/addons/kiali.yaml`
 
 Access dashboard istioctl dashboard kiali
 
@@ -3390,20 +2996,19 @@ and gradually adjust the traffic split until you\'re confident in the
 new version\'s performance.Remember to clean up your resources after the
 lesson:
 
+```
 kubectl delete -f sample-app.yaml
-
 kubectl delete -f sample-app-v2.yaml
-
 kubectl delete -f virtual-service.yaml
-
 kubectl delete -f destination-rule.yaml
+```
 
 This lesson provides a practical introduction to Istio\'s traffic
 management features. For more advanced scenarios, you could explore
 features like fault injection, circuit breaking, and more complex
 routing rules.
 
-If using minikube a simple minikube delete will remove all existance of
+If using minikube a simple `minikube delete` will remove all existance of
 the cluster
 
 ## Week 4: Linkerd and Practical Applications
@@ -3443,11 +3048,11 @@ the cluster
 
 ###### Install viz
 
-linkerd viz install \| kubectl apply -f -
+`linkerd viz install \| kubectl apply -f -`
 
-linkerd viz check
+`linkerd viz check`
 
-linkerd viz dashboard
+`linkerd viz dashboard`
 
 ###### Linkerd\'s architecture and core components
 
@@ -3475,27 +3080,19 @@ linkerd-proxy: Ultra-lightweight proxy (written in Rust)
 
 Traffic Split:
 
+```
 apiVersion: split.smi-spec.io/v1alpha1
-
 kind: TrafficSplit
-
 metadata:
-
-name: web-split
-
+  name: web-split
 spec:
-
-service: web-svc
-
-backends:
-
-\- service: web-v1
-
-weight: 500m
-
-\- service: web-v2
-
-weight: 500m
+  service: web-svc
+  backends:
+  - service: web-v1
+    weight: 500m
+  - service: web-v2
+    weight: 500m
+```
 
 Retries and Timeouts: Configured via annotations
 
@@ -3507,15 +3104,15 @@ Retries and Timeouts: Configured via annotations
 -   Metrics:\
     > Access via CLI or Grafana dashboards
 
-linkerd viz stat deployment
+`linkerd viz stat deployment`
 
 -   Live Traffic View:
 
-linkerd viz top
+`linkerd viz top`
 
 -   Traffic Inspection:
 
-linkerd tap deployment/your-deployment
+`linkerd tap deployment/your-deployment`
 
 ### Day 2-4: Hands-on Exercise
 
@@ -3582,7 +3179,7 @@ Create traffic
 ##### Implement a traffic split for canary deployment
 
 First, let\'s create a new version of the voting service:
-```
+```shell
 cat \<\<EOF \| kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
@@ -3611,14 +3208,14 @@ spec:
             - containerPort: 8080
 EOF
 ```
-or (kubectl get deployments web -n emojivoto -o yaml \>
+or (`kubectl get deployments web -n emojivoto -o yaml \>
 web-deployment.yaml ; sed -i \'s/name: web/name: web-v2/\'
 web-deployment.yaml sed -i \'s/image: emojivoto-web:v1/image:
 emojivoto-web:v2/\' web-deployment.yaml ; kubectl apply -f
-web-deployment.yaml ;rm web-deployment.yaml)
+web-deployment.yaml ;rm web-deployment.yaml`)
 
 Now, create a TrafficSplit to gradually shift traffic:
-```
+```shell
 cat <<EOF | kubectl apply -f -
 apiVersion: split.smi-spec.io/v1alpha2
 kind: TrafficSplit
@@ -3641,7 +3238,7 @@ to the new version.\
 
 ##### Observe the traffic split
 
-linkerd viz stat -n emojivoto deploy voting voting-v2
+`linkerd viz stat -n emojivoto deploy voting voting-v2`
 
 You should see traffic being split between the two versions according to
 the weights specified in the TrafficSplit resource.
@@ -3650,7 +3247,7 @@ the weights specified in the TrafficSplit resource.
 
 As you gain confidence in the new version, you can update the
 TrafficSplit to increase traffic to v2:
-```
+```shell
 cat <<EOF | kubectl apply -f -
 apiVersion: split.smi-spec.io/v1alpha2
 kind: TrafficSplit
