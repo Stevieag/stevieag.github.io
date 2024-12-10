@@ -1513,20 +1513,20 @@ specific routing rules, such as:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-	name: payment-route
+  name: payment-route
 spec:
-	hosts:
-		- payment
-	http:
-		- route:
-		- destination:
-	host: payment
-	subset: v1
-	weight: 90
-		- destination:
-	host: payment
-	subset: v2
-	weight: 10
+  hosts:
+    - payment
+  http:
+    - route:
+        - destination:
+            host: payment
+            subset: v1
+          weight: 90
+        - destination:
+            host: payment
+            subset: v2
+          weight: 10
 ```
 
 This configuration would route 90% of traffic to version 1 of the
@@ -1552,18 +1552,18 @@ metadata:
   namespace: your-namespace
 spec:
   parentRefs:
-  - name: payment
-    kind: Service
-    group: core
-    port: 8080
-rules:
-- backendRefs:
-  - name: payment-v1
-    port: 8080
-    weight: 90
-  - name: payment-v2
-    port: 8080
-    weight: 10
+    - name: payment
+      kind: Service
+      group: core
+      port: 8080
+  rules:
+    - backendRefs:
+        - name: payment-v1
+          port: 8080
+          weight: 90
+        - name: payment-v2
+          port: 8080
+          weight: 10
 ```
 
 This configuration would achieve the same result as the Istio example,
@@ -1577,8 +1577,8 @@ version 2.
 Service meshes provide dynamic service discovery and intelligent load
 balancing.
 
-**Example:\
-**In our e-commerce application, if we scale the Payment service to
+**Example:**\
+In our e-commerce application, if we scale the Payment service to
 three instances, the service mesh would automatically discover these
 instances and distribute traffic among them. It could use advanced load
 balancing algorithms like least connections or weighted round-robin.
@@ -1587,8 +1587,8 @@ balancing algorithms like least connections or weighted round-robin.
 
 Service meshes offer fine-grained control over traffic routing.
 
-**Example:\
-**Implementing a canary release for the Product service:
+**Example:**
+Implementing a canary release for the Product service:
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -1687,8 +1687,8 @@ traffic to the new version while monitoring success rate and latency.
 Service meshes provide detailed insights into service-to-service
 communication.
 
-**Example:\
-**Using Istio with Prometheus and Grafana, you can visualize request
+**Example:**\
+Using Istio with Prometheus and Grafana, you can visualize request
 volume, latency, and error rates for each service. You might see a
 dashboard showing:
 -   Request rate for Product service: 100 requests/second
