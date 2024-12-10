@@ -2001,7 +2001,7 @@ library.
 
 ###### Upgrading a package:
 
-`python3 -m pip install \--upgrade requests`
+`python3 -m pip install --upgrade requests`
 
 ##### Python Virtual Environments
 
@@ -2043,7 +2043,7 @@ isolated to this environment.\
 
 To share your project\'s dependencies, you can create a requirements.txt
 file:\
-`pip freeze \> requirements.txt`
+`pip freeze > requirements.txt`
 
 ###### Installing from a requirements file:
 
@@ -2071,7 +2071,6 @@ Create a virtual env
 -   `python3 -m venv .venv`
 -   `source .venv/bin/activate`
 -   `pip install kubernetes`
-
 -   Create `testscript.py`
 
 ```python
@@ -2117,12 +2116,8 @@ upgrade even the most complex Kubernetes applications.\
 \< a good tutorial
 
 **Key Components:**
-
-1.  **Helm Client**: The command-line tool used to create, package, and
-    > manage charts.
-
+1.  **Helm Client**: The command-line tool used to create, package, and manage charts.
 2.  **Charts**: Packages of pre-configured Kubernetes resources.
-
 3.  **Releases**: Instances of a chart running in a Kubernetes cluster.
 
 ##### Creating and Structure of a Helm Chart
@@ -2132,7 +2127,6 @@ You will have needed to [install
 helm](https://helm.sh/docs/intro/install/)
 
 `helm create mychart`
-
 `cd mychart`
 
 The chart structure:
@@ -2382,21 +2376,17 @@ generation.
 ###### Download Istio
 
 > [https://istio.io/latest/docs/setup/getting-started/#download](https://istio.io/latest/docs/setup/getting-started/#download)\
-> Mac can use brew `brew install istionctl`
+ Mac can use brew `brew install istionctl`
 
 ###### Install Istio
 
 istio provides a demo for testing and learning:
-
 -   It installs more components than the default profile, including:
     -   Istiod (the Istio control plane)
     -   Ingress gateway
     -   Egress gateway
-
 -   It enables a set of features that are suitable for demonstrating Istio\'s capabilities.
-
 -   It has higher resource requirements than the minimal or default profiles.
-
 -   It\'s not recommended for production use due to its expanded feature set and resource usage.
 
 `istioctl install \--set profile=demo -y`
@@ -2415,11 +2405,8 @@ istio provides a demo for testing and learning:
 
 Pilot is a crucial module within Istiod that focuses on service
 discovery and traffic management. It is responsible for:
-
 -   **Service Discovery**: Registers services and manages their information, such as versions, IP addresses, and ports.
-
 -   **Traffic Management**: Directs traffic to different service versions or instances based on defined rules.
-
 -   **Routing and Load Balancing**: Routes traffic according to rules and balances load across services.
 
 Pilot interacts with the data plane by configuring service proxies (like
@@ -2429,18 +2416,14 @@ Envoy) to manage ingress and egress traffic effectively.
 
 Citadel is another component integrated into Istiod, primarily handling
 security aspects. It manages:
-
 -   **Certificate Management**: Provides certificate-based authentication and authorization.
-
 -   **Security Policies**: Enforces security policies based on service identity.
 
 **Galley**
 
 Galley was responsible for configuration management in Istio. It
 handled:
-
 -   **Configuration Verification and Distribution**: Ensured the validity of configuration rules and distributed them to other Istio components.
-
 -   **Configuration Storage**: Maintained properties and configuration information for Istio components.
 
 ###### Data Plane
@@ -2450,11 +2433,8 @@ handled:
 ###### Addons
 
 -   **Prometheus**: An open-source system for metrics collection and monitoring, storing data as time series with flexible querying capabilities.
-
 -   **Grafana**: A platform for metrics visualization, providing a variety of visual representations to analyse time-series data from sources like Prometheus.
-
 -   **Jaeger or Zipkin**: Tools for distributed tracing that help monitor and troubleshoot microservices by collecting and analysing trace data.
-
 -   **Kiali**: A service mesh observability tool that visualizes the structure and health of an Istio service mesh, aiding in monitoring and troubleshooting.
 
 ### Day 2: Istio Traffic Management
@@ -2518,9 +2498,7 @@ Gateways: Manage inbound and outbound traffic for the mesh
 ##### Implementing canary deployments and A/B testing
 
 1.  Use VirtualService (as above) to split traffic between versions
-
 2.  Gradually adjust weights to increase traffic to new version
-
 3.  Monitor metrics to ensure new version performs as expected
 
 ##### Istio\'s load balancing and circuit breaking capabilities
@@ -2554,7 +2532,6 @@ spec:
 ###### mTLS (Mutual TLS)
 
 -   Enable cluster-wide: `kubectl apply -f istio-1.x.x/samples/security/strict-mtls.yaml`
-
 -   Verify: istioctl x authz check \<pod-name\>
 
 ###### Authorization Policies
@@ -2572,32 +2549,26 @@ spec:
         methods: ["GET"]
 ```
 
-
-
 ##### Exploring Istio\'s observability stack
 
 ###### Prometheus
 
 -   Access dashboard: istioctl dashboard prometheus
-
 -   Query metrics using PromQL
 
 ###### Grafana
 
 -   Access dashboard: istioctl dashboard grafana
-
 -   Explore pre-configured Istio dashboards
 
 ###### Kiali
 
 -   Access dashboard: istioctl dashboard kiali
-
 -   Visualize service mesh topology and health
 
 ###### Jaeger/Zipkin
 
 -   Access Jaeger UI: istioctl dashboard jaeger
-
 -   Analyze distributed traces
 
 ### Day 4-5: Deploying a Sample Application with Istio
@@ -2610,9 +2581,7 @@ implement basic traffic routing.
 ##### Prerequisites
 
 -   Kubernetes cluster set up
-
 -   Istio installed with demo profile
-
 -   kubectl and istioctl configured
 
 ##### Enable Istio Sidecar Injection
@@ -2628,15 +2597,10 @@ default namespace in a Kubernetes cluster.
 Key points about this command:
 
 1.  Namespace-level control: By labeling a namespace, you\'re enabling Istio sidecar injection for all pods created in that namespace, unless overridden at the pod level.
-
 2.  Automatic injection: When a namespace has this label, the Istio sidecar (Envoy proxy) will be automatically injected into all new pods deployed in that namespace.
-
 3.  Existing workloads: This label only affects new pods. Existing workloads will need to be redeployed to get the sidecar injected.
-
 4.  Override option: Even with this namespace-level setting, individual pods can opt out of injection using the sidecar.istio.io/inject: "false" annotation.
-
 5.  Verification: After applying this label, you can verify it worked by deploying a new pod in the namespace and checking for the presence of the istio-proxy container.
-
 6.  Reversibility: You can disable injection for the namespace by changing the label value to disabled or removing the label entirely.
 
 ##### Deploy a Sample Application
@@ -2756,15 +2720,10 @@ traffic should be directed to different service versions or destinations
 based on specified criteria.
 
 Key Features of VirtualService
-
 -   Traffic Routing.
-
 -   Decoupling Requests and Destinations.
-
 -   Advanced Traffic Management.
-
 -   Integration with Other Istio Resources.
-
 -   Internal and External Traffic Control.
 
 ##### Create a Destination Rule
@@ -2971,9 +2930,7 @@ Alternatively, you can download the binary directly from the Linkerd releases pa
 ###### Control Plane
 
 -   controller: Manages and configures proxy instances
-
 -   destination: Service discovery and load balancing
-
 -   identity: Certificate management for mTLS
 
 ###### Data Plane
@@ -2983,7 +2940,6 @@ linkerd-proxy: Ultra-lightweight proxy (written in Rust)
 ###### Add-ons
 
 -   Grafana: Metrics visualization
-
 -   Prometheus: Metrics collection
 
 ##### Linkerd Features
@@ -3012,7 +2968,6 @@ Retries and Timeouts: Configured via annotations
 
 -   Automatic mTLS:\
     Enabled by default for all meshed servicesb.
-
 -   Metrics:\
     Access via CLI or Grafana dashboards
 
