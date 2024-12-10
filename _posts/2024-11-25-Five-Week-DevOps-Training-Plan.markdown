@@ -10,7 +10,7 @@ tags: training mesh service devops istio minikube kind linkerd
 
 A 5-Week Training Plan I wrote for learing Service Mesh, Kubernetes, and Related Technologies.
 I hope you find it of use!!
-Its a bit ugly but heres a PDF [Download File](https://raw.githubusercontent.com/stevieag/steviag.io/files/5-week-plan.pdf)
+Its a bit ugly but heres a PDF [Download File](https://github.com/Stevieag/stevieag.github.io/blob/main/files/5-week-plan.pdf)
 
 [try2](files/5-week-plan.pdf)
 
