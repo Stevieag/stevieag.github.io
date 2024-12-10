@@ -1294,7 +1294,7 @@ webapp-ingress         <none>  webapp.example.com    80    3m52s
     `kubectl port-forward service/webapp-service 8080:80`
 
 Then open a web browser and go to http://localhost:8080.If you\'re using an Ingress, add the following to your /etc/hosts file:\
-`echo \"127.0.0.1 web-app.info\" \| sudo tee -a /etc/hosts`
+`echo "127.0.0.1 web-app.info" | sudo tee -a /etc/hosts`
 Then access the application at `http://webapp.example.com`.
 
 -   **Step 8:** Modify the configuration\
@@ -2075,7 +2075,7 @@ for pod in pods.items:
   print(f"{pod.metadata.namespace}\t{pod.metadata.name}")
 ```
 
--   `python3 testscript.py`\
+`python3 testscript.py`\
     
     If running minikube the output may look like this
 
@@ -2103,8 +2103,7 @@ Link: [https://github.com/kubernetes-client/python](https://github.com/kubernete
 Helm is a package manager for Kubernetes that simplifies the deployment
 and management of applications. It allows you to define, install, and
 upgrade even the most complex Kubernetes applications.\
-[https://youtu.be/-Bq2BVdzydc](https://youtu.be/-Bq2BVdzydc)
-\< a good tutorial
+[https://youtu.be/-Bq2BVdzydc](https://youtu.be/-Bq2BVdzydc) < a good tutorial
 
 **Key Components:**
 1.  **Helm Client**: The command-line tool used to create, package, and manage charts.
@@ -2124,15 +2123,15 @@ The chart structure:
 
 ```shell
 mychart/
-  Chart.yaml           # Metadata about the chart
-  values.yaml          # Default configuration values
-  charts/              # Directory for chart dependencies
-  templates/           # Directory for template files
+  Chart.yaml       # Metadata about the chart
+  values.yaml      # Default configuration values
+  charts/          # Directory for chart dependencies
+  templates/       # Directory for template files
     deployment.yaml
     service.yaml
     ingress.yaml
-    _helpers.tpl       # Template helpers
-  .helmignore          # Patterns to ignore when packaging
+    _helpers.tpl   # Template helpers
+  .helmignore      # Patterns to ignore when packaging
 ```
 
 **Chart.yaml Example:**
@@ -2365,12 +2364,10 @@ generation.
 ##### Installing Istio on your Kubernetes cluster
 
 ###### Download Istio
-
-> [https://istio.io/latest/docs/setup/getting-started/#download](https://istio.io/latest/docs/setup/getting-started/#download)\
- Mac can use brew `brew install istionctl`
+[https://istio.io/latest/docs/setup/getting-started/#download](https://istio.io/latest/docs/setup/getting-started/#download)\
+Mac can use brew `brew install istionctl`
 
 ###### Install Istio
-
 istio provides a demo for testing and learning:
 -   It installs more components than the default profile, including:
     -   Istiod (the Istio control plane)
@@ -2380,7 +2377,7 @@ istio provides a demo for testing and learning:
 -   It has higher resource requirements than the minimal or default profiles.
 -   It\'s not recommended for production use due to its expanded feature set and resource usage.
 
-`istioctl install \--set profile=demo -y`
+`istioctl install --set profile=demo -y`
 
 ###### Enable automatic sidecar injection
 
