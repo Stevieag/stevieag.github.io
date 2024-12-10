@@ -10,6 +10,9 @@ tags: training mesh service devops istio minikube kind linkerd
 
 A 5-Week Training Plan I wrote for learing Service Mesh, Kubernetes, and Related Technologies.
 I hope you find it of use!!
+Its a bit ugly but heres a PDF [Download File](https://raw.githubusercontent.com/stevieag/steviag.io/files/5-week-plan.pdf)
+
+[try2](files/5-week-plan.pdf)
 
 # Content
 ## Week 1: Fundamentals and Kubernetes
@@ -2913,37 +2916,24 @@ Deploy version 2:
 
 Update the virtual-service.yaml to split traffic:
 
-```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-name: myapp-route
-
+  name: myapp-route
 spec:
-
-hosts:
-
-\- myapp
-
-http:
-
-\- route:
-
-\- destination:
-
-host: myapp
-
-subset: v1
-
-weight: 75
-
-\- destination:
-
-host: myapp
-
-subset: v2
-
-weight: 25
+  hosts:
+  - myapp
+    http:
+    - route:
+      - destination:
+          host: myapp
+          subset: v1
+        weight: 75
+      - destination:
+          host: myapp
+          subset: v2
+        weight: 25
 ```
 
 Update the destination-rule.yaml:
@@ -3208,7 +3198,9 @@ spec:
             - containerPort: 8080
 EOF
 ```
-or (`kubectl get deployments web -n emojivoto -o yaml \>
+or 
+
+(`kubectl get deployments web -n emojivoto -o yaml \>
 web-deployment.yaml ; sed -i \'s/name: web/name: web-v2/\'
 web-deployment.yaml sed -i \'s/image: emojivoto-web:v1/image:
 emojivoto-web:v2/\' web-deployment.yaml ; kubectl apply -f
