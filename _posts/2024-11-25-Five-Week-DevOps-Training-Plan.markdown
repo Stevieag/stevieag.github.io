@@ -2077,7 +2077,7 @@ for pod in pods.items:
 
 `python3 testscript.py`\
     
-    If running minikube the output may look like this
+If running minikube the output may look like this
 
 ```shell
 default debug-env
