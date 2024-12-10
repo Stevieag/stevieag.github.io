@@ -8,6 +8,7 @@ date: 2024-12-09
 tags: gcp scheduler terraform
 ---
 
+\
 Cloud Scheduler with Terraform offers a powerful way to automate and manage scheduled tasks in Google Cloud, allowing developers to create, monitor, and maintain cron jobs using infrastructure-as-code principles.
 
 ## Setting Up Cloud Scheduler
