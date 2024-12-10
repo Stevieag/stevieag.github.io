@@ -2543,22 +2543,18 @@ spec:
 ##### Exploring Istio\'s observability stack
 
 ###### Prometheus
-
 -   Access dashboard: istioctl dashboard prometheus
 -   Query metrics using PromQL
 
 ###### Grafana
-
 -   Access dashboard: istioctl dashboard grafana
 -   Explore pre-configured Istio dashboards
 
 ###### Kiali
-
 -   Access dashboard: istioctl dashboard kiali
 -   Visualize service mesh topology and health
 
 ###### Jaeger/Zipkin
-
 -   Access Jaeger UI: istioctl dashboard jaeger
 -   Analyze distributed traces
 
@@ -2570,7 +2566,6 @@ Deploy a simple web application with Istio sidecar injection and
 implement basic traffic routing.
 
 ##### Prerequisites
-
 -   Kubernetes cluster set up
 -   Istio installed with demo profile
 -   kubectl and istioctl configured
@@ -2919,7 +2914,6 @@ Alternatively, you can download the binary directly from the Linkerd releases pa
 ###### Linkerd\'s architecture and core components
 
 ###### Control Plane
-
 -   controller: Manages and configures proxy instances
 -   destination: Service discovery and load balancing
 -   identity: Certificate management for mTLS
@@ -2929,7 +2923,6 @@ Alternatively, you can download the binary directly from the Linkerd releases pa
 linkerd-proxy: Ultra-lightweight proxy (written in Rust)
 
 ###### Add-ons
-
 -   Grafana: Metrics visualization
 -   Prometheus: Metrics collection
 
@@ -2956,7 +2949,6 @@ spec:
 Retries and Timeouts: Configured via annotations
 
 ##### Linkerd\'s observability and security features
-
 -   Automatic mTLS:\
     Enabled by default for all meshed servicesb.
 -   Metrics:\
@@ -3068,11 +3060,7 @@ EOF
 ```
 or 
 
-(`kubectl get deployments web -n emojivoto -o yaml \>
-web-deployment.yaml ; sed -i \'s/name: web/name: web-v2/\'
-web-deployment.yaml sed -i \'s/image: emojivoto-web:v1/image:
-emojivoto-web:v2/\' web-deployment.yaml ; kubectl apply -f
-web-deployment.yaml ;rm web-deployment.yaml`)
+(`kubectl get deployments web -n emojivoto -o yaml > web-deployment.yaml ; sed -i 's/name: web/name: web-v2/' web-deployment.yaml sed -i 's/image: emojivoto-web:v1/image: emojivoto-web:v2/' web-deployment.yaml ; kubectl apply -f web-deployment.yaml ;rm web-deployment.yaml`)
 
 Now, create a TrafficSplit to gradually shift traffic:
 ```yaml
