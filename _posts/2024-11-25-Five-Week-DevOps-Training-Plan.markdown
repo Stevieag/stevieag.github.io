@@ -2014,11 +2014,8 @@ system-wide Python installation.
 `python3 -m venv .venv`
 
 Here\'s a breakdown of what each part of the command does:
-
 -   python3: This specifies that you are using Python 3 to execute the command. It ensures that the virtual environment is created using Python 3.
-
 -   -m venv: The -m flag tells Python to run a module as a script. In this case, it runs the venv module, which is included in the standard library from Python 3.3 onwards, for creating virtual environments.
-
 -   .venv: This is the name of the directory where the virtual environment will be created. The dot (.) at the beginning makes it a hidden directory on Unix-like systems, which is a common convention to keep your project directory tidy.
 
 ###### Activating a virtual environment:On Unix or MacOS:
@@ -2026,7 +2023,6 @@ Here\'s a breakdown of what each part of the command does:
 source .venv/bin/activate
 
 On Windows:
-
 `.venv\\Scripts\\activate`
 
 ###### Installing packages in a virtual environment:
@@ -2036,17 +2032,14 @@ isolated to this environment.\
 `pip install requests`
 
 ###### Deactivating a virtual environment:
-
 `deactivate`
 
 ###### Creating a requirements file:
-
 To share your project\'s dependencies, you can create a requirements.txt
 file:\
 `pip freeze > requirements.txt`
 
 ###### Installing from a requirements file:
-
 `pip install -r requirements.txt`
 
 Remember, it\'s a good practice to use virtual environments for each of
@@ -2054,12 +2047,10 @@ your Python projects to avoid conflicts between package versions.
 Explore [pyenv](https://realpython.com/intro-to-pyenv/)
 
 ##### Kubernetes Python client library
-
 -   Installation: `pip install kubernetes`\
     This will allow Authentication and configuration, Creating, reading, updating, and deleting Kubernetes resources
 
 ##### Simple Python scripts for Kubernetes interaction
-
 Here is an example to;
 -   Listing pods in a namespace
 -   Creating and managing deployments
@@ -2084,7 +2075,7 @@ for pod in pods.items:
   print(f"{pod.metadata.namespace}\t{pod.metadata.name}")
 ```
 
--   python3 testscript.py\
+-   `python3 testscript.py`\
     
     If running minikube the output may look like this
 
