@@ -1,6 +1,6 @@
 ---
 title: "Google Cloud Scheduler in Terraform"
-subtitle: ""
+subtitle: "(and in the console :D)"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/gcp-tf.png"
