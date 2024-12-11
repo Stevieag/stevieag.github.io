@@ -74,3 +74,52 @@ To enhance error handling in Cloud Scheduler jobs:
 *   Implement exponential backoff for retries to avoid overwhelming systems (https://www.googlecloudcommunity.com/gc/Data-Analytics/How-to-Set-Dataform-Retry-Mechanism-with-Native-Workflow/m-p/756881)
 *   Set appropriate retry limits and maximum retry durations (https://cloud.google.com/application-integration/docs/error-handling-strategy)
 *   Use Cloud Functions in conjunction with Cloud Scheduler to implement custom retry logic and error handling (https://www.googlecloudcommunity.com/gc/Data-Analytics/How-to-Set-Dataform-Retry-Mechanism-with-Native-Workflow/m-p/756881)
+
+
+
+## Creating a Cloud Scheduler Job in Google Cloud Console
+
+## Prerequisites
+
+- Ensure you have a Google Cloud project created
+- Enable the Cloud Scheduler API
+- Have a target endpoint or Pub/Sub topic ready
+
+## Step-by-Step Process
+
+1. **Access Cloud Scheduler**
+
+- Navigate to the Google Cloud Console
+- Go to the Cloud Scheduler section
+- Click "Create Job"
+
+1. **Configure Job Basics**
+
+- Enter a unique job name
+- Select a region for deployment
+- Optionally add a description
+- Define the schedule using cron expression (e.g., `0 1 * * *` for daily at 1 AM)
+
+1. **Select Target Type**
+   Choose from three primary target types:
+
+- HTTP/HTTPS endpoint
+- Pub/Sub topic
+- App Engine
+
+1. **Configure Execution Details**
+
+- For HTTP: Specify URL, method, and optional payload
+- For Pub/Sub: Select existing topic
+- Set optional retry and error handling parameters
+
+1. **Review and Create**
+
+- Verify all configuration details
+- Click "Create" to deploy the scheduled job
+
+## Pro Tips
+
+- Use precise cron expressions
+- Implement robust error handling
+- Leverage Cloud Monitoring for job tracking
