@@ -77,6 +77,12 @@ To enhance error handling in Cloud Scheduler jobs:
 
 
 
+
+
+
+
+
+
 ## Creating a Cloud Scheduler Job in Google Cloud Console
 
 ## Prerequisites
@@ -123,6 +129,12 @@ To enhance error handling in Cloud Scheduler jobs:
 - Use precise cron expressions
 - Implement robust error handling
 - Leverage Cloud Monitoring for job tracking
+
+
+
+
+
+
 
 
 
