@@ -126,15 +126,13 @@ To enhance error handling in Cloud Scheduler jobs:
 
 
 
-<u>***Exlanation of the infrastructure***</u>
+## Explanation
 
 <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/5214749/45cc780d-8478-479c-8d5d-ff0322202b32/0/image.png" alt="Cloud Scheduler Interaction Flowchart" width="650">
 
 Cloud Scheduler Interaction Flowchart
 
 <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/5214749/9b2e289e-b9ba-417c-ae54-3d3510feb641/0/Cloud%20Scheduler%20Interaction%20Flowchart.png" alt="Cloud Scheduler Interaction Flowchart" width="650">
-
-## Explanation
 
 ## **Diagram 1: Cloud Scheduler Components**
 
