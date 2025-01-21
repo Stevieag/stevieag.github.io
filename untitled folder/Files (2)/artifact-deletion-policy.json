@@ -1,0 +1,28 @@
+[
+    {
+      "name": "Delete Artifacts Older than 30 Days",
+      "action": {
+        "type": "delete"
+      },
+      "condition": {
+        "olderThan": "30d"
+      }
+    },
+    {
+      "name": "Retain Latest and Keep Tagged Artifacts",
+      "action": {
+        "type": "keep"
+      },
+      "condition": {
+        "tagPrefixes": ["latest","keep"],
+        "versionNamePrefixes": ["latest", "keep"]
+      }
+    },
+    {
+    "name": "Retain Last 5 artifacts",
+    "action": {"type": "keep"},
+    "mostRecentVersions": {
+      "keepCount": 5
+    }
+  }
+]
