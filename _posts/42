@@ -173,3 +173,5 @@ If you want a concrete starting point:
   - Manual Burp/pen‑test where warranted. [web:347][web:351]
 
 The “best tools” are the ones your team can actually run on every change and respond to. Start small, wire them properly into CI/CD, then iterate based on real signal‑to‑noise, not feature lists.
+
+<img src="img/authors/geeky.jpg" width="40"/>

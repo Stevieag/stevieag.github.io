@@ -275,3 +275,5 @@ The goal isn’t just to break things; it’s to understand *exactly why* they b
 Auth is where attackers go first because it’s where “outside” meets “inside.” Understanding how these mechanisms work — and exactly how they’re commonly broken — is what separates “we implemented OAuth” from “we actually have a robust, testable, and defendable authentication story.”
 
 Design for strong auth from day one. Then, in the lab, learn to break your own designs. The real win is when those lessons make it into the next system you build.
+
+<img src="img/authors/geeky.jpg" width="40"/>

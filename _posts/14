@@ -141,3 +141,5 @@ The first version doesn’t have to be pretty. It just has to boot. You can iter
 Rolling your own Linux distro won’t impress the average person at the pub. It will, however, give you a level of understanding and control that quietly leaks into everything else you do — from debugging weird container issues to arguing with vendors about their base images.
 
 Start with a remix if you want something you can use. Go full LFS or Buildroot if you want to understand what’s under the hood. Either way, you’ll never quite look at “just install Ubuntu” the same way again.
+
+<img src="img/authors/geeky.jpg" width="40"/>

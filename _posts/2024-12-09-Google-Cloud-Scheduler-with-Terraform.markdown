@@ -179,3 +179,5 @@ This flowchart explains the workflow of a Cloud Scheduler job with error handlin
 1. **Cloud Scheduler** acts as the orchestrator, sending triggers to various services.
 2. Optional components like Pub/Sub or HTTP endpoints allow flexibility in task execution.
 3. Error handling ensures reliability, while monitoring provides visibility into job performance.
+
+<img src="img/authors/geeky.jpg" width="40"/>
