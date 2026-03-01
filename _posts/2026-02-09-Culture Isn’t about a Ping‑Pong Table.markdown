@@ -3,7 +3,7 @@ title:  "Culture Isn’t about a Ping‑Pong Table. It’s What Happens When Nob
 subtitle: "On values, difficult people, and how fast growth can rot a good company"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/generated-image(1).png"
+image: "img/values.png"
 date: 2026-02-09
 tags: culture values startups leadership management toxicity
 ---
