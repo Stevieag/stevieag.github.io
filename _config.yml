@@ -5,11 +5,3 @@ keywords: Modern, Blogging, Fun
 author: Geeky Blinder
 baseurl: ""
 url: ""
-
-# HTML compression (for compress layout)
-compress_html:
-  ignore:
-    envs: [development]
-  endings: "all"
-  comments: "all"
-  clippings: "all"
