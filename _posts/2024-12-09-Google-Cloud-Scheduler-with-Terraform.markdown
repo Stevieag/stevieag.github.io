@@ -8,13 +8,12 @@ date: 2024-12-09
 tags: gcp scheduler terraform
 ---
 
-\
 Cloud Scheduler with Terraform offers a powerful way to automate and manage scheduled tasks in Google Cloud, allowing developers to create, monitor, and maintain cron jobs using infrastructure-as-code principles.
 
 ## Setting Up Cloud Scheduler
 To set up Cloud Scheduler using Terraform, begin by creating a Google Cloud project and enabling the necessary APIs, such as Cloud Scheduler and Pub/Sub. Install Terraform and the Google Cloud CLI on your local machine. Then, create a Terraform configuration file that defines your Cloud Scheduler job, specifying details like the job name, description, schedule, and target. For example:
 
-```yaml
+```tf
 resource "google_cloud_scheduler_job" "default" {
   name        = "test-job"
   description = "Automated scheduled task"
@@ -40,7 +39,7 @@ gcloud pubsub subscriptions pull pubsub_subscription --limit 5
 
 For more comprehensive monitoring:
 *   Implement Cloud Monitoring alerts for job failures
-*   Set up Stackdriver notifications for real-time updates
+*   Set up Cloud Monitoring notifications for real-time updates
 *   Create custom dashboards to visualize job execution metrics
 *   Use detailed logging in scheduled tasks for easier troubleshooting
 *   Consider implementing error handling and retry mechanisms for improved resilience
