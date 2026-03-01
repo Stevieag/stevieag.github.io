@@ -95,3 +95,5 @@ Pair this with decent logging and you’re already miles ahead of “everyone on
 Zero Trust isn’t a magic wand. It’s a continuous process of making lateral movement harder, credentials less reusable, and “being on the network” less special.
 
 If your current state is “VPN and vibes”, treat that as a migration starting point, not a destination.
+
+<img src="img/authors/geeky.jpg" width="40"/>

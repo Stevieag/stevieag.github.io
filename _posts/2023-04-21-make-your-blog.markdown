@@ -50,3 +50,5 @@ image: "img/blogimage.png"  # Image shown on the blog icon
 date:   1999-01-01          # Date shown on the page 
 tags: website R53 github webpage gitpage  # Some tags  \O/
 ***
+
+<img src="img/authors/geeky.jpg" width="40"/>

@@ -217,3 +217,5 @@ Things to validate:
 Use your baseline metrics and run a time‑boxed pilot (6–12 weeks) before committing fully. [web:300][web:304][web:306][web:309][web:312]
 
 If, at the end of that, your DevOps/SRE team says “this makes my life easier, and I get woken up less,” you’ve found the right AIOps platform. If not, it’s just another blinking dashboard.
+
+<img src="img/authors/geeky.jpg" width="40"/>
