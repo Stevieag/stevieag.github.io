@@ -4,7 +4,7 @@ description: Another person in tech with a blog
 keywords: Modern, Blogging, Fun
 author: Geeky Blinder
 baseurl: ""
-url: "https://geekyblinder.co.uk"
+url: ""
 
 # HTML compression (for compress layout)
 compress_html:
