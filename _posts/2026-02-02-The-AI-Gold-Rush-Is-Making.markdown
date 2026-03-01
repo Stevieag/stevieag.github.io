@@ -3,7 +3,7 @@ title:  "The AI Gold Rush Is Making the Internet Worse — And Could Get You Hac
 subtitle: "AI slop, backdoors, and the data leakage nobody wants to talk about"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/blogs/ai-gold-rush.jpg"
+image: "https://escp.eu/thechoice/tomorrow-choices/how-to-prevent-ai-slop-from-taking-over-your-workplace/"
 date: 2026-02-02
 tags: AI security devsecops chatgpt coding copilot data-leakage supply-chain
 ---
