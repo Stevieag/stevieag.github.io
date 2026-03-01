@@ -4,7 +4,7 @@ subtitle: "How to use AI as a tutor, not a copy‑paste vending machine"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/blogs/ai-learning.jpg"
-date: 2026-04-13
+date: 2026-03-01
 tags: AI learning devsecops coding education chatgpt
 ---
 
