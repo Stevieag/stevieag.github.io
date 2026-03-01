@@ -233,3 +233,5 @@ If your AIOps implementation is healthy, you should see: [web:300][web:302][web:
 Most importantly, your SRE/DevOps folks should report **less** burnout, fewer pointless wake‑ups, and a sense that AI is taking the drudge work, not the interesting work. [web:302][web:295][web:287][web:289][web:312]
 
 That’s when AIOps stops being a buzzword and starts being just “how we run prod now.”
+
+<img src="img/authors/geeky.jpg" width="40"/>

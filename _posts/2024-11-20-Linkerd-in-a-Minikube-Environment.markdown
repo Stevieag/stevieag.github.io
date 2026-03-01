@@ -167,3 +167,5 @@ Then, proceed with the control plane installation
 \# Linkerd Tutorials: The [Linkerd tutorials](https://linkerd.io/2/tutorials/) provide hands-on guides for various scenarios.\
 \# Minikube Documentation: The [Minikube documentation](https://minikube.sigs.k8s.io/docs/) can help you manage your local Kubernetes cluster.\
 \# [5-Week Training Plan](https://geekyblinder.co.uk/#/2024/11/20/Five-Week-DevOps-Training-Plan): Service Mesh, Kubernetes, and Related Technologies 
+
+<img src="img/authors/geeky.jpg" width="40"/>

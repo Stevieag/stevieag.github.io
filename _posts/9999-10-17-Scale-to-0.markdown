@@ -9,3 +9,5 @@ tags: k8s scale save money
 ---
 
 Post coming soon — scaling Kubernetes workloads to zero (e.g. with KEDA) to save cost when idle.
+
+<img src="img/authors/geeky.jpg" width="40"/>

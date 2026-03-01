@@ -132,3 +132,5 @@ For a large DevOps team, run a time‑boxed evaluation with real services and in
 If you’re starting relatively greenfield, Dynatrace is usually the safer, quicker win. If Splunk is already the beating heart of your monitoring and log search, ITSI is often the more economical and integrated route.
 
 The “best” is the one your DevOps/SRE engineers actually trust at 3am — and that tends to come down to how quickly it gives them a believable root cause and a clear next step.
+
+<img src="img/authors/geeky.jpg" width="40"/>
