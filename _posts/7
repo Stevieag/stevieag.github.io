@@ -1,0 +1,96 @@
+---
+title:  "Using AI to Learn Without Turning Your Brain to Slop"
+subtitle: "How to use AI as a tutor, not a copy‑paste vending machine"
+author: "Geeky Blinder"
+avatar: "img/authors/geeky.jpg"
+image: "img/blogs/ai-learning.jpg"
+date: 2026-04-13
+tags: AI learning devsecops coding education chatgpt
+---
+
+## Using AI to Learn Without Turning Your Brain to Slop
+
+AI can be the best mentor you’ve never had — or the fastest way to become that engineer who pastes things into prod they don’t understand.
+
+Let’s talk about using it to *learn* skills, not outsource thinking.
+
+---
+
+## AI as a Tutor, Not a Typist
+
+Good uses:
+
+- Ask for conceptual explanations in your own words: “Explain Kubernetes Services as if I’m a network engineer.”
+- Ask for comparisons: “Helm vs Kustomize vs plain YAML — when is each a good fit?”
+- Ask for step‑by‑step plans: “Build me a 4‑week plan to learn web app hacking with real labs.”
+
+Then:
+
+- Run the commands yourself.
+- Break the lab intentionally.
+- Ask follow‑up questions until you can explain it without notes.
+
+Bad use:
+
+- “Give me a complete Terraform module/K8s deployment for X” and shipping it straight to prod without review.
+
+---
+
+## Code, Licences, and Legal Slop
+
+Many models are trained on public code that is:
+
+- Licensed under GPL, MIT, Apache, proprietary, or unknown.
+- Vulnerable, outdated, or outright wrong.
+
+Risks:
+
+- You accidentally pull in code that is effectively a derivative work of a GPL project and then drop it into your closed‑source product.
+- You copy code containing someone else’s secrets or identifiers.
+- You adopt patterns that conflict with your company’s coding standards or policies.
+
+Safer pattern:
+
+- Use AI to *explain* a pattern, then implement your own version.
+- Use it to review your code: “Is there any obvious security issue in this handler?”
+- Ask it to translate concepts between languages instead of dumping raw blocks into your repo.
+
+And if your company has legal or OSS counsel: talk to them about policy. Don’t guess.
+
+---
+
+## Security Implications of AI‑Generated Code
+
+Security concerns:
+
+- Insecure defaults: missing auth, weak crypto, sloppy input validation.
+- Hidden assumptions: relies on global state, works only in trivial examples.
+- Prompt injection issues if you build AI into your product.
+
+Defensive moves:
+
+- Treat AI‑generated code like code from an unknown contributor.
+- Run SAST, DAST, and dependency scanning as standard.
+- Build a code review culture where reviewers feel comfortable saying “I don’t think you really understand this block; let’s rewrite it.”
+
+Remember: attackers are also using AI — to generate payloads, fuzz inputs, and explore weird corners of your stack faster.
+
+---
+
+## Learning With AI vs Learning From AI
+
+If you want to really learn:
+
+- Use AI to test you, not just teach you: “Give me 5 interview‑style questions about JWT security and then mark my answers.”
+- Get it to play “Socratic mentor”: “Ask me questions until you’re confident I understand Kubernetes networking.”
+- Iterate: each time you solve something in a lab (THM room, CTF challenge), get AI to help you produce a writeup — then refine it yourself.
+
+Using AI as scaffolding for your own thinking makes you dangerous in the good way. Using it as a copy‑paste vending machine makes you a liability.
+
+---
+
+## Final Thought
+
+AI should be the slightly annoying teacher that keeps asking “why?”, not the friend who lets you copy their homework.
+
+If you come out of a session with AI understanding the concept well enough to explain it to someone else, you’ve used it right. If you come out with a blob of code you can’t quite explain… you’ve just added a future incident ticket with your name on it.
