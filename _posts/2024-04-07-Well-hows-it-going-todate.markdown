@@ -10,13 +10,13 @@ tags: oscp hacking hacker
 
 ## My training: slow progress, steady growth
 
-Embarking into the world of cyber security is exciting and challenging. For someone like me it’s daunting, and I see the level of knowledge I don’t have (no Dunning–Kruger here, matey).
+Embarking into the world of cyber security is exciting and challenging. For someone like me it\'s daunting, and I see the level of knowledge I don\'t have (no Dunning–Kruger here, matey).
 
 My pursuit of training has been met with a reality check – progress is slow, but the baby steps I make are undeniably rewarding.  
-Firstly, I delved into platforms like Hack The Box and TryHackMe, enticed by promises of hands‑on experience and real‑world simulations. The allure of solving challenges and honing my skills was irresistible. Yet, as I immersed myself in these virtual environments, I quickly realised that it’s far from easy, as expected, but even with walkthroughs it’s slow going.  
-Trying to understand the process and methods is really fun but it’s very slow, and I have this inbuilt feeling that I\'m too slow and do feel time is running out to start the career – but I need real‑world knowledge.
+Firstly, I delved into platforms like Hack The Box and TryHackMe, enticed by promises of hands‑on experience and real‑world simulations. The allure of solving challenges and honing my skills was irresistible. Yet, as I immersed myself in these virtual environments, I quickly realised that it\'s far from easy, as expected, but even with walkthroughs it\'s slow going.  
+Trying to understand the process and methods is really fun but it\'s very slow, and I have this inbuilt feeling that I\'m too slow and do feel time is running out to start the career – but I need real‑world knowledge.
 
-As said, it’s fun and brings into use lots of bits from university that were covered in cyber sec modules. The programming done in uni is now needing to be pulled back from the rear of my mind to present. All very exciting, and I feel each small step is one step nearer to mastery (still not confident). Some of the skills I\'m picking up are making me look at things in a different manner – like perusing website input boxes as a place for manipulation and a weak point.
+As said, it\'s fun and brings into use lots of bits from university that were covered in cyber sec modules. The programming done in uni is now needing to be pulled back from the rear of my mind to present. All very exciting, and I feel each small step is one step nearer to mastery (still not confident). Some of the skills I\'m picking up are making me look at things in a different manner – like perusing website input boxes as a place for manipulation and a weak point.
 
 TryHackMe has been great; it has presented me with lots of machines, each presenting unique obstacles to overcome. Concepts that seemed straightforward on paper have, in practice, baffled me. In exploiting vulnerabilities, I found myself grappling with networking protocols, cryptography, and other principles, building the complexity as we go. Each step has needed patience and ultimately a walkthrough, but I can feel the confidence building as I look at the attack surfaces and have some skills to at least start to look for issues before tapping out.  
 THM has offered a guided approach, with structured learning paths and interactive tutorials, yet some of the boxes have had me scratching my head for hours. But with each step, each success is a huge level of satisfaction that adds to my determination to continue.
@@ -28,7 +28,7 @@ Joining local meetups and online forums exposed me to a wealth of knowledge and 
 I\'m slowly seeing each troubled step as a lesson, teaching me resilience and fortitude. I think I\'m getting easier with the slow pace of my journey, recognising that deep knowledge can\'t be rushed. As I continue my training, I am reminded of a quote by Bruce Lee:  
 > “I fear not the man who has practised 10,000 kicks once, but I fear the man who has practised one kick 10,000 times.”  
 
-I hope it’s not about how quickly I progress, but rather the depth of understanding and expertise I cultivate along the way.
+I hope it\'s not about how quickly I progress, but rather the depth of understanding and expertise I cultivate along the way.
 
 So, to my fellow aspiring hackers facing similar struggles, I offer this advice: embrace the journey, celebrate the victories, and learn from the defeats. Rome wasn\'t built in a day, and neither is a master hacker. Slow progress is still progress, and with perseverance, we will reach our destination.
 
