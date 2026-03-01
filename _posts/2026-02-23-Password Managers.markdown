@@ -3,7 +3,7 @@ title:  "Password Managers: The Least Exciting Tool That Will Absolutely Save Yo
 subtitle: "Stop playing password roulette with your life"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/generated-image(2).png"
+image: "img/passman.png"
 date: 2026-02-23
 tags: passwords security infosec personal-security MFA
 ---
