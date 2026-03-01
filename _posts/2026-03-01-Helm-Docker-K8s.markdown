@@ -412,14 +412,9 @@ kubectl delete ns playground
 You’ve now mastered:
 
 ✅ Build production Docker images
-
 ✅ Deploy raw Kubernetes manifests
-
 ✅ Create working Helm charts
-
 ✅ Fix CrashLoopBackOff, ImagePullBackOff, port issues
-
 ✅ Safe Helm upgrade/rollback
 
-xml
 <img src="img/authors/geeky.jpg" width="40"/>
