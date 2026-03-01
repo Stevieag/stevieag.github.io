@@ -106,3 +106,5 @@ If your THM/CTF writeups train you to explain clearly, you’re already ahead of
 ## Final Thought
 
 Treat every CTF or THM room as a free training engagement with one extra step: write the report. Do that consistently and you’ll end up with a knowledge base, a portfolio, and a reputation for being the person who not only pops shells — but makes sense of them.
+
+<img src="img/authors/geeky.jpg" width="40"/>
