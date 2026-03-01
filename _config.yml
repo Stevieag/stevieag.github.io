@@ -4,12 +4,4 @@ description: Another person in tech with a blog
 keywords: Modern, Blogging, Fun
 author: Geeky Blinder
 baseurl: ""
-url: "https://geekyblinder.co.uk"
-
-# HTML compression (for compress layout)
-compress_html:
-  ignore:
-    envs: [development]
-  endings: "all"
-  comments: "all"
-  clippings: "all"
+url: ""
