@@ -1,6 +1,6 @@
 ---
 title:  "All Change!"
-subtitle: "I\'ve changed direction, kinda"
+subtitle: "I've changed direction, kinda"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/change.jpeg"
