@@ -1,0 +1,149 @@
+---
+title:  "Helm, Docker, and Kubernetes: A Tiny Training App to Break (and Fix)"
+subtitle: "Learning K8s by actually doing something vaguely fun"
+author: "Geeky Blinder"
+avatar: "img/authors/geeky.jpg"
+image: "img/blogs/helm-k8s-training.jpg"
+date: 2026-04-06
+tags: kubernetes helm docker devops devsecops training
+---
+
+## Helm, Docker, and Kubernetes: A Tiny Training App to Break (and Fix)
+
+If Helm and Kubernetes still feel like some hostile YAML religion, let’s fix that with a tiny training app you can run, break, and repair until it clicks.
+
+We’ll go from Docker image to Helm chart to a small K8s deployment, and I’ll call out what’s happening, why, and what usually goes wrong.
+
+---
+
+## Step 1: The Tiny App (Docker)
+
+Pick a very small web app:
+
+- A simple Node/Express “Hello, K8s” app.
+- Or a Python Flask app.
+- Or Go if you’re feeling fancy.
+
+Dockerfile basics:
+
+- Use a slim base image (e.g. `node:20-alpine`).
+- Copy only what you need.
+- Run as a non‑root user in the container.
+
+Common errors:
+
+- Bloated images because you copy your entire repo, including `.git`.
+- Running as root and then being surprised when PodSecurity blocks it.
+- Forgetting health endpoints.
+
+Good practice:
+
+- Container listens on a configurable port (env var).
+- Logs to stdout/stderr (so K8s can collect logs easily).
+
+---
+
+## Step 2: From `kubectl apply` Hell to Basic Manifests
+
+Before Helm, deploy “raw”:
+
+- A `Deployment` with 2–3 replicas.
+- A `Service` (ClusterIP) to front it.
+- Optionally an `Ingress` if your cluster has an ingress controller.
+
+Things to understand:
+
+- Pods are ephemeral; Deployment ensures desired count.
+- Service gives you stable DNS inside the cluster.
+- Ingress is how you expose HTTP(S) from outside.
+
+This is where:
+
+- People hardcode image tags like `:latest` and wonder why rollbacks hurt.
+- Resource requests/limits are ignored “for now” until the node falls over.
+
+---
+
+## Step 3: Enter Helm – Templating the Mess
+
+Now we take those manifests and Helm‑ify them.
+
+Chart structure:
+
+- `Chart.yaml` – metadata.
+- `values.yaml` – defaults (image, replicas, resources, env, etc.).
+- `templates/` – your deployments, services, ingress as Go‑templated YAML.
+
+Why Helm:
+
+- Reusability: same chart across dev/stage/prod with different values.
+- Consistency: app teams don’t reinvent boilerplate on every repo.
+- Rollbacks: versioned releases you can roll back easily.
+
+Common Helm errors:
+
+- Mis‑indented templates (Helm + YAML is a cruel combination).
+- Forgetting to quote values that might look like numbers.
+- Hardcoding things in templates that should be configurable in values.
+
+Run:
+
+- `helm template` first to see the rendered YAML.
+- Then `helm install` into a test namespace.
+
+Get used to:
+
+- `helm upgrade --install` as your default.
+- `helm get values` and `helm get manifest` for debugging.
+
+---
+
+## Step 4: Practise Breaking It (On Purpose)
+
+To really learn, you break it:
+
+- Set resource limits too low and watch OOMKills.
+- Point the Service at the wrong port and see how that manifests.
+- Add a bad environment variable and see the app crashloop.
+
+Then fix it:
+
+- Use `kubectl describe pod` and `kubectl logs` to diagnose.
+- Update values, `helm upgrade`, and see how rollout behaves.
+- Use `kubectl rollout status` and `kubectl rollout undo` to recover.
+
+Every error is a lesson:
+
+- CrashLoopBackOff: look at container logs, env, command/entrypoint.
+- ImagePullBackOff: check registry, credentials, tags.
+- Pending pods: check node capacity, taints, and resource requests.
+
+---
+
+## Step 5: Alternatives and When Not to Use Helm
+
+Alternatives:
+
+- Kustomize: patch and overlay base manifests.
+- Plain YAML plus tools like `kpt`.
+- GitOps tools (Argo CD, Flux) pulling from Git and applying manifests for you.
+
+Rough rule‑of‑thumb:
+
+- Helm is great for packaging and sharing apps.
+- Kustomize is great for environment overlays and small teams who hate templating syntax.
+- GitOps sits on top of both to handle deployment flow.
+
+Your job as a future DevSecOps/CTO‑type: understand enough to choose what fits your org’s complexity and team skill level.
+
+---
+
+## Make It Fun
+
+You can wrap this whole thing into:
+
+- A THM‑style room: “fix the broken Helm chart to get the webpage working.”
+- Internal workshops: “here’s a deliberately broken chart, first one to get a green deployment wins.”
+- Weekly drills for juniors.
+
+The more you play with it, the less mysterious K8s feels. And once you’re comfortable breaking and fixing it in a lab, doing the same in prod stops being terrifying and becomes just… work.
