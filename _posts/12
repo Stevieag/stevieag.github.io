@@ -107,3 +107,5 @@ You still get the aesthetic of a tiny blinking Pi cluster, but your Kubernetes a
 “Can I run Kubernetes on Pi Zero Ws?” is the wrong question. The right one is “How can I use Pi Zero Ws to learn the kind of patterns Kubernetes lives in?”
 
 Use them as satellites, build the cluster on hardware that can cope, and you’ll spend more time learning and less time fighting physics.
+
+<img src="img/authors/geeky.jpg" width="40"/>

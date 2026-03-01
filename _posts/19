@@ -166,3 +166,5 @@ Hardening a namespace isn’t about throwing every control at it. It’s about:
 - Making security visible and fixable *before* merge and deploy.
 
 Do it once, properly, for one namespace. Then treat that as your gold standard and copy the pattern across the cluster.
+
+<img src="img/authors/geeky.jpg" width="40"/>

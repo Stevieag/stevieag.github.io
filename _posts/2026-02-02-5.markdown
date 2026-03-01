@@ -83,3 +83,5 @@ Security that grows with you beats security you panic‑buy after the first brea
 If you’re already signing big clients, congratulations: you’re now interesting to people you’d rather weren’t interested in you.
 
 You can’t retroactively secure year one, but you can stop pretending that “we’re just a startup” is still a valid excuse. Draw a line, build a baseline, and make “we take security seriously” something you can demonstrate — not just say.
+
+<img src="img/authors/geeky.jpg" width="40"/>

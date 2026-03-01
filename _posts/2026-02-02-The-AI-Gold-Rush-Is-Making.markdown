@@ -23,7 +23,7 @@ AI slop is all the confident rubbish we’re now drowning in: code, blog posts, 
 You’ve seen it:
 
 - Code that compiles, passes a basic test, and quietly hardcodes secrets or skips input validation.
-- “Security best practice” blog posts that read fine but are technically wrong in three subtle ways.
+- “Security best practice” blog posts that read fine but are technically wrong in subtle ways.
 - Docs written by someone who clearly asked an LLM “explain X” and hit publish.
 
 This isn’t about AI being imperfect. It’s about people shipping AI output straight to production and treating it like gospel. A junior asks an assistant how to secure JWTs, gets an answer based on some 2021 StackOverflow thread, and copies it into the auth service. No key rotation, no audience checks, no proper expiry handling. It *works* until it very much doesn’t.
@@ -146,3 +146,5 @@ For security teams:
 AI isn’t evil and it’s not going away. The real risk isn’t “the robots take our jobs”; it’s “we let statistically‑plausible text engines quietly re‑write our critical systems while we’re too busy chasing feature roadmaps.”
 
 Use the tools. But keep your threat model up to date, your reviewers awake, and your hand firmly on the wheel.
+
+<img src="img/authors/geeky.jpg" width="40"/>
