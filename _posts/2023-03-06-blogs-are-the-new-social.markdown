@@ -1,6 +1,6 @@
 ---
 title:  "Blogs are the new social!"
-subtitle: "It\'s all cyclic!"
+subtitle: "It's all cyclic!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/blog.jpg"
