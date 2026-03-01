@@ -3,7 +3,7 @@ title:  "How To Write a CTF Writeup That’s Actually Worth Reading"
 subtitle: "And why this skill makes you a better security professional"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/generated-image(3).png"
+image: "img/ctfwriteup.png"
 date: 2026-02-16
 tags: CTF TryHackMe writeups bug-bounty learning reporting
 ---
