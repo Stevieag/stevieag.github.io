@@ -1,5 +1,5 @@
 ---
-title:  "Culture Isn’t a Ping‑Pong Table. It’s What Happens When Nobody’s Looking."
+title:  "Culture Isn’t about a Ping‑Pong Table. It’s What Happens When Nobody’s Looking."
 subtitle: "On values, difficult people, and how fast growth can rot a good company"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
@@ -8,7 +8,7 @@ date: 2026-02-09
 tags: culture values startups leadership management toxicity
 ---
 
-## Culture Isn’t a Ping‑Pong Table. It’s What Happens When Nobody’s Looking.
+## Culture Isn’t about a Ping‑Pong Table. It’s What Happens When Nobody’s Looking.
 
 Every startup’s website claims they value “integrity, innovation, and people.” What actually matters is what happens when a loud, political high‑performer starts trampling the quieter people who keep everything working.
 
@@ -32,7 +32,7 @@ A company that genuinely values people:
 - Deals with bullying and exploitation even when it’s inconvenient.
 - Makes decisions that match what they claim publicly.
 
-The second you let someone stay because “they’re too important to lose,” you’ve declared your real values. Everyone sees it. They might not say anything — but they adjust accordingly.
+The second you let someone stay because “they’re too important to lose,” you’ve declared your real values. Everyone sees it. They might not say anything, but they adjust accordingly.
 
 ---
 
@@ -94,7 +94,7 @@ Practical things that actually help:
 - Explicit behavioural expectations: not just “hit your KPIs” but “don’t destroy your team getting there.”
 - Regular skip‑level chats where ICs can talk directly to leadership about dynamics.
 
-If you’re leading a team and you can already name the person doing the damage, you’re also choosing — actively or passively — whether to let it continue.
+If you’re leading a team and you can already name the person doing the damage, you’re also choosing, actively or passively, whether to let it continue.
 
 ---
 
@@ -105,7 +105,7 @@ Scaling from 10 to 100 to 200 people is not just “more of the same.” It’s 
 Startups that keep their soul tend to:
 
 - Hire for values as hard as for skill. A brilliant engineer who undermines everyone is a net negative.
-- Invest in people ops before the pain becomes existential — HR as a strategic partner, not just admin.
+- Invest in people ops before the pain becomes existential, HR as a strategic partner, not just admin.
 - Promote the culture carriers: the ones who collaborate, mentor, and share context.
 - Exit the wrong people, quickly and cleanly, regardless of their title.
 
@@ -121,7 +121,7 @@ Culture isn’t what you say you are. It’s what you tolerate.
 
 ## Final Thought
 
-If you’re a “nice” person being quietly leaned on, taken advantage of, or erased, the problem isn’t you. But you do have choices: document, set boundaries, and — if necessary — walk. The places that deserve you are out there.
+If you’re a “nice” person being quietly leaned on, taken advantage of, or erased, the problem isn’t you. But you do have choices: document, set boundaries, and, if necessary, walk. The places that deserve you are out there.
 
 And if you’re in leadership: your values are the sum of your hardest decisions. Make them count.
 
