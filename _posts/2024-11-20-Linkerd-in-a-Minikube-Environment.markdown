@@ -4,7 +4,7 @@ subtitle: "This is a tutorial start"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/minikube.png"
-date:   2024-10-11
+date: 2024-10-11
 tags: minikube linkerd micro service
 ---
 
