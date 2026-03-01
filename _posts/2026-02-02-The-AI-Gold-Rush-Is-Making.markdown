@@ -28,7 +28,7 @@ You’ve seen it:
 
 This isn’t about AI being imperfect. It’s about people shipping AI output straight to production and treating it like gospel. A junior asks an assistant how to secure JWTs, gets an answer based on some 2021 StackOverflow thread, and copies it into the auth service. No key rotation, no audience checks, no proper expiry handling. It *works* until it very much doesn’t.
 
-Confident wrongness at scale is dangerous. When the wrongness is in your auth, crypto, or input handling, it’s not just embarrassing — it’s exploitable.
+Confident wrongness at scale is dangerous. When the wrongness is in your auth, crypto, or input handling, it’s not just embarrassing, it’s exploitable.
 
 ---
 
@@ -125,7 +125,7 @@ For developers:
 - Use AI to draft, not to decide; treat it like a keen junior who’s great at boilerplate but terrible at security.
 - Run SAST and dependency scans as a non‑negotiable part of CI.
 - Never paste secrets, customer data, or proprietary code into public tools.
-- Keep architectural decisions in human hands and use AI for scaffolding, tests, and refactors — then review them like any other PR.
+- Keep architectural decisions in human hands and use AI for scaffolding, tests, and refactors, then review them like any other PR.
 
 For organisations:
 
@@ -143,7 +143,7 @@ For security teams:
 
 ## Final Thought
 
-AI isn’t evil and it’s not going away. The real risk isn’t “the robots take our jobs”; it’s “we let statistically‑plausible text engines quietly re‑write our critical systems while we’re too busy chasing feature roadmaps.”
+AI isn’t evil and it’s not going away. The real risk isn’t “the robots take our jobs”, it’s “we let statistically‑plausible text engines quietly re‑write our critical systems while we’re too busy chasing feature roadmaps.”
 
 Use the tools. But keep your threat model up to date, your reviewers awake, and your hand firmly on the wheel.
 
