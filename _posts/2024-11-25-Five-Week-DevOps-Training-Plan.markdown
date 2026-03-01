@@ -1,6 +1,6 @@
 ---
 title:  "Service Mesh DevOps Training!"
-subtitle: "Heres one I prepared earlier"
+subtitle: "Here's one I prepared earlier"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/SerMesh.jpg"
@@ -8,9 +8,9 @@ date:   2024-11-25
 tags: training mesh service devops istio minikube kind linkerd
 ---
 
-A 5-Week Training Plan I wrote for learing Service Mesh, Kubernetes, and Related Technologies.
-I hope you find it of use!!
-Its a bit ugly but heres a PDF 
+A 5-Week Training Plan I wrote for learning Service Mesh, Kubernetes, and Related Technologies.
+I hope you find it useful!
+It’s a bit ugly, but here’s a PDF:
 [Download File](files/5-week-plan.pdf)
 
 # Content
@@ -51,7 +51,7 @@ Its a bit ugly but heres a PDF
 
 This document is meant to be a central spring point to allow you to
 understand points to cover yet expects the user to use external
-resources to dig deeper in the points and subjests
+resources to dig deeper in the points and subjects
 
 ## Week 1: Fundamentals and Kubernetes
 
@@ -1009,28 +1009,28 @@ EOF
 ```
 This updated diagram now includes:
 
-1.  The original `webapp-config` ConfigMap with `BACKGROUND_COLOR` and `MESSAGE`.
-2.  The new ``webapp-content` ConfigMap containing the `index.html` template.
-3.  The Deployment and Pod structure, showing how these ConfigMaps are used:
-    -   `webapp-config` is used as environment variables (EnvFrom).
-    -   `webapp-content` is mounted as a volume, providing the `index.html` file.
+1. The original `webapp-config` ConfigMap with `BACKGROUND_COLOR` and `MESSAGE`.
+2. The new `webapp-content` ConfigMap containing the `index.html` template.
+3. The Deployment and Pod structure, showing how these ConfigMaps are used:
+   - `webapp-config` is used as environment variables (`envFrom`).
+   - `webapp-content` is mounted as a volume, providing the `index.html` file.
 
 The new `webapp-content` ConfigMap contains an HTML template that uses the
 `${BACKGROUND_COLOR}` and `${MESSAGE}` variables. These variables will be
 replaced with the actual values from the `webapp-config` ConfigMap when
-the page is served.This setup allows for a dynamic, configurable web
+the page is served. This setup allows for a dynamic, configurable web
 application where:
 
--   The content of the page (HTML structure) is defined in one ConfigMap (`webapp-content`).
--   The configuration values (background color and message) are defined in another ConfigMap (`webapp-config`).
--   The Nginx container serves the HTML content, with the variables replaced by the actual configuration values.
+- The content of the page (HTML structure) is defined in one ConfigMap (`webapp-content`).
+- The configuration values (background colour and message) are defined in another ConfigMap (`webapp-config`).
+- The Nginx container serves the HTML content, with the variables replaced by the actual configuration values.
 
 This separation of concerns makes it easy to update either the content
 template or the configuration values independently, providing
-flexibility in managing your web application\'s appearance and content.
+flexibility in managing your web application’s appearance and content.
 
--   **Step 4:** Create a Service\
-    Now, let\'s create a Service to expose our Deployment:
+-  **Step 4:** Create a Service  
+Now, let\’s create a Service to expose our Deployment:
 
 ```yaml
 cat <<EOF | kubectl apply -f -

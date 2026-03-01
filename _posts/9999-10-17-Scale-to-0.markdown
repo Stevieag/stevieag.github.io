@@ -4,7 +4,8 @@ subtitle: "I dont need these at times"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/confused.jpg"
-date:   2029-10-17
+date:   2024-10-17
 tags: k8s scale save money
 ---
 
+Post coming soon — scaling Kubernetes workloads to zero (e.g. with KEDA) to save cost when idle.
