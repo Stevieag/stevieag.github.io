@@ -8,6 +8,6 @@ date:   2024-01-16
 tags: oscp hacking hacker
 ---
 
-Stay tuned for updates, and let's hack responsibly! 💻🔒
+Stay tuned for updates, and let\'s hack responsibly! 💻🔒
 
 <img src="img/authors/geeky.jpg" width="40"/>
