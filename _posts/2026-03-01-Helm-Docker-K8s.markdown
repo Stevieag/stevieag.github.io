@@ -4,7 +4,7 @@ subtitle: "Learning K8s by actually doing something vaguely fun"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/blogs/helm-k8s-training.jpg"
-date: 2026-04-06
+date: 2026-03-01
 tags: kubernetes helm docker devops devsecops training
 ---
 
