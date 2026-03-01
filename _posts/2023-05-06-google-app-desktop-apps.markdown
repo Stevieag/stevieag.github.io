@@ -4,7 +4,7 @@ subtitle: "Ah, you can make one in a few clicks!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/gapps.jpeg"
-date:   2023-05-06
+date: 2023-05-06
 tags: gmail docs desktop shortcut create
 ---
 

@@ -4,7 +4,7 @@ subtitle: "Hacker Dumps!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/hacknotes.jpg"
-date:   2024-01-16
+date: 2024-01-16
 tags: oscp hacking hacker
 ---
 
