@@ -1,5 +1,5 @@
 ---
-title:  "Well it\'s been months, how\'s it going!"
+title:  "Well it's been months, how's it going!"
 subtitle: "Not well"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
