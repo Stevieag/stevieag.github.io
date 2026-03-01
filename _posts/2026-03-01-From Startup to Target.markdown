@@ -4,7 +4,7 @@ subtitle: "Building a security baseline before the big clients arrive"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/generated-image(4).png"
-date: 2026-02-30
+date: 2026-03-01
 tags: startups security baseline SOC2 ISO27001 devsecops
 ---
 
