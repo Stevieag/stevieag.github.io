@@ -10,11 +10,11 @@ tags: website create R53 github web page git page
 
 ## Want to have a bash at creating a blog?
 
-Well, this isn\'t the first time I’ve thought about creating a blog.
+Well, this isn\'t the first time I\'ve thought about creating a blog.
 
 I had previously looked at using [HUGO](https://gohugo.io/). This worked well, and I wrote a few bits but never published them. I just never continued and have since thought about it a number of times.
 
-So this time, as I’d forgotten what I’d used last time, I was looking for a static page blog creator. WordPress came up as an option (yeah, slap me). I decided to use AWS and here I started looking at setting up an EC2, R53, EIP, RDS, etc. I wanted to be a smarty‑pants so, stupidly, started writing the Terraform to do this. Advice: that is dumb when you are working out how something is made. Create a POC (proof of concept), get that all working and *then* start writing Terraform.
+So this time, as I\'d forgotten what I\'d used last time, I was looking for a static page blog creator. WordPress came up as an option (yeah, slap me). I decided to use AWS and here I started looking at setting up an EC2, R53, EIP, RDS, etc. I wanted to be a smarty‑pants so, stupidly, started writing the Terraform to do this. Advice: that is dumb when you are working out how something is made. Create a POC (proof of concept), get that all working and *then* start writing Terraform.
 
 Whilst looking at an error and creating the repository on Git, I came across [Jekyll](https://jekyllrb.com/). Another learning point is the overwhelming desire to follow a path that you start down. Get out of being precious – you\'re not always right first time.
 

@@ -10,7 +10,7 @@ tags: gmail docs desktop shortcut create
 
 ## Need a Google app?
 
-I was looking for a Gmail app. I was astounded that there isn’t one.  
+I was looking for a Gmail app. I was astounded that there isn\'t one.  
 You can use email apps, but what if there was a simpler solution?
 
 This is quick :P
@@ -18,7 +18,7 @@ This is quick :P
 # Here we go
 
 You are going to need to have Chrome installed – booooo!  
-I know it’s not always the first choice, but it is handy to have a second browser so you can check issues.
+I know it\'s not always the first choice, but it is handy to have a second browser so you can check issues.
 
 So:
 
