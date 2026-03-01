@@ -10,7 +10,7 @@ tags: training mesh service devops istio minikube kind linkerd
 
 A 5-Week Training Plan I wrote for learning Service Mesh, Kubernetes, and Related Technologies.
 I hope you find it useful!
-It’s a bit ugly, but here’s a PDF:
+It\'s a bit ugly, but here\'s a PDF:
 [Download File](files/5-week-plan.pdf)
 
 # Content
@@ -1027,7 +1027,7 @@ application where:
 
 This separation of concerns makes it easy to update either the content
 template or the configuration values independently, providing
-flexibility in managing your web application’s appearance and content.
+flexibility in managing your web application\'s appearance and content.
 
 -  **Step 4:** Create a Service  
 Now, let\’s create a Service to expose our Deployment:
