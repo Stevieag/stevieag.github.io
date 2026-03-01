@@ -4,7 +4,7 @@ subtitle: "I\'ve changed direction, kinda"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/change.jpeg"
-date:   2024-10-11
+date: 2024-10-11
 tags: chance change risk
 ---
 
