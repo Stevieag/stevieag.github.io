@@ -14,7 +14,7 @@ Yeah, everybody has jumped on this bandwagon. Everyone is soooo vulnerable and p
 
 Well, not everybody is. I\'ve met a few characters in tech. My original exposure was to a lot of people who were helpful, genuine, and a real team. This is me looking back to see the bigger picture.
 
-As time has gone on, I\'ve met some that really are just imposters. They plough through life by ignoring they’re wrong, just bullying, not listening to others, and making the same mistakes again and again. This will make you very good at doing what you do and then moving on before you are found out. That is not imposter syndrome; this is a very different thing.
+As time has gone on, I\'ve met some that really are just imposters. They plough through life by ignoring they\'re wrong, just bullying, not listening to others, and making the same mistakes again and again. This will make you very good at doing what you do and then moving on before you are found out. That is not imposter syndrome; this is a very different thing.
 
 In my original exposure to the tech scene, all people were unique but understood that you can\'t know everything. For the first time, having people that I see as geniuses ask for my help was the time I shit myself. Well, this is one of the moments when I felt like an imposter.
 
@@ -48,21 +48,21 @@ Eventually they get comfortable knowing that the journey of learning will never 
 
 Did you get the job because you are a genius or because you are nice? Probably both. If you knew nothing, you wouldn\'t be where you are, but if you know a lot and people can work with you, that\'s better than a genius who is arrogant, can\'t hold a conversation, etc.
 
-Now, I am never going to tell you how to control your self‑doubt, how it happens, or what to do for you, but I can share about me, and maybe that can help. Mostly, remember that you\'re not alone. Honestly, unless it has gone to their head and they’ve become arrogant (again, is that a manner to protect themselves from being found out in their minds?), all those people have doubts too. They may have worked through it and become comfortable with it, but they all suffer.
+Now, I am never going to tell you how to control your self‑doubt, how it happens, or what to do for you, but I can share about me, and maybe that can help. Mostly, remember that you\'re not alone. Honestly, unless it has gone to their head and they\'ve become arrogant (again, is that a manner to protect themselves from being found out in their minds?), all those people have doubts too. They may have worked through it and become comfortable with it, but they all suffer.
 
 # So
 
 Well, my point is that imposter syndrome is nothing special; it doesn\'t make you different; it actually makes you just like everybody else. Do you breathe? Well, so does everybody else.  
 We now have a name for a natural thing; it is what drives you on, makes you humble, and makes you a nicer person.  
-None of this is to dismiss the feeling – it is real – just know, if there is someone you can share this with, do it. If there isn’t, know that almost everyone is feeling the same.
+None of this is to dismiss the feeling – it is real – just know, if there is someone you can share this with, do it. If there isn\'t, know that almost everyone is feeling the same.
 
 # Will you get over it?
 
-Maybe, but most probably you’ll just get used to feeling this way.  
-You’ll have times when you are on fire, feel you’ve learnt loads, then have days when you think, “I have no idea what I’m doing.”  
-On those low days, look back and see all the amazing things you’ve done. Take a moment, have a short break, and then come back to your issue.
+Maybe, but most probably you\'ll just get used to feeling this way.  
+You\'ll have times when you are on fire, feel you\'ve learnt loads, then have days when you think, “I have no idea what I\'m doing.”  
+On those low days, look back and see all the amazing things you\'ve done. Take a moment, have a short break, and then come back to your issue.
 
-I’ve just watched Lewis Capaldi on Netflix – even he suffers.
+I\'ve just watched Lewis Capaldi on Netflix – even he suffers.
 
 Look after yourself, work to live; balance is the key.
 

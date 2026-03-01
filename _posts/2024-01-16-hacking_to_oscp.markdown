@@ -12,32 +12,32 @@ tags: oscp hacking hacker
 
 So, another moron thinking they could be a HACKER. As someone passionate about digital security, I\'ve decided to pursue a career and follow along on an exciting journey into the world of ethical hacking.  
 My ultimate goal? Attaining the Offensive Security Certified Professional (OSCP) certification.  
-I’m going to write up my notes and you can follow me on this adventure into cybersecurity, its challenges, and my pursuit of knowledge.
+I\'m going to write up my notes and you can follow me on this adventure into cybersecurity, its challenges, and my pursuit of knowledge.
 
 ## Introduction
 
 My intentions are purely ethical (honest guvnor).  
 I covered cyber security at university and so this is the next step for me. I love digital forensics, started down the route of reverse engineering, played with some other areas but, as with most uni modules, they are quick and high‑level.  
-It’s now time to break away from my present area of tech and follow what I really wish to be doing. The genre is wide, as wide as any area of tech. I’d like to hit offensive / red team.
+It\'s now time to break away from my present area of tech and follow what I really wish to be doing. The genre is wide, as wide as any area of tech. I\'d like to hit offensive / red team.
 
 ## Why learn hacking?
 
 Learning hacking isn\'t just about gaining unauthorised access to systems; it\'s about understanding how they work and how to secure them. With the increasing frequency and sophistication of cyber‑attacks, ethical hackers play a pivotal role in safeguarding digital landscapes.  
-I’d like to be part of that fight‑back, keep people safe and learn.
+I\'d like to be part of that fight‑back, keep people safe and learn.
 
 ## Getting started
 
 To kick‑start my journey, I\'m diving into the basics of networking, operating systems, and programming languages. Understanding the foundations is key to becoming a proficient ethical hacker.  
-I have signed up to the TryHackMe website. It’s not cheap but I believe you do need to invest and back yourself at times. I have possibly made a mistake as all guidance seems to point at Hack The Box, but you work with what you have. Security wasn’t part of the company I work at when I started, so changing direction is hard, but I have made my intentions clear and have company backing to scratch my itch (as long as I keep doing my existing job).
+I have signed up to the TryHackMe website. It\'s not cheap but I believe you do need to invest and back yourself at times. I have possibly made a mistake as all guidance seems to point at Hack The Box, but you work with what you have. Security wasn\'t part of the company I work at when I started, so changing direction is hard, but I have made my intentions clear and have company backing to scratch my itch (as long as I keep doing my existing job).
 
 ## Learning resources
 
-A couple of books I’ve been advised to look at:
+A couple of books I\'ve been advised to look at:
 
 ### Books
 
 - *Hacking: The Art of Exploitation* by Jon Erickson  
-- *Metasploit: The Penetration Tester’s Guide* by David Kennedy
+- *Metasploit: The Penetration Tester\'s Guide* by David Kennedy
 
 ### Online platforms
 

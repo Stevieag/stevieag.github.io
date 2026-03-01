@@ -43,7 +43,7 @@ Many will get rich financially but they are rotten to the core and poor inside.
 The run to an IPO initiates a Sisyphean race against time. Start-ups grapple with the demands of scaling operations, ensuring profitability, and complying with regulations. The pressure to meet the expectations of shareholders and analysts can lead to rushed decisions, resulting in the loss of both talented individuals and the core values that defined the company.
 
 There is the build‑up of teams and the business, then the cash‑out and lay‑off to colour the books, lives wrecked as the values disappear, as the greed takes over and the once trusted leaders turn their backs on the loyal teams. True colours show and it is ugly.  
-There isn’t a build of a great company anymore but an illusion to sell to a fickle market – smoke and mirrors – an illusion of profitability of a company that really was built with *x* number but now has a skeleton, over‑worked, under‑paid, hurt workforce that is not sustainable long term.
+There isn\'t a build of a great company anymore but an illusion to sell to a fickle market – smoke and mirrors – an illusion of profitability of a company that really was built with *x* number but now has a skeleton, over‑worked, under‑paid, hurt workforce that is not sustainable long term.
 
 This is a tale that is old, but no one bucks the trend; cyclic behaviour and greed is what we have.
 
