@@ -4,7 +4,7 @@ subtitle: "Well if you don\'t work, you can\'t F*CK UP!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/fuck.jpg"
-date:   2023-06-02
+date: 2023-06-02
 tags: messup alert incident panic chill
 ---
 

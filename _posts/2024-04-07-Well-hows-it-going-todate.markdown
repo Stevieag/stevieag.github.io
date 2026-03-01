@@ -4,7 +4,7 @@ subtitle: "Not well"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/notgoingwell.jpg"
-date:   2024-04-07
+date: 2024-04-07
 tags: oscp hacking hacker
 ---
 
