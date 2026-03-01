@@ -5,7 +5,7 @@ author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/github.png"
 date: 2023-04-21
-tags: website create R53 github web page git page
+tags: [ website, create, R53, github, web, page, git, page]
 ---
 
 ## Want to have a bash at creating a blog?
