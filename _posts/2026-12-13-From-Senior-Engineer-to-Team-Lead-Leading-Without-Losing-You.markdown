@@ -1,0 +1,111 @@
+---
+title:  "From Senior Engineer to Team Lead: Leading Without Losing Your Tech Edge"
+subtitle: "How to support people, ship features, and still keep your hands in the code"
+author: "Geeky Blinder"
+avatar: "img/authors/geeky.jpg"
+image: "img/cards/from-senior-engineer-to-team-lead-leading-without-losin.jpg"
+date: 2026-12-13
+tags: leadership devops devsecops interpersonal-skills
+---
+
+## Leadership Is Not a Promotion Away from Tech
+
+Moving from senior engineer to team lead doesn’t mean leaving tech behind. It means taking responsibility for **how** the team delivers, not just what you personally ship. Done well, you become a force multiplier: smoother delivery, better decisions, fewer surprises.
+
+The trap is trying to keep your old individual output while adding all the people stuff on top. That’s how you burn out and quietly block the team.
+
+---
+
+## Change Your Definition of “Productive”
+
+As a lead, your output becomes:
+
+- Clear priorities and unblocked people.
+- Fewer incidents and smoother releases.
+- Better decisions about what *not* to do.
+
+Ask yourself each week:
+
+- “What did I do that made it easier for the rest of the team to ship?”
+- “What risks did we remove or reduce?”
+
+If your answer is always “I wrote a lot of code”, something’s off.
+
+---
+
+## Keep a Slice of Hands‑On Work (Deliberately)
+
+You don’t have to stop coding, but you do have to be strategic:
+
+- Own **one or two technical areas**:
+  - e.g. the pipeline, shared security libraries, or observability.
+- Time‑box deep work:
+  - Block a few hours a week for hands‑on technical tasks.
+- Don’t take the critical path:
+  - Avoid owning features that become blockers if you get pulled into people issues.
+
+This keeps your skills sharp and your judgement grounded, without becoming a bottleneck.
+
+---
+
+## Make One‑to‑Ones Actually Useful
+
+1:1s are your main tool to support and steer people:
+
+- Talk about:
+  - Workload and stress.
+  - Roadblocks and politics.
+  - Growth and learning.
+- Ask:
+  - “What’s getting in your way?”
+  - “Is there anything I’m doing that makes your job harder?”
+
+Keep notes and follow up. People notice when issues are remembered and acted on.
+
+---
+
+## Protect the Team from Chaos (As Much As You Can)
+
+Your job includes being a buffer:
+
+- Translate vague asks into clear, prioritised work.
+- Say “no” or “not now” when the team is at capacity.
+- Give your team context:
+  - Why a decision was made.
+  - What trade‑offs were chosen.
+
+You’ll still get squeezed from both sides sometimes. Being honest about constraints while not throwing others under the bus is part of the craft.
+
+---
+
+## Practice Calm Communication in Incidents and Conflict
+
+In incidents, leads set the tone:
+
+- Narrate, don’t blame:
+  - “We saw X at 10:02; we’re trying Y; next step is Z.”
+- Afterward:
+  - Run blameless retros.
+  - Focus on systems and guardrails, not individuals.
+
+In disagreements:
+
+- Start with intent:
+  - “I want us to avoid outages like last month.”
+- Use specifics:
+  - “Here’s the risk I’m worried about in this design.”
+
+You’re aiming for clarity and progress, not winning arguments.
+
+---
+
+## Keep Learning – and Let People See You Learn
+
+You’ll be wrong sometimes. Own it:
+
+- “I changed my mind because…”
+- “I was wrong about that trade‑off; here’s what we’re doing differently.”
+
+That makes it safe for others to admit mistakes and change their minds too. In the long run, that’s far more valuable than being “right” in every meeting.
+
+<img src="img/authors/geeky.jpg" width="40"/>
