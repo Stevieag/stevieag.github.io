@@ -3,7 +3,7 @@ title:  "Hacking my way to OSCP!"
 subtitle: "Not another wannabe hacker!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/hacker.jpg"
+image: "img/cards/hacking-my-way-to-oscp.jpg"
 date: 2024-01-16
 tags: oscp hacking hacker
 ---
