@@ -2183,6 +2183,7 @@ Hooks allow you to intervene at certain points in a release\'s
 lifecycle. Here\'s an example of a pre-install hook:
 
 ```yaml
+{% raw %}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -2197,6 +2198,7 @@ spec:
         image: busybox
         command: ['sh', '-c', 'echo Pre-install job running']
       restartPolicy: Never
+{% endraw %}
 ```
 
 
@@ -2222,6 +2224,7 @@ Helm uses Go templates. Here\'s an example of a template using
 conditionals and loops:
 
 ```yaml
+{% raw %}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -2248,6 +2251,7 @@ spec:
               value: {{ $value | quote }}
             {{- end }}
           {{- end }}
+{% endraw %}
 ```
 
 
@@ -2262,6 +2266,7 @@ Helm charts dynamically.
 Here\'s an example of using Jinja2 to generate a Kubernetes manifest:
 
 ```python
+{% raw %}
 from jinja2 import Template
 
 template = Template("""
@@ -2294,6 +2299,7 @@ rendered = template.render(
 )
 
 print(rendered)
+{% endraw %}
 ```
 
 
