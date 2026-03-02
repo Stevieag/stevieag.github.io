@@ -10,9 +10,9 @@ tags: AI devsecops security devops burnout craftsmanship
 
 ## AI Coding Tools Work – That’s the Problem
 
-By 2026, most teams use AI coding tools in some form: code completion, chat‑based helpers, test generation, and infra templates. Surveys show they genuinely speed up routine work and help teams ship faster. [web:286][web:288][web:291][web:297][web:294]
+By 2026, most teams use AI coding tools in some form: code completion, chat‑based helpers, test generation, and infra templates. Surveys show they genuinely speed up routine work and help teams ship faster.
 
-But the same data shows deep concerns about long‑term code quality, security vulnerabilities, IP risk, and skill erosion when teams adopt AI without guardrails. [web:291][web:294][web:297]
+But the same data shows deep concerns about long‑term code quality, security vulnerabilities, IP risk, and skill erosion when teams adopt AI without guardrails.
 
 This isn’t about saying “AI bad.” It’s about using AI the way a good senior uses a junior: helpful, fast, and supervised.
 
@@ -20,7 +20,7 @@ This isn’t about saying “AI bad.” It’s about using AI the way a good sen
 
 ## Where AI Helps Most (If You Let It)
 
-Teams report the biggest productivity wins from AI in: [web:286][web:291][web:292][web:297]
+Teams report the biggest productivity wins from AI in:
 
 - Boilerplate and glue:
   - Wiring handlers, basic CRUD, serializers, DTOs.
@@ -31,7 +31,7 @@ Teams report the biggest productivity wins from AI in: [web:286][web:291][web:29
 - Infra and YAML:
   - Drafting K8s manifests, CI pipelines, Terraform skeletons.
 
-Used here, AI offloads drudge work and frees humans for design, architecture, and risk decisions. [web:291][web:292][web:293][web:297]
+Used here, AI offloads drudge work and frees humans for design, architecture, and risk decisions.
 
 The trap is letting it creep into areas you don’t understand, then shipping unread code.
 
@@ -39,11 +39,11 @@ The trap is letting it creep into areas you don’t understand, then shipping un
 
 ## The Real Risks: Security, IP, and Skill Rot
 
-Three big categories keep coming up in 2026 data. [web:275][web:291][web:294][web:296][web:297][web:299]
+Three big categories keep coming up in 2026 data.
 
 ### 1. Security Holes in AI‑Generated Code
 
-Studies and vendor experience show AI‑generated code is often: [web:275][web:291][web:296][web:297]
+Studies and vendor experience show AI‑generated code is often:
 
 - Correct on the happy path.
 - Weak on edge cases, error handling, and abuse cases.
@@ -56,21 +56,21 @@ If nobody actually reviews it, you quietly ship new attack surface into prod.
 
 ### 2. IP and Licensing Landmines
 
-Concerns include: [web:291][web:294][web:297]
+Concerns include:
 
 - Code that closely resembles licensed/open‑source snippets.
 - Unclear training data provenance.
 - Mixed licences sneaking into proprietary codebases.
 
-Legal teams are increasingly writing policy around how and where AI can be used in code generation. [web:291][web:297]
+Legal teams are increasingly writing policy around how and where AI can be used in code generation.
 
 ### 3. Over‑Reliance and Skill Erosion
 
-If AI always “thinks” for you: [web:291][web:294][web:297]
+If AI always “thinks” for you:
 
 - Troubleshooting and debugging muscles atrophy.
 - Engineers stop deeply understanding their own systems.
-- Onboarding gets harder because the underlying architecture is inconsistent and over‑engineered by suggestion. [web:294]
+- Onboarding gets harder because the underlying architecture is inconsistent and over‑engineered by suggestion.
 
 That’s bad for individuals and catastrophic for teams over a few years.
 
@@ -78,7 +78,7 @@ That’s bad for individuals and catastrophic for teams over a few years.
 
 ## A DevSecOps Playbook for AI-Assisted Development
 
-You need to treat AI as a first‑class part of your DevSecOps model, with process and controls. [web:292][web:293][web:296][web:299]
+You need to treat AI as a first‑class part of your DevSecOps model, with process and controls.
 
 ### 1. Set Team‑Level Usage Rules
 
@@ -89,34 +89,34 @@ Agree and document:
 - Where it’s restricted:
   - Core crypto, auth, payment logic, safety‑critical paths.
 - Where it’s banned:
-  - Copy‑pasting large blobs straight into production code. [web:291][web:296][web:297][web:299]
+  - Copy‑pasting large blobs straight into production code.
 
 Make it explicit that AI suggestions must be **understood and reviewed** like any other code.
 
 ### 2. Keep Human Review as a Hard Gate
 
-Code review becomes more important, not less. [web:291][web:296][web:297][web:299]
+Code review becomes more important, not less.
 
 - Treat AI‑suggested code like code from a junior:
   - “Do I understand this?”
   - “Is it the simplest correct solution?”
   - “What happens on bad inputs?”
 - Add security lenses to reviews:
-  - Input validation, auth/authz checks, error handling, logging, secrets. [web:275][web:296][web:299]
+  - Input validation, auth/authz checks, error handling, logging, secrets.
 - Consider tagging AI‑assisted PRs so reviewers know to be extra sharp.
 
 ### 3. Bake Security Checks into the Pipeline
 
-If AI can generate insecure patterns, automate catching them. [web:275][web:292][web:296][web:299]
+If AI can generate insecure patterns, automate catching them.
 
 - SAST and SCA:
-  - Run static analysis and dependency checks on every PR. [web:292][web:296][web:299]
+  - Run static analysis and dependency checks on every PR.
 - Secret scanning:
   - Ensure AI‑generated examples didn’t sneak hardcoded secrets into templates.
 - Policy‑as‑Code:
-  - Use OPA or similar to enforce infra/security policies on generated IaC. [web:292][web:296][web:299]
+  - Use OPA or similar to enforce infra/security policies on generated IaC.
 - Supply chain:
-  - SBOMs, artifact signing, dependency provenance. [web:292][web:296][web:299]
+  - SBOMs, artifact signing, dependency provenance.
 
 AI becomes “just another source” feeding into the same secure pipeline.
 
@@ -128,7 +128,7 @@ If you’re using AI day‑to‑day, treat it like a sharp tool.
 
 ### 1. Use AI to Improve Understanding, Not Replace It
 
-Good prompts: [web:291][web:297][web:294]
+Good prompts:
 
 - “Explain what this code does, line by line.”
 - “What are potential edge cases or security issues in this function?”
@@ -147,14 +147,14 @@ For any non‑trivial suggestion:
 
 - Run tests; add new tests for edge cases AI didn’t consider.
 - Check against known best practices or standards:
-  - OWASP, language‑specific secure coding guides. [web:275][web:296]
-- Validate performance and complexity; AI is prone to over‑engineering. [web:294]
+  - OWASP, language‑specific secure coding guides.
+- Validate performance and complexity; AI is prone to over‑engineering.
 
 If you can’t explain why it works and why it’s safe, you don’t own it.
 
 ### 3. Protect Your Inputs
 
-Remember that your prompts may be logged or used to retrain models, depending on the tool. [web:291][web:294][web:297]
+Remember that your prompts may be logged or used to retrain models, depending on the tool.
 
 - Don’t paste:
   - Full proprietary codebases.
@@ -162,23 +162,23 @@ Remember that your prompts may be logged or used to retrain models, depending on
   - Sensitive customer data.
 - Use:
   - Sanitised snippets.
-  - Self‑hosted/on‑prem models when dealing with sensitive contexts. [web:291][web:283][web:297]
+  - Self‑hosted/on‑prem models when dealing with sensitive contexts.
 
 ---
 
 ## Leadership: Preventing AI-Assisted Burnout and Chaos
 
-Leaders sometimes assume “AI will fix burnout,” but surveys show burnout stays high when AI is added without rethinking workload, expectations, and culture. [web:286][web:287][web:289][web:295][web:298]
+Leaders sometimes assume “AI will fix burnout,” but surveys show burnout stays high when AI is added without rethinking workload, expectations, and culture.
 
 To use AI without frying your team:
 
 - Don’t treat AI as free headcount:
-  - If throughput increases, don’t silently expand scope by 30%. [web:289][web:295][web:298]
+  - If throughput increases, don’t silently expand scope by 30%.
 - Invest in platform and DevSecOps:
-  - Golden paths, internal platforms, and CI/CD plus security automation give AI‑assisted devs a safe runway. [web:292][web:293][web:296][web:299]
+  - Golden paths, internal platforms, and CI/CD plus security automation give AI‑assisted devs a safe runway.
 - Focus on skills:
   - Encourage engineers to understand AI suggestions and architectural trade‑offs.
-  - Reward deep debugging and design, not just lines of code. [web:291][web:294][web:297]
+  - Reward deep debugging and design, not just lines of code.
 
 AI plus good leadership and culture reduces toil; AI plus pressure and chaos accelerates burnout.
 
@@ -186,7 +186,7 @@ AI plus good leadership and culture reduces toil; AI plus pressure and chaos acc
 
 ## The New Bar for Engineers
 
-In 2026, the bar isn’t “can you write everything by hand?” It’s: [web:291][web:294][web:297][web:292][web:296][web:299]
+In 2026, the bar isn’t “can you write everything by hand?” It’s:
 
 - Can you **direct** AI tools effectively?
 - Can you **spot** when they’re wrong, insecure, or over‑complicated?

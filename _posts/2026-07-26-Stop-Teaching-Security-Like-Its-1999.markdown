@@ -10,9 +10,9 @@ tags: education security training devsecops AI hands-on TryHackMe
 
 ## Security Training Is Boring. Attackers Aren’t.
 
-Most “security training” is still slide decks, checkbox quizzes, and videos nobody actually watches. Meanwhile, attackers are using AI, custom tooling, and your own cloud against you. [web:143][web:181][web:185][web:191]
+Most “security training” is still slide decks, checkbox quizzes, and videos nobody actually watches. Meanwhile, attackers are using AI, custom tooling, and your own cloud against you.
 
-If you want to keep up in 2026, you need to stop thinking in terms of “completed an annual module” and start thinking in terms of **reps**: hands‑on labs, live fire drills, and feedback loops that look a lot more like how we train pilots than how we train office workers. [web:183][web:186][web:189][web:192]
+If you want to keep up in 2026, you need to stop thinking in terms of “completed an annual module” and start thinking in terms of **reps**: hands‑on labs, live fire drills, and feedback loops that look a lot more like how we train pilots than how we train office workers.
 
 ---
 
@@ -21,16 +21,16 @@ If you want to keep up in 2026, you need to stop thinking in terms of “complet
 Static training has three big problems:
 
 - It’s generic — examples rarely match your stack or risks.
-- It’s passive — you watch, click “Next”, forget. [web:183][web:192]
+- It’s passive — you watch, click “Next”, forget.
 - It’s unmeasured — you tick compliance boxes without knowing if anyone can actually handle a real incident.
 
 Hands‑on labs flip that:
 
-- You work with **realistic systems** (web apps, cloud, K8s, CI/CD). [web:183][web:189]
-- You see what insecure code actually does, not just what a bullet list says. [web:189][web:190]
-- You can track **practical skills**, not just quiz answers. [web:186][web:189]
+- You work with **realistic systems** (web apps, cloud, K8s, CI/CD).
+- You see what insecure code actually does, not just what a bullet list says.
+- You can track **practical skills**, not just quiz answers.
 
-Platforms like TryHackMe, Hack The Box, AppSecEngineer and others have proved this model works at scale: safe, guided labs with progressive difficulty and realistic objectives. [web:186][web:189]
+Platforms like TryHackMe, Hack The Box, AppSecEngineer and others have proved this model works at scale: safe, guided labs with progressive difficulty and realistic objectives.
 
 Now take that mindset and apply it to your own world.
 
@@ -40,13 +40,13 @@ Now take that mindset and apply it to your own world.
 
 If you’re starting out, don’t reinvent the entire training stack.
 
-Good starting points: [web:186][web:189]
+Good starting points:
 
 - TryHackMe:
   - SOC Level 1, Jr Penetration Tester pathways.
   - Great for network, web, and blue‑team basics.
 - Other hands‑on platforms:
-  - Cover secure coding, cloud, DevSecOps, K8s, threat modelling. [web:183][web:189]
+  - Cover secure coding, cloud, DevSecOps, K8s, threat modelling.
 
 How to use them *properly*:
 
@@ -58,7 +58,7 @@ How to use them *properly*:
   - How you found it.
   - How you’d fix it for real.
 
-This becomes your **muscle memory** and your portfolio. [web:183][web:186]
+This becomes your **muscle memory** and your portfolio.
 
 ---
 
@@ -66,7 +66,7 @@ This becomes your **muscle memory** and your portfolio. [web:183][web:186]
 
 Generic labs are great; **your own code** is better.
 
-Pain points we see again and again: [web:184][web:187][web:190]
+Pain points we see again and again:
 
 - Bad authentication and weak roles.
 - Insecure direct object references (IDOR).
@@ -87,7 +87,7 @@ Instead of just talking about these, deliberately **build small, vulnerable vers
   - Clear objectives (“steal user B’s data”, “pop RCE from this endpoint”).
   - Bonus: “fix this and write a test so it doesn’t come back.”
 
-You can do this manually or with tools that help turn your own code into labs. [web:183][web:189]
+You can do this manually or with tools that help turn your own code into labs.
 
 ---
 
@@ -116,13 +116,13 @@ Then run drills:
   - Watch CloudTrail/logs.
   - Model how I’d stop this in production.”
 
-You’re training your hands and your **eyes** — how attacks look from the defender’s perspective. [web:181][web:185][web:191]
+You’re training your hands and your **eyes** — how attacks look from the defender’s perspective.
 
 ---
 
 ## Level 4: Add AI, But Don’t Let It Do the Work For You
 
-AI is now everywhere in cyber: attackers using it for recon, phishing, and evasion; defenders using it for hunting and triage. [web:143][web:181][web:185][web:191]
+AI is now everywhere in cyber: attackers using it for recon, phishing, and evasion; defenders using it for hunting and triage.
 
 Good, educational uses in your lab:
 
@@ -153,7 +153,7 @@ Examples you can build:
     - One subtle misconfig (e.g. over‑permissive storage bucket).
   - Write a “program brief”:
     - Scope, rules, rewards (even if it’s just kudos).
-  - Attack it like a researcher, then fix it like the internal security engineer. [web:183][web:186][web:189]
+  - Attack it like a researcher, then fix it like the internal security engineer.
 
 - **Internal red/blue drills**:
   - Red:
@@ -167,7 +167,7 @@ Examples you can build:
 - **Developer‑focused labs**:
   - Show a simple insecure pattern from your codebase.
   - Let devs exploit it.
-  - Then guide them to implement the fix and add tests. [web:183][web:187][web:190]
+  - Then guide them to implement the fix and add tests.
 
 This is where training starts to feel like a game — but a game that actually makes you better at your job.
 
@@ -175,24 +175,24 @@ This is where training starts to feel like a game — but a game that actually m
 
 ## Level 6: Avoid the Top 5 Developer Security Traps (By Practising Them)
 
-If you’re a dev or DevOps, your “exciting” training should be targeted at the stuff that bites most teams. [web:184][web:187][web:190]
+If you’re a dev or DevOps, your “exciting” training should be targeted at the stuff that bites most teams.
 
 Five to always cover:
 
 1. **Injection**
    - SQL, NoSQL, command, LDAP.
-   - Lab: insecure query; goal is to exploit, then parameterise and test. [web:187][web:190]
+   - Lab: insecure query; goal is to exploit, then parameterise and test.
 
 2. **Broken auth & weak permissions**
    - Logged‑in vs allowed is not the same.
-   - Lab: change an ID in a URL to read someone else’s data (IDOR); then fix. [web:184][web:187]
+   - Lab: change an ID in a URL to read someone else’s data (IDOR); then fix.
 
 3. **Secrets in code and configs**
-   - API keys, DB creds, tokens in repos. [web:187][web:190]
+   - API keys, DB creds, tokens in repos.
    - Lab: leak a fake key, find it with grep/trufflehog; then move to a vault.
 
 4. **Dependency hell (supply chain)**
-   - Outdated/vulnerable packages, malicious deps. [web:181][web:188][web:190]
+   - Outdated/vulnerable packages, malicious deps.
    - Lab: add a known vulnerable version, observe SCA tools flag it, patch and re‑test.
 
 5. **Missing logging and monitoring**
@@ -212,11 +212,11 @@ Don’t just do labs and walk away. Capture it.
 - Turn the best scenarios into:
   - Blog posts (sanitised, educational).
   - Internal brown‑bag sessions.
-  - THM‑style live streams. [web:186][web:192]
+  - THM‑style live streams.
 - Tie it to the trends:
-  - AI‑assisted attacks and defence. [web:143][web:181][web:185][web:191]
-  - Cloud‑native threats and continuous monitoring. [web:140][web:181][web:185]
-  - Developer security mistakes you now know how to spot. [web:184][web:187][web:190]
+  - AI‑assisted attacks and defence.
+  - Cloud‑native threats and continuous monitoring.
+  - Developer security mistakes you now know how to spot.
 
 When you can tell a story like:
 

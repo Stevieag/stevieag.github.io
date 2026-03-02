@@ -10,9 +10,9 @@ tags: empathy interpersonal-skills difficult-people communication leadership
 
 ## Empathy Isn’t Being Nice. It’s Being Accurate.
 
-Empathy at work is the ability to understand what someone else is feeling and where they’re coming from — without necessarily agreeing or giving them what they want. Done well, it reduces conflict, improves collaboration, and makes even difficult colleagues more predictable. [web:246][web:249][web:252][web:255][web:258]
+Empathy at work is the ability to understand what someone else is feeling and where they’re coming from — without necessarily agreeing or giving them what they want. Done well, it reduces conflict, improves collaboration, and makes even difficult colleagues more predictable.
 
-It’s not about becoming everyone’s therapist. It’s about getting a clearer mental model of the humans you rely on, so you can work with them (or around them) without frying your own circuits. [web:246][web:248][web:252][web:255]
+It’s not about becoming everyone’s therapist. It’s about getting a clearer mental model of the humans you rely on, so you can work with them (or around them) without frying your own circuits.
 
 ---
 
@@ -20,7 +20,7 @@ It’s not about becoming everyone’s therapist. It’s about getting a clearer
 
 With people you like, empathy is easy — but you still want it to be deliberate, not just vibes.
 
-Patterns that help: [web:246][web:249][web:252][web:258]
+Patterns that help:
 
 - **Listen properly, not just waiting to talk**
   - Reflect what you heard: “So you’re worried about X because Y?”
@@ -29,38 +29,38 @@ Patterns that help: [web:246][web:249][web:252][web:258]
 - **Check in under load**
   - Ask “How’s your load right now?” before handing off more work.
 
-This builds trust: they feel seen and you get earlier warning when they’re heading towards overload or burnout. [web:246][web:249][web:252][web:258]
+This builds trust: they feel seen and you get earlier warning when they’re heading towards overload or burnout.
 
 ---
 
 ## The Hard Part: Empathy with People You Don’t Like
 
-You don’t have to like someone to use empathy as a tool. The goal isn’t friendship; it’s smoother collaboration and less emotional drag. [web:245][web:247][web:248][web:249][web:252][web:255][web:258]
+You don’t have to like someone to use empathy as a tool. The goal isn’t friendship; it’s smoother collaboration and less emotional drag.
 
 ### 1. Switch from “They’re Awful” to “What’s Driving This?”
 
 Ask yourself:
 
 - What pressures or fears might be behind this behaviour?
-  - Overloaded? Insecure? Different incentives? [web:247][web:248][web:249]
+  - Overloaded? Insecure? Different incentives?
 - How do *they* see the situation?
-  - “If I believed what they believe, would this behaviour make more sense?” [web:247][web:249][web:252]
+  - “If I believed what they believe, would this behaviour make more sense?”
 
-You’re not excusing it; you’re trying to find the “logic” so you can respond strategically, not reactively. [web:247][web:249][web:252][web:255]
+You’re not excusing it; you’re trying to find the “logic” so you can respond strategically, not reactively.
 
 ### 2. Use Curious, Neutral Questions
 
 Instead of arguing:
 
-- “Can you help me understand what’s most important to you here?” [web:245][web:249][web:252]
+- “Can you help me understand what’s most important to you here?”
 - “What would a good outcome look like from your side?”
 - “What’s blocking you from doing X right now?”
 
-You acknowledge their perspective without surrendering yours, and you often uncover constraints you didn’t know about. [web:245][web:249][web:252][web:258]
+You acknowledge their perspective without surrendering yours, and you often uncover constraints you didn’t know about.
 
 ### 3. Empathy + Boundaries
 
-Empathy doesn’t mean agreeing, fixing everything, or accepting bad behaviour. Good pattern: [web:245][web:248][web:252][web:255][web:258]
+Empathy doesn’t mean agreeing, fixing everything, or accepting bad behaviour. Good pattern:
 
 - First: reflect and validate feelings:
   - “I can see this deadline is stressing you out.”
@@ -73,7 +73,7 @@ You’re saying “I get it, and here’s my line”, not “I get it, so my nee
 
 ## Practical Scripts for Common Difficult Types
 
-You’ll recognise these from every tech org. The trick is to empathise with the *driver*, then respond with both understanding and a line. [web:248][web:249][web:252][web:255][web:258]
+You’ll recognise these from every tech org. The trick is to empathise with the *driver*, then respond with both understanding and a line.
 
 ### 1. The Critic
 
@@ -81,7 +81,7 @@ Driver: fear of failure, need for control or status.
 
 Try:
 
-- “It sounds like you’re worried we’ll ship something broken. What are the top 1–2 risks you’re most concerned about?” [web:248][web:249]
+- “It sounds like you’re worried we’ll ship something broken. What are the top 1–2 risks you’re most concerned about?”
 - “I agree reliability matters. Given our time, which checks would give you most confidence?”
 
 You make them specify, which turns vague negativity into concrete, solvable concerns.
@@ -92,10 +92,10 @@ Driver: overwhelm, avoidance, unclear priorities.
 
 Try:
 
-- “I get the sense you’ve got a lot on your plate. What’s currently ahead of this work?” [web:245][web:249]
+- “I get the sense you’ve got a lot on your plate. What’s currently ahead of this work?”
 - “This is blocking X and Y on our side. How can we help unblock, or who should we talk to about re‑prioritising?”
 
-You show you see their load *and* the impact, and invite them into problem‑solving instead of simmering in frustration. [web:245][web:247][web:249]
+You show you see their load *and* the impact, and invite them into problem‑solving instead of simmering in frustration.
 
 ### 3. The Drama Generator
 
@@ -103,7 +103,7 @@ Driver: need for significance, anxiety, sometimes habit.
 
 Try:
 
-- “This sounds really important to you. Let’s separate what we know from what we’re assuming.” [web:247][web:252][web:258]
+- “This sounds really important to you. Let’s separate what we know from what we’re assuming.”
 - “What’s in our control right now? Let’s list those first.”
 
 You acknowledge their feelings but steer towards concrete facts and actions.
@@ -119,7 +119,7 @@ Use empathy as a *skill*, not an identity.
 Do:
 
 - Focus, summarise, reflect feelings.
-- Ask “Is there more?” once, not ten times. [web:249][web:252][web:258]
+- Ask “Is there more?” once, not ten times.
 
 Don’t:
 
@@ -133,7 +133,7 @@ It’s okay to say:
 - “I’ve got 10 minutes now, then I need to get back to this incident.”
 - “This sounds important — can we schedule half an hour later to talk it through properly?”
 
-You’re showing you care *and* protecting your schedule. [web:245][web:252][web:258]
+You’re showing you care *and* protecting your schedule.
 
 ### 3. Separate Understanding from Agreement
 
@@ -142,13 +142,13 @@ Use phrases like:
 - “I can see why you’d feel that way.”
 - “I get that this is frustrating.”
 
-You can understand their feelings while still disagreeing with their conclusions or proposed actions. [web:249][web:252][web:255]
+You can understand their feelings while still disagreeing with their conclusions or proposed actions.
 
 ---
 
 ## Using Empathy Upwards, Sideways, and Downwards
 
-Empathy is useful in all directions, but it looks slightly different. [web:246][web:248][web:249][web:252][web:255]
+Empathy is useful in all directions, but it looks slightly different.
 
 - With managers:
   - Understand their constraints (roadmap, board, customers).
@@ -174,9 +174,9 @@ There are times empathy won’t fix it:
 
 In those cases:
 
-- Document specifics (dates, behaviours, impact). [web:245][web:248][web:252]
+- Document specifics (dates, behaviours, impact).
 - Use formal channels (manager, HR, trusted senior).
-- Protect your health; sometimes the only empathic act you owe yourself is leaving. [web:246][web:258]
+- Protect your health; sometimes the only empathic act you owe yourself is leaving.
 
 Empathy is a tool, not a requirement to stay in harmful environments.
 
