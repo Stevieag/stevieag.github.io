@@ -10,9 +10,9 @@ tags: hacking web-app security APIs cloud AI
 
 ## Web Hacking Has Grown Up
 
-Modern web hacking isn’t just “find login, try SQL injection, profit.” Apps are now API‑first, frontends are SPAs, logic lives in microservices and serverless, and supply‑chain and AI features create new attack paths. [web:181][web:209][web:251][web:254][web:257]
+Modern web hacking isn’t just “find login, try SQL injection, profit.” Apps are now API‑first, frontends are SPAs, logic lives in microservices and serverless, and supply‑chain and AI features create new attack paths.
 
-To be effective — and useful to defenders — you need a structured methodology that covers recon, auth, access control, APIs, cloud edges, and AI‑adjacent functionality. [web:251][web:254][web:257]
+To be effective — and useful to defenders — you need a structured methodology that covers recon, auth, access control, APIs, cloud edges, and AI‑adjacent functionality.
 
 ---
 
@@ -22,9 +22,9 @@ Good hacks start with good questions:
 
 - What does this app actually do for the business?
 - Who are the users and roles?
-- Where does the data live (DBs, buckets, external APIs)? [web:254]
+- Where does the data live (DBs, buckets, external APIs)?
 
-Practical steps: [web:251][web:254]
+Practical steps:
 
 - Map assets:
   - Subdomain enumeration.
@@ -41,19 +41,19 @@ You’re not just looking for “any bug”; you’re looking for ways to break 
 
 ## 2. Authentication and Session Flaws
 
-Auth in 2026 is mostly OAuth/OIDC and social logins with JWTs, but still gets broken in subtle ways. [web:251][web:254]
+Auth in 2026 is mostly OAuth/OIDC and social logins with JWTs, but still gets broken in subtle ways.
 
 Targets:
 
 - Weak login and password reset flows.
 - Misused OAuth flows (e.g. ROPC, bad redirect_uri validation).
-- JWT verification issues (alg confusion, missing claim checks). [web:254]
+- JWT verification issues (alg confusion, missing claim checks).
 
 Look for:
 
 - Password reset that only checks email, no proper token.
 - Login CSRF (missing state in OAuth).
-- ID tokens accepted without verifying issuer/audience. [web:254]
+- ID tokens accepted without verifying issuer/audience.
 
 From a defence view, fix means:
 
@@ -65,7 +65,7 @@ From a defence view, fix means:
 
 ## 3. Broken Access Control and IDOR (Still King)
 
-The most common high‑impact bugs are still “user sees data they shouldn’t”: IDOR and access control flaws. [web:181][web:190][web:251][web:254]
+The most common high‑impact bugs are still “user sees data they shouldn’t”: IDOR and access control flaws.
 
 Patterns to probe:
 
@@ -79,7 +79,7 @@ In an API world:
   - No token.
   - Valid user token.
   - Another user’s token.
-  - Low‑priv vs high‑priv tokens. [web:251][web:254]
+  - Low‑priv vs high‑priv tokens.
 
 Defenders should:
 
@@ -90,7 +90,7 @@ Defenders should:
 
 ## 4. Injection and File Handling in an API‑First World
 
-Classic injection is alive, but the surfaces have shifted. [web:181][web:190][web:251][web:254]
+Classic injection is alive, but the surfaces have shifted.
 
 Look for:
 
@@ -99,7 +99,7 @@ Look for:
 - OS command injection in export/import utilities.
 - File upload issues:
   - Extension/content‑type mismatch.
-  - Image uploads that hit back‑end image processing libraries. [web:254]
+  - Image uploads that hit back‑end image processing libraries.
 
 Approach:
 
@@ -117,7 +117,7 @@ Defenders should:
 
 ## 5. APIs and Microservices: New Front Line
 
-APIs are now the main entry point for data and logic. Attackers focus on: [web:181][web:190][web:209][web:251][web:254][web:257]
+APIs are now the main entry point for data and logic. Attackers focus on:
 
 - Excessive data exposure:
   - Endpoints returning more fields than needed.
@@ -142,7 +142,7 @@ Defence:
 
 ## 6. Cloud Edges and Supply Chain in Web Hacking
 
-Modern web apps are glued to S3 buckets, queues, serverless functions, and third‑party SaaS. Each is a potential weak link. [web:181][web:209][web:251][web:254][web:257]
+Modern web apps are glued to S3 buckets, queues, serverless functions, and third‑party SaaS. Each is a potential weak link.
 
 Attack paths:
 
@@ -156,7 +156,7 @@ Methodology:
 - Look for:
   - File URLs pointing at cloud storage.
   - CI build status links.
-- Try controlled SSRF if there are URL fetchers, webhooks, or integrations. [web:254]
+- Try controlled SSRF if there are URL fetchers, webhooks, or integrations.
 
 Defence:
 
@@ -168,7 +168,7 @@ Defence:
 
 ## 7. AI Features as New Attack Surface
 
-2026 apps increasingly embed AI for chat, recommendations, and content. That opens: [web:181][web:209][web:251][web:254][web:257]
+2026 apps increasingly embed AI for chat, recommendations, and content. That opens:
 
 - Prompt injection:
   - Inputs that hijack the model to exfiltrate data or ignore rules.
@@ -207,7 +207,7 @@ If you want to be part of the solution:
 - For internal teams:
   - Pair with devs to add tests and guardrails so it doesn’t come back.
 
-Methodologies like the modern web‑app pentest frameworks are as much about **structure and communication** as raw finding power. [web:254]
+Methodologies like the modern web‑app pentest frameworks are as much about **structure and communication** as raw finding power.
 
 Modern web hacking is not about being the cleverest person in the room; it’s about systematically breaking and then strengthening the systems almost everyone now relies on.
 
