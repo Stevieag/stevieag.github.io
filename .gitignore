@@ -10,5 +10,9 @@ _site/
 # Work documents
 untitled folder/
 
+# Python
+__pycache__/
+*.pyc
+
 # Optional: uncomment to ignore Bundler lockfile (some prefer to commit it for CI)
 # Gemfile.lock
