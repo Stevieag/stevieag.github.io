@@ -10,9 +10,9 @@ tags: devsecops security tools cicd sdlc
 
 ## You Don’t Need Every Tool – You Need the Right Ones
 
-DevSecOps isn’t “install 20 scanners and call it a day.” It’s about picking a small set of tools that cover the main risks across code, dependencies, infrastructure, and runtime, then wiring them into your SDLC so they run by default. OWASP’s DevSecOps guideline and DSOMM both emphasise automated checks at each stage instead of random point tools. [web:349][web:352][web:355]
+DevSecOps isn’t “install 20 scanners and call it a day.” It’s about picking a small set of tools that cover the main risks across code, dependencies, infrastructure, and runtime, then wiring them into your SDLC so they run by default. OWASP’s DevSecOps guideline and DSOMM both emphasise automated checks at each stage instead of random point tools.
 
-Here’s a 2026‑ready toolbelt that hits the key categories without turning your pipeline into a museum. [web:343][web:344][web:347][web:348][web:350][web:353][web:356]
+Here’s a 2026‑ready toolbelt that hits the key categories without turning your pipeline into a museum.
 
 ---
 
@@ -20,7 +20,7 @@ Here’s a 2026‑ready toolbelt that hits the key categories without turning yo
 
 You want fast feedback to developers and customisability.
 
-**Good choices:** [web:343][web:344][web:347][web:348][web:350][web:356]
+**Good choices:**
 
 - **Semgrep**
   - Rule‑based SAST, very fast, great for custom rules and CI integration.
@@ -33,13 +33,13 @@ You want fast feedback to developers and customisability.
 - **Enterprise SAST (Checkmarx, etc.)**
   - Deeper coverage and governance for large, regulated orgs.
 
-**Where it fits:** pull‑requests and nightly scans; must be tuned to reduce noise and aligned with your secure coding standards. [web:343][web:344][web:348][web:352]
+**Where it fits:** pull‑requests and nightly scans; must be tuned to reduce noise and aligned with your secure coding standards.
 
 ---
 
 ## Dependency & Container Scanning (SCA): Don’t Ship Known Vulns
 
-Most real‑world risk comes from dependencies and base images. You need SCA that devs will actually look at. [web:343][web:344][web:348][web:350][web:354]
+Most real‑world risk comes from dependencies and base images. You need SCA that devs will actually look at.
 
 **Good choices:**
 
@@ -49,20 +49,20 @@ Most real‑world risk comes from dependencies and base images. You need SCA tha
 
 - **Trivy**
   - Open‑source scanner for container images, file systems, and IaC.
-  - Very popular in Kubernetes and GitOps pipelines; simple CLI/CI usage. [web:343][web:347][web:350]
+  - Very popular in Kubernetes and GitOps pipelines; simple CLI/CI usage.
 
 - **Grype**
-  - Lightweight container + SBOM scanner, good for CI and registries. [web:343][web:344]
+  - Lightweight container + SBOM scanner, good for CI and registries.
 
-**Where it fits:** on PRs for manifest changes and container builds, and on registries as a gate before deploying to higher environments. [web:343][web:344][web:348][web:350]
+**Where it fits:** on PRs for manifest changes and container builds, and on registries as a gate before deploying to higher environments.
 
 ---
 
 ## IaC & Policy‑as‑Code: Secure the Infrastructure Definition
 
-Terraform/CloudFormation/K8s/Helm need their own security checks. OWASP DevSecOps guidance explicitly calls out IaC scanning. [web:348][web:349][web:352][web:355]
+Terraform/CloudFormation/K8s/Helm need their own security checks. OWASP DevSecOps guidance explicitly calls out IaC scanning.
 
-**Good choices:** [web:343][web:347][web:348][web:350]
+**Good choices:**
 
 - **Checkov**
   - Static analysis for Terraform, CloudFormation, Kubernetes manifests, Helm, and more.
@@ -72,34 +72,34 @@ Terraform/CloudFormation/K8s/Helm need their own security checks. OWASP DevSecOp
   - Similar role; strong support across cloud and IaC formats.
   - Integrate in CI and pre‑commit hooks.
 
-**Where it fits:** on every infra PR, plus periodic scans against main branches. Treat failing policies like failing tests. [web:348][web:352][web:355]
+**Where it fits:** on every infra PR, plus periodic scans against main branches. Treat failing policies like failing tests.
 
 ---
 
 ## DAST & API Testing: Test the Running App
 
-Static tools can’t see everything. You still need to hit the app “from the outside” in a controlled way. [web:347][web:350][web:351][web:356]
+Static tools can’t see everything. You still need to hit the app “from the outside” in a controlled way.
 
 **Good choices:**
 
 - **OWASP ZAP**
   - Free, scriptable DAST for web apps and APIs.
-  - Can be run in “baseline” mode in CI to catch obvious issues early. [web:347][web:348][web:350]
+  - Can be run in “baseline” mode in CI to catch obvious issues early.
 
 - **Burp Suite**
   - Industry standard for deeper manual web testing.
   - Less about automation, more about focused assessments.
 
 - Modern CI‑friendly DAST (e.g. Beagle Security and others)
-  - Designed for continuous API and app tests with pipeline hooks. [web:349][web:351]
+  - Designed for continuous API and app tests with pipeline hooks.
 
-**Where it fits:** scheduled scans against staging/pre‑prod and as a nightly CI job against deployed test environments. [web:351][web:356]
+**Where it fits:** scheduled scans against staging/pre‑prod and as a nightly CI job against deployed test environments.
 
 ---
 
 ## Secrets: Store, Rotate, and Stop Leaks
 
-DevSecOps fails fast if secrets are scattered through repos and YAML. [web:347][web:348][web:350][web:353]
+DevSecOps fails fast if secrets are scattered through repos and YAML.
 
 **Good choices:**
 
@@ -109,44 +109,44 @@ DevSecOps fails fast if secrets are scattered through repos and YAML. [web:347][
 
 - **Secret scanners (Gitleaks, trufflehog, etc.)**
   - Scan repos and pipelines for hard‑coded secrets.
-  - Critical for catching accidental leaks early. [web:347][web:355]
+  - Critical for catching accidental leaks early.
 
-**Where it fits:** scanning on every push/PR, and Vault (or equivalent) plugged into your apps and pipelines for runtime access. [web:348][web:352][web:355]
+**Where it fits:** scanning on every push/PR, and Vault (or equivalent) plugged into your apps and pipelines for runtime access.
 
 ---
 
 ## Cloud & Runtime: CNAPP / CSPM and K8s Detection
 
-Cloud misconfig and runtime issues are a big chunk of modern risk. [web:343][web:344][web:347][web:350][web:353][web:357]
+Cloud misconfig and runtime issues are a big chunk of modern risk.
 
 **Good choices:**
 
 - **CNAPP / CSPM (e.g. Wiz, Aqua, etc.)**
   - Cloud posture management, workload scanning, and runtime protection.
-  - Unified view of misconfig, vulnerabilities, and exposures. [web:343][web:344][web:353]
+  - Unified view of misconfig, vulnerabilities, and exposures.
 
 - **Falco**
   - CNCF project for runtime threat detection at the kernel level, especially in Kubernetes.
-  - Rules catch suspicious syscalls and container behaviour. [web:343][web:347]
+  - Rules catch suspicious syscalls and container behaviour.
 
-**Where it fits:** always‑on scanning in your cloud accounts and clusters, sending findings into whatever you use as a central security view. [web:343][web:350][web:353][web:357]
+**Where it fits:** always‑on scanning in your cloud accounts and clusters, sending findings into whatever you use as a central security view.
 
 ---
 
 ## “Platform” Approaches: Fewer Vendors, More Coverage
 
-To avoid tool sprawl, many teams prefer security platforms that bundle multiple capabilities. [web:343][web:344][web:347][web:350][web:353][web:356]
+To avoid tool sprawl, many teams prefer security platforms that bundle multiple capabilities.
 
 **Examples:**
 
 - **GitLab Ultimate**
-  - SAST, SCA, dependency scanning, container/IaC scanning, DAST built into the pipeline. [web:344][web:348][web:351]
+  - SAST, SCA, dependency scanning, container/IaC scanning, DAST built into the pipeline.
 - **GitHub Advanced Security**
-  - CodeQL SAST, Dependabot, secret scanning, and some IaC rules. [web:344][web:348][web:350]
+  - CodeQL SAST, Dependabot, secret scanning, and some IaC rules.
 - **App‑sec platforms (Aikido, Cycode, etc.)**
-  - Aggregate SAST, SCA, IaC, secrets, and supply‑chain security into a single UI. [web:344][web:347][web:350][web:354][web:353]
+  - Aggregate SAST, SCA, IaC, secrets, and supply‑chain security into a single UI.
 
-These line up well with OWASP’s DevSecOps guideline, which focuses on coverage and automation rather than specific brands. [web:349][web:352][web:355]
+These line up well with OWASP’s DevSecOps guideline, which focuses on coverage and automation rather than specific brands.
 
 ---
 
@@ -158,19 +158,19 @@ If you want a concrete starting point:
   - Semgrep (SAST).
   - Snyk or Trivy/Grype (SCA).
   - Checkov (IaC).
-  - Secret scanner. [web:343][web:344][web:348][web:350]
+  - Secret scanner.
 
 - **Build & deploy**
   - Container scanning (Trivy/Snyk).
-  - SBOM generation. [web:343][web:348][web:354]
+  - SBOM generation.
 
 - **Runtime & cloud**
   - Falco for K8s runtime.
-  - CNAPP/CSPM for cloud posture. [web:343][web:347][web:350][web:353]
+  - CNAPP/CSPM for cloud posture.
 
 - **Periodic**
   - ZAP / DAST against staging.
-  - Manual Burp/pen‑test where warranted. [web:347][web:351]
+  - Manual Burp/pen‑test where warranted.
 
 The “best tools” are the ones your team can actually run on every change and respond to. Start small, wire them properly into CI/CD, then iterate based on real signal‑to‑noise, not feature lists.
 
