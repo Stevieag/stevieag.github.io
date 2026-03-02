@@ -1,0 +1,159 @@
+---
+title:  "Building a Cloud Security Baseline: From S3 Buckets to CNAPP"
+subtitle: "A deep walkthrough for engineers who want to do this properly"
+author: "Geeky Blinder"
+avatar: "img/authors/geeky.jpg"
+image: "img/cards/building-a-cloud-security-baseline-from-s3-buckets-to-c.jpg"
+date: 2026-06-21
+tags: cloud security AWS GCP Azure CSPM CNAPP devsecops
+---
+
+## Building a Cloud Security Baseline: From S3 Buckets to CNAPP
+
+Cloud security used to mean “don’t leave S3 open to the world.” These days, you’ve got multi‑cloud, containers, serverless, AI services, and 40 different dashboards all trying to warn you at once.
+
+Let’s walk a practical path from “we have some stuff in the cloud” to “we actually have a baseline that doesn’t crumble on contact with reality.”
+
+---
+
+## Step 1: Know What You Actually Have
+
+You can’t secure what you don’t know exists.
+
+Start with basic discovery:
+
+- Enumerate accounts/subscriptions/projects across AWS/GCP/Azure.
+- Pull inventory:
+  - Storage (S3/Blob buckets).
+  - Compute (EC2, GCE, VMs).
+  - Databases.
+  - IAM users/roles/service accounts.
+- Identify “shadow” accounts created by teams over the years.
+
+Goal: one simple diagram or table that shows where your critical stuff lives, and who’s meant to own what.
+
+---
+
+## Step 2: Identity First – IAM and Access
+
+Identity is the new perimeter.
+
+Baselines:
+
+- No long‑lived access keys tied to humans; use SSO + short‑lived tokens.
+- Roles/service accounts per app, not shared “god roles.”
+- Least privilege:
+  - Start with managed policies then chip away.
+  - Periodically review and tighten using access logs.
+
+Quick wins:
+
+- Mandatory MFA for all humans.
+- Kill unused accounts and keys.
+- Separate break‑glass admin accounts with strong controls and out‑of‑band recovery.
+
+---
+
+## Step 3: Configuration and Posture Management
+
+You need something watching your cloud configs for footguns.
+
+If you’re small:
+
+- Use native tools:
+  - AWS Config / Security Hub.
+  - Azure Security Center / Defender for Cloud.
+  - GCP Security Command Center.
+
+As you grow:
+
+- Look at CSPM/CNAPP tools that can:
+
+  - Spot public buckets.
+  - Flag weak network rules.
+  - Show attack paths across services.
+
+The trick is to:
+
+- Triage findings.
+- Set SLAs.
+- Feed fixes back into IaC so you don’t whack‑a‑mole the same issues forever.
+
+---
+
+## Step 4: Workloads – Containers, Serverless, and Friends
+
+Once infra posture is semi‑sane, look at workloads:
+
+- Containers:
+  - Image scanning (dependencies and OS packages).
+  - Minimal base images.
+  - Runtime controls (e.g. no privilege escalation, read‑only filesystems where possible).
+- Serverless:
+  - Tight IAM roles; avoid “*:*” access.
+  - Timeouts, retries, and dead‑letter queues to avoid weird failure cascades.
+- Traditional VMs:
+  - Patching, hardening, and endpoint protection just like on‑prem.
+
+Tie this into CI/CD:
+
+- Fail builds or at least warn on critical vulnerabilities.
+- Keep SBOMs for key services so you can answer “are we affected?” within hours, not days.
+
+---
+
+## Step 5: Logging, Monitoring, and Detection
+
+Security without visibility is just vibes.
+
+Cloud log basics:
+
+- Enable and centralise:
+  - CloudTrail / Audit Logs / Activity Logs.
+  - Load balancer logs.
+  - Auth logs (SSO, IAM events).
+- Feed into:
+  - SIEM (if you have one).
+  - At minimum, a log bucket with lifecycle policies.
+
+Detection engineering:
+
+- Start with high‑value detections:
+  - New IAM users or keys.
+  - Public bucket changes.
+  - Security group changes exposing sensitive ports.
+- Build runbooks: “When alert X fires, we do Y.”
+
+Over time, tie detections to your threat model and real incidents.
+
+---
+
+## Step 6: Governance Without Turning Into Process Hell
+
+You don’t need 400‑page policy PDFs. You *do* need some guardrails:
+
+- Clear rules on:
+  - How new cloud accounts/projects are created.
+  - What IaC patterns are allowed.
+  - How external access and third‑party tools are onboarded.
+- A simple review process:
+  - High‑risk changes (internet‑facing, sensitive data, new regions) get an extra set of eyes.
+- Regular security reviews:
+  - At least once a year, or when you change something big.
+
+If your governance makes it impossible to ship, people will go around it. Aim for “just enough friction to make people think, not enough to make them tunnel under your rules.”
+
+---
+
+## Final Thought
+
+Cloud security isn’t a one‑off “hardening sprint.” It’s a continuous feedback loop between:
+
+- What you have.
+- How it’s configured.
+- How it’s being used.
+- How people are trying to break it.
+
+Start small, automate what hurts, and keep security as close to the engineers and pipelines as possible.
+
+<img src="img/authors/geeky.jpg" width="40"/>
