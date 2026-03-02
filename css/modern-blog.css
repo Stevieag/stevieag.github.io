@@ -5,9 +5,7 @@
 	position: relative;
 	float: left;
 	width: 29%;
-	height: 0;
 	margin: 2%;
-	padding-bottom: 20%;
 }
 
 .card__container {
@@ -22,7 +20,7 @@
 }
 
 .card__container--closed {
-	position: absolute;
+	position: relative;
 	overflow: hidden;
 }
 
@@ -37,6 +35,9 @@
 
 .card__container--closed .card__image {
 	position: relative;
+	display: block;
+	width: 100%;
+	height: auto;
 	cursor: pointer;
 }
 /* Fix IE */
@@ -57,7 +58,7 @@
 
 .card__container--closed .card__content {
 	margin-top: 0;
-	padding: 0 16px;
+	padding: 0;
 	pointer-events: none;
 	background: transparent;
 }
@@ -71,12 +72,10 @@
 
 .card__container--closed .card__caption {
 	font-size: 1em;
-	max-width: auto;
-	padding: 10px 10px 12px;
-	-webkit-transform: translateY(-100%);
-	-ms-transform: translateY(-100%);
-	transform: translateY(-100%);
-	background: rgba(0, 0, 0, 0.7);
+	max-width: 100%;
+	padding: 12px 14px 14px;
+	background: #1e1c2e;
+	border-top: 3px solid #de6551;
 }
 
 .card__title {
@@ -87,8 +86,8 @@
 }
 
 .card__container--closed .card__title {
-	color: #fff;
-	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+	color: #ffffff;
+	text-shadow: none;
 }
 
 .card__subtitle {
@@ -99,8 +98,8 @@
 }
 
 .card__container--closed .card__subtitle {
-	color: rgba(255, 255, 255, 0.85);
-	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	color: rgba(222, 101, 81, 0.9);
+	text-shadow: none;
 }
 
 .card__copy {
@@ -126,6 +125,14 @@
 }
 
 .card__container--closed .card__btn-close {
+	display: none;
+}
+
+.card__container--closed .card__copy {
+	display: none;
+}
+
+.card__container--closed .meta {
 	display: none;
 }
 
@@ -157,14 +164,12 @@
 @media only screen and (min-width: 1500px) {
 	.card {
 		width: 21%;
-		padding-bottom: 14.5%;
 	}
 }
 
 @media only screen and (max-width: 980px) {
 	.card {
 		width: 46%;
-		padding-bottom: 32.2%;
 	}
 	.card__content {
 		margin-bottom: 0;
@@ -176,7 +181,6 @@
 @media only screen and (max-width: 580px) {
 	.card {
 		width: 96%;
-		padding-bottom: 67.2%;
 	}
 }
 
