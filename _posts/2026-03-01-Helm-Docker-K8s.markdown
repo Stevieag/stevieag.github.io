@@ -7,6 +7,7 @@ image: "img/cards/helm-docker-and-kubernetes-a-tiny-training-app-to-break.jpg"
 date: 2026-03-01
 tags: kubernetes helm docker devops devsecops training
 ---
+{% raw %}
 
 ## Helm, Docker, and Kubernetes: A Tiny Training App to Break (and Fix)
 
@@ -418,3 +419,4 @@ You’ve now mastered:
 ✅ Safe Helm upgrade/rollback
 
 <img src="img/authors/geeky.jpg" width="40"/>
+{% endraw %}
