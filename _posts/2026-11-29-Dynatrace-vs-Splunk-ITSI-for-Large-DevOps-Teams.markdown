@@ -10,7 +10,7 @@ tags: AIOps devops sre dynatrace splunk ITSI observability
 
 ## Short Answer: Start with Dynatrace, Stick with Splunk ITSI if You’re Already a Splunk Shop
 
-For large DevOps/SRE organisations, **Dynatrace** is usually the better default if your main pain is end‑to‑end visibility and fast root‑cause analysis. **Splunk IT Service Intelligence (ITSI)** makes more sense if **Splunk is already your logging backbone** and you want service‑health analytics on top. [web:328][web:329][web:330][web:332][web:333][web:335][web:338][web:339][web:341]
+For large DevOps/SRE organisations, **Dynatrace** is usually the better default if your main pain is end‑to‑end visibility and fast root‑cause analysis. **Splunk IT Service Intelligence (ITSI)** makes more sense if **Splunk is already your logging backbone** and you want service‑health analytics on top.
 
 Both are serious AIOps contenders; they just start from different assumptions.
 
@@ -20,29 +20,29 @@ Both are serious AIOps contenders; they just start from different assumptions.
 
 ### Dynatrace: Full‑Stack, Opinionated Observability
 
-Dynatrace sells itself as “answers, not data”, with OneAgent auto‑discovering hosts, containers, services, and dependencies, and Davis AI doing automated RCA across the stack. [web:329][web:330][web:332][web:338][web:339]
+Dynatrace sells itself as “answers, not data”, with OneAgent auto‑discovering hosts, containers, services, and dependencies, and Davis AI doing automated RCA across the stack.
 
 - OneAgent on each host:
   - Auto‑instruments infra, runtimes, services, and traces.
 - Smartscape topology:
-  - Automatic service maps and dependency graphs. [web:329][web:332][web:338]
+  - Automatic service maps and dependency graphs.
 - Davis AI:
-  - Analyses metrics, traces, logs, and topology to point to a single root cause where possible. [web:329][web:332][web:338][web:335]
+  - Analyses metrics, traces, logs, and topology to point to a single root cause where possible.
 
-This is great for big, cloud‑native environments where things move fast and you want strong, opinionated answers. [web:330][web:332][web:339]
+This is great for big, cloud‑native environments where things move fast and you want strong, opinionated answers.
 
 ### Splunk ITSI: Service Health on a Log‑Centric Foundation
 
-Splunk ITSI is an add‑on on top of Splunk that builds service models, KPIs, and glass tables from whatever telemetry you feed Splunk. [web:332][web:333][web:336]
+Splunk ITSI is an add‑on on top of Splunk that builds service models, KPIs, and glass tables from whatever telemetry you feed Splunk.
 
 - Service models:
-  - You define services and dependencies, then track their health via KPIs. [web:332][web:333]
+  - You define services and dependencies, then track their health via KPIs.
 - Glass tables:
-  - Custom, real‑time visualisations of service health and business impact. [web:332][web:336]
+  - Custom, real‑time visualisations of service health and business impact.
 - Machine learning:
-  - Anomaly detection, predictive analytics on KPIs, correlation searches. [web:332][web:333][web:336]
+  - Anomaly detection, predictive analytics on KPIs, correlation searches.
 
-This suits organisations with rich log data and strong Splunk skills who want service‑level insight and prediction. [web:332][web:336][web:339]
+This suits organisations with rich log data and strong Splunk skills who want service‑level insight and prediction.
 
 ---
 
@@ -50,7 +50,7 @@ This suits organisations with rich log data and strong Splunk skills who want se
 
 ### Dynatrace – Pros and Cons
 
-**Pros** (from user/comparison reports): [web:328][web:329][web:330][web:332][web:335][web:338][web:339][web:341]
+**Pros** (from user/comparison reports):
 
 - Fast time‑to‑value:
   - OneAgent and auto‑discovery get you meaningful visibility quickly.
@@ -66,11 +66,11 @@ This suits organisations with rich log data and strong Splunk skills who want se
 - Cost:
   - Premium pricing; can be high for very large estates.
 - Opinionated:
-  - Less flexible than Splunk for custom log analytics; you buy into its worldview. [web:330][web:332][web:339]
+  - Less flexible than Splunk for custom log analytics; you buy into its worldview.
 
 ### Splunk ITSI – Pros and Cons
 
-**Pros** (from peer/user reviews): [web:332][web:333][web:335][web:336][web:339][web:341]
+**Pros** (from peer/user reviews):
 
 - Leverages existing Splunk investment:
   - If Splunk is already the log/search engine of record, ITSI builds on that.
@@ -86,7 +86,7 @@ This suits organisations with rich log data and strong Splunk skills who want se
 - Learning curve:
   - ITSI concepts (services, KPIs, episodes) plus SPL can be steep.
 - Cost:
-  - Licensing and data volume can become expensive at scale. [web:332][web:336][web:339]
+  - Licensing and data volume can become expensive at scale.
 
 ---
 
@@ -94,33 +94,33 @@ This suits organisations with rich log data and strong Splunk skills who want se
 
 ### Choose Dynatrace If…
 
-- You want **one opinionated full‑stack platform** with strong APM, infra, RUM, and built‑in AIOps. [web:329][web:330][web:332][web:338]
+- You want **one opinionated full‑stack platform** with strong APM, infra, RUM, and built‑in AIOps.
 - Your environment is:
   - Cloud‑native, Kubernetes‑heavy, microservices‑heavy.
-  - Growing/chaotic enough that auto‑discovery and automated RCA are critical. [web:330][web:332][web:339]
+  - Growing/chaotic enough that auto‑discovery and automated RCA are critical.
 - Splunk is not already entrenched as your logging backbone.
 
-You’ll likely get faster initial value and clearer “this is what broke” answers for on‑call engineers. [web:328][web:330][web:332][web:335][web:339]
+You’ll likely get faster initial value and clearer “this is what broke” answers for on‑call engineers.
 
 ### Choose Splunk ITSI If…
 
 - You’re already a **Splunk‑first shop**:
-  - Lots of logs in Splunk; teams comfortable with SPL and Splunk dashboards. [web:332][web:336][web:339]
+  - Lots of logs in Splunk; teams comfortable with SPL and Splunk dashboards.
 - You want:
   - Service‑centric health views rooted in your existing telemetry.
-  - Predictive analytics on service KPIs and business impact. [web:332][web:333][web:336]
+  - Predictive analytics on service KPIs and business impact.
 - You’re ready to invest in:
   - Modelling services.
   - Designing KPIs.
   - Maintaining those models as your estate changes.
 
-You’ll get powerful service health and analytics without ripping out your existing Splunk investment, but you will spend more time on modelling and tuning. [web:332][web:333][web:336][web:339]
+You’ll get powerful service health and analytics without ripping out your existing Splunk investment, but you will spend more time on modelling and tuning.
 
 ---
 
 ## A Practical Way to Decide
 
-For a large DevOps team, run a time‑boxed evaluation with real services and incidents: [web:328][web:330][web:332][web:335][web:341]
+For a large DevOps team, run a time‑boxed evaluation with real services and incidents:
 
 - Pick 1–2 critical services.
 - For each platform, measure over a few weeks:

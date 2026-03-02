@@ -209,7 +209,7 @@ The point is to build awareness and muscle memory, not resentment.
   - Web:
     - DNS filtering and safe browsing.
   - Identity:
-    - MFA everywhere (ideally with phishing‑resistant methods like WebAuthn for high‑risk roles). [web:172][web:175][web:178]
+    - MFA everywhere (ideally with phishing‑resistant methods like WebAuthn for high‑risk roles).
 
 - Process:
 

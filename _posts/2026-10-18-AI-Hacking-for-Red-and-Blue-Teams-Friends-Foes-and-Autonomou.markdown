@@ -10,9 +10,9 @@ tags: AI red-team blue-team security automation
 
 ## AI Has Joined the Red and Blue Teams (Whether You Planned For It or Not)
 
-AI is now embedded in security operations: red teams use it to scale recon and attack simulation, blue teams use it for detection, triage, and response. Surveys show a growing share of orgs integrating AI into both offensive and defensive workflows. [web:181][web:185][web:208][web:212][web:250][web:253][web:256][web:257]
+AI is now embedded in security operations: red teams use it to scale recon and attack simulation, blue teams use it for detection, triage, and response. Surveys show a growing share of orgs integrating AI into both offensive and defensive workflows.
 
-We’re also seeing the rise of **autonomous red teams (ARTs)** and **autonomous blue teams (ABTs)**: AI‑driven systems that continuously probe and defend environments at machine speed. [web:253][web:256]
+We’re also seeing the rise of **autonomous red teams (ARTs)** and **autonomous blue teams (ABTs)**: AI‑driven systems that continuously probe and defend environments at machine speed.
 
 Used well, this becomes continuous purple teaming. Used badly, it’s a new way to create incidents and blind spots.
 
@@ -20,7 +20,7 @@ Used well, this becomes continuous purple teaming. Used badly, it’s a new way 
 
 ## How AI Augments Red Teaming
 
-Red teams are using AI to: [web:181][web:208][web:250][web:253][web:256][web:257][web:259]
+Red teams are using AI to:
 
 - Automate recon:
   - Summarise and prioritise attack surfaces.
@@ -32,7 +32,7 @@ Red teams are using AI to: [web:181][web:208][web:250][web:253][web:256][web:257
 - Build training content:
   - Realistic phishing, social‑engineering scripts, lab scenarios.
 
-Autonomous red team systems can: [web:253][web:256]
+Autonomous red team systems can:
 
 - Continuously probe cloud and app layers for misconfig and exploitable paths.
 - Chain steps across identity, network, and workload layers.
@@ -44,7 +44,7 @@ The key is guardrails: scope, safety checks, and human review.
 
 ## How AI Augments Blue Teaming
 
-Blue teams lean on AI for: [web:181][web:185][web:208][web:212][web:250][web:253][web:256]
+Blue teams lean on AI for:
 
 - Noise reduction:
   - Clustering alerts and highlighting true positives.
@@ -55,7 +55,7 @@ Blue teams lean on AI for: [web:181][web:185][web:208][web:212][web:250][web:253
 - Response:
   - Proposing playbooks, containment actions, and remediation steps.
 
-Autonomous blue teams add: [web:253][web:256]
+Autonomous blue teams add:
 
 - Automated detection → response loops:
   - E.g. detect abnormal cloud IAM use → revoke token → open ticket → notify humans.
@@ -68,7 +68,7 @@ This shifts blue from purely reactive to more proactive and adaptive.
 
 ## The Purple Team Sweet Spot: Continuous AI‑Augmented Testing
 
-The most interesting thing isn’t AI for red or blue; it’s AI helping them work together. [web:250][web:253][web:256]
+The most interesting thing isn’t AI for red or blue; it’s AI helping them work together.
 
 Patterns:
 
@@ -77,18 +77,18 @@ Patterns:
   - ABT monitors, responds, and logs where controls held or failed.
 - Detection‑as‑code with AI assistance:
   - Use LLMs to draft and refine detections from adversary behaviours.
-  - Integrate into CI/CD for security content. [web:256]
+  - Integrate into CI/CD for security content.
 - Feedback loops:
   - Every red exercise automatically enriches blue detections.
   - Every missed detection feeds back into AI‑guided hardening.
 
-Courses and playbooks are emerging that treat this as a unified pipeline rather than separate disciplines. [web:256][web:259]
+Courses and playbooks are emerging that treat this as a unified pipeline rather than separate disciplines.
 
 ---
 
 ## Risks and Limits You Can’t Ignore
 
-AI in red/blue operations comes with serious caveats: [web:181][web:208][web:212][web:250][web:253][web:256][web:257][web:259]
+AI in red/blue operations comes with serious caveats:
 
 - Hallucinations and errors:
   - LLMs can invent vulnerabilities, IOCs, or remediation steps.
@@ -110,7 +110,7 @@ Mitigations:
 
 ## Practical On‑Ramp: AI for Red, Blue, and You
 
-If you’re an individual or small team, you can still use these ideas on a smaller scale. [web:181][web:208][web:250][web:256][web:259]
+If you’re an individual or small team, you can still use these ideas on a smaller scale.
 
 For red‑ish work:
 

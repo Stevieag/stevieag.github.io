@@ -10,13 +10,13 @@ tags: raspberrypi5 home-assistant homelab automation MQTT
 
 ## What You’re Building
 
-We’re going to turn a Raspberry Pi 5 into a full‑fat Home Assistant hub running from SSD, with proper backups, remote access, and a couple of practical automations (lights and presence). The goal is a setup you’d actually rely on day‑to‑day, not just a weekend toy. [web:232][web:235][web:238]
+We’re going to turn a Raspberry Pi 5 into a full‑fat Home Assistant hub running from SSD, with proper backups, remote access, and a couple of practical automations (lights and presence). The goal is a setup you’d actually rely on day‑to‑day, not just a weekend toy.
 
 You’ll need:
 
 - Raspberry Pi 5 (ideally 8GB)
 - 32GB+ microSD (for flashing only) or direct USB boot
-- NVMe SSD + Pi 5 NVMe HAT *or* good USB 3 SSD [web:107][web:239][web:242]
+- NVMe SSD + Pi 5 NVMe HAT *or* good USB 3 SSD
 - Wired network connection (recommended)
 - Optional: Zigbee/Z‑Wave USB stick if you use those
 
@@ -34,7 +34,7 @@ Decide:
   - Media (TV, speakers).
   - Presence (phones, router, Bluetooth).
 
-Sketch a simple diagram: Pi 5 in the middle, with arrows to router, sensors, and key services. It’ll help later when you add more. [web:235]
+Sketch a simple diagram: Pi 5 in the middle, with arrows to router, sensors, and key services. It’ll help later when you add more.
 
 ---
 
@@ -49,7 +49,7 @@ If you’ve used the Pi before, update firmware once via Raspberry Pi Imager:
   - Choose “Misc utility images → Bootloader”.
   - Flash to microSD, boot Pi once to update.
 
-Newer Pi 5s often ship up‑to‑date, but this ensures good SSD/USB boot support. [web:107][web:242]
+Newer Pi 5s often ship up‑to‑date, but this ensures good SSD/USB boot support.
 
 ### 2.2 Decide: Home Assistant OS vs Supervised vs Container
 
@@ -57,7 +57,7 @@ For a dedicated hub, use **Home Assistant OS**:
 
 - Managed appliance feel.
 - Built‑in supervisor, add‑ons, backups.
-- Less faff than rolling Docker yourself. [web:232][web:235][web:238]
+- Less faff than rolling Docker yourself.
 
 We’ll use Home Assistant OS booting from SSD.
 
@@ -118,7 +118,7 @@ Note the IP; you’ll use it constantly.
 - Add an authenticator app (TOTP).
 - Store recovery codes securely.
 
-This stops “password only” being your single line of defence. [web:140][web:181]
+This stops “password only” being your single line of defence.
 
 ### 5.2 Set Up Backups (Snapshots)
 
@@ -126,7 +126,7 @@ This stops “password only” being your single line of defence. [web:140][web:
 - Create a full backup now.
 - Enable automatic backups (e.g. weekly).
 - Integrate off‑Pi storage:
-  - Add‑on: Google Drive Backup, S3 backup, or NFS mount. [web:235]
+  - Add‑on: Google Drive Backup, S3 backup, or NFS mount.
 
 Goal: if the SSD dies, you reinstall HA OS and restore backup. No tears.
 
