@@ -19,7 +19,7 @@
 
 .card__container--closed {
 	position: relative;
-	overflow: hidden;
+	overflow: visible;
 }
 
 .card__image {
@@ -72,12 +72,13 @@
 
 .card__container--closed .card__caption {
 	font-size: 1em;
-	max-width: 100%;
+	width: calc(100% + 16px);
+	margin-left: -8px;
 	height: 88px;
 	overflow: hidden;
-	padding: 10px 14px 10px;
-	background: #1e1c2e;
-	border-top: 3px solid #de6551;
+	padding: 10px 22px 10px;
+	background: #0d1b2a;
+	border-top: 3px solid #dd2222;
 	box-sizing: border-box;
 }
 
