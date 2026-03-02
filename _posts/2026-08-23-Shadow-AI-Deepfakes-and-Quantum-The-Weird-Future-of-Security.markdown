@@ -10,21 +10,21 @@ tags: AI security quantum deepfakes zero-trust trends
 
 ## Security in 2026 Feels Weird for a Reason
 
-We’ve hit a point where AI, deepfakes, and early quantum noise are no longer “future threats” — they’re starting to hit production environments and real incidents. AI is now embedded in both attacks and defences, and the organisations that don’t adapt are starting to feel painfully exposed. [web:140][web:149][web:181][web:185][web:209][web:212][web:217]
+We’ve hit a point where AI, deepfakes, and early quantum noise are no longer “future threats” — they’re starting to hit production environments and real incidents. AI is now embedded in both attacks and defences, and the organisations that don’t adapt are starting to feel painfully exposed.
 
-At the same time, regulators and boards are waking up: AI governance, AI incident reporting, and quantum‑safe roadmaps are now board‑level topics, not just interesting blog posts. [web:143][web:149][web:181][web:188][web:209]
+At the same time, regulators and boards are waking up: AI governance, AI incident reporting, and quantum‑safe roadmaps are now board‑level topics, not just interesting blog posts.
 
 ---
 
 ## Shadow AI and Agentic Threats
 
-“Shadow AI” is the new shadow IT: employees quietly using unapproved AI tools with sensitive data, while security teams are still writing their first AI policy. [web:140][web:143][web:181][web:208][web:209]
+“Shadow AI” is the new shadow IT: employees quietly using unapproved AI tools with sensitive data, while security teams are still writing their first AI policy.
 
 On the attacker side:
 
 - Agentic AI systems can:
   - Chain tools together, scan attack surfaces, and generate exploits at scale.
-  - Mass‑produce tailored phishing and deepfake content. [web:181][web:209][web:212][web:217]
+  - Mass‑produce tailored phishing and deepfake content.
 - We’re seeing early signs of:
   - AI‑assisted vulnerability discovery.
   - Automated recon and lateral movement scripts.
@@ -34,7 +34,7 @@ On the defender side:
 - AI‑powered SOC tooling is already:
   - Prioritising alerts.
   - Correlating events.
-  - Automating initial response steps. [web:181][web:185][web:208][web:209]
+  - Automating initial response steps.
 
 You can’t treat AI as a bolt‑on anymore; it’s part of the threat model and the control set.
 
@@ -46,25 +46,25 @@ Traditional phishing is being upgraded with:
 
 - Deepfake voice calls (“vishing 2.0”).
 - Real‑time face‑swapped video in exec impersonation attempts.
-- Synthetic IDs for fraud and account takeovers. [web:140][web:181][web:209][web:217]
+- Synthetic IDs for fraud and account takeovers.
 
 Controls that actually help:
 
 - Strong, out‑of‑band verification for financial and access changes.
-- Phishing‑resistant auth (WebAuthn) instead of “approve push” fatigue. [web:140][web:181][web:209]
+- Phishing‑resistant auth (WebAuthn) instead of “approve push” fatigue.
 - Training that includes deepfake examples and clear “always verify” playbooks.
 
 ---
 
 ## Quantum: Not Tomorrow, But Not 2050 Either
 
-Quantum computers that break today’s crypto aren’t here yet, but “steal now, decrypt later” is real: attackers can hoover up encrypted data now and wait. [web:181][web:185][web:209][web:217]
+Quantum computers that break today’s crypto aren’t here yet, but “steal now, decrypt later” is real: attackers can hoover up encrypted data now and wait.
 
 What changes in the next few years:
 
 - Cryptography roadmaps:
   - Inventory where you use RSA/ECC.
-  - Plan migration to post‑quantum algorithms. [web:181][web:209]
+  - Plan migration to post‑quantum algorithms.
 - Vendor pressure:
   - Expect cloud and security vendors to push quantum‑safe options.
 - Long‑lived data:
@@ -74,7 +74,7 @@ What changes in the next few years:
 
 ## How to Actually Prepare (Without Panic)
 
-Focus on capabilities, not headlines: [web:140][web:149][web:181][web:185][web:209][web:212]
+Focus on capabilities, not headlines:
 
 - AI governance:
   - Clear policies on AI tooling and data.
@@ -86,7 +86,7 @@ Focus on capabilities, not headlines: [web:140][web:149][web:181][web:185][web:2
 - Crypto hygiene:
   - Inventory, key management, and a quantum‑aware plan.
 
-If you build skills in cloud security, AI governance, Zero Trust, SOC automation, and crypto in the next couple of years, you’ll be right in the middle of where the field is heading. [web:181][web:185][web:209]
+If you build skills in cloud security, AI governance, Zero Trust, SOC automation, and crypto in the next couple of years, you’ll be right in the middle of where the field is heading.
 
 ---
 

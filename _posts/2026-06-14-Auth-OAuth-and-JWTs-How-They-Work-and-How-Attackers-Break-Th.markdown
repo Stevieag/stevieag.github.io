@@ -10,7 +10,7 @@ tags: auth OAuth JWT MFA WebAuthn security attacks
 
 ## So, What Do We Mean by “Authentication” Anyway?
 
-Authentication is just answering the question: “Who are you, really?” Authorization is the follow‑up: “Now that I know who you are, what are you allowed to do?” [web:166][web:169]
+Authentication is just answering the question: “Who are you, really?” Authorization is the follow‑up: “Now that I know who you are, what are you allowed to do?”
 
 Under the hood, we’ve got multiple mechanisms to prove identity — passwords, tokens, hardware keys, protocols like OAuth and OpenID Connect — each with its own ways of working and its own favourite failure modes.
 
@@ -28,7 +28,7 @@ Under the hood, we’ve got multiple mechanisms to prove identity — passwords,
 
 **How it breaks (in reality):**
 
-- **Credential stuffing**: attacker takes leaked email/password combos from breaches and sprays them across sites. Password reuse makes this trivially effective. [web:172]
+- **Credential stuffing**: attacker takes leaked email/password combos from breaches and sprays them across sites. Password reuse makes this trivially effective.
 - **Brute force**: no rate limiting or lockout → try enough passwords, eventually hit one.
 - **Phishing**: fake login pages (often pixel‑perfect clones) capture credentials and replay them on the real site.
 - **Password reset abuse**:
@@ -49,7 +49,7 @@ Once you’ve got password‑only auth with no extra checks, an attacker with a 
   - TOTP codes (Authenticator apps).
   - SMS codes.
   - Push prompts (“Approve sign‑in?”).
-  - WebAuthn/FIDO2 security keys. [web:172][web:178]
+  - WebAuthn/FIDO2 security keys.
 
 **How it breaks:**
 
@@ -57,9 +57,9 @@ Once you’ve got password‑only auth with no extra checks, an attacker with a 
   - SIM swap / port‑out attacks.
   - Interception via SS7 flaws.
 - **TOTP codes**:
-  - Phishing proxies: real‑time relays capture both password and code, log in immediately before expiry. [web:172]
+  - Phishing proxies: real‑time relays capture both password and code, log in immediately before expiry.
 - **Push MFA**:
-  - MFA fatigue: spam the user with prompts until they hit “Approve” just to make it stop. [web:172]
+  - MFA fatigue: spam the user with prompts until they hit “Approve” just to make it stop.
 - **Device theft**:
   - If the device is unlocked and the app auto‑approves/auto‑fills, it’s game on.
 
@@ -73,23 +73,23 @@ So MFA is *much* better than password‑only, but anything that still relies on 
 
 - During registration:
   - Your browser and authenticator (security key, TPM, phone) generate a unique key pair per site.
-  - Public key goes to the server; private key never leaves the device. [web:175][web:178]
+  - Public key goes to the server; private key never leaves the device.
 - During login:
   - Server sends a challenge bound to the real origin (domain).
   - Device signs the challenge with the private key *only if* the origin matches and you confirm (touch key, biometric, PIN).
-  - Server verifies signature with stored public key. [web:175][web:178]
+  - Server verifies signature with stored public key.
 
 **Why it’s hard to break:**
 
 - Phishing site at `evil-login.com` presents a challenge, but the authenticator sees the wrong origin and refuses to sign with the key tied to `real-site.com`.
-- No shared secret to steal or replay; credentials are per‑site and hardware‑bound. [web:175][web:178]
+- No shared secret to steal or replay; credentials are per‑site and hardware‑bound.
 - Even backend credential dumps don’t reveal a secret that can log in directly (public keys are… public).
 
 **How attackers try anyway:**
 
 - Go after device/OS compromise to hijack the authenticator.
 - Social engineering + remote access (get the user to “approve” while attacker drives).
-- Target fallback/recovery flows (password resets, backup codes). [web:172]
+- Target fallback/recovery flows (password resets, backup codes).
 
 ---
 
@@ -97,7 +97,7 @@ So MFA is *much* better than password‑only, but anything that still relies on 
 
 ### OAuth 2.0: Delegated Access, Not “Login”
 
-**How it works (Authorization Code + PKCE):** [web:166][web:168][web:169]
+**How it works (Authorization Code + PKCE):**
 
 1. Your app redirects the user to the IdP (e.g. `https://idp.com/authorize`) with:
    - client_id, redirect_uri, scopes, state, code_challenge.
@@ -106,17 +106,17 @@ So MFA is *much* better than password‑only, but anything that still relies on 
 4. Your backend exchanges the code + code_verifier for tokens at the IdP’s token endpoint.
 5. App uses access token to call APIs on behalf of the user.
 
-PKCE protects against code interception by binding the code to a verifier only the client knows. [web:166][web:169][web:173]
+PKCE protects against code interception by binding the code to a verifier only the client knows.
 
 **How it breaks:**
 
 - **Wrong grant for the job**:
-  - Using Implicit flow → tokens in the URL fragment, vulnerable to interception and XSS. [web:169][web:173]
-  - Using ROPC → your app collects passwords directly, breaking isolation and increasing phishing risk. [web:169][web:170]
+  - Using Implicit flow → tokens in the URL fragment, vulnerable to interception and XSS.
+  - Using ROPC → your app collects passwords directly, breaking isolation and increasing phishing risk.
 - **Open redirect / redirect_uri poisoning**:
-  - If `redirect_uri` isn’t strictly validated, an attacker can get codes or tokens sent to their domain. [web:169]
+  - If `redirect_uri` isn’t strictly validated, an attacker can get codes or tokens sent to their domain.
 - **Missing state checks**:
-  - CSRF in the login flow; an attacker can log a victim into a session tied to the attacker’s account (session fixation). [web:173]
+  - CSRF in the login flow; an attacker can log a victim into a session tied to the attacker’s account (session fixation).
 - **Token theft and replay**:
   - Access tokens stored insecurely on the client (e.g. in localStorage), stolen via XSS.
 
@@ -129,17 +129,17 @@ PKCE protects against code interception by binding the code to a verifier only t
 - Same OAuth dance, but with the `openid` scope.
 - IdP returns:
   - Access token (for calling APIs).
-  - ID token (usually a JWT) describing the authenticated user. [web:169][web:167]
+  - ID token (usually a JWT) describing the authenticated user.
 - The client validates the ID token (issuer, audience, signature, expiry) and treats that as proof of identity.
 
 **How it breaks:**
 
 - **Not validating ID token fields**:
-  - Accepting any issuer or audience → attacker can present an ID token from another tenant or IdP. [web:177]
+  - Accepting any issuer or audience → attacker can present an ID token from another tenant or IdP.
 - **Leaking ID tokens**:
   - Storing them where JavaScript/XSS can grab them (localStorage, query params).
 - **Mix‑up attacks**:
-  - Poorly implemented clients confused about which IdP a response came from. [web:169]
+  - Poorly implemented clients confused about which IdP a response came from.
 
 Done properly, OIDC saves you from rolling your own auth. Done badly, it gives you a fancy way to accept unverified blobs as “logged‑in user.”
 
@@ -149,7 +149,7 @@ Done properly, OIDC saves you from rolling your own auth. Done badly, it gives y
 
 ### How JWTs Work
 
-A JSON Web Token is three base64url‑encoded parts: `header.payload.signature`. [web:171][web:174][web:177]
+A JSON Web Token is three base64url‑encoded parts: `header.payload.signature`.
 
 - Header:
   - `alg`: algorithm (e.g. HS256, RS256).
@@ -165,11 +165,11 @@ Verification flow:
 2. Look up the right key based on header/kid.
 3. Check algorithm is allowed.
 4. Verify signature.
-5. Validate claims (issuer, audience, expiry, etc.). [web:171][web:177]
+5. Validate claims (issuer, audience, expiry, etc.).
 
 ### How JWTs Get Broken
 
-Classic attacks: [web:171][web:174][web:177][web:180]
+Classic attacks:
 
 - **`alg: none` / algorithm confusion**:
   - Old/bad libraries: if header says `alg: none`, they skip signature verification.
@@ -177,12 +177,12 @@ Classic attacks: [web:171][web:174][web:177][web:180]
     - If server expects RS256 but treats key as HMAC, attacker signs with the public key as if it were a shared secret.
 
 - **Key guessing and weak secrets**:
-  - HS256 with a short secret (e.g. “secret”, project name) → brute forceable. [web:171][web:177]
+  - HS256 with a short secret (e.g. “secret”, project name) → brute forceable.
 
 - **Ignoring critical claims**:
   - Not checking `exp` → token valid forever.
   - Not checking `aud` → token for Service A accepted by Service B.
-  - Not checking `iss` → token from attacker‑controlled IdP accepted as if from your own. [web:174][web:177]
+  - Not checking `iss` → token from attacker‑controlled IdP accepted as if from your own.
 
 - **Storing JWTs in all the wrong places**:
   - `localStorage` → stolen via XSS.
@@ -190,9 +190,9 @@ Classic attacks: [web:171][web:174][web:177][web:180]
 
 - **Shoving sensitive data inside**:
   - JWTs are signed, not encrypted; payloads are easily decodable.
-  - Storing passwords, secrets, or unnecessary PII in tokens leaks that data to anyone who can see the token. [web:174][web:177]
+  - Storing passwords, secrets, or unnecessary PII in tokens leaks that data to anyone who can see the token.
 
-Mitigations: strong keys, short expiries, strict algorithm and claim checks, and only putting what you *actually* need in the token. [web:171][web:174][web:177][web:180]
+Mitigations: strong keys, short expiries, strict algorithm and claim checks, and only putting what you *actually* need in the token.
 
 ---
 
@@ -204,7 +204,7 @@ Mitigations: strong keys, short expiries, strict algorithm and claim checks, and
 
 - After login, server creates a session entry in a DB/cache keyed by a random ID.
 - Client gets an `HttpOnly`, `Secure` cookie with that session ID.
-- On each request, server looks up session, applies authz. [web:174]
+- On each request, server looks up session, applies authz.
 
 **Common attacks:**
 
@@ -245,12 +245,12 @@ Mitigations: store tokens in HttpOnly cookies or secure storage, short TTLs + ro
 - Use **OIDC** with Authorization Code + PKCE.
 - Back it with:
   - Password + TOTP MFA as minimum.
-  - WebAuthn/FIDO2 for admins/high‑risk roles and eventually everyone. [web:172][web:175][web:178]
+  - WebAuthn/FIDO2 for admins/high‑risk roles and eventually everyone.
 - Use:
   - Short‑lived access tokens (JWTs or opaque).
   - ID tokens only on the client; don’t spray them at every backend.
 - Validate tokens:
-  - Signature, algorithm, issuer, audience, expiry, nonce where relevant. [web:171][web:177]
+  - Signature, algorithm, issuer, audience, expiry, nonce where relevant.
 - Stick to secure storage:
   - HttpOnly cookies or secure token stores, not localStorage.
 
@@ -258,10 +258,10 @@ Mitigations: store tokens in HttpOnly cookies or secure storage, short TTLs + ro
 
 In a lab or test environment, practise:
 
-- Building a fake login page and seeing which methods are phishable (password, TOTP, push) and which aren’t (WebAuthn). [web:172][web:175]
+- Building a fake login page and seeing which methods are phishable (password, TOTP, push) and which aren’t (WebAuthn).
 - Attempting:
   - Token replay (reusing captured access tokens).
-  - Modifying JWT headers/payloads to see if validation catches it (e.g. changing `alg`, `aud`, or `exp`). [web:171][web:177][web:180]
+  - Modifying JWT headers/payloads to see if validation catches it (e.g. changing `alg`, `aud`, or `exp`).
   - CSRF against cookie‑based flows without CSRF protections.
 - Reviewing:
   - If fallback flows (password reset, backup codes, device “remember me”) are weaker than the main auth path.
