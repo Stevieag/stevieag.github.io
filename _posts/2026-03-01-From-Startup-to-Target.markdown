@@ -3,7 +3,7 @@ title:  "From ‘We’re Just a Startup’ to ‘We’re a Target’"
 subtitle: "Building a security baseline before the big clients arrive"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/totarget.png"
+image: "img/cards/from-were-just-a-startup-to-were-a-target.jpg"
 date: 2026-03-01
 tags: startups security baseline SOC2 ISO27001 devsecops
 ---

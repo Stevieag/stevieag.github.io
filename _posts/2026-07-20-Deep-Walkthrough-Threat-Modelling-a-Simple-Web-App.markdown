@@ -1,0 +1,188 @@
+---
+title:  "Deep Walkthrough: Threat Modelling a Simple Web App"
+subtitle: "From blank page to ‘we actually understand how this could be attacked’"
+author: "Geeky Blinder"
+avatar: "img/authors/geeky.jpg"
+image: "img/cards/deep-walkthrough-threat-modelling-a-simple-web-app.jpg"
+date: 2026-07-20
+tags: threat-modelling web-app security devsecops STRIDE
+---
+
+## Deep Walkthrough: Threat Modelling a Simple Web App
+
+Threat modelling often gets treated like some mystical architecture ceremony. In reality, it’s a structured way of asking “how could this thing be broken, and what are we going to do about it?”
+
+Let’s walk through a simple example so you can actually run this with your own team.
+
+---
+
+## The System: A Boring but Realistic Web App
+
+Assume:
+
+- Users log in via email/password.
+- They can view and edit their own profile and some “documents”.
+- Backend is a REST API talking to a SQL database.
+- There’s an admin panel for support staff.
+
+We’ll threat‑model:
+
+- Auth & session.
+- Data access.
+- Admin functions.
+
+---
+
+## Step 1: Draw a Rough Data Flow Diagram (DFD)
+
+You don’t need Visio. A whiteboard or Obsidian canvas is fine.
+
+Elements:
+
+- External entities:
+  - User’s browser.
+  - Admin’s browser.
+- Entry points:
+  - HTTPS load balancer / reverse proxy.
+- Components:
+  - Web/API servers.
+  - Auth service (if separate).
+  - Database.
+- Data stores:
+  - User table.
+  - Documents table.
+  - Audit logs.
+
+Draw arrows for:
+
+- Login flow.
+- Normal CRUD operations.
+- Admin actions.
+
+Now you can point at something concrete when you say “what if this goes wrong?”
+
+---
+
+## Step 2: Choose a Lens – STRIDE Works Fine
+
+Use STRIDE:
+
+- Spoofing (who you are).
+- Tampering (changing data).
+- Repudiation (denying actions).
+- Information disclosure.
+- Denial of service.
+- Elevation of privilege.
+
+Walk each data flow and component, asking:
+
+- What STRIDE categories apply here?
+- What could an attacker do?
+- What would the impact be?
+
+---
+
+## Step 3: Identify Key Threats
+
+Examples:
+
+**Login endpoint:**
+
+- Spoofing:
+  - Credential stuffing with reused passwords.
+  - Phished credentials.
+- DoS:
+  - Brute forcing causing lockouts or load.
+
+Mitigations:
+
+- Rate limiting.
+- MFA.
+- Password strength and checking against known breach lists.
+
+**User → Docs API → DB:**
+
+- Tampering/Info disclosure:
+  - Insecure direct object reference (IDOR): user accessing `doc_id` that isn’t theirs.
+- Elevation:
+  - Missing checks that let normal users hit admin‑only endpoints.
+
+Mitigations:
+
+- Proper authz:
+  - Always check `owner_id` in DB, not just trust client IDs.
+- Centralised authorisation logic instead of sprinkling `if isAdmin` everywhere.
+
+**Admin panel:**
+
+- Elevation:
+  - Privilege escalation via flaws in role handling.
+- Repudiation:
+  - No real audit of who did what.
+
+Mitigations:
+
+- Role‑based access control.
+- Stronger auth, potentially separate IdP policy for admins.
+- Detailed audit logging for admin actions.
+
+---
+
+## Step 4: Prioritise – You Can’t Fix Everything at Once
+
+Score threats roughly on:
+
+- Likelihood (L).
+- Impact (I).
+
+Focus on:
+
+- High L / High I first.
+- High I / medium L next.
+
+For most web apps, top tier will be:
+
+- Auth & session issues.
+- Access control/IDOR.
+- Admin misuse/compromise.
+- Injection into DB or template engines.
+
+Make a small list of:
+
+- 5–10 priority threats.
+- Owner for each.
+- Proposed mitigation.
+
+This becomes your short‑term security roadmap.
+
+---
+
+## Step 5: Feed It Back Into Dev and DevSecOps
+
+Threat model isn’t a static doc:
+
+- Capture it in your repo (e.g. `docs/threat-model.md`).
+- Link security stories/issues to specific threats.
+- Update when:
+  - You add new features.
+  - You change auth flows.
+  - You migrate infra (e.g. to K8s or to a new IdP).
+
+Add checks to:
+
+- PR templates: “Does this change affect any documented threats?”
+- Design reviews: quick threat modelling pass for new major components.
+
+---
+
+## Final Thought
+
+Threat modelling doesn’t need a special tool or a consultancy. It needs:
+
+- A diagram.
+- A structured way to think about bad things.
+- A willingness to write down “we chose not to fix this *yet*, and here’s why.”
+
+Run a 60–90 minute session with your team for one app. You’ll be surprised how much risk you surface — and how many low‑effort mitigations you find once everyone’s actually looking.
+
+<img src="img/authors/geeky.jpg" width="40"/>

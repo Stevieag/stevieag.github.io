@@ -3,7 +3,7 @@ title:  "Helm, Docker, and Kubernetes: A Tiny Training App to Break (and Fix)"
 subtitle: "Learning K8s by actually doing something vaguely fun"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/tri.png"
+image: "img/cards/helm-docker-and-kubernetes-a-tiny-training-app-to-break.jpg"
 date: 2026-03-01
 tags: kubernetes helm docker devops devsecops training
 ---

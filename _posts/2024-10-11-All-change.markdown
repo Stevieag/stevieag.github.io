@@ -3,7 +3,7 @@ title:  "All Change!"
 subtitle: "I've changed direction, kinda"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/change.jpeg"
+image: "img/cards/all-change.jpg"
 date: 2024-10-11
 tags: chance change risk
 ---

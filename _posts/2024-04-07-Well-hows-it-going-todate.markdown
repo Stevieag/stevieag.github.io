@@ -3,7 +3,7 @@ title:  "Well it's been months, how's it going!"
 subtitle: "Not well"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/notgoingwell.jpg"
+image: "img/cards/well-its-been-months-hows-it-going.jpg"
 date: 2024-04-07
 tags: oscp hacking hacker
 ---
