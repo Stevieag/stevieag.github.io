@@ -10,15 +10,15 @@ tags: devops startups culture automation CICD
 
 ## DevOps Is a Culture, Not a Jenkinsfile
 
-In 2026, DevOps stopped being “that thing with Docker and Jenkins” and became “the minimum culture you need to ship without imploding.” Startups that get it right deploy fast, recover faster, and don’t torch their engineers in the process. [web:210][web:213][web:215][web:218]
+In 2026, DevOps stopped being “that thing with Docker and Jenkins” and became “the minimum culture you need to ship without imploding.” Startups that get it right deploy fast, recover faster, and don’t torch their engineers in the process.
 
-At its core, DevOps in a startup is about collaboration, automation, and shared ownership between dev, ops, and security — not about one poor “DevOps engineer” gluing everything together alone. [web:210][web:213][web:215][web:218]
+At its core, DevOps in a startup is about collaboration, automation, and shared ownership between dev, ops, and security — not about one poor “DevOps engineer” gluing everything together alone.
 
 ---
 
 ## What Healthy DevOps Looks Like in a Startup
 
-Patterns from teams doing this well: [web:210][web:213][web:215][web:218]
+Patterns from teams doing this well:
 
 - Cross‑functional squads:
   - Dev, ops, QA, security working on the same backlog, not separate silos.
@@ -29,13 +29,13 @@ Patterns from teams doing this well: [web:210][web:213][web:215][web:218]
 - Short feedback loops:
   - Fast code->deploy->metrics->learning cycles.
 
-Benefits are measurable: more frequent deployments, shorter lead times, and much faster recovery from failures. [web:210][web:215][web:218]
+Benefits are measurable: more frequent deployments, shorter lead times, and much faster recovery from failures.
 
 ---
 
 ## Common Failure Modes (And How to Dodge Them)
 
-Startups often fall into: [web:210][web:213][web:215][web:218]
+Startups often fall into:
 
 - “DevOps as a role, not a culture”:
   - One person becomes the bottleneck and on‑call mule.
@@ -59,7 +59,7 @@ Better patterns:
 
 ## A Simple DevOps Starter Pack for Startups
 
-If you’re small and moving fast: [web:210][web:213][web:215][web:218]
+If you’re small and moving fast:
 
 - Version control everything:
   - Code, infra, app configs, K8s manifests.

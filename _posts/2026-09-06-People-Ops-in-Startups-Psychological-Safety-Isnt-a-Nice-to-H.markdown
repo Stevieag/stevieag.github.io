@@ -10,28 +10,28 @@ tags: people-ops culture psychological-safety startups leadership
 
 ## Culture Is a Control Surface
 
-In a startup, people ops and culture can either amplify your speed and creativity or quietly destroy them. Psychological safety — the belief that you won’t be punished for speaking up or making honest mistakes — is directly tied to performance, innovation, and even security outcomes. [web:211][web:214][web:216]
+In a startup, people ops and culture can either amplify your speed and creativity or quietly destroy them. Psychological safety — the belief that you won’t be punished for speaking up or making honest mistakes — is directly tied to performance, innovation, and even security outcomes.
 
-Teams with high psychological safety ship more, catch more issues proactively, and retain talent; low‑safety teams hide problems until they explode, churn staff, and burn out. [web:211][web:214][web:216]
+Teams with high psychological safety ship more, catch more issues proactively, and retain talent; low‑safety teams hide problems until they explode, churn staff, and burn out.
 
 ---
 
 ## What Psychological Safety Looks Like Day‑to‑Day
 
-In a psych‑safe startup: [web:211][web:214][web:216]
+In a psych‑safe startup:
 
 - People raise concerns about design, security, or ethics without fear.
 - Juniors can say “I don’t understand” or “I think this is wrong” to seniors.
 - Mistakes become learning and process improvements, not witch hunts.
 - Retrospectives are honest, not political theatre.
 
-This is crucial in high‑change environments like startups, where learning fast and adjusting beats pretending everything is fine until it isn’t. [web:211][web:214][web:216]
+This is crucial in high‑change environments like startups, where learning fast and adjusting beats pretending everything is fine until it isn’t.
 
 ---
 
 ## How People Ops and Leaders Build (or Break) It
 
-Five levers that matter most: [web:211][web:214][web:216]
+Five levers that matter most:
 
 - Top executives:
   - How founders react to bad news sets the tone for the whole company.
@@ -44,13 +44,13 @@ Five levers that matter most: [web:211][web:214][web:216]
 - HR/People Ops:
   - Policies, processes, and coaching that align with psychological safety.
 
-Leaders who admit their own mistakes, ask for feedback, and listen actively are strongly correlated with higher psychological safety. [web:211][web:214][web:216]
+Leaders who admit their own mistakes, ask for feedback, and listen actively are strongly correlated with higher psychological safety.
 
 ---
 
 ## Practical People Ops Moves in a Startup
 
-You don’t need a massive HR team; you need a few disciplined habits: [web:211][web:213][web:214][web:215][web:216]
+You don’t need a massive HR team; you need a few disciplined habits:
 
 - Regular 1:1s with real check‑ins:
   - Not just status updates; ask “What’s getting in your way?” and “What’s worrying you?”

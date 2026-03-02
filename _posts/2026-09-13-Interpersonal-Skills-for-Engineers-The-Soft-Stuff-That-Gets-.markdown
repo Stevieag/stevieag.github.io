@@ -10,7 +10,7 @@ tags: interpersonal-skills communication leadership tech culture
 
 ## The Myth of “I Just Want to Code”
 
-In modern teams, the people who get trusted with the hard problems, the interesting roles, and eventually leadership aren’t always the best pure coders — they’re the ones who can communicate clearly, handle conflict, and move people in the right direction. [web:210][web:213][web:215][web:216][web:218]
+In modern teams, the people who get trusted with the hard problems, the interesting roles, and eventually leadership aren’t always the best pure coders — they’re the ones who can communicate clearly, handle conflict, and move people in the right direction.
 
 Interpersonal skills aren’t about schmoozing or becoming a manager; they’re about making your technical work land, stick, and actually change things.
 
@@ -18,7 +18,7 @@ Interpersonal skills aren’t about schmoozing or becoming a manager; they’re 
 
 ## Core Skills That Matter (More Than You Think)
 
-Key interpersonal skills for engineers and security folks: [web:210][web:213][web:215][web:216]
+Key interpersonal skills for engineers and security folks:
 
 - Clear written communication:
   - Tickets, design docs, incident reports people can actually act on.
@@ -31,13 +31,13 @@ Key interpersonal skills for engineers and security folks: [web:210][web:213][we
 - Boundary‑setting:
   - “I can do X and Y this sprint; Z will need to move” — calmly and firmly.
 
-These skills are strongly tied to psychological safety and effective teams. [web:211][web:214][web:216]
+These skills are strongly tied to psychological safety and effective teams.
 
 ---
 
 ## How to Get Better Without Cringing
 
-You don’t need to become a TED speaker. You need reps in normal work situations. [web:210][web:213][web:215][web:216][web:218]
+You don’t need to become a TED speaker. You need reps in normal work situations.
 
 - In stand‑ups:
   - Give concise, honest updates: “Yesterday I did X; today I’ll do Y; I’m blocked by Z and need A/B to decide.”
@@ -57,7 +57,7 @@ You’re already good at breaking down complex systems. Treat conversations like
 
 ## Interpersonal Skills as a Security and DevOps Multiplier
 
-Good interpersonal skills directly improve: [web:210][web:213][web:215][web:216][web:218]
+Good interpersonal skills directly improve:
 
 - Incident response:
   - Faster coordination, less blame, better learning.
