@@ -3,7 +3,7 @@ title: "Google Cloud Scheduler in Terraform"
 subtitle: "(and in the console :D)"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/gcp-tf.png"
+image: "img/cards/google-cloud-scheduler-in-terraform.jpg"
 date: 2024-12-09
 tags: gcp scheduler terraform
 ---

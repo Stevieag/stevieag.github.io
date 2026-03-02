@@ -3,7 +3,7 @@ title:  "Well it went wrong big time! NSFW"
 subtitle: "Well if you don't work, you can't F*CK UP!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/fuck.jpg"
+image: "img/cards/well-it-went-wrong-big-time-nsfw.jpg"
 date: 2023-06-02
 tags: messup alert incident panic chill
 ---

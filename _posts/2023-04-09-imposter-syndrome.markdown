@@ -3,7 +3,7 @@ title: "Imposter Syndrome – Really"
 subtitle: "Is it just me – no!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/imposter1.png"
+image: "img/cards/imposter-syndrome-really.jpg"
 date: 2023-04-09
 tags: mindset imposter success
 ---
@@ -69,17 +69,17 @@ Look after yourself, work to live; balance is the key.
 Here are a few links to some resources:
 
 <center><a href="https://www.techtello.com/imposter-syndrome/">
-  <img alt="techtello imposter syndrome" src="img/impsynd2.png" width="340"/>
+  <img alt="techtello imposter syndrome" src="img/posts/impsynd2.png" width="340"/>
 </a></center>
 <center><a href="https://dev.to/cglikpo/tips-to-overcome-imposter-syndrome-40dd">
-    <img alt="Imposter syndrome of a dev at dev.to, author cglikpo" src="img/bcauseiam.png" width="290"/>
+    <img alt="Imposter syndrome of a dev at dev.to, author cglikpo" src="img/posts/bcauseiam.png" width="290"/>
 </a></center>
 
 <center><a href="https://www.therapywithabby.co.uk/blog/imposter-syndrome-in-a-new-job">
-    <img src="img/impsynd.JPG" alt="therapywithabby.co.uk imposter-syndrome-in-a-new-job" width="300"/>
+    <img src="img/posts/impsynd.JPG" alt="therapywithabby.co.uk imposter-syndrome-in-a-new-job" width="300"/>
 </a></center>
 <center><a href="https://www.willowtreeapps.com/craft/imposter-syndrome-in-design-what-it-is-and-how-to-overcome-it">
-    <img src="img/selfdoubt.jpeg" alt="willowtreeapps.com imposter-syndrome-in-design-what-it-is-and-how-to-overcome-it" width="300"/>
+    <img src="img/posts/selfdoubt.jpeg" alt="willowtreeapps.com imposter-syndrome-in-design-what-it-is-and-how-to-overcome-it" width="300"/>
 </a></center>
 
 <img src="img/authors/geeky.jpg" width="40"/>

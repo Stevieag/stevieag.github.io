@@ -3,7 +3,7 @@ title:  "Blogs are the new social!"
 subtitle: "It's all cyclic!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/blog.jpg"
+image: "img/cards/blogs-are-the-new-social.jpg"
 date: 2023-03-06
 tags: AI chatgpt women stem bias gender WFH LTT linus linux SVB relations
 ---

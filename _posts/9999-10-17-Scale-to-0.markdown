@@ -3,7 +3,7 @@ title:  "K8s Scale to Zero!"
 subtitle: "I dont need these at times"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/confused.jpg"
+image: "img/cards/k8s-scale-to-zero.jpg"
 date: 9999-10-17
 tags: k8s scale save money
 ---

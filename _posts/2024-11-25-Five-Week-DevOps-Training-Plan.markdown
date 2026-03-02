@@ -3,7 +3,7 @@ title:  "Service Mesh DevOps Training!"
 subtitle: "Here's one I prepared earlier"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/SerMesh.jpg"
+image: "img/cards/service-mesh-devops-training.jpg"
 date: 2024-11-25
 tags: training mesh service devops istio minikube kind linkerd
 ---

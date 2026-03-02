@@ -3,7 +3,7 @@ title: "Create your own blog"
 subtitle: "GitHub and AWS R53!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/github.png"
+image: "img/cards/create-your-own-blog.jpg"
 date: 2023-04-21
 tags: [ website, create, R53, github, web, page, git, page]
 ---

@@ -3,7 +3,7 @@ title:  "Minikube Linkerd"
 subtitle: "This is a tutorial start"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/minikube.png"
+image: "img/cards/minikube-linkerd.jpg"
 date: 2024-10-11
 tags: minikube linkerd micro service
 ---
@@ -140,7 +140,7 @@ We have just used this option `linkerd viz tap` to see the traffic flowing throu
 ## Linkerd Top
 Use linkerd top to see the top-level metrics for your services.\
 `linkerd viz top -n emojivoto deploy/web`
-<img src="img/ldscrsh.png"/>\
+<img src="img/posts/ldscrsh.png"/>\
 As you can see a great method to see the issues and traffic including issues.
 Here you can see I have selected the `VoteStuckOutTongueWinkingEye`, `VoteDoughnut` and `VoteSunglasses`.
 

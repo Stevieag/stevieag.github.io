@@ -3,7 +3,7 @@ title:  "I need a Gmail app on my desktop!"
 subtitle: "Ah, you can make one in a few clicks!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/gapps.jpeg"
+image: "img/cards/i-need-a-gmail-app-on-my-desktop.jpg"
 date: 2023-05-06
 tags: gmail docs desktop shortcut create
 ---

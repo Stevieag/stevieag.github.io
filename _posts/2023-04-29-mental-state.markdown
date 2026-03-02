@@ -3,7 +3,7 @@ title: "Mental State"
 subtitle: "Yeah, everybody has an issue!"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
-image: "img/mentalhealth.jpeg"
+image: "img/cards/mental-state.jpg"
 date: 2023-04-26
 tags: mental health depression brainfix
 ---
