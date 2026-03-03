@@ -4,7 +4,7 @@ subtitle: "What’s possible, what isn’t, and how to make it useful anyway"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/cards/can-you-run-kubernetes-on-raspberry-pi-zero-ws-sort-of.jpg"
-date: 2026-03-22
+date: 2026--22
 tags: raspberry-pi kubernetes k3s homelab edge
 ---
 
