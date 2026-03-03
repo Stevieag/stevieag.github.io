@@ -4,7 +4,7 @@ subtitle: "A few thoughts on balance, bandwidth, and what I should have done wit
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/cards/empty-buckets-and-the-time-you-cant-get-back.jpg"
-date: 2027-10-10
+date: 2026-01-01
 tags: leadership burnout work-life teams personal
 ---
 
