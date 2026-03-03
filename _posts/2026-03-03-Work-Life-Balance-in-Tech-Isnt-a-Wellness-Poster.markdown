@@ -4,7 +4,7 @@ subtitle: "How to stay sane in startups and still ship"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/cards/work-life-balance-in-tech-isnt-a-wellness-poster.jpg"
-date: 2027-09-12
+date: 2026-03-03
 tags: burnout startups mental-health worklife leadership
 ---
 
