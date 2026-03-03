@@ -26,7 +26,7 @@ A few awkward truths:
 - Long hours past a certain point don't increase output; they just increase mistakes and attrition.
 - Startups with "permanent crunch" often lose their best people just as things get interesting.
 
-Balance is not "never work late." Balance is "if we push hard for a week, it's unusual, deliberate, and followed by recovery — not the default."
+Balance is not "never work late." Balance is "if we push hard for a week, it's unusual, deliberate, and followed by recovery, its not the default."
 
 ---
 
@@ -40,7 +40,7 @@ Startups are ambiguity machines. Common patterns:
 
 Passion hides overwork. If you care about the mission, it's easy to normalise 12-hour days. Remote/hybrid blurs home and work until your laptop might as well be grafted onto your hands.
 
-None of this is inevitable. It's a choice — by founders, managers, and sometimes by us when we don't set boundaries.
+None of this is inevitable. It's a choice by founders, managers, and sometimes by us when we don't set boundaries.
 
 ---
 
@@ -66,7 +66,7 @@ Practical moves:
 
 - Set explicit boundaries and communicate them.
 - Guardrails around tools: mute non-critical channels outside work, separate work and personal profiles.
-- Say "yes, but": "Yes, I can jump on this incident, but that means feature X slips — which do you prefer?"
+- Say "yes, but": "Yes, I can jump on this incident, but that means feature X slips, which do you prefer?"
 - Use data: track hours and error rates; bring that to your manager if things creep into 60-70 hour territory.
 - Know your line: decide what "too far" looks like (permanent weekends, missing important life stuff, health impacts).
 
@@ -79,8 +79,8 @@ If the company normalises that for months, that's data about the culture, not a 
 Healthy leadership:
 
 - Plans realistically and cuts scope instead of casually demanding heroics.
-- Models boundaries — not sending non-urgent messages at 11 pm.
-- Has clear on-call structure with compensation and recovery time.
+- Models boundaries i.e. not sending non-urgent messages at 11 pm.
+- Have clear on-call structure with compensation and recovery time.
 - Talks about burnout like it's real, because it is.
 
 If you're leading a team: this is part of your job. If you're not yet, this is what you should expect from the people who are.
@@ -91,6 +91,6 @@ If you're leading a team: this is part of your job. If you're not yet, this is w
 
 The industry loves to talk about "sustainable scaling" for systems. It talks a lot less about sustainable scaling for humans.
 
-Work-life balance isn't about doing less. It's about choosing where your energy goes so you can still show up sharp — for your team, your users, and your life outside the keyboard. If your current setup makes that impossible, the problem isn't your resilience. It's the system you're in — and systems can be changed, or left.
+Work-life balance isn't about doing less. It's about choosing where your energy goes so you can still show up sharp for your team, your users, and your life outside the keyboard. If your current setup makes that impossible, the problem isn't your resilience. It's the system you're in and systems can be changed, or left.
 
 <img src="img/authors/geeky.jpg" width="40"/>

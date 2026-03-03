@@ -4,7 +4,7 @@ subtitle: "Deep skills, not just a cheat sheet"
 author: "Geeky Blinder"
 avatar: "img/authors/geeky.jpg"
 image: "img/cards/tmux-the-tool-that-makes-your-terminal-feel-like-a-cock.jpg"
-date: 2026-03-01
+date: 2026-09-01
 tags: tmux terminal linux productivity devops
 ---
 
