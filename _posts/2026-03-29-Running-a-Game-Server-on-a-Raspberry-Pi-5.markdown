@@ -48,40 +48,49 @@ Give the Pi a static IP (via your router’s DHCP reservation) so players have a
 
 ```bash
 sudo apt update && sudo apt upgrade -y
-Install Java:
+```
 
-bash
+2. Install Java:
+
+```bash
 sudo apt install -y openjdk-17-jre-headless
+```
 Create a dedicated user:
 
-bash
+```bash
 sudo adduser --system --home /opt/minecraft --group minecraft
 sudo su - minecraft
+```
 Download server JAR into /opt/minecraft/server, run it once, accept eula.txt, then run again.
 
 Use:
 
-bash
+```bash
 java -Xms512M -Xmx2048M -jar server.jar nogui
+```
 Adjust memory based on Pi RAM and how many players you want.
 
-Optimising for the Pi
+## Optimising for the Pi
 Edit server.properties:
 
 Lower view distance:
 
-text
+```text
 view-distance=4
+```
 Limit players, e.g.:
 
-text
+```text
 max-players=5
+```
 Consider using Paper/Purpur for better performance.
 
-Run It as a Service
+---
+
+## Run It as a Service
 Create a systemd unit:
 
-text
+```text
 [Unit]
 Description=Minecraft Server
 After=network.target
@@ -95,15 +104,19 @@ ExecStart=/usr/bin/java -Xms512M -Xmx2048M -jar server.jar nogui
 
 [Install]
 WantedBy=multi-user.target
+```
 Enable it:
 
-bash
+```bash
 sudo systemctl daemon-reload
 sudo systemctl enable minecraft
 sudo systemctl start minecraft
+```
 Now it survives reboots and auto‑restarts.
 
-Letting People Join (Safely)
+---
+
+## Letting People Join (Safely)
 On the LAN: join using the Pi’s IP address.
 
 Over the internet:
@@ -116,14 +129,18 @@ Consider whitelisting players.
 
 Never expose SSH or admin panels to the internet. Keep the Pi updated and don’t overload it with other sensitive services.
 
-Backups and Maintenance
+---
+
+## Backups and Maintenance
 Regularly back up the world folder to another disk or NAS.
 
 Take a backup before major changes.
 
 Monitor CPU/RAM and adjust view distance, mob settings, or player count as needed.
 
-Final Thought
+---
+
+## Final Thought
 A Pi 5 game server is peak geek: cheap, quiet, and more than capable of hosting a little shared world for you and your mates.
 
 Do it right — separate user, sensible limits, backups, and careful port forwarding — and you get a training lab for Linux and networking and somewhere to blow up blocky mountains after work.

@@ -27,7 +27,9 @@ We'll use **Node.js + Express** (simplest).
 mkdir hello-k8s-training && cd hello-k8s-training
 npm init -y
 npm install express
-index.js:
+```
+
+`index.js`:
 
 const express = require("express");
 const app = express();

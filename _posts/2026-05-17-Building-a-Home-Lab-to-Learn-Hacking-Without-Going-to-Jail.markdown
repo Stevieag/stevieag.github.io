@@ -1,4 +1,3 @@
-text
 ---
 title:  "Building a Home Lab to Learn Hacking (Without Going to Jail)"
 subtitle: "From old laptops to cloud, Docker, and Kubernetes – with real scenarios to practise on"
@@ -191,6 +190,8 @@ services:
 networks:
   labnet:
     driver: bridge
+```
+
 You:
 
 docker exec -it attacker bash
