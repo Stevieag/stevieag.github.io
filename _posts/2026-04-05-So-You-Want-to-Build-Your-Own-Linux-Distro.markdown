@@ -1,7 +1,3 @@
-
-***
-
-```markdown
 ---
 title:  "So You Want to Build Your Own Linux Distro"
 subtitle: "From ‘slightly cursed Ubuntu remix’ to full Linux From Scratch"

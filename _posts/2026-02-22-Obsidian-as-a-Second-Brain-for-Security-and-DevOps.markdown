@@ -10,7 +10,7 @@ tags: Obsidian note-taking PKM security devops learning
 
 ## Obsidian as a Second Brain for Security and DevOps
 
-Obsidian is one of the few tools that actually makes you think better instead of just giving you another place to park half‑finished notes. It’s perfect if you’re juggling CTFs, on‑call incidents, K8s weirdness, and “I should turn this into a talk later” moments.
+Obsidian is one of the few tools that actually makes you think better instead of just giving you another place to park half‑finished notes. It's perfect if you're juggling CTFs, on‑call incidents, K8s weirdness, and "I should turn this into a talk later" moments.
 
 Think of it as your second brain for security and DevSecOps — but one you actually control.
 
@@ -18,11 +18,11 @@ Think of it as your second brain for security and DevSecOps — but one you actu
 
 ## Why Obsidian Works So Well for Technical People
 
-At its core, Obsidian is “just” a local Markdown editor with superpowers: links between notes, a graph view of your ideas, and a ridiculous ecosystem of plugins like Dataview and Templater.
+At its core, Obsidian is "just" a local Markdown editor with superpowers: links between notes, a graph view of your ideas, and a ridiculous ecosystem of plugins like Dataview and Templater.
 
 For security, DevOps and learning:
 
-- It’s local first, so you can keep sensitive thinking on‑disk instead of in someone else’s cloud.
+- It's local first, so you can keep sensitive thinking on‑disk instead of in someone else's cloud.
 - Everything is plain text, so it plays nicely with Git and diffing.
 - You can turn your vault into a queryable knowledge base with Dataview, effectively treating notes as a database.
 
@@ -34,7 +34,7 @@ This makes it ideal for: CTF writeups, incident notes, K8s quirks, cloud misconf
 
 When you open Obsidian the first time:
 
-- Click “Create new vault”.
+- Click "Create new vault".
 - Name it something boring and honest like `GeekyBlinder-Knowledge`.
 - Pick a folder on disk (ideally one you can back up or sync with Git/Sync).
 
@@ -44,7 +44,7 @@ Inside, start simple:
 - Create a note called `Daily Notes`.
 - Create a folder `Areas` with subfolders like `Security`, `DevOps`, `Content`, `Personal`.
 
-Don’t spend three hours designing the perfect folder structure. The real magic in Obsidian is links, not folders.
+Don't spend three hours designing the perfect folder structure. The real magic in Obsidian is links, not folders.
 
 ---
 
@@ -57,7 +57,7 @@ Obsidian is Markdown‑first:
 The real power is linking:
 
 - `[[Kubernetes]]` creates (or links to) a note called `Kubernetes`.
-- If the note doesn’t exist yet, clicking the link will create it — perfect for “future you should know this” stubs.
+- If the note doesn't exist yet, clicking the link will create it — perfect for "future you should know this" stubs.
 
 Example:
 
@@ -65,21 +65,23 @@ Example:
 # PodSecurityAdmission Gotcha
 
 Hit a weird PodSecurityAdmission error today when deploying a Helm chart.
-It turned out the container was running as root and the namespace policy required a non-root user. See [[Kubernetes Pod Security]] and [[Helm Best Practices]].
-Backlinks:
+It turned out the container was running as root and the namespace policy
+required a non-root user. See [[Kubernetes Pod Security]] and [[Helm Best Practices]].
+```
 
-When you link [[Helm Best Practices]] from many places, that note will show a list of all the notes that reference it.
-
-This lets you see which topics are becoming “hubs” in your knowledge.
+**Backlinks:** When you link `[[Helm Best Practices]]` from many places, that note will show a list of all the notes that reference it. This lets you see which topics are becoming "hubs" in your knowledge.
 
 Graph view lets you visualise clusters like Kubernetes ↔ Helm ↔ GitOps over time.
 
-Step 3: Daily Notes and Templates
-Turn on the “Daily notes” and “Templates” core plugins.
+---
+
+## Step 3: Daily Notes and Templates
+
+Turn on the "Daily notes" and "Templates" core plugins.
 
 Daily note template:
 
-text
+```text
 # {{date}}
 
 ## Work Log
@@ -87,27 +89,29 @@ text
 - [ ] Secondary tasks:
 
 ## Learning Notes
-- [[THM Room - XYZ]] – OSINT technique X
-- [[Kubernetes]] – learned about PodDisruptionBudgets
+- [[THM Room - XYZ]] - OSINT technique X
+- [[Kubernetes]] - learned about PodDisruptionBudgets
 
 ## Random
 - Ideas, frustrations, quick snippets.
+```
+
 CTF / THM template:
 
-text
-***
+```text
+---
 type: ctf
 platform: TryHackMe
-difficulty: 
+difficulty:
 tags: [ctf, thm]
-***
+---
 
 # {{title}}
 
 ## Overview
-- Platform: 
-- Difficulty: 
-- Category: 
+- Platform:
+- Difficulty:
+- Category:
 
 ## Recon
 - Tools used:
@@ -128,30 +132,36 @@ tags: [ctf, thm]
 
 ## Lessons Learned
 -
+```
+
 Now every room or incident has a consistent structure — and your future self will thank you.
 
-Step 4: Properties, Tags, and Dataview Dashboards
+---
+
+## Step 4: Properties, Tags, and Dataview Dashboards
+
 Use frontmatter properties:
 
-text
-***
+```yaml
+---
 type: ctf
 platform: THM
 status: completed
 date: 2026-02-22
 tags: [ctf, thm, web]
-***
-Then create a “CTF Dashboard” note with Dataview:
+---
+```
 
-text
-```dataview
+Then create a "CTF Dashboard" note with Dataview:
+
+```text
 table platform, status, date
 from "Areas/Security/CTF"
 where type = "ctf"
 sort date desc
-text
+```
 
-Now you’ve basically built your own training LMS and case library.
+Now you've basically built your own training LMS and case library.
 
 You can do the same for:
 
@@ -165,20 +175,20 @@ You can do the same for:
 
 A structure that stays out of your way:
 
-- `01-Maps`  
-  - `Security Fundamentals`  
-  - `Kubernetes`  
-  - `DevSecOps`  
+- `01-Maps`
+  - `Security Fundamentals`
+  - `Kubernetes`
+  - `DevSecOps`
   - `THM / CTF Index`
 
-- `02-Projects`  
-  - `Build Startup Security Baseline`  
-  - `New K8s Cluster Hardening`  
+- `02-Projects`
+  - `Build Startup Security Baseline`
+  - `New K8s Cluster Hardening`
   - `Content – THM Video Series`
 
-- `03-Areas`  
-  - `Security` (Concepts, CTF, Incidents)  
-  - `DevOps`  
+- `03-Areas`
+  - `Security` (Concepts, CTF, Incidents)
+  - `DevOps`
   - `Leadership`
 
 - `99-Inbox`
@@ -189,7 +199,7 @@ Maps are hub notes — high‑level index pages with links to other notes, like 
 
 ## Step 6: Use Obsidian While You Work, Not After
 
-The big unlock is keeping Obsidian open *while* you’re:
+The big unlock is keeping Obsidian open *while* you're:
 
 - Doing a THM room.
 - Debugging a production issue.
@@ -198,7 +208,7 @@ The big unlock is keeping Obsidian open *while* you’re:
 
 Every meaningful problem solved gets a note. Every note that feels reusable gets linked to a concept note. Over time, you get:
 
-- Patterns: “these 4 incidents all involved missing timeouts.”
+- Patterns: "these 4 incidents all involved missing timeouts."
 - Ready‑made material for blogs and talks.
 - A personal threat library tuned to your stack.
 
@@ -206,8 +216,8 @@ Every meaningful problem solved gets a note. Every note that feels reusable gets
 
 ## Final Thought
 
-Used well, Obsidian is basically a security engineer’s private, evolving runbook plus lab notebook plus content engine.
+Used well, Obsidian is basically a security engineer's private, evolving runbook plus lab notebook plus content engine.
 
-Give it a week where everything you fix, break, or learn passes through Obsidian. If you don’t feel sharper by the end of it, I’ll eat my YAML.
+Give it a week where everything you fix, break, or learn passes through Obsidian. If you don't feel sharper by the end of it, I'll eat my YAML.
 
 <img src="img/authors/geeky.jpg" width="40"/>
