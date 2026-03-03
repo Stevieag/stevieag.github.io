@@ -31,7 +31,7 @@ And, crucially, it trains you to tell a story. Incident reports, post‑mortems,
 ## Structure: Tell the Story, Don’t Dump Commands
 
 A good template:
-[Example File](files/ctftemplate.csv)
+[CSV](files/ctftemplate.csv) · [PDF](files/ctftemplate.pdf) · [Word](files/ctftemplate.docx)
 
 1. **Overview**  
    Target, platform (THM, HTB, CTF name), category (web, pwn, forensics, etc.), difficulty.
