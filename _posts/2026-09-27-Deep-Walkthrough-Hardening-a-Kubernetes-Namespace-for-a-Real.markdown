@@ -1,0 +1,170 @@
+---
+title:  "Deep Walkthrough: Hardening a Kubernetes Namespace for a Real Team"
+subtitle: "RBAC, Pod Security, and network policies without losing everyone’s will to live"
+author: "Geeky Blinder"
+avatar: "img/authors/geeky.jpg"
+image: "img/cards/deep-walkthrough-hardening-a-kubernetes-namespace-for-a.jpg"
+date: 2026-09-27
+tags: kubernetes security RBAC network-policy devsecops
+---
+
+## Deep Walkthrough: Hardening a Kubernetes Namespace for a Real Team
+
+“Kubernetes hardening” often turns into either a 200‑page CIS benchmark or vibes‑based YAML. Let’s do something more useful: take one namespace and walk it from “wild west” to “this wouldn’t embarrass us in an audit.”
+
+Assume: one product team, one namespace, shared cluster.
+
+---
+
+## Step 1: Namespace and Basic Separation
+
+Give the team:
+
+- Their own namespace, e.g. `team-a-prod` and `team-a-staging`.
+- A convention:
+  - `*-prod` = stricter, fewer humans.
+  - `*-staging` = more freedom, but still not chaos.
+
+Lock down:
+
+- Don’t let people deploy straight into `default` or `kube-system`.
+- Network policies will assume namespace separation, so get this right early.
+
+---
+
+## Step 2: RBAC – Who Can Do What?
+
+Create:
+
+- A `developer` role:
+  - Can CRUD most resources in `team-a-staging`.
+  - Read‑only in `team-a-prod` (logs, events, pod specs).
+- A `release-engineer` or `system` role:
+  - Can deploy/update in `team-a-prod`.
+  - Maybe held by CI/CD service accounts, not humans.
+
+Use:
+
+- RoleBindings to tie roles to groups/service accounts.
+- Group claims from your IdP (e.g. “k8s-team-a-devs”) instead of per‑user RBAC.
+
+Goal: people can do their job without needing `cluster-admin` “just in case.”
+
+---
+
+## Step 3: Pod Security (PodSecurityStandards / Admission)
+
+If your cluster supports the new Pod Security Admission:
+
+- Start with `baseline` for staging.
+- `restricted` for prod namespace.
+
+Enforce:
+
+- No privileged containers.
+- No hostPath mounts unless explicitly allowed.
+- Non‑root users where possible.
+
+Keep a small documented escape hatch for weird cases, but require justification and periodic review.
+
+---
+
+## Step 4: Network Policies – Stop Everything Talking to Everything
+
+By default, K8s is “allow all” inside the cluster. Fix that.
+
+In `team-a-prod`:
+
+- Default‑deny ingress:
+  - Only allow:
+    - Ingress controller to hit app pods.
+    - App pods to talk to DB/cache/whatever is needed.
+- Default‑deny egress (if you’re brave):
+  - Allow:
+    - DNS.
+    - Necessary external APIs.
+    - Internal services.
+
+This can be iterative:
+
+- Start by restricting between namespaces.
+- Then tighten inside the namespace around particularly sensitive services.
+
+Use labels wisely (`app`, `role`, `tier`) to make policies readable.
+
+---
+
+## Step 5: Secrets and Config
+
+Baseline:
+
+- Use Kubernetes Secrets or external secret stores (Vault, AWS/GCP/etc. Secrets Manager).
+- No secrets in ConfigMaps, no hardcoded values in manifests.
+
+Better:
+
+- External secrets operator pulling from your cloud vault.
+- RBAC limiting who/what can read those secret objects.
+
+Add:
+
+- Periodic secret rotation where possible.
+- Policies (Kyverno/OPA) to reject manifests that try to sneak env vars with obviously secret‑looking keys into plain ConfigMaps.
+
+---
+
+## Step 6: Admission Control and Policy as Code
+
+Use a policy engine:
+
+- Kyverno or Gatekeeper (OPA) to enforce:
+
+  - No `latest` image tags.
+  - Resource requests/limits required.
+  - Mandatory labels (team, owner, environment).
+  - No host networking or host PID/IPC.
+
+Start in audit mode:
+
+- See what would have been blocked.
+- Fix patterns.
+- Then flip to enforce once people stop screaming.
+
+Document each policy in language the team understands: “This stops one broken pod killing the node” or “This stops accidental exposure of host filesystem.”
+
+---
+
+## Step 7: Observability and Alerts for Security‑Relevant Events
+
+Hook into:
+
+- Audit logs:
+  - Watch for `RoleBinding`, `ClusterRoleBinding`, and `ServiceAccount` changes.
+- Pod and deployment events:
+  - Unexpected restarts.
+  - ImagePullBackOff for prod services.
+
+Surface:
+
+- Dashboards showing:
+  - Which policies are failing (pre‑merge in CI and at admission).
+  - Which namespaces are “clean” vs constantly violating guardrails.
+
+Tie alerts to:
+
+- Slack/Teams channels the team actually reads.
+- Runbooks that say “if you see this, do that.”
+
+---
+
+## Final Thought
+
+Hardening a namespace isn’t about throwing every control at it. It’s about:
+
+- Giving teams freedom where it’s safe.
+- Putting walls where one bad manifest turns into an outage or incident.
+- Making security visible and fixable *before* merge and deploy.
+
+Do it once, properly, for one namespace. Then treat that as your gold standard and copy the pattern across the cluster.
+
+<img src="img/authors/geeky.jpg" width="40"/>
