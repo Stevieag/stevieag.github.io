@@ -14,5 +14,9 @@ untitled folder/
 __pycache__/
 *.pyc
 
+# macOS
+.DS_Store
+**/.DS_Store
+
 # Optional: uncomment to ignore Bundler lockfile (some prefer to commit it for CI)
 # Gemfile.lock
