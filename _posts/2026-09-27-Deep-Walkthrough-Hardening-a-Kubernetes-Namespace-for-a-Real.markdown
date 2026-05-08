@@ -115,22 +115,111 @@ Add:
 
 ## Step 6: Admission Control and Policy as Code
 
-Use a policy engine:
+Use a policy engine — [Kyverno](https://kyverno.io/) (YAML-native, easier to read) or [OPA Gatekeeper](https://open-policy-agent.github.io/gatekeeper/) (Rego, more powerful) — to enforce things at admission rather than discovering them in production.
 
-- Kyverno or Gatekeeper (OPA) to enforce:
+A working Kyverno policy that disallows `latest` image tags, requires resource limits, and enforces mandatory ownership labels:
 
-  - No `latest` image tags.
-  - Resource requests/limits required.
-  - Mandatory labels (team, owner, environment).
-  - No host networking or host PID/IPC.
+```yaml
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: ns-baseline
+  annotations:
+    policies.kyverno.io/category: Best Practices
+spec:
+  validationFailureAction: Audit   # flip to Enforce once clean
+  background: true
+  rules:
+    - name: disallow-latest-tag
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+              namespaces: ["team-a-prod", "team-a-staging"]
+      validate:
+        message: "Image tag ':latest' or empty tag is not allowed."
+        pattern:
+          spec:
+            containers:
+              - image: "!*:latest & *:*"
 
-Start in audit mode:
+    - name: require-resources
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+              namespaces: ["team-a-prod"]
+      validate:
+        message: "CPU and memory requests/limits are required."
+        pattern:
+          spec:
+            containers:
+              - resources:
+                  requests: { cpu: "?*", memory: "?*" }
+                  limits:   { cpu: "?*", memory: "?*" }
 
-- See what would have been blocked.
-- Fix patterns.
-- Then flip to enforce once people stop screaming.
+    - name: require-ownership-labels
+      match:
+        any:
+          - resources:
+              kinds: [Deployment, StatefulSet, DaemonSet, Job, CronJob]
+              namespaces: ["team-a-prod", "team-a-staging"]
+      validate:
+        message: "Workloads must carry team and owner labels."
+        pattern:
+          metadata:
+            labels:
+              team: "?*"
+              owner: "?*"
+              env: "?*"
 
-Document each policy in language the team understands: “This stops one broken pod killing the node” or “This stops accidental exposure of host filesystem.”
+    - name: disallow-host-namespaces
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+              namespaces: ["team-a-prod", "team-a-staging"]
+      validate:
+        message: "Host networking, PID, and IPC are not allowed."
+        pattern:
+          spec:
+            =(hostNetwork): false
+            =(hostPID): false
+            =(hostIPC): false
+```
+
+Start with `validationFailureAction: Audit` and let it run for a week. Read the [PolicyReports](https://kyverno.io/docs/policy-reports/) to see what would have been blocked. Fix the patterns. Once the report is clean for a couple of days, flip to `Enforce`.
+
+### Exemption Workflow (Because Real Life Has Edge Cases)
+
+Some workloads legitimately need things the policy blocks (a debug sidecar that must run as root, a one-off batch job that needs `hostPath` access). Make exemptions auditable, not unwritten:
+
+```yaml
+apiVersion: kyverno.io/v2
+kind: PolicyException
+metadata:
+  name: debug-sidecar-host-network
+  namespace: team-a-staging
+  annotations:
+    requested-by: alice@example.com
+    approved-by: security-on-call
+    reason: "Quarterly perf debug; tracked in JIRA SEC-1284"
+    expires: "2026-11-30"           # human-readable; pair with a CronJob to delete after
+spec:
+  exceptions:
+    - policyName: ns-baseline
+      ruleNames: [disallow-host-namespaces]
+  match:
+    any:
+      - resources:
+          kinds: [Pod]
+          names: ["debug-net-*"]
+          namespaces: ["team-a-staging"]
+```
+
+Treat each exemption like a short-lived security debt: name the requester, approver, reason, and expiry. A CronJob that scans for expired exemptions and pings the security channel keeps the list honest.
+
+Document each policy in language the team understands: "This stops one broken pod killing the node" or "This stops accidental exposure of host filesystem". Policy without explanation just feels like the platform team being mean.
 
 ---
 
