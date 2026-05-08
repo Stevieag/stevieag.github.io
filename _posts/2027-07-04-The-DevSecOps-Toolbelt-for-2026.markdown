@@ -154,24 +154,120 @@ These line up well with OWASP’s DevSecOps guideline, which focuses on coverage
 
 If you want a concrete starting point:
 
-- **Code & PRs**
-  - Semgrep (SAST).
-  - Snyk or Trivy/Grype (SCA).
-  - Checkov (IaC).
-  - Secret scanner.
+- **Code & PRs** — Semgrep (SAST), Snyk or Trivy/Grype (SCA), Checkov (IaC), gitleaks (secret scanner).
+- **Build & deploy** — Container scanning (Trivy/Snyk), SBOM generation (Syft → CycloneDX), image signing (Cosign).
+- **Runtime & cloud** — Falco for K8s runtime, CNAPP/CSPM for cloud posture.
+- **Periodic** — ZAP / DAST against staging nightly; manual Burp / pen-test where warranted.
 
-- **Build & deploy**
-  - Container scanning (Trivy/Snyk).
-  - SBOM generation.
+---
 
-- **Runtime & cloud**
-  - Falco for K8s runtime.
-  - CNAPP/CSPM for cloud posture.
+## Wiring the Toolbelt: A Working CI Pipeline
 
-- **Periodic**
-  - ZAP / DAST against staging.
-  - Manual Burp/pen‑test where warranted.
+The point of "minimal" is to actually run on every change. Here's a GitHub Actions workflow that runs the PR-time gates in parallel and the nightly DAST on a schedule.
 
-The “best tools” are the ones your team can actually run on every change and respond to. Start small, wire them properly into CI/CD, then iterate based on real signal‑to‑noise, not feature lists.
+```yaml
+# .github/workflows/devsecops.yml
+name: devsecops
+on:
+  pull_request:
+  push: { branches: [main] }
+  schedule: [{ cron: "0 2 * * *" }]   # nightly 02:00 UTC
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: |
+            p/r2c-ci
+            p/security-audit
+            p/owasp-top-ten
+            p/secrets
+
+  sca:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Trivy filesystem
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          severity: HIGH,CRITICAL
+          exit-code: 1
+          ignore-unfixed: true
+
+  iac:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule' && hashFiles('**/*.tf', '**/*.yaml') != ''
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          framework: terraform,kubernetes,dockerfile,helm
+          quiet: true
+
+  secrets:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+
+  container:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t app:${{ github.sha }} .
+      - name: Trivy image scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: app:${{ github.sha }}
+          severity: HIGH,CRITICAL
+          exit-code: 1
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: app:${{ github.sha }}
+          format: cyclonedx-json
+      - name: Sign image
+        run: cosign sign --yes app:${{ github.sha }}
+        env:
+          COSIGN_EXPERIMENTAL: "1"
+
+  dast:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: ZAP baseline scan
+        uses: zaproxy/action-baseline@v0.10.0
+        with:
+          target: https://staging.example.com
+          fail_action: true
+```
+
+The shape that matters:
+
+- **PR gates run in parallel** — fail-fast feedback to the developer.
+- **Container scan + SBOM + signing on `main` push** — supply-chain provenance for production images.
+- **DAST on a schedule** — too slow for PRs, just right for nightly.
+- **`exit-code: 1`** on the high-severity gates — CI red, merge blocked. Anything below `HIGH` is a soft signal you triage offline.
+
+For the GitLab Ultimate equivalent, the same gates exist as built-in templates (`SAST.gitlab-ci.yml`, `Container-Scanning.gitlab-ci.yml`, `DAST.gitlab-ci.yml`) — include them and tune.
+
+The "best tools" are the ones your team can actually run on every change and respond to. Start small, wire them properly into CI/CD, then iterate based on signal-to-noise, not feature lists. For the AI-shaped variation of this pipeline, see [AI-Assisted Development Without Losing Your Soul or Your Security](https://geekyblinder.co.uk/#/2027/05/09/AI-Assisted-Development-Without-Losing-Your-Soul-or-Your-Sec).
 
 <img src="img/authors/geeky.jpg" width="40"/>
