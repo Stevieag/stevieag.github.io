@@ -78,10 +78,66 @@ Security that grows with you beats security you panic‑buy after the first brea
 
 ---
 
+## A One-Page Baseline Checklist (Stick This in a Doc)
+
+Steal this. Adjust the owners. Tick or red-flag every line. If a row stays red for more than a quarter, it's a backlog item that's earned the right to a real conversation about scope vs scale.
+
+```markdown
+# Startup Security Baseline — last reviewed: ____
+
+## Identity & access
+- [ ] SSO (Google / Okta / Entra) for every SaaS that supports it
+- [ ] MFA mandatory on email, Git, cloud console, and IdP
+- [ ] No shared "admin" logins; per-human accounts only
+- [ ] Joiner/leaver checklist with same-day SaaS deprovisioning
+- [ ] Break-glass admin account documented + tested quarterly
+
+## Code & secrets
+- [ ] No secrets in repos (gitleaks pre-commit + CI scan)
+- [ ] Secrets stored in Vault / cloud secret manager (not .env)
+- [ ] Per-env secrets separation (no prod creds in dev)
+- [ ] Dependency scanning on every PR (Snyk / Trivy / Dependabot)
+- [ ] SAST on every PR (Semgrep / GitHub Advanced Security)
+
+## Cloud & infra
+- [ ] IaC for everything that matters (Terraform / Pulumi)
+- [ ] Cloud config monitoring (Security Hub / Defender for Cloud / SCC)
+- [ ] No public S3/Blob/GCS unless explicit, reviewed, and tagged
+- [ ] Production access via SSO + JIT (no standing admin)
+- [ ] CloudTrail / Audit Logs / Activity Logs centralised + retained
+
+## Endpoints
+- [ ] Disk encryption (FileVault / BitLocker) on every laptop
+- [ ] EDR / antivirus running, signatures fresh
+- [ ] OS patch SLA (e.g. 14 days for high CVEs)
+- [ ] MDM enrolled (Intune / Jamf / Kandji)
+- [ ] Lock screen, password manager use, screen-share hygiene baked in
+
+## Data
+- [ ] Customer data classified (where it lives, who can see it)
+- [ ] Encryption at rest + in transit, no exceptions
+- [ ] Backups exist, are tested, and stored off the production account
+- [ ] Data retention + deletion policy written and enforced
+- [ ] DSAR / right-to-be-forgotten process documented
+
+## Process
+- [ ] Documented IR plan with on-call rotation
+- [ ] Vendor risk: every third-party tool reviewed before onboarding
+- [ ] Acceptable Use Policy + AI usage policy signed at hire
+- [ ] Annual security awareness training (real, not slideware)
+- [ ] At least one pentest in the last 12 months
+```
+
+This is roughly the SOC 2 / ISO 27001 starter scope mapped to engineering reality. Most B2B questionnaires from sensible buyers boil down to "show me you can answer most of these confidently". You don't need certificates on day one; you need to be able to walk a serious customer through this list without inventing things.
+
+For the cloud-side deepening, see [Building a Cloud Security Baseline: From S3 Buckets to CNAPP](https://geekyblinder.co.uk/#/2026/06/21/Building-a-Cloud-Security-Baseline-From-S3-Buckets-to-CNAPP). For the architecture this lives inside, [Zero Trust Architecture: A Deep Practical Walkthrough](https://geekyblinder.co.uk/#/2026/05/10/Zero-Trust-Architecture-A-Deep-Practical-Walkthrough).
+
+---
+
 ## Final Thought
 
 If you’re already signing big clients, congratulations: you’re now interesting to people you’d rather weren’t interested in you.
 
-You can’t retroactively secure year one, but you can stop pretending that “we’re just a startup” is still a valid excuse. Draw a line, build a baseline, and make “we take security seriously” something you can demonstrate — not just say.
+You can’t retroactively secure year one, but you can stop pretending that "we’re just a startup" is still a valid excuse. Draw a line, build a baseline, and make "we take security seriously" something you can demonstrate — not just say.
 
 <img src="img/authors/geeky.jpg" width="40"/>
