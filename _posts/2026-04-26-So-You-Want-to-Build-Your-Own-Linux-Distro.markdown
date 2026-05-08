@@ -479,7 +479,7 @@ Realistic on a modern laptop with `MAKEFLAGS='-j8'`:
 | Kernel + GRUB (ch. 10) | 1 hr | 2 hr |
 | Total | ~10 hr | 18–28 hr |
 
-Set up `tmux` (see [The Tool That Makes Your Terminal Feel Like a Cockpit](/2026/12/20/Tmux-The-Tool-That-Makes-Your-Terminal-Feel-Like-a-Cockpit)) and treat it as background work over a long weekend.
+Set up `tmux` (see [The Tool That Makes Your Terminal Feel Like a Cockpit](https://geekyblinder.co.uk/#/2026/12/20/Tmux-The-Tool-That-Makes-Your-Terminal-Feel-Like-a-Cockpit) when it publishes) and treat it as background work over a long weekend.
 
 ### 3.6 When you’re ready, [the book](https://www.linuxfromscratch.org/lfs/view/stable/) is the only thing you should be following
 
