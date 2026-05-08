@@ -10,9 +10,9 @@ tags: homelab devsecops CI/CD docker kubernetes security
 
 ## Building a DevSecOps Homelab That Actually Teaches You Something
 
-A lot of “homelabs” are just increasingly expensive ways to host Plex. Nothing wrong with that, but if you want to get good at DevSecOps, you need something closer to reality: code, pipelines, images, scanners, and breakable apps.
+A lot of "homelabs" are just increasingly expensive ways to host Plex. Nothing wrong with that, but if you want to get good at DevSecOps, you need something closer to reality: code, pipelines, images, scanners, and breakable apps.
 
-Let’s build a small but serious lab you can iterate on, demo, and talk about in interviews.
+Let’s build a small but serious lab you can iterate on, demo, and talk about in interviews. Pairs with [Building a Home Lab to Learn Hacking Without Going to Jail](https://geekyblinder.co.uk/#/2026/07/19/Building-a-Home-Lab-to-Learn-Hacking-Without-Going-to-Jail) (the offensive sibling) and [The DevSecOps Toolbelt for 2026](https://geekyblinder.co.uk/#/2027/07/04/The-DevSecOps-Toolbelt-for-2026) (the toolchain reference).
 
 ---
 
@@ -64,23 +64,73 @@ Add a Dockerfile and Kubernetes or Docker Compose manifests.
 
 ## Step 3: CI/CD With Security in the Loop
 
-Set up a pipeline that:
+Set up a pipeline that runs the standard gates on every change. The shape:
 
-1. Runs unit tests.
-2. Runs SAST (e.g. Semgrep) on the code.
-3. Builds a container image.
-4. Runs container scanning (e.g. Trivy, Grype).
-5. Pushes image to your private registry.
-6. Deploys to staging (K8s or Docker Compose).
-7. Optionally runs DAST against staging.
+1. Unit tests.
+2. SAST (Semgrep, with `p/r2c-ci` and language-specific rule packs).
+3. Container build.
+4. Container vulnerability scan (Trivy or Grype).
+5. SBOM generation (Syft → CycloneDX format).
+6. Push image to your private registry.
+7. Deploy to staging (K8s manifest or Helm, ArgoCD if you want to learn GitOps).
+8. Nightly DAST against staging (OWASP ZAP baseline).
 
-The goal isn’t perfection, it’s *flow*:
+A working `.gitlab-ci.yml` skeleton:
 
-- A commit goes in.
-- Security tests run automatically.
-- You get feedback in minutes.
+```yaml
+stages: [test, build, scan, deploy, dast]
 
-Now you’ve got something you can walk through end‑to‑end with a hiring manager.
+unit:
+  stage: test
+  image: node:20-alpine
+  script: ["npm ci", "npm test"]
+
+sast:
+  stage: test
+  image: returntocorp/semgrep
+  script:
+    - semgrep --config p/r2c-ci --config p/security-audit --error
+
+build:
+  stage: build
+  image: docker:24
+  services: [docker:24-dind]
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+container-scan:
+  stage: scan
+  image: aquasec/trivy:latest
+  script:
+    - trivy image --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed \
+        $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+sbom:
+  stage: scan
+  image: anchore/syft:latest
+  script:
+    - syft $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -o cyclonedx-json > sbom.json
+  artifacts: { paths: [sbom.json], expire_in: 30 days }
+
+deploy-staging:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    - kubectl set image -n staging deploy/app app=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  only: [develop]
+
+dast:
+  stage: dast
+  image: ghcr.io/zaproxy/zaproxy:stable
+  script:
+    - zap-baseline.py -t http://staging.lab.local -r zap.html
+  only: { variables: [$CI_PIPELINE_SOURCE == "schedule"] }
+```
+
+The goal isn't perfection, it's *flow*: a commit goes in, security tests run automatically, you get feedback in minutes. For the deeper toolbox and the GitHub Actions equivalent, see [The DevSecOps Toolbelt for 2026](https://geekyblinder.co.uk/#/2027/07/04/The-DevSecOps-Toolbelt-for-2026).
+
+Now you've got something you can walk through end-to-end with a hiring manager.
 
 ---
 
