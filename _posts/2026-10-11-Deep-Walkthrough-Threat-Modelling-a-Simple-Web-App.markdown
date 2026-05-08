@@ -157,21 +157,67 @@ This becomes your short‑term security roadmap.
 
 ---
 
-## Step 5: Feed It Back Into Dev and DevSecOps
+## Step 5: A Sample Threat-Model Document
+
+Stash this in `docs/threat-model.md` in the repo. The shape is the artefact — fill it in for your own app and update each release.
+
+```markdown
+# Threat Model: Acme Docs (v1.2 — 2026-10)
+
+## Scope
+- In: web frontend, REST API, Postgres, S3 (uploaded files), Auth0 IdP.
+- Out: marketing site, billing system (separate threat model).
+
+## Data Flow Diagram
+[ user browser ] -> [ ALB ] -> [ API ] -> [ Postgres ]
+                              \-> [ S3 (uploads) ]
+                              \-> [ Auth0 (OIDC) ]
+
+## Trust Boundaries
+- Internet → ALB
+- ALB → API (TLS, no further auth on the LB itself)
+- API → Postgres (network policy + DB user auth)
+- API → S3 (IAM role)
+
+## Top Threats (STRIDE-tagged, scored Likelihood × Impact 1-5)
+
+| # | Threat                                       | STRIDE | L | I | Mitigation                                     | Owner | Status   |
+|---|----------------------------------------------|--------|---|---|------------------------------------------------|-------|----------|
+| 1 | Credential stuffing on login                 | S      | 5 | 4 | Rate-limit + breach-list check + MFA           | api   | Done     |
+| 2 | IDOR on /docs/:id                            | T,I    | 4 | 5 | Server-side ownership check; tests on every PR | api   | Done     |
+| 3 | SSRF via document-import URL                 | T,I    | 3 | 4 | Allowlist + IMDSv2 only on hosts               | api   | Planned  |
+| 4 | Admin token leak via XSS in shared docs      | E,I    | 3 | 5 | CSP + HttpOnly cookies via BFF                 | web   | In progress |
+| 5 | S3 bucket misconfig exposes uploads          | I      | 2 | 5 | Public-access-block + Checkov gate             | infra | Done     |
+| 6 | Audit-log tampering by compromised admin     | R      | 2 | 4 | WORM bucket + signed log shipping              | infra | Planned  |
+| 7 | DoS via large file uploads                   | D      | 3 | 3 | Max body size + per-user rate limit            | api   | Done     |
+
+## Accepted Risks (with expiry)
+- A8 — No anomaly detection on admin actions yet. Owner: security. Reaccept by: 2027-Q1.
+
+## Out-of-Band Notes
+- Last reviewed: 2026-10-09 by @stephen, @alice, @bob.
+- Next review: 2027-04 (next major release).
+```
+
+Two things worth noticing in this template:
+
+- **Scoring is rough on purpose.** L×I on a 1-5 scale forces conversations without pretending the numbers are accurate. The interesting bit is the discussion that produces the numbers, not the numbers themselves.
+- **Accepted risks have expiry dates.** "We're not fixing this" is a valid choice; "we're not fixing this and never reviewing it" is technical security debt that compounds.
+
+## Step 6: Feed It Back Into Dev and DevSecOps
 
 Threat model isn’t a static doc:
 
-- Capture it in your repo (e.g. `docs/threat-model.md`).
-- Link security stories/issues to specific threats.
-- Update when:
-  - You add new features.
-  - You change auth flows.
-  - You migrate infra (e.g. to K8s or to a new IdP).
+- Capture it in your repo (`docs/threat-model.md`) so it lives next to the code it describes.
+- Link security stories/issues to specific row numbers in the table — when the issue tracker says "fixes T3", you can read what T3 actually was.
+- Update when you add new features, change auth flows, migrate infra (e.g. to K8s or to a new IdP).
 
 Add checks to:
 
-- PR templates: “Does this change affect any documented threats?”
-- Design reviews: quick threat modelling pass for new major components.
+- PR templates: "Does this change affect any documented threats?"
+- Design reviews: quick threat-modelling pass for new major components.
+
+For the Obsidian-shaped variant of this — managing many threat models with consistent frontmatter and a Dataview dashboard for stale ones — see [Obsidian as a Second Brain for Security and DevOps](https://geekyblinder.co.uk/#/2027/02/28/Obsidian-as-a-Second-Brain-for-Security-and-DevOps).
 
 ---
 
